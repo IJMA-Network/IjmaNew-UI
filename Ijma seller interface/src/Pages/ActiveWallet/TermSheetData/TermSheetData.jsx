@@ -96,10 +96,10 @@ export default function TermSheetData() {
                 <div class="modal-body">
                   <table id="customers">
 
-                    <tr>
+                    {/* <tr>
                       <th>Company</th>
                       <th>Contact</th>
-                    </tr>
+                    </tr> */}
                     <tr>
                       <td>Bank</td>
                       <td>{v.bankAccountInfo.name}</td>
@@ -144,7 +144,7 @@ export default function TermSheetData() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal">Request Murhabba</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Accept TermSheet</button>
             </div>
 
           </div>
