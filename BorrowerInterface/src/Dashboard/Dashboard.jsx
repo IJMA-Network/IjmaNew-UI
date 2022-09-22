@@ -41,41 +41,59 @@ export default function Dashboard() {
   const items = [
 
 
-    {
-      key: '1',
-      icon: <TeamOutlined onClick={() => setTrigger(1)} />,
-      label: <div onClick={() => setTrigger(1)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
-    },
-    {
-      key: '2',
-      icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
-      label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
-    },
+    // {
+    //   key: '1',
+    //   icon: <TeamOutlined onClick={() => setTrigger(1)} />,
+    //   label: <div onClick={() => setTrigger(1)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
+    // },
+    // {
+    //   key: '2',
+    //   icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
+    //   label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
+    // },
 
 
 
     getItem('Active Wallet', 'sub2', <TeamOutlined />, [
-      {
-        key: '1b',
-        icon: <AndroidOutlined onClick={() => setTrigger('1b')} />,
-        label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
-      },
 
       {
-        key: '2b',
-        icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
-        label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+        key: '6b',
+        icon: <UserOutlined onClick={() => setTrigger('6b')} />,
+        label: <div onClick={() => setTrigger('6b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Term Sheet' : ''}</span></div>,
       },
       {
-        key: '3b',
-        icon: <SnippetsOutlined onClick={() => setTrigger('3b')} />,
-        label: <div onClick={() => setTrigger('3b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory Notes' : ''}</span></div>,
+        key: '5b',
+        icon: <UserAddOutlined onClick={() => setTrigger('5b')} />,
+        label: <div onClick={() => setTrigger('5b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
       },
       {
         key: '4b',
         icon: <UserAddOutlined onClick={() => setTrigger('4b')} />,
         label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Good' : ''}</span></div>,
       },
+      // {
+      //   key: '3b',
+      //   icon: <SnippetsOutlined onClick={() => setTrigger('3b')} />,
+      //   label: <div onClick={() => setTrigger('3b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory Notes' : ''}</span></div>,
+      // },
+      {
+        key: '2b',
+        icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
+        label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+      },
+
+      // {
+      //   key: '1b',
+      //   icon: <AndroidOutlined onClick={() => setTrigger('1b')} />,
+      //   label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
+      // },
+
+
+
+
+    ]),
+
+    getItem('Vault', 'sub3', <TeamOutlined />, [
 
       {
         key: '5b',
@@ -83,32 +101,29 @@ export default function Dashboard() {
         label: <div onClick={() => setTrigger('5b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proformas' : ''}</span></div>,
       },
       {
-        key: '6b',
-        icon: <UserOutlined onClick={() => setTrigger('6b')} />,
-        label: <div onClick={() => setTrigger('6b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Term Sheet' : ''}</span></div>,
+        key: '1b',
+        icon: <AndroidOutlined onClick={() => setTrigger('1b')} />,
+        label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
       },
-
-    ]),
-
-    getItem('Vault', 'sub3', <TeamOutlined />, [
-
-
 
       {
         key: '2a',
         icon: <LoginOutlined onClick={() => setTrigger('2a')} />,
-        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabah Vault' : ''}</span></div>,
+        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabah' : ''}</span></div>,
       },
-      {
-        key: '3a',
-        icon: <FileOutlined onClick={() => setTrigger('3a')} />,
-        label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
-      },
-      {
-        key: '4a',
-        icon: <HomeOutlined onClick={() => setTrigger('4a')} />,
-        label: <div onClick={() => setTrigger('4a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Purchase Order' : ''}</span></div>,
-      },
+      // {
+      //   key: '3a',
+      //   icon: <FileOutlined onClick={() => setTrigger('3a')} />,
+      //   label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
+      // },
+     
+
+
+      // {
+      //   key: '4a',
+      //   icon: <HomeOutlined onClick={() => setTrigger('4a')} />,
+      //   label: <div onClick={() => setTrigger('4a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Purchase Order' : ''}</span></div>,
+      // },
 
     ]),
   ];

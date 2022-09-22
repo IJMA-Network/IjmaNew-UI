@@ -45,11 +45,11 @@ export default function Dashboard() {
       icon: <TeamOutlined onClick={() => setTrigger(1)} />,
       label: <div onClick={() => setTrigger(1)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Issue TermSheet' : ''}</span></div>,
     },
-    {
-      key: '2',
-      icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
-      label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
-    },
+    // {
+    //   key: '2',
+    //   icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
+    //   label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
+    // },
 
 
 
@@ -89,18 +89,18 @@ export default function Dashboard() {
       {
         key: '2a',
         icon: <LoginOutlined onClick={() => setTrigger('2a')} />,
-        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabah Vault' : ''}</span></div>,
+        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabah' : ''}</span></div>,
       },
-      {
-        key: '3a',
-        icon: <FileOutlined onClick={() => setTrigger('3a')} />,
-        label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
-      },
-      {
-        key: '4a',
-        icon: <HomeOutlined onClick={() => setTrigger('4a')} />,
-        label: <div onClick={() => setTrigger('4a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Purchase Order' : ''}</span></div>,
-      },
+      // {
+      //   key: '3a',
+      //   icon: <FileOutlined onClick={() => setTrigger('3a')} />,
+      //   label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
+      // },
+      // {
+      //   key: '4a',
+      //   icon: <HomeOutlined onClick={() => setTrigger('4a')} />,
+      //   label: <div onClick={() => setTrigger('4a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Purchase Order' : ''}</span></div>,
+      // },
 
     ]),
   ];

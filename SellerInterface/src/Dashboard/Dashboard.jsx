@@ -12,7 +12,7 @@ import ijma from '../Images/Ijma.png'
 import {
   WalletDashboard, Applications, TermSheetData,
   Goods, Murabaha, Promissory, TermSheet,
-  VaultMurabaha,VaultPromissory,PurchesOrder
+  VaultMurabaha, VaultPromissory, PurchesOrder,Proformas
 } from '../Pages/index'
 
 
@@ -45,25 +45,30 @@ export default function Dashboard() {
       icon: <TeamOutlined onClick={() => setTrigger(1)} />,
       label: <div onClick={() => setTrigger(1)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
     },
-    {
-      key: '2',
-      icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
-      label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
-    },
+    // {
+    //   key: '2',
+    //   icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
+    //   label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
+    // },
 
 
 
     getItem('Active Wallet', 'sub2', <TeamOutlined />, [
-      {
-        key: '1b',
-        icon: <AndroidOutlined onClick={() => setTrigger('1b')} />,
-        label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
-      },
+      // {
+      //   key: '1b',
+      //   icon: <AndroidOutlined onClick={() => setTrigger('1b')} />,
+      //   label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
+      // },
 
+      // {
+      //   key: '2b',
+      //   icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
+      //   label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+      // },
       {
-        key: '2b',
-        icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
-        label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+        key: '4a',
+        icon: <HomeOutlined onClick={() => setTrigger('4a')} />,
+        label: <div onClick={() => setTrigger('4a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Purchase Order' : ''}</span></div>,
       },
       {
         key: '3b',
@@ -75,7 +80,7 @@ export default function Dashboard() {
         icon: <UserAddOutlined onClick={() => setTrigger('4b')} />,
         label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Good' : ''}</span></div>,
       },
-
+   
     ]),
 
     getItem('Vault', 'sub3', <TeamOutlined />, [
@@ -83,24 +88,20 @@ export default function Dashboard() {
       {
         key: '1a',
         icon: <UserOutlined onClick={() => setTrigger('1a')} />,
-        label: <div onClick={() => setTrigger('1a')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'TermSheet Detail' : ''}</span></div>,
+        label: <div onClick={() => setTrigger('1a')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
       },
 
-      {
-        key: '2a',
-        icon: <LoginOutlined onClick={() => setTrigger('2a')} />,
-        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabah Vault' : ''}</span></div>,
-      },
-      {
-        key: '3a',
-        icon: <FileOutlined onClick={() => setTrigger('3a')} />,
-        label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
-      },
-      {
-        key: '4a',
-        icon: <HomeOutlined onClick={() => setTrigger('4a')} />,
-        label: <div onClick={() => setTrigger('4a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Purchase Order' : ''}</span></div>,
-      },
+      // {
+      //   key: '2a',
+      //   icon: <LoginOutlined onClick={() => setTrigger('2a')} />,
+      //   label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabah Vault' : ''}</span></div>,
+      // },
+      // {
+      //   key: '3a',
+      //   icon: <FileOutlined onClick={() => setTrigger('3a')} />,
+      //   label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
+      // },
+
 
     ]),
   ];
@@ -160,42 +161,42 @@ export default function Dashboard() {
               )
                 : trigger === '1a' ? (
                   <>
-                    <TermSheetData />
+                    <Proformas />
                   </>
                 )
                   : trigger === '2a' ? (
                     <>
                       <VaultMurabaha />
                     </>
-                  ) 
-                  : trigger === '3a' ? (
-                    <>
-                      <VaultPromissory />
-                    </>
-                  ) 
-                  : trigger === '4a' ? (
-                    <>
-                      <PurchesOrder />
-                    </>
-                  ) 
-                  : trigger === '1b' ? (
-                    <>
-                      <Applications />
-                    </>
-                  ) : trigger === '2b' ? (
-                    <>
-                      <Murabaha />
-                    </>
-                  ) : trigger === '3b' ? (
-                    <>
-                      <Promissory />
-                    </>
-                  ) : trigger === '4b' ? (
-                    <>
-                      <Goods />
-                    </>
-                  ) :
-                    <></>
+                  )
+                    : trigger === '3a' ? (
+                      <>
+                        <VaultPromissory />
+                      </>
+                    )
+                      : trigger === '4a' ? (
+                        <>
+                          <PurchesOrder />
+                        </>
+                      )
+                        : trigger === '1b' ? (
+                          <>
+                            <Applications />
+                          </>
+                        ) : trigger === '2b' ? (
+                          <>
+                            <Murabaha />
+                          </>
+                        ) : trigger === '3b' ? (
+                          <>
+                            <Promissory />
+                          </>
+                        ) : trigger === '4b' ? (
+                          <>
+                            <Goods />
+                          </>
+                        ) :
+                          <></>
 
           }
         </Content>
