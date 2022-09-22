@@ -9,14 +9,14 @@ export default function TermSheet() {
                 <div class="col-xl-7 col-lg-8 col-md-9 col-11 ">
                     {/* <h3>Issue Term Sheet</h3>
                         <p class="blue-text">Just a few Ijma Sheet<br /> so that we can personalize the right experience for you.</p> */}
-                    <div class="card ">
                         <h3 className='text-center'>Issue Term Sheet</h3>
-                        <p class="blue-text text-center">Just a few Ijma Sheet<br /> so that we can personalize the right experience for you.</p>
+                    <div class="card ">
+                        {/* <p class="blue-text text-center">Just a few Ijma Sheet<br /> so that we can personalize the right experience for you.</p> */}
                         <form class="form-card">
 
                             <div class="form-group col-12 flex-column d-flex">
-                                <label class="form-label">Client Amount<span class="text-danger"> *</span></label>
-                                <input type="text" id="ans" name="ans" placeholder="Client Amount" onblur="validate(6)" />
+                                <label class="form-label">Client Account<span class="text-danger"> *</span></label>
+                                <input type="text" id="ans" name="ans" placeholder="Client AAccount-IBAN" onblur="validate(6)" />
                             </div>
                             {/* <br /> */}
 
@@ -25,10 +25,10 @@ export default function TermSheet() {
                                 <div class="form-group col-sm-6 flex-column d-flex">
                                     <label class="form-label">Node Name <span class="text-danger"> *</span></label>
                                     <select name="" id="" class="form-select">
-                                        <option value="">5000</option>
-                                        <option value="">1000</option>
-                                        <option value="">500</option>
-                                        <option value="">100</option>
+                                        <option value="">ABC Bank</option>
+                                        <option value="">XYZ Bank</option>
+                                        <option value="">DEF Bank</option>
+                                        <option value="">GHI Bank</option>
                                     </select>
                                 </div>
 
@@ -68,7 +68,7 @@ export default function TermSheet() {
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex">
                                     <label class="form-label">Tenor<span class="text-danger"> *</span></label>
-                                    <input type="text" id="ans" name="ans" placeholder="" onblur="validate(6)" />
+                                    <input type="text" id="ans" name="ans" placeholder="tenor in months" onblur="validate(6)" />
                                 </div>
                             </div>
                             {/* <br /> */}
@@ -76,11 +76,11 @@ export default function TermSheet() {
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-sm-6 flex-column d-flex">
                                     <label class="form-label">Refrance Rate<span class="text-danger"> *</span></label>
-                                    <input type="text" id="fname" name="fname" placeholder="Enter your first name" onblur="validate(1)" />
+                                    <input type="text" id="fname" name="fname" placeholder="Benchmark Rate in %" onblur="validate(1)" />
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex">
                                     <label class="form-label">Spread<span class="text-danger"> *</span></label>
-                                    <input type="text" id="lname" name="lname" placeholder="Enter your last name" onblur="validate(2)" />
+                                    <input type="text" id="lname" name="lname" placeholder="Spread in%" onblur="validate(2)" />
                                 </div>
                             </div>
 

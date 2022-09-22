@@ -22,7 +22,7 @@ export default function TermSheetData() {
             </button>
           </div>
 
-          <a class="white-text mx-3">Allow Access</a>
+          {/* <a class="white-text mx-3">Allow Access</a> */}
 
           <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -38,7 +38,7 @@ export default function TermSheetData() {
 
         </div>
         <div class="container mt-3">
-          <h2 className='text-center'>Term Sheet Details</h2>
+          <h2 className='text-center'>Term Sheets</h2>
 
           <table class="table table-hover">
             <thead class="bg-light">
@@ -48,7 +48,7 @@ export default function TermSheetData() {
                 <th>Limit</th>
                 <th>Tenor</th>
                 <th>Rate</th>
-                <th>Expire</th>
+                <th>Expiry</th>
                 <th></th>
               </tr>
             </thead>
@@ -98,7 +98,7 @@ export default function TermSheetData() {
 
                     <tr>
                       <th>Company</th>
-                      <th>Contact</th>
+                      <th>{v.borrowerAccountInfo.name}</th>
                     </tr>
                     <tr>
                       <td>Bank</td>
@@ -129,8 +129,8 @@ export default function TermSheetData() {
                       <td>{v.issueDate}</td>
                     </tr>
                     <tr>
-                      <td>In Accepted</td>
-                      <td>Pendding</td>
+                      <td>Acceptance</td>
+                      <td>Pending</td>
                     </tr>
 
 
@@ -144,7 +144,7 @@ export default function TermSheetData() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Accept</button>
             </div>
 
           </div>
