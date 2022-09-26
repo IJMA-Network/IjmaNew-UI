@@ -96,9 +96,9 @@ export default function Dashboard() {
     getItem('Vault', 'sub3', <TeamOutlined />, [
 
       {
-        key: '5b',
-        icon: <UserAddOutlined onClick={() => setTrigger('5b')} />,
-        label: <div onClick={() => setTrigger('5b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proformas' : ''}</span></div>,
+        key: '5a',
+        icon: <UserAddOutlined onClick={() => setTrigger('5a')} />,
+        label: <div onClick={() => setTrigger('5a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proformas' : ''}</span></div>,
       },
       {
         key: '1b',
@@ -195,6 +195,10 @@ export default function Dashboard() {
                     : trigger === '4a' ? (
                       <>
                         <PurchesOrder />
+                      </>
+                    ): trigger === '5a' ? (
+                      <>
+                        <Proformas />
                       </>
                     )
                       : trigger === '1b' ? (

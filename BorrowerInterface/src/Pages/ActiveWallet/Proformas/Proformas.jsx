@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './Proformas.css'
+import { InputNumber } from 'antd';
 // import PromissoryNote from './PromissoryNote.json'
 
 export default function Proformas() {
-
+    const [value, setValue] = useState('');
     //   PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
 
 
@@ -137,7 +138,8 @@ export default function Proformas() {
 
 
                         {/* <!-- Modal footer --> */}
-                        <div class="modal-footer">
+                        <div class="modal-footer d-flex justify-content-evenly">
+                            <input type="number" />
                             <button type="button" class="btn btn-success" data-dismiss="modal">Request Murhabba</button>
                             {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
                         </div>
