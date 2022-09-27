@@ -140,7 +140,7 @@ export default function Proformas() {
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
                             <input type="number" />
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Request Murhabba</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Request Murabaha</button>
                             {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
                         </div>
 
