@@ -147,7 +147,7 @@ export default function Applications() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-succes" data-dismiss="modal">Issue Purchase Order</button>
                         </div>
 
                     </div>

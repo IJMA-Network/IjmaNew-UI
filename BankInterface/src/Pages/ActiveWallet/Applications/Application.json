@@ -29,9 +29,9 @@
             }
         },
         "advisingBank": "O=SellerBank, L=Lahore, C=PK",
-        "description": "Samsung Television 34 inches",
+        "description": "Egyptian Cotton",
         "consumable": true,
-        "tenor": 25,
+        "tenor": "180 days",
         "amount": 300000,
         "proforma": {
             "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",

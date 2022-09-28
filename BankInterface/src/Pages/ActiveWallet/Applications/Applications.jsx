@@ -23,7 +23,7 @@ export default function Applications() {
                     </button>
                 </div>
 
-                <a class="white-text mx-3">Allow Access</a>
+                {/* <a class="white-text mx-3">Allow Access</a> */}
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -39,7 +39,7 @@ export default function Applications() {
 
             </div>
             <div class="container mt-3">
-                <h2 className='text-center'>Applications Detail</h2>
+                <h2 className='text-center'>Applications</h2>
 
                 <table class="table table-hover">
                     <thead class="bg-light">
@@ -147,7 +147,7 @@ export default function Applications() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Issue Purchase  Order</button>
                         </div>
 
                     </div>
