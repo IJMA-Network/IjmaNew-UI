@@ -1,6 +1,5 @@
 import axios from "axios";
-import React,{ useState } from "react";
-import { useEffect } from "react";
+import React,{ useState,useEffect } from "react";
 import { getData } from "../../../Api/Api";
 import "./Proformas.css";
 
@@ -10,7 +9,7 @@ export default function Proformas() {
   const [allData , setallData]=useState([])
 
   var data = {
-    account: "Seller1",
+    account: "Seller2",
     consumable: "",
   };
 

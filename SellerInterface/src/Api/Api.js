@@ -19,7 +19,7 @@ export const createPorforma = async (payload) => {
   }
 };
 
-
+            
 export const getData = async (apiURLData, data) => {
 
   const apiUrl = basApi + apiURLData;

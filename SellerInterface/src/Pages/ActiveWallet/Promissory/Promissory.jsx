@@ -1,10 +1,36 @@
-import React from 'react'
+import React,{ useState,useEffect } from "react";
+import { getData } from '../../../Api/Api'
 import './Promissory.css'
 import PromissoryNote from './PromissoryNote.json'
 
+
+
 export default function Promissory() {
 
-  PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+  // PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+
+  const [promissoryData , setpromissoryData]=useState([])
+
+  var data = {
+    "account": "Seller1",
+ "consumable": ""
+  };
+
+  var apiURLData = "received-PNs";
+
+useEffect(()=>{
+
+  getData(apiURLData, data).then((res) => {  
+    setpromissoryData(res.data)
+  });
+  
+},[])
+  
+  
+  console.log(promissoryData, "res");
+
+
+
 
 
   return (
