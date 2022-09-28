@@ -1,11 +1,31 @@
-import React from "react";
+import axios from "axios";
+import React,{ useState } from "react";
+import { useEffect } from "react";
+import { getData } from "../../../Api/Api";
 import "./Proformas.css";
 
-// import PromissoryNote from './PromissoryNote.json' createPorforma
 
 export default function Proformas() {
 
- //   PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+  const [allData , setallData]=useState([])
+
+  var data = {
+    account: "Seller1",
+    consumable: "",
+  };
+
+  var apiURLData = "issued-Proformas";
+
+useEffect(()=>{
+
+  getData(apiURLData, data).then((res) => {  
+    setallData(res.data)
+  });
+  
+},[])
+  
+  
+  console.log(allData, "res");
 
   return (
     <div class="card card-cascade narrower">
@@ -63,12 +83,15 @@ export default function Proformas() {
             </tr>
           </thead>
           <tbody>
+            {allData.map((v,i)=>{
+              return(
+
             <tr>
               <td>8-31-2022</td>
-              <td>SELLER</td>
-              <td>PR-HDM</td>
-              <td>Electroniics</td>
-              <td>20 pcs</td>
+              <td></td>
+              <td>{v.proformaId}</td>
+              <td></td>
+              <td> {v.goods.quantity.value}  {v.goods.quantity.unit} </td>
               <td>
                 <span
                   type="button"
@@ -81,6 +104,8 @@ export default function Proformas() {
                 </span>
               </td>
             </tr>
+              )
+            })}
           </tbody>
           {/* {
             PromissoryNote.map((v, i) => {
