@@ -11,7 +11,7 @@ import 'antd/dist/antd.css'
 import ijma from '../Images/Ijma.png'
 import {
   WalletDashboard, Applications, TermSheetData,
-  Goods, Murabaha, Promissory, TermSheet,
+  Goods, Murabaha, Promissory, Proforma,
   VaultMurabaha, VaultPromissory, PurchesOrder,Proformas
 } from '../Pages/index'
 
@@ -151,7 +151,7 @@ export default function Dashboard() {
 
             trigger === 1 ? (
               <>
-                <TermSheet />
+                <Proforma />
               </>
             ) :
               trigger === 2 ? (
