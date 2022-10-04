@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Breadcrumb, Layout, Menu } from 'antd';
+import ijma from '../Images/Ijma.png'
+import './Dashboard.css'
 import {
   MenuUnfoldOutlined, MenuFoldOutlined, HomeOutlined,
   LoginOutlined, FileOutlined, TeamOutlined, FormOutlined
   , UserAddOutlined, PieChartOutlined, UserOutlined, DingtalkOutlined,
   UsergroupAddOutlined, DesktopOutlined, AndroidOutlined, SnippetsOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu } from 'antd';
-import './Dashboard.css'
-import 'antd/dist/antd.css'
-import ijma from '../Images/Ijma.png'
 import {
   WalletDashboard, Applications, TermSheetData,
   Goods, Murabaha, Promissory, Proforma,
-  VaultMurabaha, VaultPromissory, PurchesOrder,Proformas
+  VaultMurabaha, VaultPromissory, PurchesOrder, Proformas
 } from '../Pages/index'
 
 
@@ -80,7 +79,7 @@ export default function Dashboard() {
         icon: <UserAddOutlined onClick={() => setTrigger('4b')} />,
         label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Good' : ''}</span></div>,
       },
-   
+
     ]),
 
     getItem('Vault', 'sub3', <TeamOutlined />, [

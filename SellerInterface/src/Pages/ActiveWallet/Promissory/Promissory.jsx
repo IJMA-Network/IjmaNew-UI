@@ -7,24 +7,24 @@ import PromissoryNote from './PromissoryNote.json'
 
 export default function Promissory() {
 
-  // PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+  PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
 
   const [promissoryData , setpromissoryData]=useState([])
 
-  var data = {
-    "account": "Seller1",
- "consumable": ""
-  };
+//   var data = {
+//     "account": "Seller1",
+//  "consumable": ""
+//   };
 
-  var apiURLData = "received-PNs";
+//   var apiURLData = "received-PNs";
 
-useEffect(()=>{
+// useEffect(()=>{
 
-  getData(apiURLData, data).then((res) => {  
-    setpromissoryData(res.data)
-  });
+//   getData(apiURLData, data).then((res) => {  
+//     setpromissoryData(res.data)
+//   });
   
-},[])
+// },[])
   
   
   console.log(promissoryData, "res");
@@ -68,12 +68,12 @@ useEffect(()=>{
         <table class="table table-hover">
           <thead class="bg-light">
             <tr>
+              <th>Id</th>
               <th>Issue Date</th>
-              <th>Freference No..</th>
-              <th>Issuer</th>
-              <th>Payee</th>
-              <th>Amount</th>
-              <th>Expire Date</th>
+              <th>Maturity</th>
+              <th>Issuer </th>
+              <th>Payee </th>
+              <th>Redeemable</th>
               <th></th>
             </tr>
           </thead>
@@ -83,12 +83,12 @@ useEffect(()=>{
 
                 <tbody>
                   <tr>
-                    <td>{v.issueDate}</td>
-                    <td>{v.id}</td>
-                    <td>{v.issuerAccount.name}</td>
-                    <td>{v.payeeAccount.name}</td>
-                    <td>{v.value}</td>
-                    <td>{v.maturity}</td>
+                    {/* <td>{v.id}</td> */}
+                    {/* <td>{v.issueDate}</td> */}
+                    {/* <td>{v.issuerAccount.name}</td> */}
+                    {/* <td>{v.payeeAccount.name}</td> */}
+                    {/* <td>{v.value}</td> */}
+                    {/* <td>{v.maturity}</td> */}
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                       //  onClick={() => setClinetID(v._id)}
@@ -123,23 +123,23 @@ useEffect(()=>{
                     </tr>
                     <tr>
                       <td>Issue Date.</td>
-                      <td>{v.issueDate}</td>
+                      {/* <td>{v.issueDate}</td> */}
                     </tr>
                     <tr>
                       <td>Refrence No.</td>
-                      <td>{v.id}</td>
+                      {/* <td>{v.id}</td> */}
                     </tr>
                     <tr>
                       <td>Issuer</td>
-                      <td>{v.issuerAccount.name}</td>
+                      {/* <td>{v.issuerAccount.name}</td> */}
                     </tr>
                     <tr>
                       <td>Payee</td>
-                      <td>{v.payeeAccount.name}</td>
+                      {/* <td>{v.payeeAccount.name}</td> */}
                     </tr>
                     <tr>
                       <td>Amount</td>
-                      <td>{v.value}</td>
+                      {/* <td>{v.value}</td> */}
                     </tr>
                     <tr>
                       <td>Redeemad</td>
@@ -147,7 +147,7 @@ useEffect(()=>{
                     </tr>
                     <tr>
                       <td>Expiry</td>
-                      <td>{v.maturity}</td>
+                      {/* <td>{v.maturity}</td> */}
                     </tr>
 
                   </table>

@@ -1,29 +1,34 @@
 import axios from "axios";
-import React,{ useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getData } from "../../../Api/Api";
 import "./Proformas.css";
+
+import ProformaJsonData from './ProformaJsonData.json'
 
 
 export default function Proformas() {
 
-  const [allData , setallData]=useState([])
+  const [allData, setallData] = useState([])
 
-  var data = {
-    account: "Seller2",
-    consumable: "",
-  };
+  ProformaJsonData.map((v, i) => { console.log(v) })
 
-  var apiURLData = "issued-Proformas";
 
-useEffect(()=>{
+  //   var data = {
+  //     account: "Seller2",
+  //     consumable: "",
+  //   };
 
-  getData(apiURLData, data).then((res) => {  
-    setallData(res.data)
-  });
-  
-},[])
-  
-  
+  //   var apiURLData = "issued-Proformas";
+
+  // useEffect(()=>{
+
+  //   getData(apiURLData, data).then((res) => {  
+  //     setallData(res.data)
+  //   });
+
+  // },[])
+
+
   console.log(allData, "res");
 
   return (
@@ -73,36 +78,38 @@ useEffect(()=>{
         <table class="table table-hover">
           <thead class="bg-light">
             <tr>
+              <th>Proforma Id</th>
               <th> Date</th>
-              <th>Reference No.</th>
-              <th>Issuer</th>
+              <th>Seller </th>
+              <th>Buyer</th>
               <th>Item</th>
               <th>Quantity</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {allData.map((v,i)=>{
-              return(
+            {ProformaJsonData.map((v, i) => {
+              return (
 
-            <tr>
-              <td>8-31-2022</td>
-              <td></td>
-              <td>{v.proformaId}</td>
-              <td></td>
-              <td> {v.goods.quantity.value}  {v.goods.quantity.unit} </td>
-              <td>
-                <span
-                  type="button"
-                  class="btn btn-warning btn-rounded"
-                  data-toggle="modal"
-                  data-target="#myModal"
-                  //  onClick={() => setClinetID(v._id)}
-                >
-                  View
-                </span>
-              </td>
-            </tr>
+                <tr>
+                  <td>{v.proformaId}</td>
+                  <td>{v.date}</td>
+                  <td>{v.sellerAccountInfo.name}</td>
+                  <td>{v.buyerAccountInfo.name}</td>
+                  <td>{v.goods.asset}</td>
+                  <td> {v.goods.quantity.value}  {v.goods.quantity.unit} </td>
+                  <td>
+                    <span
+                      type="button"
+                      class="btn btn-warning btn-rounded"
+                      data-toggle="modal"
+                      data-target="#myModal"
+                    //  onClick={() => setClinetID(v._id)}
+                    >
+                      View
+                    </span>
+                  </td>
+                </tr>
               )
             })}
           </tbody>
@@ -130,44 +137,47 @@ useEffect(()=>{
               </button>
             </div>
             <div class="modal-body">
-              <table id="customers">
+              {ProformaJsonData.map((v, i) => {
+                return (
+                  
+                  <table id="customers">
                 <tr>
-                  <td>Vendor</td>
-                  <td>IBANPAKKA0000SELLER2</td>
-                </tr>
-                <tr>
-                  <td>Client</td>
-                  <td>IBANPAKKA0000BUYER1</td>
-                </tr>
-                <tr>
-                  <td>Refrence No.</td>
-                  <td>PR-HMD-01</td>
-                </tr>
-                <tr>
-                  <td>Date</td>
-                  <td>31-8-2022</td>
-                </tr>
-                <tr>
-                  <td>Consignment No.</td>
-                  <td>CN-1</td>
-                </tr>
-                <tr>
-                  <td>item</td>
-                  <td>Electronics</td>
-                </tr>
-                <tr>
-                  <td>Description</td>
-                  <td>Samsung Smart TV 36"</td>
-                </tr>
-                <tr>
-                  <td>Quantity</td>
-                  <td>20 pcs</td>
-                </tr>
-                <tr>
-                  <td>Amount</td>
-                  <td>20000</td>
-                </tr>
-              </table>
+                <td>Proforma Id</td>
+                <td>{v.proformaId}</td>
+              </tr>
+              <tr>
+                <td>DATE</td>
+                <td>{v.date}</td>
+              </tr>
+              <tr>
+                <td>Seller </td>
+                <td>{v.sellerAccountInfo.name}</td>
+              </tr>
+              <tr>
+                <td>Buyer</td>
+                <td>{v.buyerAccountInfo.name}</td>
+              </tr>
+              <tr>
+                <td>Item</td>
+                <td>{v.goods.asset}</td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td>{v.description}</td>
+              </tr>
+              <tr>
+                <td>Quantity</td>
+                <td> {v.goods.quantity.value}  {v.goods.quantity.unit} </td>
+              </tr>
+              <tr>
+                <td>Amount</td>
+                <td>{v.amount}</td>
+              </tr>
+               
+               </table>
+               )}
+               
+               )}
             </div>
             {/* <!-- Modal body --> */}
             {/* {PromissoryNote.map((v, i) => {
