@@ -26,7 +26,7 @@ export default function TermSheet() {
 
     var data = {
       bank: bank.current.value,
-      Client: Client.current.value,
+      client: Client.current.value,
       termsheetReference: Refrense.current.value,
       facilityType: FacilityType.current.value,
       limit: Limit.current.value,
