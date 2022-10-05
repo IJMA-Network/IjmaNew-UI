@@ -32,7 +32,7 @@ export default function TermSheet() {
       limit: Limit.current.value,
       tenor: Tenor.current.value,
       profitRate: profitRate,
-      Expire: Expire.current.value,
+      expiry: Expire.current.value,
     };
     // const myJSON = JSON.stringify(data);
 
