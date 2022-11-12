@@ -13,7 +13,7 @@
         },
         "referenceId": "PO-MAPP-PR-1",
         "applicationId": "PR-1",
-        "description": "Chairs",
+        "description": "Egyptian Cotton of Superior Quality",
         "proforma": {
             "seller": "GfHq2tTVk9z4eXgyMNx73Jfe14i6LJVVCAMTFWiV45DWLAbSG5zwwZdNPk4W",
             "buyer": "GfHq2tTVk9z4eXgyLGrnJq2RkzK1hHQidMHJ2cmieFxijhNv1fix5qrKgNU6",
@@ -35,13 +35,13 @@
             },
             "date": "2021-01-04",
             "proformaId": "PR-1",
-            "description": "Chairs",
+            "description": "Egyptian Cotton of Superior Quality",
             "goods": {
                 "seller": "GfHq2tTVk9z4eXgyMNx73Jfe14i6LJVVCAMTFWiV45DWLAbSG5zwwZdNPk4W",
                 "assetOwner": "GfHq2tTVk9z4eXgyMNx73Jfe14i6LJVVCAMTFWiV45DWLAbSG5zwwZdNPk4W",
                 "quantity": "12 ",
                 "internalReference": "G-1",
-                "asset": "Chairs",
+                "asset": "Cotton",
                 "takaful": false,
                 "owner": "GfHq2tTVk9z4eXgyMNx73Jfe14i6LJVVCAMTFWiV45DWLAbSG5zwwZdNPk4W",
                 "participants": [

@@ -65,7 +65,7 @@ export default function PurchaesOrder() {
                                     <td>IBAN...</td>
                                     <td>IBAN...</td>
                                     <td>{v.applicationId}</td>
-                                    <td>{v.description}</td>
+                                    <td>{v.proforma.goods.asset}</td>
                                     <td>{v.amount}</td>
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -123,7 +123,7 @@ export default function PurchaesOrder() {
                                         </tr>
                                         <tr>
                                             <td>Item</td>
-                                            <td>{v.description}</td>
+                                            <td>{v.proforma.goods.asset}</td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>
