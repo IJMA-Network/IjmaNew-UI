@@ -1,15 +1,32 @@
-import React from 'react'
+import React,{ useState,useEffect } from "react";
+import { getData } from "../../../Api/Api";
 import './PurchaesOrder.css'
 import PurchesOrder from './PurchaesOrderState.json'
 
 export default function PurchaesOrder() {
 
+    // PurchesOrder.map((v, i) => { console.log(v, "PurchesOrder") })
 
-    PurchesOrder.map((v, i) => { console.log(v, "PurchesOrder") })
+    
+  const [PurchaesOrder , setPurchaesOrder]=useState([])
+
+  var data = {
+    "account": "Seller1",
+ "consumable": ""
+  };
+
+  var apiURLData = "received-POs"
+
+useEffect(()=>{
+
+  getData(apiURLData, data).then((res) => {  
+    setPurchaesOrder(res.data)
+  });
+  
+},[])
 
 
-
-
+console.log(PurchaesOrder,"PurchaesOrder");
     return (
         <div class="card card-cascade narrower">
             <div
@@ -87,7 +104,7 @@ export default function PurchaesOrder() {
 
                         {/* <!-- Modal Header --> */}
                         <div class="modal-header">
-                            <h3 class="modal-title">Murabaha Agreement Details</h3>
+                            <h3 class="modal-title">Purchase Order Details</h3>
                             <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
                         </div>
 
@@ -148,7 +165,7 @@ export default function PurchaesOrder() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Deliver</button>
                         </div>
 
                     </div>

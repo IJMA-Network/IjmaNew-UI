@@ -43,10 +43,11 @@ export default function Goods() {
           <table class="table table-hover">
             <thead class="bg-light">
               <tr>
-                <th>Consignmento.</th>
                 <th>Asset</th>
+                <th>Consignment Number</th>
+                <th>Description</th>
+                <th>Redeemable</th>
                 <th>Quantity</th>
-                <th>Insurance</th>
                 <th></th>
               </tr>
             </thead>
@@ -54,9 +55,11 @@ export default function Goods() {
               return (
                 <tbody>
                   <tr>
-                    <td>{v.internalReference}</td>
                     <td>{v.asset}</td>
-                    <td>{v.quantity.value}</td>
+                    <td>{v.consignmentNumber}</td>
+                    <td>{v.description}</td>
+                    <td>{v.isRedeemable}</td>
+                    <td>{v.quantity.unit} {v.quantity.value}</td>
                     <td></td>
 
                     <td>
@@ -97,24 +100,24 @@ export default function Goods() {
                       <th>Contact</th>
                     </tr>
                     <tr>
-                      <td>Seller</td>
-                      <td>{v.vendor.name}</td>
+                      <td>Asset</td>
+                      <td>{v.asset}</td>
                     </tr>
                     <tr>
-                      <td>Asset</td>
+                      <td>Consignment Number</td>
+                      <td>{v.consignmentNumber}</td>
+                    </tr>
+                    <tr>
+                      <td>Description</td>
                       <td>{v.description}</td>
                     </tr>
                     <tr>
-                      <td>Quantity</td>
-                      <td>{v.quantity.value}</td>
-                    </tr>
-                    <tr>
                       <td>Reedemable</td>
-                      <td>Yes</td>
+                      <td>{v.isRedeemable}</td>
                     </tr>
                     <tr>
-                      <td>Issure</td>
-                      <td>No</td>
+                      <td>Quantity</td>
+                      <td>{v.quantity.unit} {v.quantity.value}</td>
                     </tr>
 
 

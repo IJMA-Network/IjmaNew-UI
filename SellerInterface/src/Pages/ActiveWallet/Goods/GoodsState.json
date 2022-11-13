@@ -1,27 +1,28 @@
 [
     {
-        "seller": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "seller": "GfHq2tTVk9z4eXgyNiYutsY1cH4P1SYccgiR1D4y3tWvydeQyPHXfwCvAjGa",
         "vendor": {
-            "name": "IBANPKKA0000SELLER2",
+            "name": "Seller1",
             "host": "O=SellerBank, L=Lahore, C=PK",
             "identifier": {
                 "externalId": null,
-                "id": "f089695d-ce0c-4f16-8245-04657cb845e3"
+                "id": "154814c8-27ba-4982-8c1a-97b0ca1a5201"
             }
         },
-        "assetOwner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "assetOwner": "GfHq2tTVk9z4eXgyFxWTqSXTt2UUYWri7HkYVdqUx42FnkAXUdBJiyQrfRHe",
         "quantity": {
-            "value": 20.0,
-            "unit": "pcs"
+            "value": 1000.0,
+            "unit": "Meters"
         },
-        "internalReference": "CN-1",
-        "asset": "Electronics",
-        "description": "Samsund smart TV 36\"",
+        "processId": "PR-1",
+        "consignmentNumber": "CN-1",
+        "asset": "Cotton",
+        "description": "EgyptianCotton",
         "isRedeemable": true,
         "takaful": false,
-        "owner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "owner": "GfHq2tTVk9z4eXgyFxWTqSXTt2UUYWri7HkYVdqUx42FnkAXUdBJiyQrfRHe",
         "participants": [
-            "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh"
+            "GfHq2tTVk9z4eXgyFxWTqSXTt2UUYWri7HkYVdqUx42FnkAXUdBJiyQrfRHe"
         ]
     }
 ]
