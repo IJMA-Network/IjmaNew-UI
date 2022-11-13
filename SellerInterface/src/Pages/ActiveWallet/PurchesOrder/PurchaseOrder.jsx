@@ -148,7 +148,7 @@ console.log(PurchaesOrder,"PurchaesOrder");
                                         </tr>
                                         <tr>
                                             <td>Quantity</td>
-                                            <td>{v.tenor}</td>
+                                            <td>{v.proforma.goods.quantity}</td>
                                         </tr>
                                         <tr>
                                             <td>Amount</td>

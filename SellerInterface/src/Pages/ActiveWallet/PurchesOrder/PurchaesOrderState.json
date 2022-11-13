@@ -39,7 +39,7 @@
             "goods": {
                 "seller": "GfHq2tTVk9z4eXgyMNx73Jfe14i6LJVVCAMTFWiV45DWLAbSG5zwwZdNPk4W",
                 "assetOwner": "GfHq2tTVk9z4eXgyMNx73Jfe14i6LJVVCAMTFWiV45DWLAbSG5zwwZdNPk4W",
-                "quantity": "12 ",
+                "quantity": "12  million bales",
                 "internalReference": "G-1",
                 "asset": "Cotton",
                 "takaful": false,
@@ -55,7 +55,7 @@
                 "GfHq2tTVk9z4eXgyMNx73Jfe14i6LJVVCAMTFWiV45DWLAbSG5zwwZdNPk4W"
             ]
         },
-        "amount": 786,
+        "amount": "90,000000",
         "tenor": 2,
         "consumable": true,
         "insuranceTerms": false
