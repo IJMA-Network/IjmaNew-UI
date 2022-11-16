@@ -129,7 +129,7 @@ export default function TermSheetData() {
                       <td>{v.issueDate}</td>
                     </tr>
                     <tr>
-                      <td>In Accepted</td>
+                      <td>Acceptance</td>
                       <td>Pendding</td>
                     </tr>
 
@@ -144,7 +144,7 @@ export default function TermSheetData() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal">Accept TermSheet</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Accept Term Sheet</button>
             </div>
 
           </div>
