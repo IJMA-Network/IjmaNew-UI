@@ -24,7 +24,7 @@ export default function Murabaha() {
                     </button>
                 </div>
 
-                <a class="white-text mx-3">Allow Access</a>
+                {/* <a class="white-text mx-3">Allow Access</a> */}
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
