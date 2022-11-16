@@ -1,7 +1,7 @@
 [
     {
         "id": "PNPO-MAPP-PR-1",
-        "value": 200,
+        "value": 600000,
         "issuerParty": "GfHq2tTVk9z4eXgyFXBCbnk6CVv4FuJ4ChWYr9vwQnoMtczJGDVy8wJ6yowa",
         "issuerAccount": {
             "name": "Bank1",

@@ -47,7 +47,7 @@ export default function Promissory() {
           </button>
         </div>
 
-        <a class="white-text mx-3">Allow Access</a>
+        {/* <a class="white-text mx-3">Allow Access</a> */}
 
         <div>
           <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -73,7 +73,7 @@ export default function Promissory() {
               <th>Maturity</th>
               <th>Issuer </th>
               <th>Payee </th>
-              <th>Redeemable</th>
+              <th>Amount</th>
               <th></th>
             </tr>
           </thead>
@@ -83,12 +83,12 @@ export default function Promissory() {
 
                 <tbody>
                   <tr>
-                    {/* <td>{v.id}</td> */}
-                    {/* <td>{v.issueDate}</td> */}
-                    {/* <td>{v.issuerAccount.name}</td> */}
-                    {/* <td>{v.payeeAccount.name}</td> */}
-                    {/* <td>{v.value}</td> */}
-                    {/* <td>{v.maturity}</td> */}
+                    <td>{v.id}</td>
+                    <td>{v.issueDate}</td>
+                    <td>{v.maturity}</td>
+                    <td>{v.issuerAccount.name}</td>
+                    <td>{v.payeeAccount.name}</td>
+                    <td>{v.value}</td>
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                       //  onClick={() => setClinetID(v._id)}
@@ -123,31 +123,31 @@ export default function Promissory() {
                     </tr>
                     <tr>
                       <td>Issue Date.</td>
-                      {/* <td>{v.issueDate}</td> */}
+                      <td>{v.issueDate}</td>
                     </tr>
                     <tr>
                       <td>Refrence No.</td>
-                      {/* <td>{v.id}</td> */}
+                      <td>{v.id}</td>
                     </tr>
                     <tr>
                       <td>Issuer</td>
-                      {/* <td>{v.issuerAccount.name}</td> */}
+                      <td>{v.issuerAccount.name}</td>
                     </tr>
                     <tr>
                       <td>Payee</td>
-                      {/* <td>{v.payeeAccount.name}</td> */}
+                      <td>{v.payeeAccount.name}</td>
                     </tr>
                     <tr>
                       <td>Amount</td>
-                      {/* <td>{v.value}</td> */}
+                      <td>{v.value}</td>
                     </tr>
                     <tr>
                       <td>Redeemad</td>
-                      <td>Yes</td>
+                      <td>No.</td>
                     </tr>
                     <tr>
-                      <td>Expiry</td>
-                      {/* <td>{v.maturity}</td> */}
+                      <td>Due Date</td>
+                      <td>{v.maturity}</td>
                     </tr>
 
                   </table>
@@ -160,7 +160,7 @@ export default function Promissory() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Redeem</button>
             </div>
 
           </div>

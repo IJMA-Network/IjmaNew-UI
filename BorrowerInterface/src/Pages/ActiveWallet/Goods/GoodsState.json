@@ -11,12 +11,12 @@
         },
         "assetOwner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
         "quantity": {
-            "value": 20.0,
+            "value": "12 million bales",
             "unit": "pcs"
         },
         "internalReference": "CN-1",
-        "asset": "Electronics",
-        "description": "Samsund smart TV 36\"",
+        "asset": "Cotton",
+        "description": "Egyptian Cotton of Superior Quality",
         "isRedeemable": true,
         "takaful": false,
         "owner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",

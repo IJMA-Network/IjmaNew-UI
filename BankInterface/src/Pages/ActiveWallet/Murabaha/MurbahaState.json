@@ -19,7 +19,7 @@
             }
         },
         "internalReference": "MUR-MAPP-PR1-1",
-        "agreementDate": "MM-DD-YY",
+        "agreementDate": "01-01-22",
         "goods": {
             "seller": "GfHq2tTVk9z4eXgyNEJBAJwfNPuo8WWtPXwRs5RLZiFLftLAizZYab5iumKb",
             "vendor": {
@@ -45,12 +45,12 @@
                 "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
             ]
         },
-        "costPrice": 600000,
-        "sellingprice": 600000.0111111111,
-        "profitrate": 0.16,
+        "costPrice": "600,000",
+        "sellingprice":" 600,050",
+        "profitrate": "20%",
         "term": 25,
-        "bankSignature": true,
-        "borrowerSignature": true,
+        "bankSignature": false,
+        "borrowerSignature": false,
         "participants": [
             "GfHq2tTVk9z4eXgyMrX22p5smhrxc2N6u9oNwxKczdFdoVchab4tp1Bftt1r",
             "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
