@@ -142,7 +142,7 @@ export default function Promissory() {
                       <td>{v.value}</td>
                     </tr>
                     <tr>
-                      <td>Redeemad</td>
+                      <td>Redeemed</td>
                       <td>No.</td>
                     </tr>
                     <tr>
@@ -160,7 +160,7 @@ export default function Promissory() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal">Redeem</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Encash</button>
             </div>
 
           </div>
