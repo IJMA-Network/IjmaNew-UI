@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './Proformas.css'
 import { InputNumber } from 'antd';
-// import PromissoryNote from './PromissoryNote.json'
+import ProformaState from './ProformaState.json'
 
 export default function Proformas() {
     const [value, setValue] = useState('');
-    //   PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+    const[proformas,setProformas]=useState(ProformaState)
+    ProformaState.map((v, i) => { console.log(v, "xzxzx") })
 
 
     return (
@@ -22,7 +23,7 @@ export default function Proformas() {
                     </button>
                 </div>
 
-                <a class="white-text mx-3">Allow Access</a>
+                {/* <a class="white-text mx-3">Allow Access</a> */}
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -51,13 +52,15 @@ export default function Proformas() {
                             <th></th>
                         </tr>
                     </thead>
+                    {ProformaState.map((v, i) => {
+              return (
                     <tbody>
                         <tr>
-                            <td>8-31-2022</td>
-                            <td>SELLER</td>
-                            <td>PR-HDM</td>
-                            <td>Electroniics</td>
-                            <td>20 pcs</td>
+                            <td>{v.date}</td>
+                            <td>{v.proformaId}</td>
+                            <td>{v.sellerAccountInfo.name}</td>
+                            <td>{"Cotton"}</td>
+                            <td>{"12 million bales"}</td>
                             <td>
                                 <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                 //  onClick={() => setClinetID(v._id)}
@@ -65,6 +68,8 @@ export default function Proformas() {
                             </td>
                         </tr>
                     </tbody>
+               )
+            })}
                     {/* {
             PromissoryNote.map((v, i) => {
               return (
@@ -81,7 +86,7 @@ export default function Proformas() {
 
                         {/* <!-- Modal Header --> */}
                         <div class="modal-header">
-                            <h3 class="modal-title">Proformas Details</h3>
+                            <h3 class="modal-title">Proforma Details</h3>
                             <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
                         </div>
                         <div class="modal-body">
@@ -108,20 +113,20 @@ export default function Proformas() {
                                     <td>CN-1</td>
                                 </tr>
                                 <tr>
-                                    <td>item</td>
-                                    <td>Electronics</td>
+                                    <td>Item</td>
+                                    <td>{"Cotton"}</td>
                                 </tr>
                                 <tr>
                                     <td>Description</td>
-                                    <td>Samsung Smart TV 36"</td>
+                                    <td>{"Egyptian Cotton of premium quality"}</td>
                                 </tr>
                                 <tr>
                                     <td>Quantity</td>
-                                    <td>20 pcs</td>
+                                    <td>{"12 million bales"}</td>
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
-                                    <td>20000</td>
+                                    <td>20,000,000</td>
                                 </tr>
 
 
@@ -139,7 +144,7 @@ export default function Proformas() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
-                            <input type="number" />
+                            <input type="number" placeholder="Tenor" />
                             <button type="button" class="btn btn-success" data-dismiss="modal">Request Murabaha</button>
                             {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
                         </div>

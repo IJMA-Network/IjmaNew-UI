@@ -24,7 +24,7 @@ export default function Murabaha() {
                     </button>
                 </div>
 
-                <a class="white-text mx-3">Allow Access</a>
+                {/* <a class="white-text mx-3">Allow Access</a> */}
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -54,6 +54,8 @@ export default function Murabaha() {
                                     <th>Borrower</th>
                                     <th>Term</th>
                                     <th>Cost Price</th>
+                                   
+                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -65,12 +67,13 @@ export default function Murabaha() {
                                     <td>Buyer 1</td>
                                     <td>{v.term}</td>
                                     <td>{v.costPrice}</td>
+
                                     {/* <td>{v.borrowerAccountInfo.name}</td>
                                     <td>{v.sellingprice}</td>
                                     <td>{v.profitrate}</td>
-                                    <td>Medicines</td>
-                                    <td>Signed</td>
-                                    <td>Signed</td> */}
+                                    <td>Medicines</td> */}
+                                    <td>unSigned</td>
+                                  
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                         //  onClick={() => setClinetID(v._id)}
@@ -139,15 +142,15 @@ export default function Murabaha() {
                                         </tr>
                                         <tr>
                                             <td>Item</td>
-                                            <td>Medicines</td>
+                                            <td>Cotton</td>
                                         </tr>
                                         <tr>
                                             <td>Bank Signature</td>
-                                            <td>Signed</td>
+                                            <td>Un signed</td>
                                         </tr>
                                         <tr>
                                             <td>Brorower Signature</td>
-                                            <td>Signed</td>
+                                            <td>Un signed</td>
                                         </tr>
 
                                     </table>
@@ -160,7 +163,7 @@ export default function Murabaha() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Offer</button>
                         </div>
 
                     </div>

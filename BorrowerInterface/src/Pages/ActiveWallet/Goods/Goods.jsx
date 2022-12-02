@@ -22,7 +22,7 @@ export default function Goods() {
             </button>
           </div>
 
-          <a class="white-text mx-3">Allow Access</a>
+          {/* <a class="white-text mx-3">Allow Access</a> */}
 
           <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -57,7 +57,7 @@ export default function Goods() {
                     <td>{v.internalReference}</td>
                     <td>{v.asset}</td>
                     <td>{v.quantity.value}</td>
-                    <td></td>
+                    <td>Yes</td>
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -82,7 +82,7 @@ export default function Goods() {
 
             {/* <!-- Modal Header --> */}
             <div class="modal-header">
-              <h3 class="modal-title">Murabaha Agreements Detail</h3>
+              <h3 class="modal-title">Goods  Detail</h3>
               <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
             </div>
 
@@ -97,7 +97,7 @@ export default function Goods() {
                       <th>Contact</th>
                     </tr>
                     <tr>
-                      <td>Seller</td>
+                      <td>Vendor</td>
                       <td>{v.vendor.name}</td>
                     </tr>
                     <tr>
@@ -113,8 +113,8 @@ export default function Goods() {
                       <td>Yes</td>
                     </tr>
                     <tr>
-                      <td>Issure</td>
-                      <td>No</td>
+                      <td>Insured</td>
+                      <td>Yes</td>
                     </tr>
 
 
@@ -128,7 +128,7 @@ export default function Goods() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Redeem</button>
             </div>
 
           </div>

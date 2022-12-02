@@ -77,7 +77,7 @@ export default function Dashboard() {
       {
         key: '4b',
         icon: <UserAddOutlined onClick={() => setTrigger('4b')} />,
-        label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Good' : ''}</span></div>,
+        label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Goods' : ''}</span></div>,
       },
 
     ]),
