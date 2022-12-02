@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './Proformas.css'
 import { InputNumber } from 'antd';
-// import PromissoryNote from './PromissoryNote.json'
+import ProformaState from './ProformaState.json'
 
 export default function Proformas() {
     const [value, setValue] = useState('');
-    //   PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+    const[proformas,setProformas]=useState(ProformaState)
+    ProformaState.map((v, i) => { console.log(v, "xzxzx") })
 
 
     return (
@@ -51,11 +52,13 @@ export default function Proformas() {
                             <th></th>
                         </tr>
                     </thead>
+                    {ProformaState.map((v, i) => {
+              return (
                     <tbody>
                         <tr>
-                            <td>8-31-2022</td>
-                            <td>PR-HDM</td>
-                            <td>IBANPAKKA0000SELLER2</td>
+                            <td>{v.date}</td>
+                            <td>{v.proformaId}</td>
+                            <td>{v.sellerAccountInfo.name}</td>
                             <td>{"Cotton"}</td>
                             <td>{"12 million bales"}</td>
                             <td>
@@ -65,6 +68,8 @@ export default function Proformas() {
                             </td>
                         </tr>
                     </tbody>
+               )
+            })}
                     {/* {
             PromissoryNote.map((v, i) => {
               return (
