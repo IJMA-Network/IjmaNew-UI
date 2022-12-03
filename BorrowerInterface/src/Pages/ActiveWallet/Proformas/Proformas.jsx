@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import {React, useState,useEffect } from 'react';
 import './Proformas.css'
 import { InputNumber } from 'antd';
+import {getData} from '../../../Api'
 import ProformaState from './ProformaState.json'
+
 
 export default function Proformas() {
     const [value, setValue] = useState('');
-    const[proformas,setProformas]=useState(ProformaState)
-    ProformaState.map((v, i) => { console.log(v, "xzxzx") })
+   
+    const[proformas,setProformas]=useState([]);
+    useEffect(()=> {
+        let payload={
+            "account": "Buyer1",
+            "consumable": ""
+           }
+   getData("received-Proformas",payload,setProformas);
+    },[])
+    
 
 
     return (
@@ -52,7 +62,7 @@ export default function Proformas() {
                             <th></th>
                         </tr>
                     </thead>
-                    {ProformaState.map((v, i) => {
+                    {proformas.map((v, i) => {
               return (
                     <tbody>
                         <tr>
@@ -70,13 +80,7 @@ export default function Proformas() {
                     </tbody>
                )
             })}
-                    {/* {
-            PromissoryNote.map((v, i) => {
-              return (
-
-              
-              )
-            })} */}
+                
 
                 </table>
             </div>
