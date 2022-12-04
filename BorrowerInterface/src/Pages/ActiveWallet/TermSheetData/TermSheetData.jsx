@@ -1,9 +1,10 @@
-import React from 'react'
+import {React,useState} from 'react'
 import './TermSheetData.css'
 import TermSheetState from './TermSheetState.json'
 
 
 export default function TermSheetData() {
+  const[termsheets,setTermSheets]=useState(TermSheetState);
 
   TermSheetState.map((v, i) => { console.log(v, "GoodState") })
 
@@ -22,7 +23,7 @@ export default function TermSheetData() {
             </button>
           </div>
 
-          <a class="white-text mx-3">Allow Access</a>
+          
 
           <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -52,7 +53,7 @@ export default function TermSheetData() {
                 <th></th>
               </tr>
             </thead>
-            {TermSheetState.map((v, i) => {
+            {termsheets.map((v, i) => {
               return (
                 <tbody>
                   <tr>
