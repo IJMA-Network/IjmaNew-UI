@@ -8,13 +8,13 @@ import ProformaState from './ProformaState.json'
 export default function Proformas() {
     const [value, setValue] = useState('');
    
-    const[proformas,setProformas]=useState([]);
+    const[proformas,setProformas]=useState(ProformaState);
     useEffect(()=> {
         let payload={
             "account": "Buyer1",
             "consumable": ""
            }
-   getData("received-Proformas",payload,setProformas);
+  // getData("received-Proformas",payload,setProformas);
     },[])
     
 
@@ -33,7 +33,7 @@ export default function Proformas() {
                     </button>
                 </div>
 
-                {/* <a class="white-text mx-3">Allow Access</a> */}
+               
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
