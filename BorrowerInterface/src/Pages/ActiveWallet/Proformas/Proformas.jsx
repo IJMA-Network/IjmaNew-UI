@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import {React, useState,useEffect } from 'react';
 import './Proformas.css'
 import { InputNumber } from 'antd';
+import {getData} from '../../../Api'
 import ProformaState from './ProformaState.json'
+
 
 export default function Proformas() {
     const [value, setValue] = useState('');
-    const[proformas,setProformas]=useState(ProformaState)
-    proformas.map((v, i) => { console.log(v, "xzxzx") })
+   
+    const[proformas,setProformas]=useState([]);
+    useEffect(()=> {
+        let payload={
+            "account": "Buyer1",
+            "consumable": ""
+           }
+   getData("received-Proformas",payload,setProformas);
+    },[])
+    
 
 
     return (
@@ -70,7 +80,7 @@ export default function Proformas() {
                     </tbody>
                )
             })}
-               
+                
 
                 </table>
             </div>
