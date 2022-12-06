@@ -1,10 +1,10 @@
-import React from 'react'
+import {React,useState} from 'react'
 import './Applications.css'
 import ApplictionState from './Application.json'
 
 
 export default function Applications() {
-
+    const[applications,setApplications]=useState([]);
 
     ApplictionState.map((v, i) => { console.log(v, "ApplictionState") })
 
