@@ -1,11 +1,11 @@
-import React from 'react'
+import {React,useState} from 'react'
 import './Murabaha.css'
-import MurbanState from './MurbahaState.json'
+import MurbaState from './MurbahaState.json'
 
 export default function Murabaha() {
+const[murabaha,setMurabaha]=useState(MurbaState);
 
-
-    MurbanState.map((v, i) => { console.log(v, "MurbanState") })
+murabaha.map((v, i) => { console.log(v, "MurbanState") })
 
 
 
@@ -24,7 +24,7 @@ export default function Murabaha() {
                     </button>
                 </div>
 
-                {/* <a class="white-text mx-3">Allow Access</a> */}
+               
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -41,7 +41,7 @@ export default function Murabaha() {
             </div>
             <div class="container mt-3">
                 <h2 className='text-center'>Murabaha Contact</h2>
-                {MurbanState.map((v, i) => {
+                {murabaha.map((v, i) => {
                     return (
 
 
@@ -95,8 +95,8 @@ export default function Murabaha() {
                             <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
                         </div>
 
-                        {/* <!-- Modal body --> */}
-                        {MurbanState.map((v, i) => {
+                      
+                        {murabaha.map((v, i) => {
                             return (
                                 <div class="modal-body">
                                     <table id="customers">

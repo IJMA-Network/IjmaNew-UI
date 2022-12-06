@@ -1,11 +1,11 @@
-import React from 'react'
+import {useState,React} from 'react'
 import './Goods.css'
 import GoodState from './GoodsState.json'
 
 
 export default function Goods() {
-
-  GoodState.map((v, i) => { console.log(v, "GoodState") })
+const[goods,setGoods]=useState(GoodState);
+  goods.map((v, i) => { console.log(v, "GoodState") })
 
   return (
     <div>
@@ -22,7 +22,7 @@ export default function Goods() {
             </button>
           </div>
 
-          {/* <a class="white-text mx-3">Allow Access</a> */}
+        
 
           <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -50,7 +50,7 @@ export default function Goods() {
                 <th></th>
               </tr>
             </thead>
-            {GoodState.map((v, i) => {
+            {goods.map((v, i) => {
               return (
                 <tbody>
                   <tr>
