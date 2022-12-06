@@ -1,5 +1,5 @@
 import axios from "axios";
-const basApi ="http://localhost:10050/api/murabaha/"; //"http://192.168.100.211:10050/api/murabaha/";
+const basApi ="http://192.168.100.211:10050/api/murabaha/";
 
 
 export const createPorforma = async (payload) => {
@@ -30,6 +30,25 @@ export const getData = async (api, payload,dispatch) => {
     
      console.log("API Response", response);
 dispatch(response.data);
+return response;
+
+  } catch (error) {
+    console.log("Error in  get Data",apiUrl, error);
+
+    return error;
+  }
+};
+
+export const postData = async (api, payload) => {
+
+  const apiUrl = basApi + api;
+  console.log("before calling API", apiUrl,payload);
+  try {
+
+    var response = await axios.post(apiUrl, payload);
+    
+     console.log("postData API Response", response);
+
 return response;
 
   } catch (error) {

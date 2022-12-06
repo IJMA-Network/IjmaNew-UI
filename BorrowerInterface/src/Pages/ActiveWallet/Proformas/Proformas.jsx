@@ -1,23 +1,36 @@
 import {React, useState,useEffect } from 'react';
 import './Proformas.css'
 import { InputNumber } from 'antd';
-import {getData} from '../../../Api'
+import {getData,postData} from '../../../Api'
 import ProformaState from './ProformaState.json'
 
 
 export default function Proformas() {
+    const[user,setUser]=useState({accountName:"Buyer2"});
+    const[bank,setBank]=useState({accountName:"Bank2"});
     const [value, setValue] = useState('');
+    const [item, setItem] = useState({});
    
-    const[proformas,setProformas]=useState(ProformaState);
+    const[proformas,setProformas]=useState([]);
     useEffect(()=> {
         let payload={
-            "account": "Buyer1",
-            "consumable": ""
+            account: user.accountName,
+            consumable: ""
            }
-  // getData("received-Proformas",payload,setProformas);
+   getData("received-Proformas",payload,setProformas);
     },[])
     
-
+const handleRequestMurabaha=async()=>{
+    let api="apply/murabaha";
+    let payload={
+        bank:bank.accountName,
+        proformaId: item.processId,
+        "term": value,
+        borrower:user.accountName
+        }
+    console.log("In request Murabaha",payload);
+    const resp= await postData(api,payload);
+}
 
     return (
         <div class="card card-cascade narrower">
@@ -73,7 +86,7 @@ export default function Proformas() {
                             <td>{"12 million bales"}</td>
                             <td>
                                 <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                //  onClick={() => setClinetID(v._id)}
+                                  onClick={() => setItem(v)}
                                 >View</span>
                             </td>
                         </tr>
@@ -148,8 +161,8 @@ export default function Proformas() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
-                            <input type="number" placeholder="Tenor" />
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Request Murabaha</button>
+                            <input type="number" placeholder="Tenor" onChange={(e)=>setValue(e.target.value)} />
+                            <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button>
                             {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
                         </div>
 

@@ -8,7 +8,7 @@ import { createPorforma } from "../../Api/Api";
 export default function Proforma() {
 
   const [users, setUsers] = useState([]);
-  const[user,setUser]=useState({name:"Seller1"});
+  const[user,setUser]=useState({accountName:"Seller1"});
 
   const Description = useRef();
   const PorValue = useRef();
