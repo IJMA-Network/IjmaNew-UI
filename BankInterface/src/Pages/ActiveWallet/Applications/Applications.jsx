@@ -14,9 +14,22 @@ export default function Applications() {
             account: bank.accountName,
             consumable: ""
            }
+       
    getData("received-applications",payload,setApplications);
     },[])
 
+
+    const handleIssuePurchaseOrder=async()=>{
+        let api="purchaseOrder/issue";
+        let payload={
+            applicationId: item.processId,
+            term:"2",
+             insuranceRequired:true,
+              account:""
+            }
+        console.log("In request Murabaha",payload);
+        const resp= await postData(api,payload);
+    }
     return (
         // <div>
         <div class="card card-cascade narrower">
@@ -158,7 +171,7 @@ export default function Applications() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Issue Purchase  Order</button>
+                            <button type="button" class="btn btn-success" onClick={handleIssuePurchaseOrder}>Issue Purchase  Order</button>
                         </div>
 
                     </div>

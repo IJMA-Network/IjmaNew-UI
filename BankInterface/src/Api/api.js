@@ -1,10 +1,10 @@
 import axios from "axios";
-const basApi = "http://192.168.100.211:10050/api/murabaha/";
-
+//const baseApi = "http://192.168.100.211:10050/api/murabaha/";
+const baseApi = "http://localhost:10050/api/murabaha/";
 export const createTerm = async (payload) => {
   console.log(payload, "payload",payload);
   
-  const apiURL = basApi + "termSheet/issue";
+  const apiURL = baseApi + "termSheet/issue";
   try {
     var response = await axios.post(apiURL, payload);
 
@@ -21,7 +21,7 @@ export const createTerm = async (payload) => {
 
 export const getData = async (api, payload,dispatch) => {
 
-  const apiUrl = basApi + api;
+  const apiUrl = baseApi + api;
   console.log("before calling API", apiUrl,payload);
   try {
 
@@ -40,7 +40,7 @@ return response;
 
 export const postData = async (api, payload) => {
 
-  const apiUrl = basApi + api;
+  const apiUrl = baseApi + api;
   console.log("before calling API", apiUrl,payload);
   try {
 
