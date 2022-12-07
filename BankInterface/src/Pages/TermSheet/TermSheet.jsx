@@ -5,6 +5,7 @@ import axios from "axios";
 import { createTerm } from "../../Api/api";
 
 export default function TermSheet() {
+  const[bank,setBank]=useState({accountName:"Bank2"});
 //   const [NodeName, setNodeName] = useState("ABC Bank");
 //   const [users, setUsers] = useState([]);
 
@@ -16,7 +17,7 @@ export default function TermSheet() {
   const Tenor = useRef();
   const Rate = useRef();
   const Spread = useRef();
-  const bank = useRef();
+ // const bank = useRef();
 
   const FormSubmit = () => {
     var profitRate = {
@@ -25,7 +26,7 @@ export default function TermSheet() {
     };
 
     var data = {
-      bank: bank.current.value,
+      bank: bank.accountName,
       client: Client.current.value,
       termsheetReference: Refrense.current.value,
       facilityType: FacilityType.current.value,

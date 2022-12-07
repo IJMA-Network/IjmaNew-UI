@@ -1,10 +1,20 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import './TermSheetData.css'
+import {getData,postData} from '../../../Api'
 import TermSheetState from './TermSheetState.json'
 
 
 export default function TermSheetData() {
+  const[user,setUser]=useState({accountName:"Buyer2"});
   const[termsheets,setTermSheets]=useState(TermSheetState);
+
+  useEffect(()=> {
+    let payload={
+        account: user.accountName,
+        consumable: ""
+       }
+getData("received-TermSheets",payload,setTermSheets);
+},[])
 
   TermSheetState.map((v, i) => { console.log(v, "GoodState") })
 
@@ -62,7 +72,7 @@ export default function TermSheetData() {
                     <td>{v.limit}</td>
                     <td>{v.tenor}</td>
                     <td>{v.referenceRate}</td>
-                    <td></td>
+                    <td>{v.expiryDate}</td>
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -130,8 +140,16 @@ export default function TermSheetData() {
                       <td>{v.issueDate}</td>
                     </tr>
                     <tr>
+                      <td>Expiry Date</td>
+                      <td>{v.expiryDate}</td>
+                    </tr>
+                    <tr>
                       <td>Acceptance</td>
+                     { (!v.isAccepted)?
                       <td>Pendding</td>
+                      :
+                      <td>Received</td>
+                     }
                     </tr>
 
 
