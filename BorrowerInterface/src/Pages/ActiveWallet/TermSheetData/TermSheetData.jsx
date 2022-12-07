@@ -6,8 +6,8 @@ import TermSheetState from './TermSheetState.json'
 
 export default function TermSheetData() {
   const[user,setUser]=useState({accountName:"Buyer2"});
-  const[termsheets,setTermSheets]=useState(TermSheetState);
-
+  const[termsheets,setTermSheets]=useState([]);
+  const [item, setItem] = useState(null);
   useEffect(()=> {
     let payload={
         account: user.accountName,
@@ -15,8 +15,17 @@ export default function TermSheetData() {
        }
 getData("received-TermSheets",payload,setTermSheets);
 },[])
+const handleReaccept=async()=>{
+  let api="termsheet/accept";
+  let payload={
+      
+    stateId:item.termSheetReference,
+      account:user.accountName
+      }
+  console.log("In accept TermSheet",payload);
+  const resp= await postData(api,payload);
+}
 
-  TermSheetState.map((v, i) => { console.log(v, "GoodState") })
 
   return (
     <div>
@@ -76,7 +85,7 @@ getData("received-TermSheets",payload,setTermSheets);
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                      //  onClick={() => setClinetID(v._id)}
+                       onClick={() => setItem(v)}
                       >View</span>
                     </td>
 
@@ -102,53 +111,50 @@ getData("received-TermSheets",payload,setTermSheets);
             </div>
 
             {/* <!-- Modal body --> */}
-            {TermSheetState.map((v, i) => {
-              return (
+            {(item!=null)?
+            
                 <div class="modal-body">
                   <table id="customers">
 
-                    {/* <tr>
-                      <th>Company</th>
-                      <th>Contact</th>
-                    </tr> */}
+                   
                     <tr>
                       <td>Bank</td>
-                      <td>{v.bankAccountInfo.name}</td>
+                      <td>{item.bankAccountInfo.name}</td>
                     </tr>
                     <tr>
                       <td>Refernce No</td>
-                      <td>{v.termSheetReference}</td>
+                      <td>{item.termSheetReference}</td>
                     </tr>
                     <tr>
                       <td>Limit</td>
-                      <td>{v.limit}</td>
+                      <td>{item.limit}</td>
                     </tr>
                     <tr>
                       <td>Tenor</td>
-                      <td>{v.tenor}</td>
+                      <td>{item.tenor}</td>
                     </tr>
                     <tr>
                       <td>Refernce Rate</td>
-                      <td>{v.referenceRate}</td>
+                      <td>{item.referenceRate}</td>
                     </tr>
                     <tr>
                       <td>Spread</td>
-                      <td>{v.spread}</td>
+                      <td>{item.spread}</td>
                     </tr>
                     <tr>
                       <td>Issue Date</td>
-                      <td>{v.issueDate}</td>
+                      <td>{item.issueDate}</td>
                     </tr>
                     <tr>
                       <td>Expiry Date</td>
-                      <td>{v.expiryDate}</td>
+                      <td>{item.expiryDate}</td>
                     </tr>
                     <tr>
                       <td>Acceptance</td>
-                     { (!v.isAccepted)?
-                      <td>Pendding</td>
-                      :
+                     { (item.isAccepted)?
                       <td>Received</td>
+                      :
+                      <td>{item.IsAccepted}</td>
                      }
                     </tr>
 
@@ -156,14 +162,14 @@ getData("received-TermSheets",payload,setTermSheets);
                   </table>
 
                 </div>
-              )
-            })}
+              :<></>
+            }
 
 
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal">Accept Term Sheet</button>
+              <button type="button" class="btn btn-success" onClick={handleReaccept}>Accept Term Sheet</button>
             </div>
 
           </div>
