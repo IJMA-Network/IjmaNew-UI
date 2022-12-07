@@ -1,11 +1,14 @@
-import React from 'react'
+import {React,useState} from 'react'
 import './Murabaha.css'
 import MurbanState from './MurbahaState.json'
 
 export default function Murabaha() {
 
+    const[bank,setBank]=useState({accountName:"Bank2"});
+    const[murabahas,setMurabahas]=useState(MurbanState);
+    const [item, setItem] = useState(null);
 
-    MurbanState.map((v, i) => { console.log(v, "MurbanState") })
+    murabahas.map((v, i) => { console.log(v, "MurbanState") })
 
 
 
@@ -41,7 +44,7 @@ export default function Murabaha() {
             </div>
             <div class="container mt-3">
                 <h2 className='text-center'>Murabaha Contact</h2>
-                {MurbanState.map((v, i) => {
+                {murabahas.map((v, i) => {
                     return (
 
 
@@ -76,7 +79,7 @@ export default function Murabaha() {
                                   
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                        //  onClick={() => setClinetID(v._id)}
+                                         onClick={() => setItem(v)}
                                         >View</span>
                                     </td>
 
@@ -99,8 +102,8 @@ export default function Murabaha() {
                         </div>
 
                         {/* <!-- Modal body --> */}
-                        {MurbanState.map((v, i) => {
-                            return (
+                        {(item!=null)?
+
                                 <div class="modal-body">
                                     <table id="customers">
 
@@ -110,35 +113,35 @@ export default function Murabaha() {
                                         </tr>
                                         <tr>
                                             <td>Date</td>
-                                            <td>{v.agreementDate}</td>
+                                            <td>{item.agreementDate}</td>
                                         </tr>
                                         <tr>
                                             <td>Refrence No.</td>
-                                            <td>{v.internalReference}</td>
+                                            <td>{item.internalReference}</td>
                                         </tr>
                                         <tr>
                                             <td>Bank</td>
-                                            <td>{v.bankAccountInfo.name}</td>
+                                            <td>{item.bankAccountInfo.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Applicant</td>
-                                            <td>{v.borrowerAccountInfo.name}</td>
+                                            <td>{item.borrowerAccountInfo.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Cost Price</td>
-                                            <td>{v.costPrice}</td>
+                                            <td>{item.costPrice}</td>
                                         </tr>
                                         <tr>
                                             <td>Tenor</td>
-                                            <td>{v.term}</td>
+                                            <td>{item.term}</td>
                                         </tr>
                                         <tr>
                                             <td>Selling Price</td>
-                                            <td>{v.sellingprice}</td>
+                                            <td>{item.sellingprice}</td>
                                         </tr>
                                         <tr>
                                             <td>Profile Rate</td>
-                                            <td>{v.profitrate}</td>
+                                            <td>{item.profitrate}</td>
                                         </tr>
                                         <tr>
                                             <td>Item</td>
@@ -156,8 +159,8 @@ export default function Murabaha() {
                                     </table>
 
                                 </div>
-                            )
-                        })}
+                          :<></>
+                                }
 
 
 

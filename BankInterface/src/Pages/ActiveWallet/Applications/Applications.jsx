@@ -1,14 +1,21 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import './Applications.css'
-import ApplictionState from './Application.json'
+import ApplictionState from './Application.json';
+import {getData,postData} from '../../../Api/api'
 
 
 export default function Applications() {
     const[bank,setBank]=useState({accountName:"Bank2"});
-    const[applications,setApplications]=useState(ApplictionState);
+    const[applications,setApplications]=useState([]);
     const [item, setItem] = useState(null);
 
-  
+    useEffect(()=> {
+        let payload={
+            account: bank.accountName,
+            consumable: ""
+           }
+   getData("received-applications",payload,setApplications);
+    },[])
 
     return (
         // <div>
