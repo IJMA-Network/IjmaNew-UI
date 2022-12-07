@@ -4,9 +4,11 @@ import ApplictionState from './Application.json'
 
 
 export default function Applications() {
-    const[applications,setApplications]=useState([]);
+    const[bank,setBank]=useState({accountName:"Bank2"});
+    const[applications,setApplications]=useState(ApplictionState);
+    const [item, setItem] = useState(null);
 
-    ApplictionState.map((v, i) => { console.log(v, "ApplictionState") })
+  
 
     return (
         // <div>
@@ -53,7 +55,7 @@ export default function Applications() {
                             <th>View</th>
                         </tr>
                     </thead>
-                    {ApplictionState.map((v, i) => {
+                    {applications.map((v, i) => {
                         return (
 
                             <tbody>
@@ -67,7 +69,7 @@ export default function Applications() {
 
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                        //  onClick={() => setClinetID(v._id)}
+                                          onClick={() => setItem(v)}
                                         >View</span>
                                     </td>
 
@@ -90,8 +92,8 @@ export default function Applications() {
                         </div>
 
                         {/* <!-- Modal body --> */}
-                        {ApplictionState.map((v, i) => {
-                            return (
+                        {(item!=null)?
+
                                 <div class="modal-body">
                                     <table id="customers">
 
@@ -101,47 +103,49 @@ export default function Applications() {
                                         </tr>
                                         <tr>
                                             <td>Date.</td>
-                                            <td>{v.date}</td>
+                                            <td>{item.date}</td>
                                         </tr>
                                         <tr>
                                             <td>Refrence No.</td>
-                                            <td>{v.referenceId}</td>
+                                            <td>{item.referenceId}</td>
                                         </tr>
                                         <tr>
                                             <td>Bank</td>
-                                            <td>{v.BankAccount.name}</td>
+                                            <td>{item.BankAccount.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Applicate</td>
-                                            <td>{v.applicantAccount.name}</td>
+                                            <td>{item.applicantAccount.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Amount</td>
-                                            <td>{v.amount}</td>
+                                            <td>{item.amount}</td>
                                         </tr>
                                         <tr>
                                             <td>Tenor</td>
-                                            <td>{v.tenor}</td>
+                                            <td>{item.tenor}</td>
                                         </tr>
                                         <tr>
                                             <td>Item</td>
-                                            <td>{v.description}</td>
+                                            <td>{item.description}</td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>
-                                            <td>{v.description}</td>
+                                            <td>{item.description}</td>
                                         </tr>
                                         <tr>
                                             <td>Quantity</td>
-                                            <td>{v.amount}</td>
+                                            <td>{item.amount}</td>
                                         </tr>
 
 
                                     </table>
 
                                 </div>
-                            )
-                        })}
+                                  :<></>
+                                }
+                          
+                       
 
 
 
