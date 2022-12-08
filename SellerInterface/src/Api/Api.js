@@ -1,6 +1,6 @@
 import axios from "axios";
 //const baseApi = "http://192.168.100.211:10051/api/murabaha/";
-const baseApi = "http://localhost10051/api/murabaha/";
+const baseApi = "http://localhost:10051/api/murabaha/";
 
 export const createPorforma = async (payload) => {
   console.log(payload, "payload");

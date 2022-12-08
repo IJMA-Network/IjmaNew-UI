@@ -11,7 +11,7 @@ export default function PurchaesOrder() {
     
 
     
-  const [PurchaesOrder , setPurchaesOrder]=useState([])
+
 
 
 
@@ -21,7 +21,7 @@ export default function PurchaesOrder() {
         consumable: ""
        }
    
-getData("received-POs",payload,setPurchaesOrder);
+getData("received-POs",payload,setpOrders);
 },[])
 
 
@@ -31,7 +31,7 @@ const handleDeliver=async()=>{
         stateId: item.referenceId,
                   account:user.accountName
         }
-    console.log("In request Murabaha",payload);
+    console.log("In PO deliver",payload);
     const resp= await postData(api,payload);
 }
 
@@ -79,7 +79,7 @@ const handleDeliver=async()=>{
                                     <th></th>
                                 </tr>
                             </thead>
-                {PurchesOrder.map((v, i) => {
+                {pOrders.map((v, i) => {
                     return (
 
 
@@ -156,7 +156,7 @@ const handleDeliver=async()=>{
                                         </tr>
                                         <tr>
                                             <td>Quantity</td>
-                                            <td>{item.proforma.goods.quantity}</td>
+                                            <td>{item.proforma.goods.quantity.value+" "+item.proforma.goods.quantity.unit}</td>
                                         </tr>
                                         <tr>
                                             <td>Amount</td>
