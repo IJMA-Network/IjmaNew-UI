@@ -28,7 +28,7 @@ getData("received-POs",payload,setpOrders);
 const handleDeliver=async()=>{
     let api="purchaseOrder/deliver";
     let payload={
-        stateId: item.referenceId,
+        stateId: item.processId,
                   account:user.accountName
         }
     console.log("In PO deliver",payload);
