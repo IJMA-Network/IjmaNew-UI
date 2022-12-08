@@ -1,6 +1,7 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import './Applications.css'
 import ApplictionState from './Application.json'
+import {getData,postData} from '../../../Api'
 
 
 export default function Applications() {

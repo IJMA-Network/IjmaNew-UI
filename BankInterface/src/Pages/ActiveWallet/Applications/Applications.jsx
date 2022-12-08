@@ -6,7 +6,7 @@ import {getData,postData} from '../../../Api/api'
 
 export default function Applications() {
     const[bank,setBank]=useState({accountName:"Bank2"});
-    const[applications,setApplications]=useState([]);
+    const[applications,setApplications]=useState(ApplictionState );
     const [item, setItem] = useState(null);
 
     useEffect(()=> {

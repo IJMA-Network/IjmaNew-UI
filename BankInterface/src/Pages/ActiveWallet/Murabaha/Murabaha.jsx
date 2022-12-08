@@ -1,6 +1,7 @@
 import {React,useState} from 'react'
 import './Murabaha.css'
 import MurbanState from './MurbahaState.json'
+import {getData,postData} from '../../../Api/api'
 
 export default function Murabaha() {
 
@@ -8,7 +9,19 @@ export default function Murabaha() {
     const[murabahas,setMurabahas]=useState(MurbanState);
     const [item, setItem] = useState(null);
 
-    murabahas.map((v, i) => { console.log(v, "MurbanState") })
+    
+
+    const handleMurabahaOffer=async()=>{
+        let api="murabaha/offer";
+        let payload={
+            applicationId: item.processId,
+            term:"2",
+             insuranceRequired:true,
+              account:""
+            }
+        console.log("In murabaha/offer",payload);
+        const resp= await postData(api,payload);
+    }
 
 
 
@@ -163,10 +176,10 @@ export default function Murabaha() {
                                 }
 
 
-
+r
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Offer</button>
+                            <button type="button" class="btn btn-success" onClick={handleMurabahaOffer}>Offer</button>
                         </div>
 
                     </div>
