@@ -1,32 +1,40 @@
-import React,{ useState,useEffect } from "react";
-import { getData } from "../../../Api/Api";
-import './PurchaesOrder.css'
-import PurchesOrder from './PurchaesOrderState.json'
+import {React,useState,useEffect} from 'react'
+
+import './PurchaesOrder.css';
+import {getData,postData} from '../../../Api/Api';
+import PurchesOrder from './PurchaesOrderState.json';
 
 export default function PurchaesOrder() {
-
-    // PurchesOrder.map((v, i) => { console.log(v, "PurchesOrder") })
+    const[user,setUser]=useState({accountName:"Seller2"});
+    const[pOrders,setpOrders]=useState(PurchesOrder);
+    const [item, setItem] = useState(null);
+    
 
     
   const [PurchaesOrder , setPurchaesOrder]=useState([])
 
-  var data = {
-    "account": "Seller1",
- "consumable": ""
-  };
 
-  var apiURLData = "received-POs"
 
-useEffect(()=>{
-
-  getData(apiURLData, data).then((res) => {  
-    setPurchaesOrder(res.data)
-  });
-  
+  useEffect(()=> {
+    let payload={
+        account: user.accountName,
+        consumable: ""
+       }
+   
+getData("received-POs",payload,setPurchaesOrder);
 },[])
 
 
-console.log(PurchaesOrder,"PurchaesOrder");
+const handleDeliver=async()=>{
+    let api="purchaseOrder/deliver";
+    let payload={
+        stateId: item.referenceId,
+                  account:user.accountName
+        }
+    console.log("In request Murabaha",payload);
+    const resp= await postData(api,payload);
+}
+
     return (
         <div class="card card-cascade narrower">
             <div
@@ -41,7 +49,7 @@ console.log(PurchaesOrder,"PurchaesOrder");
                     </button>
                 </div>
 
-                <a class="white-text mx-3">Allow Access</a>
+               
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -56,12 +64,8 @@ console.log(PurchaesOrder,"PurchaesOrder");
                 </div>
 
             </div>
+                <h2 className='text-center'>Purchase Orders Detail</h2>
             <div class="container mt-3">
-                <h2 className='text-center'>Purchase Detail</h2>
-                {PurchesOrder.map((v, i) => {
-                    return (
-
-
                         <table class="table table-hover">
                             <thead class="bg-light">
                                 <tr>
@@ -75,6 +79,10 @@ console.log(PurchaesOrder,"PurchaesOrder");
                                     <th></th>
                                 </tr>
                             </thead>
+                {PurchesOrder.map((v, i) => {
+                    return (
+
+
                             <tbody>
                                 <tr>
                                     <td>{v.date}</td>
@@ -86,16 +94,16 @@ console.log(PurchaesOrder,"PurchaesOrder");
                                     <td>{v.amount}</td>
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                        //  onClick={() => setClinetID(v._id)}
+                                         onClick={() => setItem(v)}
                                         >View</span>
                                     </td>
 
                                 </tr>
                             </tbody>
 
-                        </table>
-                    )
-                })}
+)
+})}
+</table>
             </div>
 
             <div class="modal" id="myModal">
@@ -109,8 +117,8 @@ console.log(PurchaesOrder,"PurchaesOrder");
                         </div>
 
                         {/* <!-- Modal body --> */}
-                        {PurchesOrder.map((v, i) => {
-                            return (
+                      
+                        {(item!=null)?
                                 <div class="modal-body">
                                     <table id="customers">
 
@@ -120,15 +128,15 @@ console.log(PurchaesOrder,"PurchaesOrder");
                                         </tr>
                                         <tr>
                                             <td>Date</td>
-                                            <td>{v.date}</td>
+                                            <td>{item.date}</td>
                                         </tr>
                                         <tr>
                                             <td>Refrence No.</td>
-                                            <td>{v.referenceId}</td>
+                                            <td>{item.referenceId}</td>
                                         </tr>
                                         <tr>
                                             <td>Bank</td>
-                                            <td>{v.bankAccountInfo.name}</td>
+                                            <td>{item.bankAccountInfo.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Client</td>
@@ -136,36 +144,37 @@ console.log(PurchaesOrder,"PurchaesOrder");
                                         </tr>
                                         <tr>
                                             <td>Proforma Id</td>
-                                            <td>{v.applicationId}</td>
+                                            <td>{item.applicationId}</td>
                                         </tr>
                                         <tr>
                                             <td>Item</td>
-                                            <td>{v.proforma.goods.asset}</td>
+                                            <td>{item.proforma.goods.asset}</td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>
-                                            <td>{v.description}</td>
+                                            <td>{item.description}</td>
                                         </tr>
                                         <tr>
                                             <td>Quantity</td>
-                                            <td>{v.proforma.goods.quantity}</td>
+                                            <td>{item.proforma.goods.quantity}</td>
                                         </tr>
                                         <tr>
                                             <td>Amount</td>
-                                            <td>{v.amount}</td>
+                                            <td>{item.amount}</td>
                                         </tr>
 
                                     </table>
 
                                 </div>
-                            )
-                        })}
+                            :<></>
+                        }
+                  
 
 
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Deliver</button>
+                            <button type="button" class="btn btn-success" onClick={handleDeliver}>Deliver</button>
                         </div>
 
                     </div>

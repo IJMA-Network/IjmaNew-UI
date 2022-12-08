@@ -1,10 +1,10 @@
 import axios from "axios";
-const basApi = "http://192.168.100.211:10051/api/murabaha/";
-
+//const baseApi = "http://192.168.100.211:10051/api/murabaha/";
+const baseApi = "http://localhost10051/api/murabaha/";
 
 export const createPorforma = async (payload) => {
   console.log(payload, "payload");
-  const apiURL = basApi + "proforma/create";
+  const apiURL = baseApi + "proforma/create";
 
   try {
 
@@ -19,20 +19,39 @@ export const createPorforma = async (payload) => {
   }
 };
 
-            
-export const getData = async (apiURLData, data) => {
+export const getData = async (api, payload,dispatch) => {
 
-  const apiUrl = basApi + apiURLData;
-
+  const apiUrl = baseApi + api;
+  console.log("before calling API", apiUrl,payload);
   try {
 
-    var response = await axios.post(apiUrl, data);
-    return response
-    // console.log("API Response", response);
-
+    var response = await axios.post(apiUrl, payload);
+    
+     console.log("API Response", response);
+dispatch(response.data);
+return response;
 
   } catch (error) {
-    console.log("Error in Create Proforma", error);
+    console.log("Error in  get Data",apiUrl, error);
+
+    return error;
+  }
+};
+
+export const postData = async (api, payload) => {
+
+  const apiUrl = baseApi + api;
+  console.log("before calling API", apiUrl,payload);
+  try {
+
+    var response = await axios.post(apiUrl, payload);
+    
+     console.log("postData API Response", response);
+
+return response;
+
+  } catch (error) {
+    console.log("Error in  post Data",apiUrl, error);
 
     return error;
   }
