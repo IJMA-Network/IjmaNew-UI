@@ -1,11 +1,33 @@
-import React from 'react'
+import {React,useState,useEffect} from 'react'
 import './Promissory.css'
 import PromissoryNote from './PromissoryNote.json'
+import {getData,postData} from '../../../Api/api'
 
 export default function Promissory() {
+  const[bank,setBank]=useState({accountName:"Bank2"});
+    const[pNotes,setPNotes ]=useState(PromissoryNote);
+    const [item, setItem] = useState(null);
 
-  PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+    useEffect(()=> {
+      let payload={
+          account: bank.accountName,
+          consumable: ""
+         }
+     
+ getData("issued-PNs",payload,setPNotes);
+  },[])
 
+    const handleRedeeem=async()=>{
+      let api="pNote/burn";
+      let payload={
+          applicationId: item.id,
+          term:"2",
+           insuranceRequired:true,
+            account:""
+          }
+      console.log("In Redeem PNode",payload);
+      const resp= await postData(api,payload);
+  }
 
   return (
     <div class="card card-cascade narrower">
@@ -52,7 +74,7 @@ export default function Promissory() {
             </tr>
           </thead>
           {
-            PromissoryNote.map((v, i) => {
+            pNotes.map((v, i) => {
               return (
 
                 <tbody>
@@ -65,7 +87,7 @@ export default function Promissory() {
                     <td>{v.maturity}</td>
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                      //  onClick={() => setClinetID(v._id)}
+                       onClick={() => setItem(v)}
                       >View</span>
                     </td>
                   </tr>
@@ -86,8 +108,8 @@ export default function Promissory() {
             </div>
 
             {/* <!-- Modal body --> */}
-            {PromissoryNote.map((v, i) => {
-              return (
+           
+            {(item!=null)?
                 <div class="modal-body">
                   <table id="customers">
 
@@ -97,23 +119,23 @@ export default function Promissory() {
                     </tr>
                     <tr>
                       <td>Issue Date.</td>
-                      <td>{v.issueDate}</td>
+                      <td>{item.issueDate}</td>
                     </tr>
                     <tr>
                       <td>Refrence No.</td>
-                      <td>{v.id}</td>
+                      <td>{item.id}</td>
                     </tr>
                     <tr>
                       <td>Issuer</td>
-                      <td>{v.issuerAccount.name}</td>
+                      <td>{item.issuerAccount.name}</td>
                     </tr>
                     <tr>
                       <td>Payee</td>
-                      <td>{v.payeeAccount.name}</td>
+                      <td>{item.payeeAccount.name}</td>
                     </tr>
                     <tr>
                       <td>Amount</td>
-                      <td>{v.value}</td>
+                      <td>{item.value}</td>
                     </tr>
                     <tr>
                       <td>Redeemad</td>
@@ -121,20 +143,18 @@ export default function Promissory() {
                     </tr>
                     <tr>
                       <td>Expiry</td>
-                      <td>{v.maturity}</td>
+                      <td>{item.maturity}</td>
                     </tr>
 
                   </table>
 
                 </div>
-              )
-            })}
-
-
+              :<></>
+            }
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success"onClick={handleRedeeem} >Redeem</button>
             </div>
 
           </div>
