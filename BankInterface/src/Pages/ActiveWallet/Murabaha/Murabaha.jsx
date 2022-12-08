@@ -21,10 +21,9 @@ export default function Murabaha() {
     const handleMurabahaOffer=async()=>{
         let api="murabaha/offer";
         let payload={
-            applicationId: item.processId,
-            term:"2",
-             insuranceRequired:true,
-              account:""
+            stateId: item.internalReference,
+           
+            account: bank.accountName,
             }
         console.log("In murabaha/offer",payload);
         const resp= await postData(api,payload);
