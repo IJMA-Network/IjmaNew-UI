@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react'
 import './Murabaha.css'
 import MurbanState from './MurbahaState.json'
 import {getData,postData} from '../../../Api/api'
@@ -10,6 +10,13 @@ export default function Murabaha() {
     const [item, setItem] = useState(null);
 
     
+    useEffect(()=> {
+        let payload={
+            account: bank.accountName,
+            consumable: ""
+           }
+           getData("issued-murabaha",payload,setMurabahas);
+        },[])
 
     const handleMurabahaOffer=async()=>{
         let api="murabaha/offer";
