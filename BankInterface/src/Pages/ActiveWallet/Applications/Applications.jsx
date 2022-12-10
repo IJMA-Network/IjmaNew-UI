@@ -5,7 +5,7 @@ import {getData,postData} from '../../../Api/api'
 
 
 export default function Applications() {
-    const[bank,setBank]=useState({accountName:"Bank2"});
+    const[bank,setBank]=useState({accountName:"Bank1"});
     const[applications,setApplications]=useState(ApplictionState );
     const [item, setItem] = useState(null);
 
@@ -82,7 +82,7 @@ export default function Applications() {
                                 <tr>
                                     <td>{v.date}</td>
                                     <td>{v.referenceId}</td>
-                                    <td>{v.BankAccount.name}</td>
+                                    <td>{v.applicantAccount.name}</td>
                                     <td>{v.amount}</td>
                                     <td>{v.description}</td>
                                     <td>{v.tenor}</td>

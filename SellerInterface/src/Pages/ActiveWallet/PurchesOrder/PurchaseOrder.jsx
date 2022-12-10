@@ -5,7 +5,7 @@ import {getData,postData} from '../../../Api/Api';
 import PurchesOrder from './PurchaesOrderState.json';
 
 export default function PurchaesOrder() {
-    const[user,setUser]=useState({accountName:"Seller2"});
+    const[user,setUser]=useState({accountName:"Seller1"});
     const[pOrders,setpOrders]=useState(PurchesOrder);
     const [item, setItem] = useState(null);
     
@@ -87,8 +87,8 @@ const handleDeliver=async()=>{
                                 <tr>
                                     <td>{v.date}</td>
                                     <td>{v.referenceId}</td>
-                                    <td>IBAN...</td>
-                                    <td>IBAN...</td>
+                                    <td>{v.bankAccountInfo.name}</td>
+                                    <td>{v.proforma.buyerAccountInfo.name}</td>
                                     <td>{v.applicationId}</td>
                                     <td>{v.proforma.goods.asset}</td>
                                     <td>{v.amount}</td>

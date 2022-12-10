@@ -1,3 +1,4 @@
+import Item from 'antd/lib/list/Item';
 import {React,useState} from 'react'
 import './Murabaha.css'
 import MurbaState from './MurbahaState.json'
@@ -143,11 +144,19 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                                         </tr>
                                         <tr>
                                             <td>Bank Signature</td>
+                                            {(Item.bankSignature)?
                                             <td>Signed</td>
+                                            :
+                                            <td>Un Signed</td>
+                        }
                                         </tr>
                                         <tr>
                                             <td>Brorower Signature</td>
+                                            {(Item.borrowerSignature)?
                                             <td>Signed</td>
+                                            :
+                                            <td>Un Signed</td>
+                        }
                                         </tr>
 
                                     </table>

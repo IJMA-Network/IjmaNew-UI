@@ -5,7 +5,7 @@ import {getData,postData} from '../../../Api/api'
 
 export default function Murabaha() {
 
-    const[bank,setBank]=useState({accountName:"Bank2"});
+    const[bank,setBank]=useState({accountName:"Bank1"});
     const[murabahas,setMurabahas]=useState(MurbanState);
     const [item, setItem] = useState(null);
 
@@ -168,11 +168,19 @@ export default function Murabaha() {
                                         </tr>
                                         <tr>
                                             <td>Bank Signature</td>
-                                            <td>Un signed</td>
+                                            {(item.bankSignature)?
+                                            <td>Signed</td>
+                                            :
+                                            <td>Un Signed</td>
+                        }
                                         </tr>
                                         <tr>
                                             <td>Brorower Signature</td>
-                                            <td>Un signed</td>
+                                            {(item.borrowerSignature)?
+                                            <td>Signed</td>
+                                            :
+                                            <td>Un Signed</td>
+                        }
                                         </tr>
 
                                     </table>

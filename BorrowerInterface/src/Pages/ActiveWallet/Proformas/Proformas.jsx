@@ -6,10 +6,10 @@ import ProformaState from './ProformaState.json'
 
 
 export default function Proformas() {
-    const[user,setUser]=useState({accountName:"Buyer2"});
-    const[bank,setBank]=useState({accountName:"Bank2"});
+    const[user,setUser]=useState({accountName:"Buyer1"});
+    const[bank,setBank]=useState({accountName:"Bank1"});
     const [value, setValue] = useState('');
-    const [item, setItem] = useState({});
+    const [item, setItem] = useState(null);
    
     const[proformas,setProformas]=useState([]);
     useEffect(()=> {
@@ -82,8 +82,8 @@ const handleRequestMurabaha=async()=>{
                             <td>{v.date}</td>
                             <td>{v.proformaId}</td>
                             <td>{v.sellerAccountInfo.name}</td>
-                            <td>{"Cotton"}</td>
-                            <td>{"12 million bales"}</td>
+                            <td>{v.goods.asset}</td>
+                            <td>{v.goods.quantity.value+" "+v.goods.quantity.unit}</td>
                             <td>
                                 <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                   onClick={() => setItem(v)}
@@ -106,56 +106,56 @@ const handleRequestMurabaha=async()=>{
                             <h3 class="modal-title">Proforma Details</h3>
                             <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
                         </div>
+
+                        {(item!=null)?
                         <div class="modal-body">
                             <table id="customers">
 
                                 <tr>
                                     <td>Vendor</td>
-                                    <td>IBANPAKKA0000SELLER2</td>
+                                    <td>{item.sellerAccountInfo.name}</td>
                                 </tr>
                                 <tr>
                                     <td>Client</td>
-                                    <td>IBANPAKKA0000BUYER1</td>
+                                    <td>{item.buyerAccountInfo.name}</td>
                                 </tr>
                                 <tr>
                                     <td>Refrence No.</td>
-                                    <td>PR-HMD-01</td>
+                                    <td>{item.proformaId}</td>
                                 </tr>
                                 <tr>
                                     <td>Date</td>
-                                    <td>31-8-2022</td>
+                                    <td>{item.date}</td>
                                 </tr>
                                 <tr>
                                     <td>Consignment No.</td>
-                                    <td>CN-1</td>
+                                    <td>{item.goods.consignmentNumber}</td>
                                 </tr>
                                 <tr>
                                     <td>Item</td>
-                                    <td>{"Cotton"}</td>
+                                    <td>{item.goods.asset}</td>
                                 </tr>
                                 <tr>
                                     <td>Description</td>
-                                    <td>{"Egyptian Cotton of premium quality"}</td>
+                                    <td>{item.description}</td>
                                 </tr>
                                 <tr>
                                     <td>Quantity</td>
-                                    <td>{"12 million bales"}</td>
+                                    <td>{item.goods.quantity.value+" "+item.goods.quantity.unit}</td>
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
-                                    <td>20,000,000</td>
+                                    <td>2{item.amount}</td>
                                 </tr>
 
 
                             </table>
 
                         </div>
+                          :<></>
+                        }
                         {/* <!-- Modal body --> */}
-                        {/* {PromissoryNote.map((v, i) => {
-              return (
-              
-              )
-            })} */}
+                  
 
 
 

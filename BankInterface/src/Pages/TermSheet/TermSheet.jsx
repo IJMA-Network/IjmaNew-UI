@@ -5,7 +5,7 @@ import axios from "axios";
 import { createTerm } from "../../Api/api";
 
 export default function TermSheet() {
-  const[bank,setBank]=useState({accountName:"Bank2"});
+  const[bank,setBank]=useState({accountName:"Bank1"});
 //   const [NodeName, setNodeName] = useState("ABC Bank");
 //   const [users, setUsers] = useState([]);
 

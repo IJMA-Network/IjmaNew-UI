@@ -4,7 +4,7 @@ import PromissoryNote from './PromissoryNote.json'
 import {getData,postData} from '../../../Api/api'
 
 export default function Promissory() {
-  const[bank,setBank]=useState({accountName:"Bank2"});
+  const[bank,setBank]=useState({accountName:"Bank1"});
     const[pNotes,setPNotes ]=useState(PromissoryNote);
     const [item, setItem] = useState(null);
 

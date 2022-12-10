@@ -5,7 +5,7 @@ import TermSheetState from './TermSheetState.json'
 
 
 export default function TermSheetData() {
-  const[user,setUser]=useState({accountName:"Buyer2"});
+  const[user,setUser]=useState({accountName:"Buyer1"});
   const[termsheets,setTermSheets]=useState([]);
   const [item, setItem] = useState(null);
   useEffect(()=> {
