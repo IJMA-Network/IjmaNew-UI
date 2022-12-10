@@ -1,12 +1,21 @@
 import Item from 'antd/lib/list/Item';
-import {React,useState} from 'react'
+import {React,useState,useEffect} from 'react';
+import {getData,postData} from '../../../Api'
 import './Murabaha.css'
-import MurbaState from './MurbahaState.json'
+import MurbahaState from './MurbahaState.json'
 
 export default function Murabaha() {
-const[murabaha,setMurabaha]=useState(MurbaState);
+    const[user,setUser]=useState({accountName:"Buyer1"});
+    const[murabahas,setMurabahas]=useState([]);
+    const [item, setItem] = useState(null);
 
-murabaha.map((v, i) => { console.log(v, "MurbanState") })
+    useEffect(()=> {
+        let payload={
+            account: user.accountName,
+            consumable: ""
+           }
+           getData("received-murabaha",payload,setMurabahas);
+        },[])
 
 
 
@@ -42,11 +51,7 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
             </div>
             <div class="container mt-3">
                 <h2 className='text-center'>Murabaha Contact</h2>
-                {murabaha.map((v, i) => {
-                    return (
-
-
-                        <table class="table table-hover">
+                <table class="table table-hover">
                             <thead class="bg-light">
                                 <tr>
                                     <th >Date</th>
@@ -58,6 +63,11 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                                     <th></th>
                                 </tr>
                             </thead>
+                {murabahas.map((v, i) => {
+                    return (
+
+
+                        
                             <tbody>
                                 <tr>
                                     <td>{v.agreementDate}</td>
@@ -74,16 +84,17 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                                     <td>Signed</td> */}
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                        //  onClick={() => setClinetID(v._id)}
+                                        onClick={() => setItem(v)}
                                         >View</span>
                                     </td>
 
                                 </tr>
                             </tbody>
 
-                        </table>
+                       
                     )
                 })}
+                 </table>
             </div>
 
             <div class="modal" id="myModal">
@@ -97,8 +108,7 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                         </div>
 
                       
-                        {murabaha.map((v, i) => {
-                            return (
+                        {(item!=null)?
                                 <div class="modal-body">
                                     <table id="customers">
 
@@ -108,35 +118,35 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                                         </tr>
                                         <tr>
                                             <td>Date</td>
-                                            <td>{v.agreementDate}</td>
+                                            <td>{item.agreementDate}</td>
                                         </tr>
                                         <tr>
                                             <td>Refrence No.</td>
-                                            <td>{v.internalReference}</td>
+                                            <td>{item.internalReference}</td>
                                         </tr>
                                         <tr>
                                             <td>Bank</td>
-                                            <td>{v.bankAccountInfo.name}</td>
+                                            <td>{item.bankAccountInfo.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Applicant</td>
-                                            <td>{v.borrowerAccountInfo.name}</td>
+                                            <td>{item.borrowerAccountInfo.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Cost Price</td>
-                                            <td>{v.costPrice}</td>
+                                            <td>{item.costPrice}</td>
                                         </tr>
                                         <tr>
                                             <td>Tenor</td>
-                                            <td>{v.term}</td>
+                                            <td>{item.term}</td>
                                         </tr>
                                         <tr>
                                             <td>Selling Price</td>
-                                            <td>{v.sellingprice}</td>
+                                            <td>{item.sellingprice}</td>
                                         </tr>
                                         <tr>
                                             <td>Profile Rate</td>
-                                            <td>{v.profitrate}</td>
+                                            <td>{item.profitrate}</td>
                                         </tr>
                                         <tr>
                                             <td>Item</td>
@@ -162,11 +172,8 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                                     </table>
 
                                 </div>
-                            )
-                        })}
-
-
-
+                          :<></>
+                        }
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
