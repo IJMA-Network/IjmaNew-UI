@@ -1,25 +1,23 @@
-
-import './App.css';
-import Dashboard from './Dashboard/Dashboard';
-import { SignIn, UserForm } from './Pages';
+import "./App.css";
+import Dashboard from "./Dashboard/Dashboard";
+import { SignIn } from "./Pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { StoreProvider } from "./ContextApi";
+import { useState } from "react";
 
 function App() {
+  const [SignInData, setSignInData] = useState([]);
+
   return (
     <div>
-         <BrowserRouter>
+      <StoreProvider value={{ SignInData, setSignInData }}>
+        <BrowserRouter>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/" element={<SignIn />} />
-            {/* <Route path="/" element={<SignIn />} /> */}
-            {/* <Route path="/clientdata" element={<ClientData />} />
-            <Route path="/paymentdata" element={<PaymentData />} />
-            <Route path="/csvfileupload" element={<CsvfileUpload />} /> */}
           </Routes>
         </BrowserRouter>
-      {/* <Dashboard />
-      <SignIn /> */}
+      </StoreProvider>
     </div>
   );
 }

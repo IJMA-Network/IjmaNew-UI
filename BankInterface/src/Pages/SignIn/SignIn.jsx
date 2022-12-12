@@ -1,7 +1,13 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useContext } from "react";
 import "./SignIn.css";
 import ijma from '../../Images/Ijma.png'
 import { useNavigate } from "react-router-dom"
+import axios from "axios";
+import StoreContext from '../../ContextApi';
+
+
+
+
 
 export default function SignIn() {
 
@@ -9,6 +15,32 @@ export default function SignIn() {
   let UserName = useRef()
   let UserPassword = useRef()
 
+  const contextData = useContext(StoreContext);
+  let navigate = useNavigate();
+
+  const handleClick = () => {
+
+    axios({
+      method: "post",
+      url: "https://sign-api-boiler-plate.vercel.app/UserSignIn",
+      data: {
+        UserId: UserId.current.value,
+        UserName: UserName.current.value,
+        UserPassword: UserPassword.current.value
+      }
+    }).then((res) => {
+      console.log(res);
+      // localStorage.setItem("Role", JSON.stringify(res.data.Role))
+      alert("Login Successfully!")
+      navigate('/dashboard');
+      contextData.setSignInData(res.data);
+
+    }).catch((err) => {
+      console.log(err, "employee not found");
+    })
+
+  };
+  console.log(contextData, "contextData");
   return (
 
     <div id="SignIn">
@@ -25,19 +57,22 @@ export default function SignIn() {
               </div>
             </div>
             <div class="d-flex justify-content-center form_container">
-              <form>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleClick();
+              }}
+              >
                 <br />
                 <div class="input-group mb-3">
                   <div class="input-group-append">
+
                     <span class="input-group-text">
                       <i class="fas fa-user"></i>
                     </span>
                   </div>
                   <input
                     type="text"
-                    name=""
                     class="form-control input_user"
-                    value=""
                     placeholder="User Id"
                     ref={UserId}
                     required
@@ -52,11 +87,10 @@ export default function SignIn() {
                   </div>
                   <input
                     type="text"
-                    name=""
                     class="form-control input_user"
-                    value=""
                     placeholder="User Name"
                     ref={UserName}
+                    required
                   />
                 </div>
                 <div class="input-group mb-2">
@@ -67,14 +101,13 @@ export default function SignIn() {
                   </div>
                   <input
                     type="password"
-                    name=""
                     class="form-control input_pass"
-                    value=""
-                    placeholder="password"
+                    placeholder="User Password"
                     ref={UserPassword}
                     required
                   />
                 </div>
+
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input
@@ -91,9 +124,7 @@ export default function SignIn() {
                   </div>
                 </div>
                 <div class="d-flex justify-content-center mt-3 login_container">
-                  <button type="button" name="button" class="btn login_btn">
-                    Login
-                  </button>
+                  <button type="submit" name="button" class="btn login_btn">Sign In</button>
                 </div>
               </form>
             </div>
