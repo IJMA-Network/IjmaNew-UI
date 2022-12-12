@@ -12,9 +12,9 @@ import ijma from '../Images/Ijma.png'
 import {
   WalletDashboard, Applications, TermSheetData,
   Goods, Murabaha, Promissory, TermSheet,
-  VaultMurabaha,VaultPromissory,PurchesOrder
+  VaultMurabaha, VaultPromissory, PurchesOrder, UserForm
 } from '../Pages/index'
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -22,8 +22,8 @@ export default function Dashboard() {
 
   const [collapsed, setCollapsed] = useState(false);
   const { Header, Content, Footer, Sider } = Layout;
-  const [trigger, setTrigger] = useState(0);
-
+  const [trigger, setTrigger] = useState(1);
+  const navigate = useNavigate();
 
 
   function getItem(label, key, icon, children) {
@@ -35,7 +35,9 @@ export default function Dashboard() {
     };
   }
 
-
+  const logout = () => {
+    navigate('/')
+  }
 
   const items = [
 
@@ -45,11 +47,11 @@ export default function Dashboard() {
       icon: <TeamOutlined onClick={() => setTrigger(1)} />,
       label: <div onClick={() => setTrigger(1)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Issue TermSheet' : ''}</span></div>,
     },
-    // {
-    //   key: '2',
-    //   icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
-    //   label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
-    // },
+    {
+      key: '2',
+      icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
+      label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'UserForm' : ''}</span></div>,
+    },
 
 
 
@@ -103,6 +105,12 @@ export default function Dashboard() {
       // },
 
     ]),
+    {
+
+      key: '',
+      icon: <LoginOutlined onClick={() => logout()} />,
+      label: <div onClick={() => logout()}><span style={{ marginLeft: '5%' }}> {!collapsed ? ' Log Out' : ''}</span></div>,
+    },
   ];
 
 
@@ -155,7 +163,7 @@ export default function Dashboard() {
             ) :
               trigger === 2 ? (
                 <>
-                  <WalletDashboard />
+                  <UserForm />
                 </>
               )
                 : trigger === '1a' ? (
@@ -167,35 +175,35 @@ export default function Dashboard() {
                     <>
                       <VaultMurabaha />
                     </>
-                  ) 
-                  : trigger === '3a' ? (
-                    <>
-                      <VaultPromissory />
-                    </>
-                  ) 
-                  : trigger === '4a' ? (
-                    <>
-                      <PurchesOrder />
-                    </>
-                  ) 
-                  : trigger === '1b' ? (
-                    <>
-                      <Applications />
-                    </>
-                  ) : trigger === '2b' ? (
-                    <>
-                      <Murabaha />
-                    </>
-                  ) : trigger === '3b' ? (
-                    <>
-                      <Promissory />
-                    </>
-                  ) : trigger === '4b' ? (
-                    <>
-                      <Goods />
-                    </>
-                  ) :
-                    <></>
+                  )
+                    : trigger === '3a' ? (
+                      <>
+                        <VaultPromissory />
+                      </>
+                    )
+                      : trigger === '4a' ? (
+                        <>
+                          <PurchesOrder />
+                        </>
+                      )
+                        : trigger === '1b' ? (
+                          <>
+                            <Applications />
+                          </>
+                        ) : trigger === '2b' ? (
+                          <>
+                            <Murabaha />
+                          </>
+                        ) : trigger === '3b' ? (
+                          <>
+                            <Promissory />
+                          </>
+                        ) : trigger === '4b' ? (
+                          <>
+                            <Goods />
+                          </>
+                        ) :
+                          <></>
 
           }
         </Content>
