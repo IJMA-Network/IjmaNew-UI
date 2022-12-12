@@ -11,7 +11,7 @@ export default function Proformas() {
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
    
-    const[proformas,setProformas]=useState([]);
+    const[proformas,setProformas]=useState(ProformaState);
     useEffect(()=> {
         let payload={
             account: user.accountName,
