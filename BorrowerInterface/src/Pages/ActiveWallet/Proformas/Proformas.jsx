@@ -10,17 +10,10 @@ export default function Proformas() {
     const [bank, setBank] = useState({ accountName: "Bank1" });
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
-<<<<<<< HEAD
 
-    const [proformas, setProformas] = useState([]);
+    const [proformas, setProformas] = useState(ProformaState);
     useEffect(() => {
         let payload = {
-=======
-   
-    const[proformas,setProformas]=useState(ProformaState);
-    useEffect(()=> {
-        let payload={
->>>>>>> 2b3f9a49415779d143998a77e6a35de8756b1b08
             account: user.accountName,
             consumable: ""
         }
@@ -161,16 +154,32 @@ export default function Proformas() {
                             </div>
                             : <></>
                         }
-                        {/* <!-- Modal body --> */}
 
+
+
+                        {/* <div class="row justify-content-between text-left">
+
+                            <div class=" form-group col-sm-5 flex-column d-flex form-label">
+                                <input type="text" id="ans" name="ans" placeholder="Text" onblur="validate(1)" />
+                            </div>
+
+                            <div class="form-group col-sm-5 flex-column d-flex">
+                                <input type="text" id="ans" name="ans" placeholder="Tenor" onblur="validate(1)" />
+
+                            </div>
+
+                            <div class=" form-group col-sm-2 flex-column d-flex form-label">
+                                <button class="btn btn-primary" type="button" >+</button>
+                            </div>
+                        </div> */}
 
 
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
                             <input type="number" placeholder="Tenor" onChange={(e) => setValue(e.target.value)} />
+                            <input type="text" placeholder="text" />
                             <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button>
-                            {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
                         </div>
 
                     </div>
