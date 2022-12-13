@@ -10,17 +10,10 @@ export default function Proformas() {
     const [bank, setBank] = useState({ accountName: "Bank1" });
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
-<<<<<<< HEAD
-
-    const [proformas, setProformas] = useState([]);
-    useEffect(() => {
-        let payload = {
-=======
    
     const[proformas,setProformas]=useState(ProformaState);
     useEffect(()=> {
         let payload={
->>>>>>> 2b3f9a49415779d143998a77e6a35de8756b1b08
             account: user.accountName,
             consumable: ""
         }
