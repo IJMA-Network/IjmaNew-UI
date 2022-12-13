@@ -1,18 +1,20 @@
 import Item from 'antd/lib/list/Item';
-import {React,useState} from 'react'
+import { React, useState } from 'react'
+import Filter from '../../filter/filter';
 import './Murabaha.css'
 import MurbaState from './MurbahaState.json'
 
 export default function Murabaha() {
-const[murabaha,setMurabaha]=useState(MurbaState);
+    const [murabaha, setMurabaha] = useState(MurbaState);
 
-murabaha.map((v, i) => { console.log(v, "MurbanState") })
+    murabaha.map((v, i) => { console.log(v, "MurbanState") })
 
 
 
 
     return (
         <div class="card card-cascade narrower">
+            <Filter />
             <div
                 class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
@@ -25,7 +27,7 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                     </button>
                 </div>
 
-               
+
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -96,7 +98,7 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                             <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
                         </div>
 
-                      
+
                         {murabaha.map((v, i) => {
                             return (
                                 <div class="modal-body">
@@ -144,19 +146,19 @@ murabaha.map((v, i) => { console.log(v, "MurbanState") })
                                         </tr>
                                         <tr>
                                             <td>Bank Signature</td>
-                                            {(Item.bankSignature)?
-                                            <td>Signed</td>
-                                            :
-                                            <td>Un Signed</td>
-                        }
+                                            {(Item.bankSignature) ?
+                                                <td>Signed</td>
+                                                :
+                                                <td>Un Signed</td>
+                                            }
                                         </tr>
                                         <tr>
                                             <td>Brorower Signature</td>
-                                            {(Item.borrowerSignature)?
-                                            <td>Signed</td>
-                                            :
-                                            <td>Un Signed</td>
-                        }
+                                            {(Item.borrowerSignature) ?
+                                                <td>Signed</td>
+                                                :
+                                                <td>Un Signed</td>
+                                            }
                                         </tr>
 
                                     </table>

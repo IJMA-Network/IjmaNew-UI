@@ -3,6 +3,7 @@ import './Proformas.css'
 import { InputNumber } from 'antd';
 import { getData, postData } from '../../../Api'
 import ProformaState from './ProformaState.json'
+import Filter from '../../filter/filter';
 
 
 export default function Proformas() {
@@ -34,8 +35,8 @@ export default function Proformas() {
 
     return (
         <div class="card card-cascade narrower">
-            <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+            <Filter />
+            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
