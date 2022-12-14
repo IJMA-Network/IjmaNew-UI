@@ -1,8 +1,14 @@
-import React from 'react'
-import './TermSheet.css'
+import React, { useContext } from 'react';
+import './TermSheet.css';
 import { Form } from 'react-bootstrap';
 
+
 export default function TermSheet() {
+
+
+
+
+
     return (
         <div class="container-fluid px-1 py-5 mx-auto">
             <div class="row d-flex justify-content-center">

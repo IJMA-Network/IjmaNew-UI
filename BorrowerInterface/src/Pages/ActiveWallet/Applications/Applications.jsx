@@ -1,11 +1,18 @@
-import {React,useState,useEffect} from 'react'
-import './Applications.css'
-import ApplictionState from './Application.json'
-import {getData,postData} from '../../../Api'
+import { React, useState, useEffect, useContext } from 'react';
+import './Applications.css';
+import ApplictionState from './Application.json';
+import { getData, postData } from '../../../Api';
+import Filter from '../../filter/filter';
+import StoreContext from '../../../ContextApi';
 
 
 export default function Applications() {
-    const[applications,setApplications]=useState(ApplictionState);
+
+
+    const [applications, setApplications] = useState(ApplictionState);
+    const contextData = useContext(StoreContext);
+    console.log(contextData.SignInData, "Application Context Data");
+
 
 
     applications.map((v, i) => { console.log(v, "ApplictionState") })
@@ -13,10 +20,13 @@ export default function Applications() {
     return (
         // <div>
         <div class="card card-cascade narrower">
+            <Filter />
             <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
+                style={{ marginTop: "-5%" }}
+            >
 
-                <div>
+                {/* <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-th-large mt-0"></i>
                     </button>
@@ -25,8 +35,8 @@ export default function Applications() {
                     </button>
                 </div>
 
-                <a class="white-text mx-3">Allow Access</a>
-
+                <a class="white-text mx-3">Allow Access</a> */}
+                {/* 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-pencil-alt mt-0"></i>
@@ -37,7 +47,7 @@ export default function Applications() {
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-info-circle mt-0"></i>
                     </button>
-                </div>
+                </div> */}
 
             </div>
             <div class="container mt-3">

@@ -11,7 +11,7 @@ export default function Filter() {
         <div>
             <div class="d-flex">
                 <div class="p-2 w-100"></div>
-                <div class="p-2 flex-shrink-1">
+                <div class="flex-shrink-1">
                     <a
                         class="btn btn-primary"
                         data-mdb-toggle="collapse"

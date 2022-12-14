@@ -16,6 +16,7 @@ import {
   Proformas
 } from '../Pages/index';
 import { useNavigate } from "react-router-dom";
+import StoreContext from '../ContextApi';
 
 
 
@@ -24,6 +25,8 @@ export default function Dashboard() {
   const [collapsed, setCollapsed] = useState(false);
   const { Header, Content, Footer, Sider } = Layout;
   const [trigger, setTrigger] = useState(0);
+  const contextData = useContext(StoreContext);
+
   const navigate = useNavigate();
 
 

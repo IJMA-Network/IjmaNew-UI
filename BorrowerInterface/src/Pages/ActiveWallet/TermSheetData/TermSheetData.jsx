@@ -1,31 +1,35 @@
-import {React,useState,useEffect} from 'react'
-import './TermSheetData.css'
-import {getData,postData} from '../../../Api'
-import TermSheetState from './TermSheetState.json'
-import Filter from '../../filter/filter'
+import { React, useState, useEffect, useContext } from 'react';
+import './TermSheetData.css';
+import { getData, postData } from '../../../Api';
+import TermSheetState from './TermSheetState.json';
+import Filter from '../../filter/filter';
+import StoreContext from '../../../ContextApi';
 
 
 export default function TermSheetData() {
-  const[user,setUser]=useState({accountName:"Buyer1"});
-  const[termsheets,setTermSheets]=useState(TermSheetState);
+  const [user, setUser] = useState({ accountName: "Buyer1" });
+  const [termsheets, setTermSheets] = useState(TermSheetState);
   const [item, setItem] = useState(null);
-  useEffect(()=> {
-    let payload={
-        account: user.accountName,
-        consumable: ""
-       }
-getData("received-TermSheets",payload,setTermSheets);
-},[])
-const handleReaccept=async()=>{
-  let api="termsheet/accept";
-  let payload={
-      
-    stateId:item.termSheetReference,
-      account:user.accountName
-      }
-  console.log("In accept TermSheet",payload);
-  const resp= await postData(api,payload);
-}
+  const contextData = useContext(StoreContext);
+  console.log(contextData.SignInData, "Term Sheet Context Data");
+
+  useEffect(() => {
+    let payload = {
+      account: user.accountName,
+      consumable: ""
+    }
+    getData("received-TermSheets", payload, setTermSheets);
+  }, [])
+  const handleReaccept = async () => {
+    let api = "termsheet/accept";
+    let payload = {
+
+      stateId: item.termSheetReference,
+      account: user.accountName
+    }
+    console.log("In accept TermSheet", payload);
+    const resp = await postData(api, payload);
+  }
 
 
   return (
@@ -33,9 +37,11 @@ const handleReaccept=async()=>{
       <div class="card card-cascade narrower">
         <Filter />
         <div
-          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
+          style={{ marginTop: "-4%" }}
+        >
 
-          <div>
+          {/* <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
               <i class="fas fa-th-large mt-0"></i>
             </button>
@@ -56,7 +62,7 @@ const handleReaccept=async()=>{
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
               <i class="fas fa-info-circle mt-0"></i>
             </button>
-          </div>
+          </div> */}
 
         </div>
         <div class="container mt-3">
@@ -87,7 +93,7 @@ const handleReaccept=async()=>{
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                       onClick={() => setItem(v)}
+                        onClick={() => setItem(v)}
                       >View</span>
                     </td>
 
@@ -113,58 +119,58 @@ const handleReaccept=async()=>{
             </div>
 
             {/* <!-- Modal body --> */}
-            {(item!=null)?
-            
-                <div class="modal-body">
-                  <table id="customers">
+            {(item != null) ?
 
-                   
-                    <tr>
-                      <td>Bank</td>
-                      <td>{item.bankAccountInfo.name}</td>
-                    </tr>
-                    <tr>
-                      <td>Refernce No</td>
-                      <td>{item.termSheetReference}</td>
-                    </tr>
-                    <tr>
-                      <td>Limit</td>
-                      <td>{item.limit}</td>
-                    </tr>
-                    <tr>
-                      <td>Tenor</td>
-                      <td>{item.tenor}</td>
-                    </tr>
-                    <tr>
-                      <td>Refernce Rate</td>
-                      <td>{item.referenceRate}</td>
-                    </tr>
-                    <tr>
-                      <td>Spread</td>
-                      <td>{item.spread}</td>
-                    </tr>
-                    <tr>
-                      <td>Issue Date</td>
-                      <td>{item.issueDate}</td>
-                    </tr>
-                    <tr>
-                      <td>Expiry Date</td>
-                      <td>{item.expiryDate}</td>
-                    </tr>
-                    <tr>
-                      <td>Acceptance</td>
-                     { (item.isAccepted)?
+              <div class="modal-body">
+                <table id="customers">
+
+
+                  <tr>
+                    <td>Bank</td>
+                    <td>{item.bankAccountInfo.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Refernce No</td>
+                    <td>{item.termSheetReference}</td>
+                  </tr>
+                  <tr>
+                    <td>Limit</td>
+                    <td>{item.limit}</td>
+                  </tr>
+                  <tr>
+                    <td>Tenor</td>
+                    <td>{item.tenor}</td>
+                  </tr>
+                  <tr>
+                    <td>Refernce Rate</td>
+                    <td>{item.referenceRate}</td>
+                  </tr>
+                  <tr>
+                    <td>Spread</td>
+                    <td>{item.spread}</td>
+                  </tr>
+                  <tr>
+                    <td>Issue Date</td>
+                    <td>{item.issueDate}</td>
+                  </tr>
+                  <tr>
+                    <td>Expiry Date</td>
+                    <td>{item.expiryDate}</td>
+                  </tr>
+                  <tr>
+                    <td>Acceptance</td>
+                    {(item.isAccepted) ?
                       <td>Received</td>
                       :
                       <td>{item.IsAccepted}</td>
-                     }
-                    </tr>
+                    }
+                  </tr>
 
 
-                  </table>
+                </table>
 
-                </div>
-              :<></>
+              </div>
+              : <></>
             }
 
 

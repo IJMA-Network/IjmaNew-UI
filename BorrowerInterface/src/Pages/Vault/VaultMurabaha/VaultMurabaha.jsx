@@ -1,6 +1,7 @@
 import React from 'react'
 import './VaultMurabaha.css'
 import MurbanState from './VaultMurabaha..json'
+import Filter from '../../filter/filter'
 
 export default function VaultMurabaha() {
 
@@ -9,13 +10,15 @@ export default function VaultMurabaha() {
 
 
 
-
     return (
         <div class="card card-cascade narrower">
+            <Filter />
             <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
+                style={{ marginTop: "-4%" }}
+            >
 
-                <div>
+                {/* <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-th-large mt-0"></i>
                     </button>
@@ -36,7 +39,7 @@ export default function VaultMurabaha() {
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-info-circle mt-0"></i>
                     </button>
-                </div>
+                </div> */}
 
             </div>
             <div class="container mt-3">

@@ -4,9 +4,8 @@ import ijma from '../../Images/Ijma.png'
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import StoreContext from '../../ContextApi';
-import { Button, message, Space } from 'antd'
-
-
+import { Button, message, Space, Spin } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export default function SignIn() {
@@ -14,11 +13,23 @@ export default function SignIn() {
   let UserId = useRef()
   let UserName = useRef()
   let UserPassword = useRef()
+  const notify = () => toast.error('🦄 User Not Found', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
   const contextData = useContext(StoreContext);
   let navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
+  const [loading, setloading] = useState(true);
   const key = 'updatable';
+
   const openMessage = () => {
     messageApi.open({
       key,
@@ -32,19 +43,19 @@ export default function SignIn() {
         content: 'this is a successfully login!',
         duration: 2,
       });
+      setloading(true)
     }, 1000);
     setTimeout(() => {
       navigate('/dashboard');
     }, 2000);
   };
   const handleClick = () => {
-
+    setloading(false)
     axios({
       method: "post",
       url: "https://sign-api-boiler-plate.vercel.app/UserSignIn",
       data: {
         UserId: UserId.current.value,
-        UserName: UserName.current.value,
         UserPassword: UserPassword.current.value
       }
     }).then((res) => {
@@ -57,15 +68,20 @@ export default function SignIn() {
 
     }).catch((err) => {
 
-      console.log(err, "employee not found");
+      notify()
+      console.log(err, "error");
+      setloading(true)
     })
 
   };
-  console.log(contextData, "contextData");
+
+  // console.log(contextData, "contextData");
+
   return (
 
     <div id="SignIn">
       {contextHolder}
+      <ToastContainer />
       <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
           <div class="user_card">
@@ -101,20 +117,7 @@ export default function SignIn() {
                   />
                 </div>
 
-                <div class="input-group mb-3">
-                  <div class="input-group-append">
-                    <span class="input-group-text">
-                      <i class="fas fa-user"></i>
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control input_user"
-                    placeholder="User Name"
-                    ref={UserName}
-                    required
-                  />
-                </div>
+                <br />
                 <div class="input-group mb-2">
                   <div class="input-group-append">
                     <span class="input-group-text">
@@ -146,7 +149,8 @@ export default function SignIn() {
                   </div>
                 </div>
                 <div class="d-flex justify-content-center mt-3 login_container">
-                  <button type="submit" name="button" class="btn login_btn">Sign In</button>
+                  {loading ? <button type="submit" name="button" class="btn login_btn" >Sign In</button> : <Spin size="large" />}
+                  {/* <button type="submit" name="button" class="btn login_btn">Sign In</button> */}
                 </div>
               </form>
             </div>

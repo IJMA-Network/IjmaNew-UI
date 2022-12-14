@@ -1,9 +1,10 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useContext } from 'react';
 import './Proformas.css'
 import { InputNumber } from 'antd';
 import { getData, postData } from '../../../Api'
 import ProformaState from './ProformaState.json'
 import Filter from '../../filter/filter';
+import StoreContext from '../../../ContextApi';
 
 
 export default function Proformas() {
@@ -11,10 +12,16 @@ export default function Proformas() {
     const [bank, setBank] = useState({ accountName: "Bank1" });
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
-   
-    const[proformas,setProformas]=useState(ProformaState);
-    useEffect(()=> {
-        let payload={
+
+    const [proformas, setProformas] = useState(ProformaState);
+
+
+    const contextData = useContext(StoreContext);
+    console.log(contextData.SignInData, "Proformas Context Data");
+
+
+    useEffect(() => {
+        let payload = {
             account: user.accountName,
             consumable: ""
         }
@@ -36,9 +43,11 @@ export default function Proformas() {
     return (
         <div class="card card-cascade narrower">
             <Filter />
-            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+                style={{ marginTop: "-4%" }}
+            >
 
-                <div>
+                {/* <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-th-large mt-0"></i>
                     </button>
@@ -46,9 +55,6 @@ export default function Proformas() {
                         <i class="fas fa-columns mt-0"></i>
                     </button>
                 </div>
-
-
-
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-pencil-alt mt-0"></i>
@@ -59,7 +65,7 @@ export default function Proformas() {
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-info-circle mt-0"></i>
                     </button>
-                </div>
+                </div> */}
 
             </div>
             <div class="container mt-3">
