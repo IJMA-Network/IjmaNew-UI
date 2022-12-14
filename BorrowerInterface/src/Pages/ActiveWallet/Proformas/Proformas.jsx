@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useContext } from 'react';
 import './Proformas.css'
-import { InputNumber } from 'antd';
+import { Spin } from 'antd';
 import { getData, postData } from '../../../Api'
 import ProformaState from './ProformaState.json'
 import Filter from '../../filter/filter';
@@ -12,13 +12,19 @@ export default function Proformas() {
     const [bank, setBank] = useState({ accountName: "Bank1" });
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
-
+    const [loading, setloading] = useState(true);
     const [proformas, setProformas] = useState(ProformaState);
 
 
     const contextData = useContext(StoreContext);
     console.log(contextData.SignInData, "Proformas Context Data");
 
+    //     const RequestMurhaba = () => {
+    //     setloading(false)
+    //     setTimeout(() => {
+    //       setloading(true)
+    //     }, 2000);
+    //   }
 
     useEffect(() => {
         let payload = {
@@ -30,6 +36,11 @@ export default function Proformas() {
 
     const handleRequestMurabaha = async () => {
         let api = "apply/murabaha";
+        setloading(false)
+        setTimeout(() => {
+            setloading(true)
+        }, 2000);
+
         let payload = {
             bank: bank.accountName,
             proformaId: item.processId,
@@ -186,7 +197,9 @@ export default function Proformas() {
                         <div class="modal-footer d-flex justify-content-evenly">
                             <input type="number" placeholder="Tenor" onChange={(e) => setValue(e.target.value)} />
                             <input type="text" placeholder="text" />
-                            <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button>
+                            {/* <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button> */}
+                            {loading ? <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button> : <Spin size="large" />}
+
                         </div>
 
                     </div>
