@@ -1,41 +1,42 @@
-import {React, useState,useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import './Proformas.css'
 import { InputNumber } from 'antd';
-import {getData,postData} from '../../../Api'
+import { getData, postData } from '../../../Api'
 import ProformaState from './ProformaState.json'
+import Filter from '../../filter/filter';
 
 
 export default function Proformas() {
-    const[user,setUser]=useState({accountName:"Buyer1"});
-    const[bank,setBank]=useState({accountName:"Bank1"});
+    const [user, setUser] = useState({ accountName: "Buyer1" });
+    const [bank, setBank] = useState({ accountName: "Bank1" });
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
-   
-    const[proformas,setProformas]=useState([]);
-    useEffect(()=> {
-        let payload={
+
+    const [proformas, setProformas] = useState(ProformaState);
+    useEffect(() => {
+        let payload = {
             account: user.accountName,
             consumable: ""
-           }
-   getData("received-Proformas",payload,setProformas);
-    },[])
-    
-const handleRequestMurabaha=async()=>{
-    let api="apply/murabaha";
-    let payload={
-        bank:bank.accountName,
-        proformaId: item.processId,
-        "term": value,
-        borrower:user.accountName
         }
-    console.log("In request Murabaha",payload);
-    const resp= await postData(api,payload);
-}
+        getData("received-Proformas", payload, setProformas);
+    }, [])
+
+    const handleRequestMurabaha = async () => {
+        let api = "apply/murabaha";
+        let payload = {
+            bank: bank.accountName,
+            proformaId: item.processId,
+            "term": value,
+            borrower: user.accountName
+        }
+        console.log("In request Murabaha", payload);
+        const resp = await postData(api, payload);
+    }
 
     return (
         <div class="card card-cascade narrower">
-            <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+            <Filter />
+            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -46,7 +47,7 @@ const handleRequestMurabaha=async()=>{
                     </button>
                 </div>
 
-               
+
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -76,24 +77,24 @@ const handleRequestMurabaha=async()=>{
                         </tr>
                     </thead>
                     {proformas.map((v, i) => {
-              return (
-                    <tbody>
-                        <tr>
-                            <td>{v.date}</td>
-                            <td>{v.proformaId}</td>
-                            <td>{v.sellerAccountInfo.name}</td>
-                            <td>{v.goods.asset}</td>
-                            <td>{v.goods.quantity.value+" "+v.goods.quantity.unit}</td>
-                            <td>
-                                <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                  onClick={() => setItem(v)}
-                                >View</span>
-                            </td>
-                        </tr>
-                    </tbody>
-               )
-            })}
-                
+                        return (
+                            <tbody>
+                                <tr>
+                                    <td>{v.date}</td>
+                                    <td>{v.proformaId}</td>
+                                    <td>{v.sellerAccountInfo.name}</td>
+                                    <td>{v.goods.asset}</td>
+                                    <td>{v.goods.quantity.value + " " + v.goods.quantity.unit}</td>
+                                    <td>
+                                        <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
+                                            onClick={() => setItem(v)}
+                                        >View</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
+
 
                 </table>
             </div>
@@ -107,63 +108,79 @@ const handleRequestMurabaha=async()=>{
                             <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
                         </div>
 
-                        {(item!=null)?
-                        <div class="modal-body">
-                            <table id="customers">
+                        {(item != null) ?
+                            <div class="modal-body">
+                                <table id="customers">
 
-                                <tr>
-                                    <td>Vendor</td>
-                                    <td>{item.sellerAccountInfo.name}</td>
-                                </tr>
-                                <tr>
-                                    <td>Client</td>
-                                    <td>{item.buyerAccountInfo.name}</td>
-                                </tr>
-                                <tr>
-                                    <td>Refrence No.</td>
-                                    <td>{item.proformaId}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>{item.date}</td>
-                                </tr>
-                                <tr>
-                                    <td>Consignment No.</td>
-                                    <td>{item.goods.consignmentNumber}</td>
-                                </tr>
-                                <tr>
-                                    <td>Item</td>
-                                    <td>{item.goods.asset}</td>
-                                </tr>
-                                <tr>
-                                    <td>Description</td>
-                                    <td>{item.description}</td>
-                                </tr>
-                                <tr>
-                                    <td>Quantity</td>
-                                    <td>{item.goods.quantity.value+" "+item.goods.quantity.unit}</td>
-                                </tr>
-                                <tr>
-                                    <td>Amount</td>
-                                    <td>2{item.amount}</td>
-                                </tr>
+                                    <tr>
+                                        <td>Vendor</td>
+                                        <td>{item.sellerAccountInfo.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Client</td>
+                                        <td>{item.buyerAccountInfo.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Refrence No.</td>
+                                        <td>{item.proformaId}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>{item.date}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Consignment No.</td>
+                                        <td>{item.goods.consignmentNumber}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item</td>
+                                        <td>{item.goods.asset}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>{item.description}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quantity</td>
+                                        <td>{item.goods.quantity.value + " " + item.goods.quantity.unit}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Amount</td>
+                                        <td>2{item.amount}</td>
+                                    </tr>
 
 
-                            </table>
+                                </table>
 
-                        </div>
-                          :<></>
+                            </div>
+                            : <></>
                         }
-                        {/* <!-- Modal body --> */}
-                  
+
+
+
+                        {/* <div class="row justify-content-between text-left">
+
+                            <div class=" form-group col-sm-5 flex-column d-flex form-label">
+                                <input type="text" id="ans" name="ans" placeholder="Text" onblur="validate(1)" />
+                            </div>
+
+                            <div class="form-group col-sm-5 flex-column d-flex">
+                                <input type="text" id="ans" name="ans" placeholder="Tenor" onblur="validate(1)" />
+
+                            </div>
+
+                            <div class=" form-group col-sm-2 flex-column d-flex form-label">
+                                <button class="btn btn-primary" type="button" >+</button>
+                            </div>
+                        </div> */}
 
 
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
-                            <input type="number" placeholder="Tenor" onChange={(e)=>setValue(e.target.value)} />
+                            <input type="number" placeholder="Tenor" onChange={(e) => setValue(e.target.value)} />
+                            <input type="text" placeholder="text" />
                             <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button>
-                            {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
                         </div>
 
                     </div>

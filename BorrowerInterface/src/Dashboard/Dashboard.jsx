@@ -14,8 +14,8 @@ import {
   Goods, Murabaha, Promissory, TermSheet,
   VaultMurabaha, VaultPromissory, PurchesOrder,
   Proformas
-} from '../Pages/index'
-
+} from '../Pages/index';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -24,6 +24,7 @@ export default function Dashboard() {
   const [collapsed, setCollapsed] = useState(false);
   const { Header, Content, Footer, Sider } = Layout;
   const [trigger, setTrigger] = useState(0);
+  const navigate = useNavigate();
 
 
 
@@ -36,7 +37,7 @@ export default function Dashboard() {
     };
   }
 
-
+  const logout = () => { navigate('/') }
 
   const items = [
 
@@ -116,7 +117,7 @@ export default function Dashboard() {
       //   icon: <FileOutlined onClick={() => setTrigger('3a')} />,
       //   label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
       // },
-     
+
 
 
       // {
@@ -126,6 +127,12 @@ export default function Dashboard() {
       // },
 
     ]),
+    {
+
+      key: '',
+      icon: <LoginOutlined onClick={() => logout()} />,
+      label: <div onClick={() => logout()}><span style={{ marginLeft: '5%' }}> {!collapsed ? ' Log Out' : ''}</span></div>,
+    },
   ];
 
 
@@ -196,7 +203,7 @@ export default function Dashboard() {
                       <>
                         <PurchesOrder />
                       </>
-                    ): trigger === '5a' ? (
+                    ) : trigger === '5a' ? (
                       <>
                         <Proformas />
                       </>

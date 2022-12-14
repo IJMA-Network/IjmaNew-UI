@@ -22,6 +22,7 @@ export default function Murabaha() {
 
     return (
         <div class="card card-cascade narrower">
+            <Filter />
             <div
                 class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
@@ -34,7 +35,7 @@ export default function Murabaha() {
                     </button>
                 </div>
 
-               
+
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -154,19 +155,19 @@ export default function Murabaha() {
                                         </tr>
                                         <tr>
                                             <td>Bank Signature</td>
-                                            {(Item.bankSignature)?
-                                            <td>Signed</td>
-                                            :
-                                            <td>Un Signed</td>
-                        }
+                                            {(Item.bankSignature) ?
+                                                <td>Signed</td>
+                                                :
+                                                <td>Un Signed</td>
+                                            }
                                         </tr>
                                         <tr>
                                             <td>Brorower Signature</td>
-                                            {(Item.borrowerSignature)?
-                                            <td>Signed</td>
-                                            :
-                                            <td>Un Signed</td>
-                        }
+                                            {(Item.borrowerSignature) ?
+                                                <td>Signed</td>
+                                                :
+                                                <td>Un Signed</td>
+                                            }
                                         </tr>
 
                                     </table>

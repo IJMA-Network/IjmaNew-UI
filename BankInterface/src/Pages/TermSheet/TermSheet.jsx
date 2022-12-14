@@ -1,14 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { Form } from "react-bootstrap";
 import "./TermSheet.css";
 import axios from "axios";
 import { createTerm } from "../../Api/api";
+import StoreContext from "../../ContextApi";
 
 export default function TermSheet() {
-  const[bank,setBank]=useState({accountName:"Bank1"});
-//   const [NodeName, setNodeName] = useState("ABC Bank");
-//   const [users, setUsers] = useState([]);
-
+  const contextData = useContext(StoreContext);
+  const [bank, setBank] = useState({ accountName: "Bank1" });
+  //   const [NodeName, setNodeName] = useState("ABC Bank");
+  //   const [users, setUsers] = useState([]);
   const Client = useRef();
   const Expire = useRef();
   const Refrense = useRef();
@@ -17,7 +18,10 @@ export default function TermSheet() {
   const Tenor = useRef();
   const Rate = useRef();
   const Spread = useRef();
- // const bank = useRef();
+  // const bank = useRef();
+
+  console.log(contextData, "SignInData");
+
 
   const FormSubmit = () => {
     var profitRate = {
@@ -75,7 +79,7 @@ export default function TermSheet() {
               <div class="row justify-content-between text-left">
                 <div class="form-group col-sm-6 flex-column d-flex">
                   <label class="form-label">
-                  Bank <span class="text-danger"> *</span>
+                    Bank <span class="text-danger"> *</span>
                   </label>
                   <input
                     type="text"

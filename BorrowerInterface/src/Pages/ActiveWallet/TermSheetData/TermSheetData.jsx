@@ -2,6 +2,7 @@ import {React,useState,useEffect} from 'react'
 import './TermSheetData.css'
 import {getData,postData} from '../../../Api'
 import TermSheetState from './TermSheetState.json'
+import Filter from '../../filter/filter'
 
 
 export default function TermSheetData() {
@@ -30,6 +31,7 @@ const handleReaccept=async()=>{
   return (
     <div>
       <div class="card card-cascade narrower">
+        <Filter />
         <div
           class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
