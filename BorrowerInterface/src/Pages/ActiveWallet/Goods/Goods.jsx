@@ -4,16 +4,23 @@ import './Goods.css';
 import GoodState from './GoodsState.json';
 import { ToastContainer, toast } from 'react-toastify';
 import StoreContext from '../../../ContextApi';
-
+import { Button, message, Space, Spin } from 'antd';
 
 export default function Goods() {
   const [goods, setGoods] = useState(GoodState);
-
+  const [loading, setloading] = useState(true);
   const contextData = useContext(StoreContext);
   console.log(contextData.SignInData, "Good Context Data");
 
 
   goods.map((v, i) => { console.log(v, "GoodState") })
+
+  const Redeem = () => {
+    setloading(false)
+    setTimeout(() => {
+      setloading(true)
+    }, 2000);
+  }
   // const notify = () => toast.success('🦄 Wow so easy!', {
   //   position: "top-right",
   //   autoClose: 5000,
@@ -150,7 +157,8 @@ export default function Goods() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal">Redeem</button>
+              {loading ? <button type="button" class="btn btn-success" onClick={Redeem}>Redeem</button> : <Spin size="large" />}
+
             </div>
 
           </div>
