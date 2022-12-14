@@ -1,42 +1,62 @@
-import { useState, React } from 'react'
+import React, { useState, useContext } from 'react'
 import Filter from '../../filter/filter';
-import './Goods.css'
-import GoodState from './GoodsState.json'
+import './Goods.css';
+import GoodState from './GoodsState.json';
+import { ToastContainer, toast } from 'react-toastify';
+import StoreContext from '../../../ContextApi';
 
 
 export default function Goods() {
   const [goods, setGoods] = useState(GoodState);
+
+  const contextData = useContext(StoreContext);
+  console.log(contextData.SignInData, "Good Context Data");
+
+
   goods.map((v, i) => { console.log(v, "GoodState") })
+  // const notify = () => toast.success('🦄 Wow so easy!', {
+  //   position: "top-right",
+  //   autoClose: 5000,
+  //   hideProgressBar: false,
+  //   closeOnClick: true,
+  //   pauseOnHover: true,
+  //   draggable: true,
+  //   progress: undefined,
+  //   theme: "light",
+  // })
 
   return (
     <div>
       <div class="card card-cascade narrower">
         <Filter />
         <div
-          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
+          style={{ marginTop: "-4%" }}
+        >
+          {/* <div>
+            <button onClick={notify}>I eill try Notify !</button>
+            <ToastContainer />
+          </div> */}
+          {/* <div>
+            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+              <i class="fas fa-th-large mt-0 text-black"></i>
+            </button>
+            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+              <i class="fas fa-columns mt-0 text-black"></i>
+            </button>
+          </div>
 
           <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-th-large mt-0"></i>
+              <i class="fas fa-pencil-alt mt-0 t text-black"></i>
             </button>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-columns mt-0"></i>
-            </button>
-          </div>
-
-
-
-          <div>
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-pencil-alt mt-0"></i>
+              <i class="far fa-trash-alt mt-0 text-black" ></i>
             </button>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="far fa-trash-alt mt-0"></i>
+              <i class="fas fa-info-circle mt-0 text-black"></i>
             </button>
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-info-circle mt-0"></i>
-            </button>
-          </div>
+          </div> */}
 
         </div>
         <div class="container mt-3">

@@ -1,13 +1,15 @@
 import Item from 'antd/lib/list/Item';
-import {React,useState,useEffect} from 'react';
-import {getData,postData} from '../../../Api'
-import './Murabaha.css'
-import MurbahaState from './MurbahaState.json'
+import { React, useState, useContext } from 'react'
+import StoreContext from '../../../ContextApi';
+import Filter from '../../filter/filter';
+import './Murabaha.css';
+import MurbaState from './MurbahaState.json';
 
 export default function Murabaha() {
-    const[user,setUser]=useState({accountName:"Buyer1"});
-    const[murabahas,setMurabahas]=useState([]);
-    const [item, setItem] = useState(null);
+
+    const [murabaha, setMurabaha] = useState(MurbaState);
+    const contextData = useContext(StoreContext);
+    console.log(contextData.SignInData, "murabaha Context Data");
 
     useEffect(()=> {
         let payload={
@@ -23,10 +25,11 @@ export default function Murabaha() {
     return (
         <div class="card card-cascade narrower">
             <Filter />
-            <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+                style={{ marginTop: "-4%" }}
+            >
 
-                <div>
+                {/* <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-th-large mt-0"></i>
                     </button>
@@ -34,9 +37,6 @@ export default function Murabaha() {
                         <i class="fas fa-columns mt-0"></i>
                     </button>
                 </div>
-
-
-
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-pencil-alt mt-0"></i>
@@ -47,7 +47,7 @@ export default function Murabaha() {
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i class="fas fa-info-circle mt-0"></i>
                     </button>
-                </div>
+                </div> */}
 
             </div>
             <div class="container mt-3">
