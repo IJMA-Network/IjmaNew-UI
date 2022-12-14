@@ -70,7 +70,7 @@ export default function Dashboard() {
       {
         key: '4b',
         icon: <UserAddOutlined onClick={() => setTrigger('4b')} />,
-        label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Good' : ''}</span></div>,
+        label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Goods' : ''}</span></div>,
       },
       // {
       //   key: '3b',
@@ -110,7 +110,7 @@ export default function Dashboard() {
       {
         key: '2a',
         icon: <LoginOutlined onClick={() => setTrigger('2a')} />,
-        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabah' : ''}</span></div>,
+        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
       },
       // {
       //   key: '3a',
