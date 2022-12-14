@@ -8,7 +8,7 @@ import Filter from '../../filter/filter';
 
 export default function Proformas() {
     const [user, setUser] = useState({ accountName: "Buyer1" });
-    const [bank, setBank] = useState({ accountName: "Bank1" });
+    const [bank, setBank] = useState('');
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
 
@@ -24,7 +24,7 @@ export default function Proformas() {
     const handleRequestMurabaha = async () => {
         let api = "apply/murabaha";
         let payload = {
-            bank: bank.accountName,
+            bank: bank,
             proformaId: item.processId,
             "term": value,
             borrower: user.accountName
@@ -179,7 +179,7 @@ export default function Proformas() {
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
                             <input type="number" placeholder="Tenor" onChange={(e) => setValue(e.target.value)} />
-                            <input type="text" placeholder="text" />
+                            <input type="text" placeholder="Bank" onChange={(e) => setBank(e.target.value)}/>
                             <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button>
                         </div>
 
