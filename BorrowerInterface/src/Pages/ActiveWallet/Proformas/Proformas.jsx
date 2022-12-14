@@ -3,6 +3,7 @@ import './Proformas.css'
 import { InputNumber } from 'antd';
 import { getData, postData } from '../../../Api'
 import ProformaState from './ProformaState.json'
+import Filter from '../../filter/filter';
 
 
 export default function Proformas() {
@@ -34,8 +35,8 @@ export default function Proformas() {
 
     return (
         <div class="card card-cascade narrower">
-            <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+            <Filter />
+            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
                 <div>
                     <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -154,16 +155,32 @@ export default function Proformas() {
                             </div>
                             : <></>
                         }
-                        {/* <!-- Modal body --> */}
 
+
+
+                        {/* <div class="row justify-content-between text-left">
+
+                            <div class=" form-group col-sm-5 flex-column d-flex form-label">
+                                <input type="text" id="ans" name="ans" placeholder="Text" onblur="validate(1)" />
+                            </div>
+
+                            <div class="form-group col-sm-5 flex-column d-flex">
+                                <input type="text" id="ans" name="ans" placeholder="Tenor" onblur="validate(1)" />
+
+                            </div>
+
+                            <div class=" form-group col-sm-2 flex-column d-flex form-label">
+                                <button class="btn btn-primary" type="button" >+</button>
+                            </div>
+                        </div> */}
 
 
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
                             <input type="number" placeholder="Tenor" onChange={(e) => setValue(e.target.value)} />
+                            <input type="text" placeholder="text" />
                             <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button>
-                            {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
                         </div>
 
                     </div>

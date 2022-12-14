@@ -1,15 +1,17 @@
-import {useState,React} from 'react'
+import { useState, React } from 'react'
+import Filter from '../../filter/filter';
 import './Goods.css'
 import GoodState from './GoodsState.json'
 
 
 export default function Goods() {
-const[goods,setGoods]=useState(GoodState);
+  const [goods, setGoods] = useState(GoodState);
   goods.map((v, i) => { console.log(v, "GoodState") })
 
   return (
     <div>
       <div class="card card-cascade narrower">
+        <Filter />
         <div
           class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
@@ -22,7 +24,7 @@ const[goods,setGoods]=useState(GoodState);
             </button>
           </div>
 
-        
+
 
           <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
