@@ -8,6 +8,7 @@ import StoreContext from '../../../ContextApi';
 
 
 export default function Proformas() {
+    const contextData = useContext(StoreContext);
     const [user, setUser] = useState({ accountName: "Buyer1" });
     const [bank, setBank] = useState('');
     const [value, setValue] = useState('');
@@ -16,13 +17,12 @@ export default function Proformas() {
     const [proformas, setProformas] = useState(ProformaState);
 
 
-    const contextData = useContext(StoreContext);
     console.log(contextData.SignInData, "Proformas Context Data");
 
 
     useEffect(() => {
         let payload = {
-            account: user.accountName,
+            account: contextData.SignInData.UserName,
             consumable: ""
         }
         getData("received-Proformas", payload, setProformas);
@@ -34,7 +34,7 @@ export default function Proformas() {
             bank: bank,
             proformaId: item.processId,
             "term": value,
-            borrower: user.accountName
+            borrower: contextData.SignInData.UserName,
         }
         console.log("In request Murabaha", payload);
         const resp = await postData(api, payload);

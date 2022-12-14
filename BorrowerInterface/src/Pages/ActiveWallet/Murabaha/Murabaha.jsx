@@ -1,5 +1,6 @@
 import Item from 'antd/lib/list/Item';
-import { React, useState, useContext } from 'react'
+import { React, useState, useContext,useEffect } from 'react';
+import { getData, postData } from '../../../Api'
 import StoreContext from '../../../ContextApi';
 import Filter from '../../filter/filter';
 import './Murabaha.css';
@@ -7,13 +8,15 @@ import MurbaState from './MurbahaState.json';
 
 export default function Murabaha() {
 
-    const [murabaha, setMurabaha] = useState(MurbaState);
+    const [murabahas, setMurabahas] = useState(MurbaState);
     const contextData = useContext(StoreContext);
+    const [item, setItem] = useState(null);
     console.log(contextData.SignInData, "murabaha Context Data");
 
     useEffect(()=> {
+        console.log("Sign in in Murabaha",contextData.SignInData);
         let payload={
-            account: user.accountName,
+            account: contextData.SignInData.UserName,
             consumable: ""
            }
            getData("received-murabaha",payload,setMurabahas);
