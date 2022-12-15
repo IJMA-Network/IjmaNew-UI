@@ -4,13 +4,15 @@ import { getData, postData } from '../../../Api';
 import TermSheetState from './TermSheetState.json';
 import Filter from '../../filter/filter';
 import StoreContext from '../../../ContextApi';
-
+import { Spin } from 'antd';
 
 export default function TermSheetData() {
   const [user, setUser] = useState({ accountName: "Buyer1" });
   const [termsheets, setTermSheets] = useState(TermSheetState);
   const [item, setItem] = useState(null);
   const contextData = useContext(StoreContext);
+  const [loading, setloading] = useState(true);
+
   console.log(contextData.SignInData, "Term Sheet Context Data");
 
   useEffect(() => {
@@ -22,6 +24,12 @@ export default function TermSheetData() {
   }, [])
   const handleReaccept = async () => {
     let api = "termsheet/accept";
+
+    setloading(false)
+    setTimeout(() => {
+      setloading(true)
+    }, 2000);
+
     let payload = {
 
       stateId: item.termSheetReference,
@@ -177,7 +185,9 @@ export default function TermSheetData() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" onClick={handleReaccept}>Accept Term Sheet</button>
+              {loading ? <button type="button" class="btn btn-success" onClick={handleReaccept}>Accept Term Sheet</button> : <Spin size="large" />}
+
+              {/* <button type="button" class="btn btn-success" onClick={handleReaccept}>Accept Term Sheet</button> */}
             </div>
 
           </div>

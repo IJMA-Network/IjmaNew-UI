@@ -4,7 +4,7 @@ import ApplictionState from './Application.json';
 import { getData, postData } from '../../../Api';
 import Filter from '../../filter/filter';
 import StoreContext from '../../../ContextApi';
-
+import { Button, message, Space, Spin } from 'antd';
 
 export default function Applications() {
 
@@ -12,8 +12,14 @@ export default function Applications() {
     const [applications, setApplications] = useState(ApplictionState);
     const contextData = useContext(StoreContext);
     console.log(contextData.SignInData, "Application Context Data");
+    const [loading, setloading] = useState(true);
 
-
+    // const Redeem = () => {
+    //     setloading(false)
+    //     setTimeout(() => {
+    //       setloading(true)
+    //     }, 2000);
+    //   }
 
     applications.map((v, i) => { console.log(v, "ApplictionState") })
 
@@ -159,10 +165,10 @@ export default function Applications() {
 
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
                         </div>
 
-                    </div>
+                    </div>  
                 </div>
             </div>
 
