@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Breadcrumb, Layout, Menu, Spin } from 'antd';
 import ijma from '../Images/Ijma.png'
 import './Dashboard.css'
 import {
@@ -13,6 +13,9 @@ import {
   Goods, Murabaha, Promissory, Proforma,
   VaultMurabaha, VaultPromissory, PurchesOrder, Proformas
 } from '../Pages/index'
+import StoreContext from '../ContextApi';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -22,7 +25,9 @@ export default function Dashboard() {
   const [collapsed, setCollapsed] = useState(false);
   const { Header, Content, Footer, Sider } = Layout;
   const [trigger, setTrigger] = useState(0);
-
+  const contextData = useContext(StoreContext);
+  const [loading, setloading] = useState(true);
+  const navigate = useNavigate();
 
 
   function getItem(label, key, icon, children) {
@@ -34,7 +39,24 @@ export default function Dashboard() {
     };
   }
 
-
+  const notify = () => toast.error('🦄 Logout Success fully', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+  const logout = () => {
+    setloading(false)
+    notify()
+    setTimeout(() => {
+      setloading(true)
+      navigate('/')
+    }, 2000);
+  }
 
   const items = [
 
@@ -103,6 +125,15 @@ export default function Dashboard() {
 
 
     ]),
+
+
+    {
+
+      key: '',
+      icon: <LoginOutlined onClick={() => logout()} />,
+      label: <div onClick={() => logout()}>< span style={{ marginLeft: '5%' }}> {!collapsed ? ' Log Out' : ''}</span ></div>
+
+    }
   ];
 
 
@@ -114,6 +145,7 @@ export default function Dashboard() {
         minHeight: '100vh',
       }}
     >
+      <ToastContainer />
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} id="Sider">
         <div className="logo">
           <img src={ijma} height="75px" />
