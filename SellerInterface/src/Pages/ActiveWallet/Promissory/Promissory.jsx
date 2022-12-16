@@ -1,7 +1,10 @@
-import React,{ useState,useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Filter from "../../filter/filter";
 import { getData } from '../../../Api/Api'
 import './Promissory.css'
 import PromissoryNote from './PromissoryNote.json'
+import StoreContext from "../../../ContextApi";
+import { Spin } from "antd";
 
 
 
@@ -9,24 +12,35 @@ export default function Promissory() {
 
   PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
 
-  const [promissoryData , setpromissoryData]=useState([])
+  const [promissoryData, setpromissoryData] = useState([])
+  const [loading, setloading] = useState(true);
+  const contextData = useContext(StoreContext);
+  console.log(contextData.SignInData, "Prom PromissoryNote Data");
 
-//   var data = {
-//     "account": "Seller1",
-//  "consumable": ""
-//   };
 
-//   var apiURLData = "received-PNs";
+  const Encash = () => {
+    setloading(false)
+    setTimeout(() => {
+      setloading(true)
+    }, 2000);
+  }
 
-// useEffect(()=>{
+  //   var data = {
+  //     "account": "Seller1",
+  //  "consumable": ""
+  //   };
 
-//   getData(apiURLData, data).then((res) => {  
-//     setpromissoryData(res.data)
-//   });
-  
-// },[])
-  
-  
+  //   var apiURLData = "received-PNs";
+
+  // useEffect(()=>{
+
+  //   getData(apiURLData, data).then((res) => {  
+  //     setpromissoryData(res.data)
+  //   });
+
+  // },[])
+
+
   console.log(promissoryData, "res");
 
 
@@ -35,10 +49,11 @@ export default function Promissory() {
 
   return (
     <div class="card card-cascade narrower">
+      <Filter />
       <div
         class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
-        <div>
+        {/* <div>
           <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
             <i class="fas fa-th-large mt-0"></i>
           </button>
@@ -47,7 +62,7 @@ export default function Promissory() {
           </button>
         </div>
 
-        {/* <a class="white-text mx-3">Allow Access</a> */}
+        <a class="white-text mx-3">Allow Access</a>
 
         <div>
           <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -59,7 +74,7 @@ export default function Promissory() {
           <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
             <i class="fas fa-info-circle mt-0"></i>
           </button>
-        </div>
+        </div> */}
 
       </div>
       <div class="container mt-3">
@@ -160,7 +175,9 @@ export default function Promissory() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal">Encash</button>
+              {/* <button type="button" class="btn btn-success" data-dismiss="modal">Encash</button> */}
+              {loading ? <button type="button" class="btn btn-success" onClick={Encash}>Encash</button> : <Spin size="large" />}
+
             </div>
 
           </div>

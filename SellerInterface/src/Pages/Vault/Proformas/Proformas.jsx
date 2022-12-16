@@ -1,18 +1,28 @@
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { getData } from "../../../Api/Api";
 import "./Proformas.css";
-
-import ProformaJsonData from './ProformaJsonData.json'
+import { Spin } from 'antd';
+import ProformaJsonData from './ProformaJsonData.json';
+import { getData } from "../../../Api/Api";
+import StoreContext from '../../../ContextApi';
+import Filter from "../../filter/filter";
 
 
 export default function Proformas() {
 
   const [allData, setallData] = useState([])
-
+  const [loading, setloading] = useState(true);
   ProformaJsonData.map((v, i) => { console.log(v) })
 
+  const contextData = useContext(StoreContext);
+  console.log(contextData.SignInData, "Proformas Context Data");
 
+  const handleRequestMurabaha = async () => {
+    setloading(false)
+    setTimeout(() => {
+      setloading(true)
+    }, 2000);
+  }
   //   var data = {
   //     account: "Seller2",
   //     consumable: "",
@@ -33,8 +43,11 @@ export default function Proformas() {
 
   return (
     <div class="card card-cascade narrower">
-      <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-        <div>
+      <Filter />
+      <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+        style={{ marginTop: "-4%" }}
+      >
+        {/* <div>
           <button
             type="button"
             class="btn btn-outline-white btn-rounded btn-sm px-2"
@@ -70,7 +83,7 @@ export default function Proformas() {
           >
             <i class="fas fa-info-circle mt-0"></i>
           </button>
-        </div>
+        </div> */}
       </div>
       <div class="container mt-3">
         <h2 className="text-center">Proformas</h2>
@@ -139,45 +152,46 @@ export default function Proformas() {
             <div class="modal-body">
               {ProformaJsonData.map((v, i) => {
                 return (
-                  
+
                   <table id="customers">
-                <tr>
-                <td>Proforma Id</td>
-                <td>{v.proformaId}</td>
-              </tr>
-              <tr>
-                <td>DATE</td>
-                <td>{v.date}</td>
-              </tr>
-              <tr>
-                <td>Seller </td>
-                <td>{v.sellerAccountInfo.name}</td>
-              </tr>
-              <tr>
-                <td>Buyer</td>
-                <td>{v.buyerAccountInfo.name}</td>
-              </tr>
-              <tr>
-                <td>Item</td>
-                <td>{v.goods.asset}</td>
-              </tr>
-              <tr>
-                <td>Description</td>
-                <td>{v.description}</td>
-              </tr>
-              <tr>
-                <td>Quantity</td>
-                <td> {v.goods.quantity.value}  {v.goods.quantity.unit} </td>
-              </tr>
-              <tr>
-                <td>Amount</td>
-                <td>{v.amount}</td>
-              </tr>
-               
-               </table>
-               )}
-               
-               )}
+                    <tr>
+                      <td>Proforma Id</td>
+                      <td>{v.proformaId}</td>
+                    </tr>
+                    <tr>
+                      <td>DATE</td>
+                      <td>{v.date}</td>
+                    </tr>
+                    <tr>
+                      <td>Seller </td>
+                      <td>{v.sellerAccountInfo.name}</td>
+                    </tr>
+                    <tr>
+                      <td>Buyer</td>
+                      <td>{v.buyerAccountInfo.name}</td>
+                    </tr>
+                    <tr>
+                      <td>Item</td>
+                      <td>{v.goods.asset}</td>
+                    </tr>
+                    <tr>
+                      <td>Description</td>
+                      <td>{v.description}</td>
+                    </tr>
+                    <tr>
+                      <td>Quantity</td>
+                      <td> {v.goods.quantity.value}  {v.goods.quantity.unit} </td>
+                    </tr>
+                    <tr>
+                      <td>Amount</td>
+                      <td>{v.amount}</td>
+                    </tr>
+
+                  </table>
+                )
+              }
+
+              )}
             </div>
             {/* <!-- Modal body --> */}
             {/* {PromissoryNote.map((v, i) => {
@@ -188,13 +202,15 @@ export default function Proformas() {
 
             {/* <!-- Modal footer --> */}
             <div class="modal-footer">
-              <button
+              {/* <button
                 type="button"
                 class="btn btn-success"
                 data-dismiss="modal"
               >
                 Request Murabaha
-              </button>
+              </button> */}
+              {loading ? <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button> : <Spin size="large" />}
+
               {/* <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> */}
             </div>
           </div>

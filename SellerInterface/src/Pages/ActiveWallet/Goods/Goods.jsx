@@ -1,19 +1,37 @@
-import React from 'react'
-import './Goods.css'
-import GoodState from './GoodsState.json'
+import React, { useState, useContext } from 'react';
+import './Goods.css';
+import GoodState from './GoodsState.json';
+import Filter from "../../filter/filter";
+import StoreContext from '../../../ContextApi';
 
+import { Spin } from 'antd';
 
 export default function Goods() {
 
   GoodState.map((v, i) => { console.log(v, "GoodState") })
 
+  const [loading, setloading] = useState(true);
+  const contextData = useContext(StoreContext);
+  console.log(contextData.SignInData, "Good Context Data");
+
+
+
+  const Redeem = () => {
+    setloading(false)
+    setTimeout(() => {
+      setloading(true)
+    }, 2000);
+  }
+
+
   return (
     <div>
       <div class="card card-cascade narrower">
+        <Filter />
         <div
-          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-          <div>
+          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4  d-flex justify-content-between align-items-center"
+          style={{ marginTop: "-4%" }}>
+          {/* <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
               <i class="fas fa-th-large mt-0"></i>
             </button>
@@ -22,7 +40,7 @@ export default function Goods() {
             </button>
           </div>
 
-          {/* <a class="white-text mx-3">Allow Access</a> */}
+          <a class="white-text mx-3">Allow Access</a>
 
           <div>
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -34,7 +52,7 @@ export default function Goods() {
             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
               <i class="fas fa-info-circle mt-0"></i>
             </button>
-          </div>
+          </div> */}
 
         </div>
         <div class="container mt-3">
