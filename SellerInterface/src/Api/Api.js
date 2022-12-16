@@ -1,9 +1,11 @@
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+
 //const baseApi = "http://192.168.100.211:10051/api/murabaha/";
 const baseApi = "http://localhost:10051/api/murabaha/";
 
 export const createPorforma = async (payload) => {
-  console.log(payload, "payload");
+  console.log(payload, "payload in createProforma");
   const apiURL = baseApi + "proforma/create";
 
   try {
@@ -14,7 +16,7 @@ export const createPorforma = async (payload) => {
     return response;
   } catch (error) {
     console.log("Error in Create Proforma", error);
-
+notify("Error in Proforma");
     return error;
   }
 };
@@ -56,3 +58,19 @@ return response;
     return error;
   }
 };
+
+
+
+
+
+  
+  const notify = (msg) => toast.error(msg, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });

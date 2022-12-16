@@ -1,14 +1,23 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect,useContext } from "react";
 import { Button, notification } from "antd";
+import StoreContext from "../../ContextApi";
 import axios from "axios";
 import "./Proforma.css";
 import { Form } from "react-bootstrap";
 import { createPorforma } from "../../Api/Api";
 
 export default function Proforma() {
+  const contextData = useContext(StoreContext);
 
-  const [users, setUsers] = useState([]);
   const[user,setUser]=useState({accountName:"Seller1"});
+
+  useEffect(()=>{
+
+ console.log("User in Proforma",contextData.SignInData);
+ setUser(contextData.SignInData);
+
+  
+},[contextData.SignInData])
 
   const Description = useRef();
   const PorValue = useRef();
@@ -27,7 +36,7 @@ export default function Proforma() {
     };
 
     var data = {
-      seller: Seller.current.value,
+      seller: user.UserAccountNo,
       client: Client.current.value,
       proformaId: Proforma.current.value,
       consignNo: Consign.current.value,
@@ -56,7 +65,7 @@ export default function Proforma() {
                 FormSubmit();
               }}
             >
-              <div class="form-group col-12 flex-column d-flex">
+              {/* <div class="form-group col-12 flex-column d-flex">
                 <label class="form-label">
                   seller<span class="text-danger"> *</span>
                 </label>
@@ -68,7 +77,7 @@ export default function Proforma() {
                   ref={Seller}
                   onblur="validate(6)"
                 />
-              </div>
+              </div> */}
               {/* <br /> */}
 
               <div class="row justify-content-between text-left">
