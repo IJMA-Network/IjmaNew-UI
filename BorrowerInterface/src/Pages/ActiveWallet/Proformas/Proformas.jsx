@@ -19,36 +19,35 @@ export default function Proformas() {
 
     console.log(contextData.SignInData, "Proformas Context Data");
 
-    //     const RequestMurhaba = () => {
-    //     setloading(false)
-    //     setTimeout(() => {
-    //       setloading(true)
-    //     }, 2000);
-    //   }
+   
 
     useEffect(() => {
+        setUser(contextData.SignInData);
+        console.log("user in proformas",user);
         let payload = {
-            account: contextData.SignInData.UserName,
+            account: contextData.SignInData.UserAccountNo,
             consumable: ""
         }
         getData("received-Proformas", payload, setProformas);
-    }, [])
+    }, [contextData.SignInData])
 
     const handleRequestMurabaha = async () => {
         let api = "apply/murabaha";
-        setloading(false)
-        setTimeout(() => {
-            setloading(true)
-        }, 2000);
+        setloading(false);
+        // setTimeout(() => {
+        //     setloading(true)
+        // }, 2000);
 
         let payload = {
             bank: bank,
             proformaId: item.processId,
             "term": value,
-            borrower: contextData.SignInData.UserName,
+            borrower: contextData.SignInData.UserAccountNo,
         }
         console.log("In request Murabaha", payload);
         const resp = await postData(api, payload);
+        
+        setloading(true);
     }
 
     return (
@@ -196,7 +195,7 @@ export default function Proformas() {
                         {/* <!-- Modal footer --> */}
                         <div class="modal-footer d-flex justify-content-evenly">
                             <input type="number" placeholder="Tenor" onChange={(e) => setValue(e.target.value)} />
-                            <input type="text" placeholder="Bank" />
+                            <input type="text" placeholder="Bank" onChange={(e) => setBank(e.target.value)} />
                             {/* <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button> */}
                             {loading ? <button type="button" class="btn btn-success" onClick={handleRequestMurabaha} >Request Murabaha</button> : <Spin size="large" />}
 

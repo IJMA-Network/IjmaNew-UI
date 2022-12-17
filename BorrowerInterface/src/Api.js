@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 //const baseApi ="http://192.168.100.211:10050/api/murabaha/";
 const baseApi ="http://localhost:10050/api/murabaha/";
 
@@ -48,11 +49,12 @@ export const postData = async (api, payload) => {
     var response = await axios.post(apiUrl, payload);
     
      console.log("postData API Response", response);
-
+toast.success("Suucessfully completed");
 return response;
 
   } catch (error) {
-    console.log("Error in  get Data",apiUrl, error);
+    console.log("Error in  postt Data",apiUrl, error);
+    toast.error("Error in ztxn");
 
     return error;
   }
