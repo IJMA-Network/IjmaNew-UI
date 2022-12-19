@@ -6,6 +6,7 @@ import Filter from '../../filter/filter';
 import './Murabaha.css';
 import MurbaState from './MurbahaState.json';
 
+
 export default function Murabaha() {
 
     const [murabahas, setMurabahas] = useState(MurbaState);

@@ -5,6 +5,8 @@ import { getData, postData } from '../../../Api';
 import Filter from '../../filter/filter';
 import StoreContext from '../../../ContextApi';
 import { Button, message, Space, Spin } from 'antd';
+import Modal from 'react-bootstrap/Modal';
+
 
 export default function Applications() {
 
@@ -13,6 +15,9 @@ export default function Applications() {
     const contextData = useContext(StoreContext);
     console.log(contextData.SignInData, "Application Context Data");
     const [loading, setloading] = useState(true);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     // const Redeem = () => {
     //     setloading(false)
@@ -31,29 +36,6 @@ export default function Applications() {
                 class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-5%" }}
             >
-
-                {/* <div>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-th-large mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-columns mt-0"></i>
-                    </button>
-                </div>
-
-                <a class="white-text mx-3">Allow Access</a> */}
-                {/* 
-                <div>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-pencil-alt mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="far fa-trash-alt mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-info-circle mt-0"></i>
-                    </button>
-                </div> */}
 
             </div>
             <div class="container mt-3">
@@ -168,7 +150,7 @@ export default function Applications() {
                             <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
                         </div>
 
-                    </div>  
+                    </div>
                 </div>
             </div>
 

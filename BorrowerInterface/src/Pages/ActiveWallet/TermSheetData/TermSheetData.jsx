@@ -5,6 +5,10 @@ import TermSheetState from './TermSheetState.json';
 import Filter from '../../filter/filter';
 import StoreContext from '../../../ContextApi';
 import { Spin } from 'antd';
+import Modal from 'react-bootstrap/Modal';
+
+
+
 
 export default function TermSheetData() {
   const [user, setUser] = useState({ accountName: "Buyer1" });
@@ -12,6 +16,10 @@ export default function TermSheetData() {
   const [item, setItem] = useState(null);
   const contextData = useContext(StoreContext);
   const [loading, setloading] = useState(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   console.log(contextData.SignInData, "Term Sheet Context Data");
 
@@ -27,7 +35,8 @@ export default function TermSheetData() {
 
     setloading(false)
     setTimeout(() => {
-      setloading(true)
+      setloading(true) // 1
+      handleClose() // 2
     }, 2000);
 
     let payload = {
@@ -101,7 +110,8 @@ export default function TermSheetData() {
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                        onClick={() => setItem(v)}
+
+                        onClick={() => handleShow(setItem(v))}
                       >View</span>
                     </td>
 
@@ -116,83 +126,75 @@ export default function TermSheetData() {
       </div>
 
 
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable-sm">
-          <div class="modal-content" style={{ width: "115%" }}>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Term Sheet Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <!-- Modal body --> */}
+          {(item != null) ?
 
-            {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h3 class="modal-title">Term Sheet Detail</h3>
-              <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
+            <div class="modal-body">
+              <table id="customers">
+
+
+                <tr>
+                  <td>Bank</td>
+                  <td>{item.bankAccountInfo.name}</td>
+                </tr>
+                <tr>
+                  <td>Refernce No</td>
+                  <td>{item.termSheetReference}</td>
+                </tr>
+                <tr>
+                  <td>Limit</td>
+                  <td>{item.limit}</td>
+                </tr>
+                <tr>
+                  <td>Tenor</td>
+                  <td>{item.tenor}</td>
+                </tr>
+                <tr>
+                  <td>Refernce Rate</td>
+                  <td>{item.referenceRate}</td>
+                </tr>
+                <tr>
+                  <td>Spread</td>
+                  <td>{item.spread}</td>
+                </tr>
+                <tr>
+                  <td>Issue Date</td>
+                  <td>{item.issueDate}</td>
+                </tr>
+                <tr>
+                  <td>Expiry Date</td>
+                  <td>{item.expiryDate}</td>
+                </tr>
+                <tr>
+                  <td>Acceptance</td>
+                  {(item.isAccepted) ?
+                    <td>Received</td>
+                    :
+                    <td>{item.IsAccepted}</td>
+                  }
+                </tr>
+
+
+              </table>
+
             </div>
-
-            {/* <!-- Modal body --> */}
-            {(item != null) ?
-
-              <div class="modal-body">
-                <table id="customers">
-
-
-                  <tr>
-                    <td>Bank</td>
-                    <td>{item.bankAccountInfo.name}</td>
-                  </tr>
-                  <tr>
-                    <td>Refernce No</td>
-                    <td>{item.termSheetReference}</td>
-                  </tr>
-                  <tr>
-                    <td>Limit</td>
-                    <td>{item.limit}</td>
-                  </tr>
-                  <tr>
-                    <td>Tenor</td>
-                    <td>{item.tenor}</td>
-                  </tr>
-                  <tr>
-                    <td>Refernce Rate</td>
-                    <td>{item.referenceRate}</td>
-                  </tr>
-                  <tr>
-                    <td>Spread</td>
-                    <td>{item.spread}</td>
-                  </tr>
-                  <tr>
-                    <td>Issue Date</td>
-                    <td>{item.issueDate}</td>
-                  </tr>
-                  <tr>
-                    <td>Expiry Date</td>
-                    <td>{item.expiryDate}</td>
-                  </tr>
-                  <tr>
-                    <td>Acceptance</td>
-                    {(item.isAccepted) ?
-                      <td>Received</td>
-                      :
-                      <td>{item.IsAccepted}</td>
-                    }
-                  </tr>
-
-
-                </table>
-
-              </div>
-              : <></>
-            }
+            : <></>
+          }
 
 
 
-            {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
-              {loading ? <button type="button" class="btn btn-success" onClick={handleReaccept}>Accept Term Sheet</button> : <Spin size="large" />}
-
-              {/* <button type="button" class="btn btn-success" onClick={handleReaccept}>Accept Term Sheet</button> */}
-            </div>
-
-          </div>
+          {/* <!-- Modal footer --> */}
+        </Modal.Body>
+        <div class="modal-footer d-flex justify-content-evenly">
+          {loading ? <button type="button" class="btn btn-success" onClick={handleReaccept}>Accept Term Sheet</button> : <Spin size="large" />}
         </div>
-      </div>
+      </Modal>
+
 
 
     </div>

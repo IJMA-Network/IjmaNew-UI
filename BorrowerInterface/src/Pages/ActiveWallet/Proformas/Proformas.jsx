@@ -33,7 +33,7 @@ export default function Proformas() {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+    });
 
 
     useEffect(() => {
@@ -50,7 +50,7 @@ export default function Proformas() {
         let api = "apply/murabaha";
         setloading(false);
 
-        
+
         setTimeout(() => {
             setloading(true) // 1
             handleClose() // 2
@@ -124,6 +124,7 @@ export default function Proformas() {
                 </Modal.Header>
                 <Modal.Body>
                     {(item != null) ?
+
                         <table id="customers">
 
                             <tr>
