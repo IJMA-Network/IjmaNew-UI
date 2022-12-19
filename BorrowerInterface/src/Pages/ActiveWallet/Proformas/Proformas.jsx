@@ -6,7 +6,8 @@ import ProformaState from './ProformaState.json'
 import Filter from '../../filter/filter';
 import StoreContext from '../../../ContextApi';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function Proformas() {
     const contextData = useContext(StoreContext);
@@ -21,10 +22,18 @@ export default function Proformas() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // const handleo = () => setModalShow("");
-
     console.log(contextData.SignInData, "Proformas Context Data");
 
+    const notify = () => toast.success('🦄 Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
 
 
     useEffect(() => {
@@ -40,9 +49,12 @@ export default function Proformas() {
     const handleRequestMurabaha = async () => {
         let api = "apply/murabaha";
         setloading(false);
+
+        
         setTimeout(() => {
-            setloading(true)
-            handleClose()
+            setloading(true) // 1
+            handleClose() // 2
+            notify() // 3
         }, 2000);
 
 
@@ -54,16 +66,13 @@ export default function Proformas() {
         }
         console.log("In request Murabaha", payload);
         const resp = await postData(api, payload);
-        payload.then((result) => {
 
-        }).catch((err) => {
-
-        });
     }
 
     return (
         <div class="card card-cascade narrower">
             <Filter />
+            <ToastContainer />
             <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-4%" }}
             >
