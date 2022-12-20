@@ -1,32 +1,63 @@
-import {React,useState,useEffect} from 'react'
+import { React, useState, useEffect } from 'react'
 import './Murabaha.css'
 import MurbanState from './MurbahaState.json'
-import {getData,postData} from '../../../Api/api'
+import { getData, postData } from '../../../Api/api'
+import Modal from 'react-bootstrap/Modal';
+import { Spin } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import Filter from '../../filter/filter';
+
+
 
 export default function Murabaha() {
 
-    const[bank,setBank]=useState({accountName:"Bank1"});
-    const[murabahas,setMurabahas]=useState(MurbanState);
+    const [bank, setBank] = useState({ accountName: "Bank1" });
+    const [murabahas, setMurabahas] = useState(MurbanState);
     const [item, setItem] = useState(null);
 
-    
-    useEffect(()=> {
-        let payload={
+    const [loading, setloading] = useState(true);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    useEffect(() => {
+        let payload = {
             account: bank.accountName,
             consumable: ""
-           }
-           getData("issued-murabaha",payload,setMurabahas);
-        },[])
+        }
+        getData("issued-murabaha", payload, setMurabahas);
+    }, [])
 
-    const handleMurabahaOffer=async()=>{
-        let api="murabaha/offer";
-        let payload={
+    const notify = () => toast.success('🦄 Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
+    const handleMurabahaOffer = async () => {
+
+        setloading(false)
+
+        setTimeout(() => {
+            setloading(true) // 1
+            handleClose() // 2
+            notify() // 3
+        }, 2000);
+
+        let api = "murabaha/offer";
+        let payload = {
             stateId: item.internalReference,
-           
+
             account: bank.accountName,
-            }
-        console.log("In murabaha/offer",payload);
-        const resp= await postData(api,payload);
+        }
+        console.log("In murabaha/offer", payload);
+        const resp = await postData(api, payload);
     }
 
 
@@ -34,31 +65,12 @@ export default function Murabaha() {
 
     return (
         <div class="card card-cascade narrower">
-            <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+            <ToastContainer />
+            <Filter />
+            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+                style={{ marginTop: "-5%" }}
+            >
 
-                <div>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-th-large mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-columns mt-0"></i>
-                    </button>
-                </div>
-
-                {/* <a class="white-text mx-3">Allow Access</a> */}
-
-                <div>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-pencil-alt mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="far fa-trash-alt mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-info-circle mt-0"></i>
-                    </button>
-                </div>
 
             </div>
             <div class="container mt-3">
@@ -76,7 +88,7 @@ export default function Murabaha() {
                                     <th>Borrower</th>
                                     <th>Term</th>
                                     <th>Cost Price</th>
-                                   
+
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
@@ -95,10 +107,10 @@ export default function Murabaha() {
                                     <td>{v.profitrate}</td>
                                     <td>Medicines</td> */}
                                     <td>unSigned</td>
-                                  
+
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                         onClick={() => setItem(v)}
+                                            onClick={() => handleShow(setItem(v))}
                                         >View</span>
                                     </td>
 
@@ -110,95 +122,89 @@ export default function Murabaha() {
                 })}
             </div>
 
-            <div class="modal" id="myModal">
-                <div class="modal-dialog modal-dialog-scrollable-sm">
-                    <div class="modal-content" style={{ width: "115%" }}>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Murabaha Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {/* <!-- Modal body --> */}
+                    {(item != null) ?
 
-                        {/* <!-- Modal Header --> */}
-                        <div class="modal-header">
-                            <h3 class="modal-title">Murabaha Agreement Details</h3>
-                            <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
+                        <div class="modal-body">
+                            <table id="customers">
+
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Contact</th>
+                                </tr>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>{item.agreementDate}</td>
+                                </tr>
+                                <tr>
+                                    <td>Refrence No.</td>
+                                    <td>{item.internalReference}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bank</td>
+                                    <td>{item.bankAccountInfo.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Applicant</td>
+                                    <td>{item.borrowerAccountInfo.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cost Price</td>
+                                    <td>{item.costPrice}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tenor</td>
+                                    <td>{item.term}</td>
+                                </tr>
+                                <tr>
+                                    <td>Selling Price</td>
+                                    <td>{item.sellingprice}</td>
+                                </tr>
+                                <tr>
+                                    <td>Profile Rate</td>
+                                    <td>{item.profitrate}</td>
+                                </tr>
+                                <tr>
+                                    <td>Item</td>
+                                    <td>Cotton</td>
+                                </tr>
+                                <tr>
+                                    <td>Bank Signature</td>
+                                    {(item.bankSignature) ?
+                                        <td>Signed</td>
+                                        :
+                                        <td>Un Signed</td>
+                                    }
+                                </tr>
+                                <tr>
+                                    <td>Brorower Signature</td>
+                                    {(item.borrowerSignature) ?
+                                        <td>Signed</td>
+                                        :
+                                        <td>Un Signed</td>
+                                    }
+                                </tr>
+
+                            </table>
+
                         </div>
-
-                        {/* <!-- Modal body --> */}
-                        {(item!=null)?
-
-                                <div class="modal-body">
-                                    <table id="customers">
-
-                                        <tr>
-                                            <th>Company</th>
-                                            <th>Contact</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Date</td>
-                                            <td>{item.agreementDate}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Refrence No.</td>
-                                            <td>{item.internalReference}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bank</td>
-                                            <td>{item.bankAccountInfo.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Applicant</td>
-                                            <td>{item.borrowerAccountInfo.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cost Price</td>
-                                            <td>{item.costPrice}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tenor</td>
-                                            <td>{item.term}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Selling Price</td>
-                                            <td>{item.sellingprice}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Profile Rate</td>
-                                            <td>{item.profitrate}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Item</td>
-                                            <td>Cotton</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bank Signature</td>
-                                            {(item.bankSignature)?
-                                            <td>Signed</td>
-                                            :
-                                            <td>Un Signed</td>
-                        }
-                                        </tr>
-                                        <tr>
-                                            <td>Brorower Signature</td>
-                                            {(item.borrowerSignature)?
-                                            <td>Signed</td>
-                                            :
-                                            <td>Un Signed</td>
-                        }
-                                        </tr>
-
-                                    </table>
-
-                                </div>
-                          :<></>
-                                }
+                        : <></>
+                    }
 
 
-r
-                        {/* <!-- Modal footer --> */}
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" onClick={handleMurabahaOffer}>Offer</button>
-                        </div>
 
-                    </div>
+                    {/* <!-- Modal footer --> */}
+
+                </Modal.Body>
+                <div class="modal-footer">
+                    {loading ? <button type="button" class="btn btn-success close" data-dismiss={show} onClick={handleMurabahaOffer} >Offer</button> : <Spin size="large" />}
                 </div>
-            </div>
+            </Modal>
 
         </div>
     )

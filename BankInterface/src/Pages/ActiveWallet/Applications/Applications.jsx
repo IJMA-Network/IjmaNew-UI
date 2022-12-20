@@ -1,63 +1,72 @@
-import {React,useState,useEffect} from 'react'
-import './Applications.css'
+import { React, useState, useEffect } from 'react';
+import { getData, postData } from '../../../Api/api';
+import { ToastContainer, toast } from 'react-toastify';
+import { Button, message, Space, Spin } from 'antd';
 import ApplictionState from './Application.json';
-import {getData,postData} from '../../../Api/api'
+import Modal from 'react-bootstrap/Modal';
+import Filter from '../../filter/filter';
+import './Applications.css'
 
 
 export default function Applications() {
-    const[bank,setBank]=useState({accountName:"Bank1"});
-    const[applications,setApplications]=useState(ApplictionState );
+    const [bank, setBank] = useState({ accountName: "Bank1" });
+    const [applications, setApplications] = useState(ApplictionState);
     const [item, setItem] = useState(null);
 
-    useEffect(()=> {
-        let payload={
+    const [loading, setloading] = useState(true);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+    useEffect(() => {
+        let payload = {
             account: bank.accountName,
             consumable: ""
-           }
-       
-   getData("received-applications",payload,setApplications);
-    },[])
+        }
+
+        getData("received-applications", payload, setApplications);
+    }, [])
+
+    const notify = () => toast.success('🦄 Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+    const handleIssuePurchaseOrder = async () => {
+        setloading(false)
+
+        setTimeout(() => {
+            setloading(true) // 1
+            handleClose() // 2
+            notify() // 3
+        }, 2000);
 
 
-    const handleIssuePurchaseOrder=async()=>{
-        let api="purchaseOrder/issue";
-        let payload={
+        let api = "purchaseOrder/issue";
+        let payload = {
             applicationId: item.processId,
-            term:"2",
-             insuranceRequired:true,
-              account:""
-            }
-        console.log("In request Murabaha",payload);
-        const resp= await postData(api,payload);
+            term: "2",
+            insuranceRequired: true,
+            account: ""
+        }
+        console.log("In request Murabaha", payload);
+        const resp = await postData(api, payload);
     }
     return (
         // <div>
         <div class="card card-cascade narrower">
-            <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                <div>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-th-large mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-columns mt-0"></i>
-                    </button>
-                </div>
-
-                {/* <a class="white-text mx-3">Allow Access</a> */}
-
-                <div>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-pencil-alt mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="far fa-trash-alt mt-0"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                        <i class="fas fa-info-circle mt-0"></i>
-                    </button>
-                </div>
+            <ToastContainer />
+            <Filter />
+            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+                style={{ marginTop: "-5%" }}
+            >
 
             </div>
             <div class="container mt-3">
@@ -89,7 +98,7 @@ export default function Applications() {
 
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                          onClick={() => setItem(v)}
+                                            onClick={() => handleShow(setItem(v))}
                                         >View</span>
                                     </td>
 
@@ -101,85 +110,80 @@ export default function Applications() {
                 </table>
             </div>
 
-            <div class="modal" id="myModal">
-                <div class="modal-dialog modal-dialog-scrollable-sm">
-                    <div class="modal-content" style={{ width: "115%" }}>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Applications Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
 
-                        {/* <!-- Modal Header --> */}
-                        <div class="modal-header">
-                            <h3 class="modal-title">Application Details</h3>
-                            <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
+                    {/* <!-- Modal body --> */}
+                    {(item != null) ?
+
+                        <div class="modal-body">
+                            <table id="customers">
+
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Contact</th>
+                                </tr>
+                                <tr>
+                                    <td>Date.</td>
+                                    <td>{item.date}</td>
+                                </tr>
+                                <tr>
+                                    <td>Refrence No.</td>
+                                    <td>{item.referenceId}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bank</td>
+                                    <td>{item.BankAccount.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Applicate</td>
+                                    <td>{item.applicantAccount.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>{item.amount}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tenor</td>
+                                    <td>{item.tenor}</td>
+                                </tr>
+                                <tr>
+                                    <td>Item</td>
+                                    <td>{item.description}</td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td>{item.description}</td>
+                                </tr>
+                                <tr>
+                                    <td>Quantity</td>
+                                    <td>{item.amount}</td>
+                                </tr>
+
+
+                            </table>
+
                         </div>
-
-                        {/* <!-- Modal body --> */}
-                        {(item!=null)?
-
-                                <div class="modal-body">
-                                    <table id="customers">
-
-                                        <tr>
-                                            <th>Company</th>
-                                            <th>Contact</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Date.</td>
-                                            <td>{item.date}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Refrence No.</td>
-                                            <td>{item.referenceId}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bank</td>
-                                            <td>{item.BankAccount.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Applicate</td>
-                                            <td>{item.applicantAccount.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Amount</td>
-                                            <td>{item.amount}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tenor</td>
-                                            <td>{item.tenor}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Item</td>
-                                            <td>{item.description}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Description</td>
-                                            <td>{item.description}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Quantity</td>
-                                            <td>{item.amount}</td>
-                                        </tr>
-
-
-                                    </table>
-
-                                </div>
-                                  :<></>
-                                }
-                          
-                       
+                        : <></>
+                    }
+                    {/* <Spin size="large" /> */}
 
 
 
-                        {/* <!-- Modal footer --> */}
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" onClick={handleIssuePurchaseOrder}>Issue Purchase  Order</button>
-                        </div>
 
-                    </div>
+                    {/* <!-- Modal footer --> */}
+
+                </Modal.Body>
+                {/* <div class="modal-footer d-flex justify-content-evenly"> */}
+                <div class="modal-footer">
+                    {loading ? <button type="button" class="btn btn-success close" data-dismiss={show} onClick={handleIssuePurchaseOrder} >Issue Purchase Order</button> : <Spin size="large" />}
                 </div>
-            </div>
-
+            </Modal>
 
         </div>
-        // </div>
+
     )
 }

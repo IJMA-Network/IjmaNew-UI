@@ -5,11 +5,17 @@ import axios from "axios";
 import { createTerm } from "../../Api/api";
 import StoreContext from "../../ContextApi";
 
+
+
+
 export default function TermSheet() {
   const contextData = useContext(StoreContext);
   const [bank, setBank] = useState({ accountName: "Bank1" });
   //   const [NodeName, setNodeName] = useState("ABC Bank");
   //   const [users, setUsers] = useState([]);
+
+
+
   const Client = useRef();
   const Expire = useRef();
   const Refrense = useRef();

@@ -1,40 +1,55 @@
-import React from 'react'
-import './TermSheetData.css'
-import TermSheetState from './TermSheetState.json'
+import { React, useState, useEffect } from 'react';
+import './TermSheetData.css';
+import TermSheetState from './TermSheetState.json';
+import Modal from 'react-bootstrap/Modal';
+import { Spin } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import Filter from '../../filter/filter';
+
 
 
 export default function TermSheetData() {
 
   TermSheetState.map((v, i) => { console.log(v, "GoodState") })
 
+  const [loading, setloading] = useState(true);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+  const notify = () => toast.success('🦄 Successfully!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
+  function handleTerm(params) {
+
+    setloading(false)
+
+    setTimeout(() => {
+      setloading(true) // 1
+      handleClose() // 2
+      notify() // 3
+    }, 2000);
+  }
+
   return (
     <div>
       <div class="card card-cascade narrower">
-        <div
-          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+        <ToastContainer />
+        <Filter />
+        <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+          style={{ marginTop: "-5%" }}
+        >
 
-          <div>
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-th-large mt-0"></i>
-            </button>
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-columns mt-0"></i>
-            </button>
-          </div>
-
-          {/* <a class="white-text mx-3">Allow Access</a> */}
-
-          <div>
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-pencil-alt mt-0"></i>
-            </button>
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="far fa-trash-alt mt-0"></i>
-            </button>
-            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-              <i class="fas fa-info-circle mt-0"></i>
-            </button>
-          </div>
 
         </div>
         <div class="container mt-3">
@@ -65,7 +80,8 @@ export default function TermSheetData() {
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                      //  onClick={() => setClinetID(v._id)}
+                        //  onClick={() => setClinetID(v._id)}
+                        onClick={() => handleShow()}
                       >View</span>
                     </td>
 
@@ -80,77 +96,69 @@ export default function TermSheetData() {
       </div>
 
 
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable-sm">
-          <div class="modal-content" style={{ width: "115%" }}>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Applications Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <!-- Modal body --> */}
+          {TermSheetState.map((v, i) => {
+            return (
+              <div class="modal-body">
+                <table id="customers">
 
-            {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h3 class="modal-title">Term Sheet Detail</h3>
-              <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
-            </div>
-
-            {/* <!-- Modal body --> */}
-            {TermSheetState.map((v, i) => {
-              return (
-                <div class="modal-body">
-                  <table id="customers">
-
-                    <tr>
-                      <th>Company</th>
-                      <th>{v.borrowerAccountInfo.name}</th>
-                    </tr>
-                    <tr>
-                      <td>Bank</td>
-                      <td>{v.bankAccountInfo.name}</td>
-                    </tr>
-                    <tr>
-                      <td>Refernce No</td>
-                      <td>{v.termSheetReference}</td>
-                    </tr>
-                    <tr>
-                      <td>Limit</td>
-                      <td>{v.limit}</td>
-                    </tr>
-                    <tr>
-                      <td>Tenor</td>
-                      <td>{v.tenor}</td>
-                    </tr>
-                    <tr>
-                      <td>Refernce Rate</td>
-                      <td>{v.referenceRate}</td>
-                    </tr>
-                    <tr>
-                      <td>Spread</td>
-                      <td>{v.spread}</td>
-                    </tr>
-                    <tr>
-                      <td>Issue Date</td>
-                      <td>{v.issueDate}</td>
-                    </tr>
-                    <tr>
-                      <td>Acceptance</td>
-                      <td>Pending</td>
-                    </tr>
+                  <tr>
+                    <th>Company</th>
+                    <th>{v.borrowerAccountInfo.name}</th>
+                  </tr>
+                  <tr>
+                    <td>Bank</td>
+                    <td>{v.bankAccountInfo.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Refernce No</td>
+                    <td>{v.termSheetReference}</td>
+                  </tr>
+                  <tr>
+                    <td>Limit</td>
+                    <td>{v.limit}</td>
+                  </tr>
+                  <tr>
+                    <td>Tenor</td>
+                    <td>{v.tenor}</td>
+                  </tr>
+                  <tr>
+                    <td>Refernce Rate</td>
+                    <td>{v.referenceRate}</td>
+                  </tr>
+                  <tr>
+                    <td>Spread</td>
+                    <td>{v.spread}</td>
+                  </tr>
+                  <tr>
+                    <td>Issue Date</td>
+                    <td>{v.issueDate}</td>
+                  </tr>
+                  <tr>
+                    <td>Acceptance</td>
+                    <td>Pending</td>
+                  </tr>
 
 
-                  </table>
+                </table>
 
-                </div>
-              )
-            })}
+              </div>
+            )
+          })}
 
 
 
-            {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
-              <button type="button" class="btn btn-success" data-dismiss="modal">Accept</button>
-            </div>
 
-          </div>
+        </Modal.Body>
+        <div class="modal-footer">
+          {loading ? <button type="button" class="btn btn-success close" data-dismiss={show} onClick={handleTerm} >Accept</button> : <Spin size="large" />}
         </div>
-      </div>
-
+      </Modal>
 
     </div>
   )
