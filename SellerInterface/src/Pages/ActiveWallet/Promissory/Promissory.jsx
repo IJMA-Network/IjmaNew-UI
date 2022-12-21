@@ -1,27 +1,47 @@
 import React, { useState, useEffect, useContext } from "react";
-import Filter from "../../filter/filter";
+import { ToastContainer, toast } from 'react-toastify';
 import { getData } from '../../../Api/Api'
-import './Promissory.css'
+import { Spin } from "antd";
+import Filter from "../../filter/filter";
+import axios from "axios";
+import './Promissory.css';
 import PromissoryNote from './PromissoryNote.json'
 import StoreContext from "../../../ContextApi";
-import { Spin } from "antd";
+import Modal from 'react-bootstrap/Modal';
 
 
 
 export default function Promissory() {
-
-  PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
-
+  
   const [promissoryData, setpromissoryData] = useState([])
   const [loading, setloading] = useState(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const contextData = useContext(StoreContext);
+  
+  PromissoryNote.map((v, i) => { console.log(v, "PromissoryNote") })
   console.log(contextData.SignInData, "Prom PromissoryNote Data");
 
+
+
+  const notify = () => toast.success('🦄 Successfully!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
   const Encash = () => {
     setloading(false)
     setTimeout(() => {
-      setloading(true)
+      setloading(true)//1
+      handleClose() // 2
+      notify() // 3
     }, 2000);
   }
 
@@ -44,38 +64,12 @@ export default function Promissory() {
   console.log(promissoryData, "res");
 
 
-
-
-
   return (
     <div class="card card-cascade narrower">
       <Filter />
+      <ToastContainer />
       <div
         class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-        {/* <div>
-          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-            <i class="fas fa-th-large mt-0"></i>
-          </button>
-          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-            <i class="fas fa-columns mt-0"></i>
-          </button>
-        </div>
-
-        <a class="white-text mx-3">Allow Access</a>
-
-        <div>
-          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-            <i class="fas fa-pencil-alt mt-0"></i>
-          </button>
-          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-            <i class="far fa-trash-alt mt-0"></i>
-          </button>
-          <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-            <i class="fas fa-info-circle mt-0"></i>
-          </button>
-        </div> */}
-
       </div>
       <div class="container mt-3">
         <h2 className='text-center'>Promissory Notes</h2>
@@ -106,7 +100,8 @@ export default function Promissory() {
                     <td>{v.value}</td>
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                      //  onClick={() => setClinetID(v._id)}
+                        //  onClick={() => setClinetID(v._id)}
+                        onClick={() => handleShow()}
                       >View</span>
                     </td>
                   </tr>
@@ -116,73 +111,68 @@ export default function Promissory() {
 
         </table>
       </div>
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable-sm">
-          <div class="modal-content" style={{ width: "115%" }}>
 
-            {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h3 class="modal-title">Promissory Note Details</h3>
-              <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
-            </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Promissory Note Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
 
-            {/* <!-- Modal body --> */}
-            {PromissoryNote.map((v, i) => {
-              return (
-                <div class="modal-body">
-                  <table id="customers">
+          {/* <!-- Modal body --> */}
+          {PromissoryNote.map((v, i) => {
+            return (
+              <div class="modal-body">
+                <table id="customers">
 
-                    <tr>
-                      <th>Company</th>
-                      <th>Contact</th>
-                    </tr>
-                    <tr>
-                      <td>Issue Date.</td>
-                      <td>{v.issueDate}</td>
-                    </tr>
-                    <tr>
-                      <td>Refrence No.</td>
-                      <td>{v.id}</td>
-                    </tr>
-                    <tr>
-                      <td>Issuer</td>
-                      <td>{v.issuerAccount.name}</td>
-                    </tr>
-                    <tr>
-                      <td>Payee</td>
-                      <td>{v.payeeAccount.name}</td>
-                    </tr>
-                    <tr>
-                      <td>Amount</td>
-                      <td>{v.value}</td>
-                    </tr>
-                    <tr>
-                      <td>Redeemed</td>
-                      <td>No.</td>
-                    </tr>
-                    <tr>
-                      <td>Due Date</td>
-                      <td>{v.maturity}</td>
-                    </tr>
+                  <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                  </tr>
+                  <tr>
+                    <td>Issue Date.</td>
+                    <td>{v.issueDate}</td>
+                  </tr>
+                  <tr>
+                    <td>Refrence No.</td>
+                    <td>{v.id}</td>
+                  </tr>
+                  <tr>
+                    <td>Issuer</td>
+                    <td>{v.issuerAccount.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Payee</td>
+                    <td>{v.payeeAccount.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Amount</td>
+                    <td>{v.value}</td>
+                  </tr>
+                  <tr>
+                    <td>Redeemed</td>
+                    <td>No.</td>
+                  </tr>
+                  <tr>
+                    <td>Due Date</td>
+                    <td>{v.maturity}</td>
+                  </tr>
 
-                  </table>
+                </table>
 
-                </div>
-              )
-            })}
+              </div>
+            )
+          })}
 
 
 
-            {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
-              {/* <button type="button" class="btn btn-success" data-dismiss="modal">Encash</button> */}
-              {loading ? <button type="button" class="btn btn-success" onClick={Encash}>Encash</button> : <Spin size="large" />}
 
-            </div>
 
-          </div>
+
+        </Modal.Body>
+        <div class="modal-footer">
+          {loading ? <button type="button" class="btn btn-success" data-dismiss={show} onClick={Encash}>Encash</button> : <Spin size="large" />}
         </div>
-      </div>
+      </Modal>
     </div>
 
   )

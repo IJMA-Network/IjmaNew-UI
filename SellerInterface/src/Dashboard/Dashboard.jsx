@@ -24,7 +24,7 @@ export default function Dashboard() {
 
   const [collapsed, setCollapsed] = useState(false);
   const { Header, Content, Footer, Sider } = Layout;
-  const [trigger, setTrigger] = useState(0);
+  const [trigger, setTrigger] = useState(1);
   const contextData = useContext(StoreContext);
   const [loading, setloading] = useState(true);
   const navigate = useNavigate();
