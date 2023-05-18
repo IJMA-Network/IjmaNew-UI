@@ -12,7 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 
 export default function PurchaesOrder() {
 
-    const [user, setUser] = useState({ accountName: "Seller1" });
+    const [user, setUser] = useState({ accountName: "seller1" });
     const [pOrders, setpOrders] = useState(PurchesOrder);
     const [item, setItem] = useState(null);
     const [loading, setloading] = useState(true);
@@ -38,12 +38,14 @@ export default function PurchaesOrder() {
 
 
     useEffect(() => {
+        setUser(contextData.SignInData);
         let payload = {
-            account: user.accountName,
+            account: user.UserAccountNo,
             consumable: ""
         }
         getData("received-POs", payload, setpOrders);
-    }, [])
+        console.log("POs in seller PO",pOrders);
+    }, [contextData])
 
 
 
@@ -60,7 +62,7 @@ export default function PurchaesOrder() {
         let api = "purchaseOrder/deliver";
         let payload = {
             stateId: item.processId,
-            account: user.accountName
+            account: user.UserAccountNo
         }
         console.log("In PO deliver", payload);
         const resp = await postData(api, payload);

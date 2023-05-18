@@ -11,7 +11,7 @@ import Filter from '../../filter/filter';
 
 export default function Murabaha() {
 
-    const [bank, setBank] = useState({ accountName: "Bank1" });
+    const [bank, setBank] = useState({ accountName: "bank1" });
     const [murabahas, setMurabahas] = useState(MurbanState);
     const [item, setItem] = useState(null);
 

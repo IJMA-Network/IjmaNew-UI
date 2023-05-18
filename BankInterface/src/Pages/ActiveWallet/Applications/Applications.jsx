@@ -1,15 +1,17 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect,useContext } from 'react';
 import { getData, postData } from '../../../Api/api';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button, message, Space, Spin } from 'antd';
+import StoreContext from "../../../ContextApi";
 import ApplictionState from './Application.json';
 import Modal from 'react-bootstrap/Modal';
 import Filter from '../../filter/filter';
 import './Applications.css'
-
+//BankInterface\src\ContextApi.js
 
 export default function Applications() {
-    const [bank, setBank] = useState({ accountName: "Bank1" });
+    const contextData = useContext(StoreContext);
+    const [bank, setBank] = useState({ accountName: "bank1" });
     const [applications, setApplications] = useState(ApplictionState);
     const [item, setItem] = useState(null);
 
@@ -21,6 +23,8 @@ export default function Applications() {
 
 
     useEffect(() => {
+        setBank(contextData.SignInData);
+        console.log("User in Application",contextData.SignInData);
         let payload = {
             account: bank.accountName,
             consumable: ""

@@ -9,9 +9,10 @@ import { createPorforma } from "../../Api/Api";
 export default function Proforma() {
   const contextData = useContext(StoreContext);
 
-  const[user,setUser]=useState({accountName:"Seller1"});
+  const[user,setUser]=useState({accountName:"SellerNo. 1",UserAccountNo:"Seller1"});
 
   useEffect(()=>{
+    setUser(contextData.SignInData)
 
  console.log("User in Proforma",contextData.SignInData);
  setUser(contextData.SignInData);
