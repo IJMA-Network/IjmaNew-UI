@@ -43,7 +43,7 @@ export default function TermSheetData() {
     let payload = {
 
       stateId: item.termSheetReference,
-      account: user.accountName
+      account: user.UserAccountNo
     }
     console.log("In accept TermSheet", payload);
     const resp = await postData(api, payload);

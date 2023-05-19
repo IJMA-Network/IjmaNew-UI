@@ -45,7 +45,7 @@ export default function PurchaesOrder() {
         }
         getData("received-POs", payload, setpOrders);
         console.log("POs in seller PO",pOrders);
-    }, [contextData])
+    }, [user])
 
 
 

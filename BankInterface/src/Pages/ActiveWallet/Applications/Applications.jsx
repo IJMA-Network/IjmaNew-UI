@@ -24,14 +24,14 @@ export default function Applications() {
 
     useEffect(() => {
         setBank(contextData.SignInData);
-        console.log("User in Application",contextData.SignInData);
+        console.log("User in Application",contextData.SignInData,bank);
         let payload = {
-            account: bank.accountName,
+            account: bank.UserAccountNo,
             consumable: ""
         }
 
         getData("received-applications", payload, setApplications);
-    }, [])
+    }, [bank])
 
     const notify = () => toast.success('🦄 Successfully!', {
         position: "top-right",

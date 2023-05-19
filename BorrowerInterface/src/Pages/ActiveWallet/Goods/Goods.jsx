@@ -17,6 +17,16 @@ export default function Goods() {
 
   console.log(contextData.SignInData, "Good Context Data");
 
+  useEffect(()=> {
+    console.log("Sign in in Goods",contextData.SignInData);
+    let payload={
+        account: contextData.SignInData.UserName,
+        consumable: ""
+       }
+       getData("owned-goods",payload,setMurabahas);
+    },[])
+
+
   const notify = () => toast.success('🦄 Successfully!', {
     position: "top-right",
     autoClose: 5000,
