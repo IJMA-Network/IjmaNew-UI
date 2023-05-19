@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext,useEffect } from 'react';
 import './Goods.css';
+import { getData, postData } from '../../../Api/Api';
 import GoodState from './GoodsState.json';
 import Filter from "../../filter/filter";
 import StoreContext from '../../../ContextApi';
@@ -8,12 +9,26 @@ import { Spin } from 'antd';
 
 export default function Goods() {
 
-  GoodState.map((v, i) => { console.log(v, "GoodState") })
+  const [user, setUser] = useState({ accountName: "",UserAccountNo:"" });
+
+   const [goods, setGoods] = useState([]);
+   const [item, setItem] = useState({});
+
+   goods.map((v, i) => { console.log(v, "GoodState") })
 
   const [loading, setloading] = useState(true);
   const contextData = useContext(StoreContext);
   console.log(contextData.SignInData, "Good Context Data");
 
+  useEffect(() => {
+    setUser(contextData.SignInData);
+    let payload = {
+        account: user.UserAccountNo,
+        consumable: ""
+    }
+    getData("owned-goods", payload, setGoods);
+    console.log("POs in seller PO",goods);
+}, [user])
 
 
   const Redeem = () => {
@@ -69,7 +84,7 @@ export default function Goods() {
                 <th></th>
               </tr>
             </thead>
-            {GoodState.map((v, i) => {
+            {goods.map((v, i) => {
               return (
                 <tbody>
                   <tr>

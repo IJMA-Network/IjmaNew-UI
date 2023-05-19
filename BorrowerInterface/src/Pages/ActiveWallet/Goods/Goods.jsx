@@ -1,15 +1,19 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext,useEffect } from 'react'
 import Filter from '../../filter/filter';
 import './Goods.css';
 import GoodState from './GoodsState.json';
+import { getData, postData } from '../../../Api';
 import { ToastContainer, toast } from 'react-toastify';
 import StoreContext from '../../../ContextApi';
 import { Button, message, Space, Spin } from 'antd';
 import Modal from 'react-bootstrap/Modal';
 
 export default function Goods() {
+  const [user, setUser] = useState({ accountName: "",UserAccountNo:"" });
+
   const [goods, setGoods] = useState(GoodState);
   const [loading, setloading] = useState(true);
+
   const contextData = useContext(StoreContext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -18,13 +22,14 @@ export default function Goods() {
   console.log(contextData.SignInData, "Good Context Data");
 
   useEffect(()=> {
+    setUser(contextData.SignInData);
     console.log("Sign in in Goods",contextData.SignInData);
     let payload={
-        account: contextData.SignInData.UserName,
+        account: user.UserAccountNo,
         consumable: ""
        }
-       getData("owned-goods",payload,setMurabahas);
-    },[])
+       getData("owned-goods",payload,setGoods);
+    },[user])
 
 
   const notify = () => toast.success('🦄 Successfully!', {
@@ -40,8 +45,14 @@ export default function Goods() {
 
   goods.map((v, i) => { console.log(v, "GoodState") })
 
-  const Redeem = () => {
-    setloading(false)
+  const Redeem = async() => {
+    setloading(false);
+    let payload = {
+      stateId:"" ,
+      account: user.UserAccountNo,
+  }
+  console.log("In murabaha/offer", payload);
+  const resp = await postData(api, payload);
 
     setTimeout(() => {
       setloading(true) // 1
@@ -95,7 +106,7 @@ export default function Goods() {
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                        onClick={() => handleShow()}
+                      onClick={() => setItem(v)}
                       >View</span>
                     </td>
 

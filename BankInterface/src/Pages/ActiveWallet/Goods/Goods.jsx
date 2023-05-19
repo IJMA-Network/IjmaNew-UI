@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { useState, useContext,useEffect } from 'react'
 import Filter from '../../filter/filter'
 import './Goods.css'
-import GoodState from './GoodsState.json'
+import GoodState from './GoodsState.json';
+import { getData, postData } from '../../../Api/api';
+import StoreContext from '.././../../ContextApi';
 
 
 export default function Goods() {
 
+  const [user, setUser] = useState({ accountName: "",UserAccountNo:"" });
+
+  const [goods, setGoods] = useState([]);
+  const [loading, setloading] = useState(true);
+  const contextData = useContext(StoreContext);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  console.log(contextData.SignInData, "Good Context Data");
+
+  useEffect(()=> {
+    setUser( contextData.SignInData)
+    console.log("Sign in in Goods",contextData.SignInData);
+    let payload={
+        account: user.UserAccountNo,
+        consumable: ""
+       }
+       getData("owned-goods",payload,setGoods);
+    },[user])
   GoodState.map((v, i) => { console.log(v, "GoodState") })
 
   return (
@@ -37,7 +59,7 @@ export default function Goods() {
                 <th></th>
               </tr>
             </thead>
-            {GoodState.map((v, i) => {
+            {goods.map((v, i) => {
               return (
                 <tbody>
                   <tr>
