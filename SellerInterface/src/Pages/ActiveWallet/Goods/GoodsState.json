@@ -1,28 +1,52 @@
 [
     {
-        "seller": "GfHq2tTVk9z4eXgyNiYutsY1cH4P1SYccgiR1D4y3tWvydeQyPHXfwCvAjGa",
+        "seller": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
         "vendor": {
-            "name": "Seller1",
+            "name": "IBANPKKA0000SELLER2",
             "host": "O=SellerBank, L=Lahore, C=PK",
             "identifier": {
                 "externalId": null,
-                "id": "154814c8-27ba-4982-8c1a-97b0ca1a5201"
+                "id": "f089695d-ce0c-4f16-8245-04657cb845e3"
             }
         },
-        "assetOwner": "GfHq2tTVk9z4eXgyFxWTqSXTt2UUYWri7HkYVdqUx42FnkAXUdBJiyQrfRHe",
+        "assetOwner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
         "quantity": {
-            "value": 1000.0,
-            "unit": "Meters"
+            "value": "12 million bales",
+            "unit": "pcs"
         },
-        "processId": "PR-1",
-        "consignmentNumber": "CN-1",
+        "internalReference": "CN-2.1",
         "asset": "Cotton",
-        "description": "EgyptianCotton",
+        "description": "Egyptian Cotton of Superior Quality",
         "isRedeemable": true,
         "takaful": false,
-        "owner": "GfHq2tTVk9z4eXgyFxWTqSXTt2UUYWri7HkYVdqUx42FnkAXUdBJiyQrfRHe",
+        "owner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
         "participants": [
-            "GfHq2tTVk9z4eXgyFxWTqSXTt2UUYWri7HkYVdqUx42FnkAXUdBJiyQrfRHe"
+            "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh"
+        ]
+    },
+    {
+        "seller": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "vendor": {
+            "name": "IBANPKKA0000SELLER2",
+            "host": "O=SellerBank, L=Lahore, C=PK",
+            "identifier": {
+                "externalId": null,
+                "id": "f089695d-ce0c-4f16-8245-04657cb845e3"
+            }
+        },
+        "assetOwner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "quantity": {
+            "value": "12 million bales",
+            "unit": "pcs"
+        },
+        "internalReference": "CN-2.1",
+        "asset": "Cotton",
+        "description": "Egyptian Cotton of Superior Quality",
+        "isRedeemable": true,
+        "takaful": false,
+        "owner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "participants": [
+            "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh"
         ]
     }
 ]
