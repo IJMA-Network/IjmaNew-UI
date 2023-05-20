@@ -11,21 +11,12 @@ export default function Goods() {
   const [goods, setGoods] = useState(GoodState);
   const [loading, setloading] = useState(true);
   const contextData = useContext(StoreContext);
+  const [item, setItem] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   console.log(contextData.SignInData, "Good Context Data");
-
-  useEffect(()=> {
-    console.log("Sign in in Goods",contextData.SignInData);
-    let payload={
-        account: contextData.SignInData.UserName,
-        consumable: ""
-       }
-       getData("owned-goods",payload,setMurabahas);
-    },[])
-
 
   const notify = () => toast.success('🦄 Successfully!', {
     position: "top-right",
@@ -95,7 +86,7 @@ export default function Goods() {
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                        onClick={() => handleShow()}
+                       onClick={() => handleShow(setItem(v))}
                       >View</span>
                     </td>
 
@@ -116,8 +107,9 @@ export default function Goods() {
           <Modal.Title>Goods Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {GoodState.map((v, i) => {
-            return (
+        {(item != null) ?
+            // return 
+            (
               <div class="modal-body">
                 <table id="customers">
 
@@ -127,15 +119,15 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Vendor</td>
-                    <td>{v.vendor.name}</td>
+                    <td>{item.vendor.name}</td>
                   </tr>
                   <tr>
                     <td>Asset</td>
-                    <td>{v.description}</td>
+                    <td>{item.description}</td>
                   </tr>
                   <tr>
                     <td>Quantity</td>
-                    <td>{v.quantity.value}</td>
+                    <td>{item.quantity.value}</td>
                   </tr>
                   <tr>
                     <td>Reedemable</td>
@@ -150,8 +142,8 @@ export default function Goods() {
                 </table>
 
               </div>
-            )
-          })}
+            ):<></>
+          }
 
         </Modal.Body>
         <div class="modal-footer d-flex justify-content-evenly">
