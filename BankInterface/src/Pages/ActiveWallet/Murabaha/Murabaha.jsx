@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect,useContext } from 'react'
 import './Murabaha.css'
 import MurbanState from './MurbahaState.json'
 import { getData, postData } from '../../../Api/api'
@@ -6,12 +6,12 @@ import Modal from 'react-bootstrap/Modal';
 import { Spin } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import Filter from '../../filter/filter';
-
+import StoreContext from '.././../../ContextApi';
 
 
 export default function Murabaha() {
-
-    const [bank, setBank] = useState({ accountName: "bank1" });
+    const contextData = useContext(StoreContext);
+    const [user, setUser] = useState({ accountName: "",UserAccountNo:"" });
     const [murabahas, setMurabahas] = useState(MurbanState);
     const [item, setItem] = useState(null);
 
@@ -22,14 +22,15 @@ export default function Murabaha() {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
+        setUser( contextData.SignInData)
         let payload = {
-            account: bank.accountName,
+            account: user.UserAccountNo,
             consumable: ""
         }
         getData("issued-murabaha", payload, setMurabahas);
-    }, [])
+    }, [user])
 
-    const notify = () => toast.success('🦄 Successfully!', {
+    const notify = () => toast.success('🦄 Successfully completed Transaction', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -54,7 +55,7 @@ export default function Murabaha() {
         let payload = {
             stateId: item.internalReference,
 
-            account: bank.accountName,
+            account: user.UserAccountNo,
         }
         console.log("In murabaha/offer", payload);
         const resp = await postData(api, payload);
