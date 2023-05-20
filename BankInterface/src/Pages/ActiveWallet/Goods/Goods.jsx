@@ -6,6 +6,12 @@ import GoodState from './GoodsState.json'
 
 export default function Goods() {
 
+
+  const [user, setUser] = useState({ accountName: "Bank1" });
+  const [goods, setGoods] = useState(GoodState);
+  const [item, setItem] = useState(null);
+  const [loading, setloading] = useState(true);
+  const contextData = useContext(StoreContext);
   GoodState.map((v, i) => { console.log(v, "GoodState") })
 
   return (
@@ -37,7 +43,7 @@ export default function Goods() {
                 <th></th>
               </tr>
             </thead>
-            {GoodState.map((v, i) => {
+            {goods.map((v, i) => {
               return (
                 <tbody>
                   <tr>
@@ -48,7 +54,7 @@ export default function Goods() {
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                      //  onClick={() => setClinetID(v._id)}
+                       onClick={() => setItem(v)}
                       >View</span>
                     </td>
 
@@ -74,6 +80,7 @@ export default function Goods() {
             </div>
 
             {/* <!-- Modal body --> */}
+            
             {GoodState.map((v, i) => {
               return (
                 <div class="modal-body">

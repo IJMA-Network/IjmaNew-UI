@@ -7,11 +7,16 @@ import StoreContext from '../../../ContextApi';
 import { Spin } from 'antd';
 
 export default function Goods() {
-
-  GoodState.map((v, i) => { console.log(v, "GoodState") })
-
+  const [user, setUser] = useState({ accountName: "Bank1" });
+  const [goods, setGoods] = useState(GoodState);
+  const [item, setItem] = useState(null);
+   const [show, setShow] = useState(false);
   const [loading, setloading] = useState(true);
   const contextData = useContext(StoreContext);
+  const handleShow = () => setShow(true);
+  GoodState.map((v, i) => { console.log(v, "GoodState") })
+
+
   console.log(contextData.SignInData, "Good Context Data");
 
 
@@ -82,7 +87,7 @@ export default function Goods() {
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                      //  onClick={() => setClinetID(v._id)}
+                     onClick={() => handleShow(setItem(v))}
                       >View</span>
                     </td>
 
