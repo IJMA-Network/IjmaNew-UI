@@ -11,7 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 
 
 export default function TermSheetData() {
-  const [user, setUser] = useState({ accountName: "Buyer1" });
+  const [user, setUser] = useState({ accountName: "buyer1" });
   const [termsheets, setTermSheets] = useState(TermSheetState);
   const [item, setItem] = useState(null);
   const contextData = useContext(StoreContext);
@@ -24,12 +24,13 @@ export default function TermSheetData() {
   console.log(contextData.SignInData, "Term Sheet Context Data");
 
   useEffect(() => {
+    setUser((contextData.SignInData));
     let payload = {
-      account: user.accountName,
+      account: contextData.SignInData.UserAccountNo,
       consumable: ""
     }
     getData("received-TermSheets", payload, setTermSheets);
-  }, [])
+  }, [contextData.SignInData])
   const handleReaccept = async () => {
     let api = "termsheet/accept";
 
@@ -42,7 +43,7 @@ export default function TermSheetData() {
     let payload = {
 
       stateId: item.termSheetReference,
-      account: user.accountName
+      account: user.UserAccountNo
     }
     console.log("In accept TermSheet", payload);
     const resp = await postData(api, payload);

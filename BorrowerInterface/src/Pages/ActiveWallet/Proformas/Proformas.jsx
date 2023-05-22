@@ -41,7 +41,7 @@ export default function Proformas() {
         console.log("user in proformas", user);
         let payload = {
             account: contextData.SignInData.UserAccountNo,
-            consumable: ""
+            consumable: true
         }
         getData("received-Proformas", payload, setProformas);
     }, [contextData.SignInData])

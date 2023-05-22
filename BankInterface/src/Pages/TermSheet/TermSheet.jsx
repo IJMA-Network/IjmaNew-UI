@@ -28,6 +28,11 @@ export default function TermSheet() {
 
   console.log(contextData, "SignInData");
 
+  useEffect(() => {
+    setBank(contextData.SignInData);
+  
+  }, [contextData.SignInData])
+
 
   const FormSubmit = () => {
     var profitRate = {
@@ -36,7 +41,7 @@ export default function TermSheet() {
     };
 
     var data = {
-      bank: bank.accountName,
+      bank: bank.UserAccountNo,
       client: Client.current.value,
       termsheetReference: Refrense.current.value,
       facilityType: FacilityType.current.value,

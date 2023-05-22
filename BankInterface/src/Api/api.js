@@ -1,5 +1,5 @@
 import axios from "axios";
-//const baseApi = "http://192.168.100.211:10050/api/murabaha/";
+///const baseApi = "http://192.168.100.211:10050/api/murabaha/";
 const baseApi = "http://localhost:10050/api/murabaha/";
 export const createTerm = async (payload) => {
   console.log(payload, "payload",payload);
@@ -12,7 +12,7 @@ export const createTerm = async (payload) => {
 
     return response;
   } catch (error) {
-    console.log("Error in Create Proforma", error);
+    console.log("Error in TermSheet Issuance", error);
 
     return error;
   }
