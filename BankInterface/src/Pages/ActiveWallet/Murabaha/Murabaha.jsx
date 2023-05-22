@@ -172,7 +172,7 @@ export default function Murabaha() {
                                 </tr>
                                 <tr>
                                     <td>Item</td>
-                                    <td>Cotton</td>
+                                    <td>{item.goods.asset}</td>
                                 </tr>
                                 <tr>
                                     <td>Bank Signature</td>

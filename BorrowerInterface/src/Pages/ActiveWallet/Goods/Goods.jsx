@@ -1,13 +1,16 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext,useEffect } from 'react'
 import Filter from '../../filter/filter';
 import './Goods.css';
 import GoodState from './GoodsState.json';
+import { getData, postData } from '../../../Api';
+
 import { ToastContainer, toast } from 'react-toastify';
 import StoreContext from '../../../ContextApi';
 import { Button, message, Space, Spin } from 'antd';
 import Modal from 'react-bootstrap/Modal';
 
 export default function Goods() {
+  const [user, setUser] = useState({ accountName: "seller1" });
   const [goods, setGoods] = useState(GoodState);
   const [loading, setloading] = useState(true);
   const contextData = useContext(StoreContext);
@@ -30,6 +33,17 @@ export default function Goods() {
   });
 
   goods.map((v, i) => { console.log(v, "GoodState") })
+
+
+  useEffect(() => {
+    setUser(contextData.SignInData);
+    let payload = {
+        account: user.UserAccountNo,
+        consumable: ""
+    }
+    getData("owned-goods", payload, setGoods);
+    console.log("goods in seller",goods);
+}, [user])
 
   const Redeem = () => {
     setloading(false)
