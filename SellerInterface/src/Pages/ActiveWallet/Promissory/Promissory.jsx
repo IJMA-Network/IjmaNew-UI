@@ -12,8 +12,9 @@ import Modal from 'react-bootstrap/Modal';
 
 
 export default function Promissory() {
-  
-  const [promissoryData, setpromissoryData] = useState([])
+  const [user, setUser] = useState({ accountName: "seller1" });
+ 
+  const [promissoryData, setpromissoryData] = useState(PromissoryNote)
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -24,6 +25,16 @@ export default function Promissory() {
   console.log(contextData.SignInData, "Prom PromissoryNote Data");
 
 
+
+  useEffect(() => {
+    setUser(contextData.SignInData);
+    let payload = {
+        account: user.UserAccountNo,
+        consumable: ""
+    }
+    getData("received-PNs", payload, setpromissoryData);
+    console.log("goods in seller",promissoryData);
+}, [user])
 
   const notify = () => toast.success('🦄 Successfully!', {
     position: "top-right",
@@ -87,7 +98,7 @@ export default function Promissory() {
             </tr>
           </thead>
           {
-            PromissoryNote.map((v, i) => {
+            promissoryData.map((v, i) => {
               return (
 
                 <tbody>
