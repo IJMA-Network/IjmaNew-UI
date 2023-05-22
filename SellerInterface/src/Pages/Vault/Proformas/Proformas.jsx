@@ -15,6 +15,7 @@ export default function Proformas() {
   const [allData, setallData] = useState([])
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
+  const [item, setItem] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const contextData = useContext(StoreContext);
@@ -104,7 +105,7 @@ export default function Proformas() {
                       data-toggle="modal"
                       data-target="#myModal"
                       //  onClick={() => setClinetID(v._id)}
-                      onClick={() => handleShow()}
+                      onClick={() => handleShow(setItem(v))}
                     >
                       View
                     </span>
@@ -121,48 +122,49 @@ export default function Proformas() {
           <Modal.Title>Proformas Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {ProformaJsonData.map((v, i) => {
-            return (
+        {(item != null) ?
+            // return
+             (
 
               <table id="customers">
                 <tr>
                   <td>Proforma Id</td>
-                  <td>{v.proformaId}</td>
+                  <td>{item.proformaId}</td>
                 </tr>
                 <tr>
                   <td>DATE</td>
-                  <td>{v.date}</td>
+                  <td>{item.date}</td>
                 </tr>
                 <tr>
                   <td>Seller </td>
-                  <td>{v.sellerAccountInfo.name}</td>
+                  <td>{item.sellerAccountInfo.name}</td>
                 </tr>
                 <tr>
                   <td>Buyer</td>
-                  <td>{v.buyerAccountInfo.name}</td>
+                  <td>{item.buyerAccountInfo.name}</td>
                 </tr>
                 <tr>
                   <td>Item</td>
-                  <td>{v.goods.asset}</td>
+                  <td>{item.goods.asset}</td>
                 </tr>
                 <tr>
                   <td>Description</td>
-                  <td>{v.description}</td>
+                  <td>{item.description}</td>
                 </tr>
                 <tr>
                   <td>Quantity</td>
-                  <td> {v.goods.quantity.value}  {v.goods.quantity.unit} </td>
+                  <td> {item.goods.quantity.value}  {item.goods.quantity.unit} </td>
                 </tr>
                 <tr>
                   <td>Amount</td>
-                  <td>{v.amount}</td>
+                  <td>{item.amount}</td>
                 </tr>
 
               </table>
-            )
+            ):<></>
           }
 
-          )}
+          {/* // )} */}
 
         </Modal.Body>
         <div class="modal-footer">

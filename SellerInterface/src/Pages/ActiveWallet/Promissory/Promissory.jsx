@@ -19,6 +19,7 @@ export default function Promissory() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [item, setItem] = useState(null);
   const contextData = useContext(StoreContext);
   
   PromissoryNote.map((v, i) => { console.log(v, "PromissoryNote") })
@@ -122,7 +123,7 @@ export default function Promissory() {
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                         //  onClick={() => setClinetID(v._id)}
-                        onClick={() => handleShow()}
+                        onClick={() => handleShow(setItem(v))}
                       >View</span>
                     </td>
                   </tr>
@@ -140,8 +141,9 @@ export default function Promissory() {
         <Modal.Body>
 
           {/* <!-- Modal body --> */}
-          {PromissoryNote.map((v, i) => {
-            return (
+          {(item != null) ?
+            // return 
+            
               <div class="modal-body">
                 <table id="customers">
 
@@ -151,23 +153,23 @@ export default function Promissory() {
                   </tr>
                   <tr>
                     <td>Issue Date.</td>
-                    <td>{v.issueDate}</td>
+                    <td>{item.issueDate}</td>
                   </tr>
                   <tr>
                     <td>Refrence No.</td>
-                    <td>{v.id}</td>
+                    <td>{item.id}</td>
                   </tr>
                   <tr>
                     <td>Issuer</td>
-                    <td>{v.issuerAccount.name}</td>
+                    <td>{item.issuerAccount.name}</td>
                   </tr>
                   <tr>
                     <td>Payee</td>
-                    <td>{v.payeeAccount.name}</td>
+                    <td>{item.payeeAccount.name}</td>
                   </tr>
                   <tr>
                     <td>Amount</td>
-                    <td>{v.value}</td>
+                    <td>{item.value}</td>
                   </tr>
                   <tr>
                     <td>Redeemed</td>
@@ -175,14 +177,14 @@ export default function Promissory() {
                   </tr>
                   <tr>
                     <td>Due Date</td>
-                    <td>{v.maturity}</td>
+                    <td>{item.maturity}</td>
                   </tr>
 
                 </table>
 
               </div>
-            )
-          })}
+            :<></>
+          }
 
 
 
