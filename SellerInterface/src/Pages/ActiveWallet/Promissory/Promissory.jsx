@@ -47,14 +47,24 @@ export default function Promissory() {
     theme: "light",
   });
 
-  const Encash = () => {
+  const Encash =async () => {
+
     setloading(false)
     setTimeout(() => {
-      setloading(true)//1
-      handleClose() // 2
-      notify() // 3
+        setloading(true)//1
+        handleClose() // 2
+        notify() // 3
     }, 2000);
-  }
+
+
+    // let api = "pNote/encash";
+    // let payload = {
+    //     stateId: item.processId,
+    //     account: user.UserAccountNo
+    // }
+    // console.log("InPNote Encash", payload);
+    // const resp = await postData(api, payload);
+}
 
   //   var data = {
   //     "account": "Seller1",
