@@ -24,9 +24,9 @@ export default function Applications() {
 
     useEffect(() => {
         setBank(contextData.SignInData);
-        console.log("User in Application",contextData.SignInData,bank);
+        console.log("User in Application",contextData.SignInData);
         let payload = {
-            account: bank.UserAccountNo,
+            account: bank.accountName,
             consumable: ""
         }
 
@@ -164,7 +164,7 @@ export default function Applications() {
                                 </tr>
                                 <tr>
                                     <td>Quantity</td>
-                                    <td>{item.amount}</td>
+                                    <td>{item.proforma.goods.quantity.value+" "+item.proforma.goods.quantity.unit}</td>
                                 </tr>
 
 
