@@ -41,6 +41,7 @@ export default function Promissory() {
 });
 
   const handleRedeeem = async () => {
+    console.log("Item in  Redeem PNote", item);
     setloading(false)
 
     setTimeout(() => {
@@ -51,12 +52,10 @@ export default function Promissory() {
 
     let api = "pNote/burn";
     let payload = {
-      applicationId: item.id,
-      term: "2",
-      insuranceRequired: true,
-      account: ""
+      stateId: item.processId,
+      account: bank.accountName
     }
-    console.log("In Redeem PNode", payload);
+    console.log("In Redeem PNote", payload);
     const resp = await postData(api, payload);
   }
 

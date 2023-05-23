@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import { getData } from '../../../Api/Api'
+import { getData,postData } from '../../../Api/Api'
 import { Spin } from "antd";
 import Filter from "../../filter/filter";
 import axios from "axios";
@@ -58,13 +58,13 @@ export default function Promissory() {
     }, 2000);
 
 
-    // let api = "pNote/encash";
-    // let payload = {
-    //     stateId: item.processId,
-    //     account: user.UserAccountNo
-    // }
-    // console.log("InPNote Encash", payload);
-    // const resp = await postData(api, payload);
+    let api = "pNote/encash";
+    let payload = {
+        stateId: item.processId,
+        account: user.UserAccountNo
+    }
+    console.log("InPNote Encash", payload);
+    const resp = await postData(api, payload);
 }
 
   //   var data = {
