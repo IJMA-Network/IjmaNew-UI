@@ -7,7 +7,7 @@ import ApplictionState from './Application.json';
 import Modal from 'react-bootstrap/Modal';
 import Filter from '../../filter/filter';
 import './Applications.css'
-//BankInterface\src\ContextApi.js
+
 
 export default function Applications() {
     const contextData = useContext(StoreContext);
