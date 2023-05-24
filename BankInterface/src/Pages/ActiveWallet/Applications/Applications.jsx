@@ -26,7 +26,7 @@ export default function Applications() {
         setBank(contextData.SignInData);
         console.log("User in Application",contextData.SignInData);
         let payload = {
-            account: bank.accountName,
+            account: bank.UserAccountNo,
             consumable: ""
         }
 
