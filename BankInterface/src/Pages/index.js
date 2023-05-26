@@ -11,4 +11,6 @@ export { default as PurchesOrder } from "./Vault/PurchesOrder/PurchaseOrder";
 export { default as SignIn } from "./SignIn/SignIn";
 export { default as UserForm } from "./UserForm/UserForm";
 export { default as Filter } from "./filter/filter";
+export { default as Inteigration } from "./Inteigration/Inteigration";
+
 // export { default as  } from ""
