@@ -11,7 +11,7 @@ import 'antd/dist/antd.css'
 import ijma from '../Images/Ijma.png'
 import {
   WalletDashboard, Applications, TermSheetData,
-  Goods, Murabaha, Promissory, TermSheet,Inteigration,
+  Goods, Murabaha, Promissory, TermSheet,Processflow,
   VaultMurabaha, VaultPromissory, PurchesOrder, UserForm
 } from '../Pages/index'
 import { useNavigate } from "react-router-dom";
@@ -56,7 +56,7 @@ export default function Dashboard() {
     {
       key: '3',
       icon: <PieChartOutlined onClick={() => setTrigger(3)} />,
-      label: <div onClick={() => setTrigger(3)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Inteigration' : ''}</span></div>,
+      label: <div onClick={() => setTrigger(3)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Processflow' : ''}</span></div>,
     },
 
 
@@ -174,7 +174,7 @@ export default function Dashboard() {
               ):
               trigger === 3 ? (
                 <>
-                  <Inteigration />
+                  <Processflow />
                 </>
               )
                 : trigger === '1a' ? (
