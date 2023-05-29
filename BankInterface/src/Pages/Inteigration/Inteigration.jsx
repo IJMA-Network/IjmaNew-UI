@@ -1,32 +1,28 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import { Form } from "react-bootstrap";
 import "./Inteigration.css";
 import axios from "axios";
 import { createTerm } from "../../Api/api";
 import StoreContext from "../../ContextApi";
-import { Card, Col, Row } from 'antd';
-
+import Modal from 'react-bootstrap/Modal';
+import { Spin } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import ApplictionState from '../ActiveWallet/Applications/Application.json';
 
 
 export default function Inteigration() {
+console.log(ApplictionState[0],"ApplictionState");
     const contextData = useContext(StoreContext);
     const [bank, setBank] = useState({ accountName: "Bank1" });
     //   const [NodeName, setNodeName] = useState("ABC Bank");
     //   const [users, setUsers] = useState([]);
+    const [loading, setloading] = useState(true);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
 
-    const Client = useRef();
-    const Expire = useRef();
-    const Refrense = useRef();
-    const FacilityType = useRef();
-    const Limit = useRef();
-    const Tenor = useRef();
-    const Rate = useRef();
-    const Spread = useRef();
-    // const bank = useRef();
-
-    console.log(contextData, "SignInData");
 
     useEffect(() => {
         setBank(contextData.SignInData);
@@ -34,27 +30,30 @@ export default function Inteigration() {
     }, [contextData.SignInData])
 
 
-    const FormSubmit = () => {
-        var profitRate = {
-            referenceRate: Rate.current.value,
-            spread: Spread.current.value,
-        };
 
-        var data = {
-            bank: bank.UserAccountNo,
-            client: Client.current.value,
-            InteigrationReference: Refrense.current.value,
-            facilityType: FacilityType.current.value,
-            limit: Limit.current.value,
-            tenor: Tenor.current.value,
-            profitRate: profitRate,
-            expiry: Expire.current.value,
-        };
-        // const myJSON = JSON.stringify(data);
 
-        // console.log(data, "dataaa");
-        createTerm(data);
-    };
+    function handleTerm(params) {
+
+        setloading(false)
+
+        setTimeout(() => {
+            setloading(true) // 1
+            handleClose() // 2
+            notify() // 3
+        }, 100);
+    }
+
+    const notify = () => toast.success('🦄 Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
 
     return (
         <div class="container-fluid px-1 py-5 mx-auto">
@@ -70,19 +69,19 @@ export default function Inteigration() {
                 </div>
             </div>
             <div style={{ background: "", justifyContent: "end" }} >
-                <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B" }}>
-                    <table>
-                        <tr>
-                            <td>Proforma</td>
-                        </tr>
+                <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
+                    <table onClick={() => handleShow()}>
                         <tr>
                             <td>Ref</td>
+                        </tr>
+                        <tr>
+                            <td>{ApplictionState[0].referenceId}</td>
                         </tr>
                         <tr>
                             <td>Date</td>
                         </tr>
                         <tr>
-                            <td>5/26/2023</td>
+                            <td>{ApplictionState[0].date}</td>
                         </tr>
                     </table>
                 </div>
@@ -92,7 +91,7 @@ export default function Inteigration() {
 
                 <div style={{ background: "", display: "flex", flexDirection: "row", justifyContent: "" }} >
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table>
+                        <table onClick={() => handleShow()}>
                             <tr>
                                 <td>Proforma</td>
                             </tr>
@@ -108,9 +107,9 @@ export default function Inteigration() {
                         </table>
                     </div>
 
-                    <div style={{marginTop:"5%"}}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
+                    <div style={{ marginTop: "5%" }}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table>
+                        <table onClick={() => handleShow()}>
                             <tr>
                                 <td>Proforma</td>
                             </tr>
@@ -125,9 +124,9 @@ export default function Inteigration() {
                             </tr>
                         </table>
                     </div>
-                    <div style={{marginTop:"5%"}}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
+                    <div style={{ marginTop: "5%" }}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table>
+                        <table onClick={() => handleShow()}>
                             <tr>
                                 <td>Proforma</td>
                             </tr>
@@ -143,12 +142,12 @@ export default function Inteigration() {
                         </table>
                     </div>
 
-                    <div style={{marginTop:"5%"}}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" />
+                    <div style={{ marginTop: "5%" }}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" />
                     </div>
 
 
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table>
+                        <table onClick={() => handleShow()}>
                             <tr>
                                 <td>Proforma</td>
                             </tr>
@@ -163,9 +162,9 @@ export default function Inteigration() {
                             </tr>
                         </table>
                     </div>
-                    <div style={{marginTop:"5%"}}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
+                    <div style={{ marginTop: "5%" }}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table>
+                        <table onClick={() => handleShow()}>
                             <tr>
                                 <td>Proforma</td>
                             </tr>
@@ -186,7 +185,7 @@ export default function Inteigration() {
                 <div><img src="https://www.clipartmax.com/png/middle/213-2137186_arrow-thin-up-comments-top-arrow.png" height={50} alt="" srcset="" /></div>
 
                 <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B" }}>
-                    <table>
+                    <table onClick={() => handleShow()}>
                         <tr>
                             <td>Proforma</td>
                         </tr>
@@ -202,6 +201,33 @@ export default function Inteigration() {
                     </table>
                 </div>
             </div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Detail</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {/* <!-- Modal body --> */}
+                    <div class="modal-body">
+                        <table id="customers">
+                            <tr>
+                                <th>Company</th>
+                                <th>A</th>
+                            </tr>
+                            <tr>
+                                <td>ref</td>
+                                <td>{ApplictionState[0].referenceId}</td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>{ApplictionState[0].date}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </Modal.Body>
+                <div class="modal-footer">
+                    {loading ? <button type="button" class="btn btn-danger close" data-dismiss={show} onClick={handleTerm}>Close</button> : <Spin size="large" />}
+                </div>
+            </Modal>
         </div>
     );
 }
