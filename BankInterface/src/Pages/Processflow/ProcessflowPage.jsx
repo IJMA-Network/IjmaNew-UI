@@ -16,18 +16,26 @@ export default function Processflow() {
     const [bank, setBank] = useState({ accountName: "Bank1" });
     const [loading, setloading] = useState(true);
     const [show, setShow] = useState(false);
-    //   const [NodeName, setNodeName] = useState("ABC Bank");
     const [showOne, setShowOne] = useState(false);
+
+    const [applicationModal, setapplicationModal] = useState(false);
+    const [ProformaModal, setProformaModal] = useState(false);
+    const [PurchaseOrderModal, setPurchaseOrderModal] = useState(false);
+    const [MurabahaModal, setMurabahaModal] = useState(false);
+
     const [PromissoryData, setPromissoryData] = useState(flowData[4].state.data);
-    const [showTwo, setShowTwo] = useState(false);
-    const [showThree, setShowThree] = useState(false);
-    const [showFour, setShowFour] = useState(false);
+    const [ProformaData, setProformaData] = useState(flowData[0].state.data);
+    const [ApplicationData, setApplicationData] = useState(flowData[1].state.data);
+    const [PurchaseOrderData, setPurchaseOrderData] = useState(flowData[2].state.data);
+    const [MurabahaData, setMurabahaData] = useState(flowData[3].state.data);
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
 
-
+    // function PromissoryFun() { setShow(true) }
+    // function ProformaFun() { setShow(true) }
 
     console.log(PromissoryData, "rrr")
     console.log(flowData[0].state.data.date, "data 0 index===000");
@@ -87,7 +95,7 @@ export default function Processflow() {
             </div>
             <div style={{ background: "", justifyContent: "end" }} >
                 <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                    <table onClick={() => handleShow()}>
+                    <table onClick={() => setShow(true)}>
                         <tr>
                             <td>Promissory Note</td>
                         </tr>
@@ -110,7 +118,7 @@ export default function Processflow() {
                     {(showOne === true) ?
                         <>
                             <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                                <table onClick={() => handleShow()}>
+                                <table onClick={() => setProformaModal(true)}>
                                     <tr>
                                         <td>Proforma</td>
                                     </tr>
@@ -131,7 +139,7 @@ export default function Processflow() {
 
                     <div style={{ marginTop: "5%" }}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table onClick={(e) => handleShow(flowData[4].state.data)}>
+                        <table onClick={(e) => setapplicationModal(true)}>
                             <tr>
                                 <td>Application</td>
                             </tr>
@@ -148,7 +156,7 @@ export default function Processflow() {
                     </div>
                     <div style={{ marginTop: "5%" }}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table onClick={() => handleShow()}>
+                        <table onClick={() => setPurchaseOrderModal(true)}>
                             <tr>
                                 <td>Purchase Order</td>
                             </tr>
@@ -169,7 +177,7 @@ export default function Processflow() {
 
 
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table onClick={() => handleShow()}>
+                        <table onClick={() => setMurabahaModal(true)}>
                             <tr>
                                 <td>Murabha</td>
                             </tr>
@@ -180,7 +188,7 @@ export default function Processflow() {
                                 <td>Date</td>
                             </tr>
                             <tr>
-                                <td>{flowData[4].state.data.date}</td>
+                                <td>{MurabahaData.internalReference}</td>
                             </tr>
                         </table>
                     </div>
@@ -188,7 +196,7 @@ export default function Processflow() {
 
                     <div style={{ marginTop: "5%" }}><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" height={50} alt="" srcset="" /></div>
                     <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                        <table onClick={() => handleShow()}>
+                        <table onClick={() => { }}>
                             <tr>
                                 <td>Good</td>
                             </tr>
@@ -210,7 +218,7 @@ export default function Processflow() {
                 <div><img src="https://www.clipartmax.com/png/middle/213-2137186_arrow-thin-up-comments-top-arrow.png" height={50} alt="" srcset="" /></div>
 
                 <div className="site-card-wrapper" style={{ width: "20%", backgroundColor: "#11366B", color: "white" }}>
-                    <table onClick={() => handleShow()}>
+                    <table onClick={() => { }}>
                         <tr>
                             <td>Invoice</td>
                         </tr>
@@ -228,7 +236,7 @@ export default function Processflow() {
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Detail</Modal.Title>
+                    <Modal.Title>Promissory Detail</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* <!-- Modal body --> */}
@@ -276,6 +284,245 @@ export default function Processflow() {
                     {loading ? <button type="button" class="btn btn-danger close" data-dismiss={show} onClick={handleTerm}>Close</button> : <Spin size="large" />}
                 </div>
             </Modal>
+
+            <Modal show={ProformaModal} onHide={() => setProformaModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Proforma Detail</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {/* <!-- Modal body --> */}
+                    <div class="modal-body">
+
+                        <table id="customers">
+
+                            <tr>
+                                <td>Vendor</td>
+                                <td>{ProformaData.sellerAccountInfo.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Client</td>
+                                <td>{ProformaData.buyerAccountInfo.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Refrence No.</td>
+                                <td>{ProformaData.proformaId}</td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>{ProformaData.date}</td>
+                            </tr>
+                            <tr>
+                                <td>Consignment No.</td>
+                                <td>{ProformaData.goods.consignmentNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>ProformaData</td>
+                                <td>{ProformaData.goods.asset}</td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>{ProformaData.description}</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity</td>
+                                <td>{ProformaData.goods.quantity.value + " " + ProformaData.goods.quantity.unit}</td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td>2{ProformaData.amount}</td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                </Modal.Body>
+                <div class="modal-footer">
+                    {loading ? <button type="button" class="btn btn-danger close" data-dismiss={ProformaModal} onClick={() => setProformaModal(false)}>Close</button> : <Spin size="large" />}
+                </div>
+            </Modal>
+
+            <Modal show={applicationModal} onHide={() => setapplicationModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Application Detail</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {/* <!-- Modal body --> */}
+                    <div class="modal-body">
+                        <table id="customers">
+
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                            </tr>
+                            <tr>
+                                <td>Date.</td>
+                                <td>{ApplicationData.date}</td>
+                            </tr>
+                            <tr>
+                                <td>Refrence No.</td>
+                                <td>{ApplicationData.referenceId}</td>
+                            </tr>
+                            <tr>
+                                <td>Bank</td>
+                                <td>{ApplicationData.BankAccount.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Applicate</td>
+                                <td>{ApplicationData.applicantAccount.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td>{ApplicationData.amount}</td>
+                            </tr>
+                            <tr>
+                                <td>Tenor</td>
+                                <td>{ApplicationData.tenor}</td>
+                            </tr>
+                            <tr>
+                                <td>Item</td>
+                                <td>{ApplicationData.description}</td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>{ApplicationData.description}</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity</td>
+                                <td>{ApplicationData.amount}</td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                </Modal.Body>
+                <div class="modal-footer">
+                    {loading ? <button type="button" class="btn btn-danger close" data-dismiss={applicationModal} onClick={() => setapplicationModal(false)}>Close</button> : <Spin size="large" />}
+                </div>
+            </Modal>
+
+            <Modal show={PurchaseOrderModal} onHide={() => setPurchaseOrderModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>PurchaseOrder Detail</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div class="modal-body">
+                        <table id="customers">
+
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>{PurchaseOrderData.date}</td>
+                            </tr>
+                            <tr>
+                                <td>Refrence No.</td>
+                                <td>{PurchaseOrderData.referenceId}</td>
+                            </tr>
+                            <tr>
+                                <td>Bank</td>
+                                <td>{PurchaseOrderData.bankAccountInfo.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Client</td>
+                                <td>Buyer 1</td>
+                            </tr>
+                            <tr>
+                                <td>Proforma Id</td>
+                                <td>{PurchaseOrderData.applicationId}</td>
+                            </tr>
+                            <tr>
+                                <td>Item</td>
+                                <td>{PurchaseOrderData.description}</td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>{PurchaseOrderData.description}</td>
+                            </tr>
+                            <tr>
+                                <td>Quantity</td>
+                                <td>{PurchaseOrderData.tenor}</td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td>{PurchaseOrderData.amount}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </Modal.Body>
+                <div class="modal-footer">
+                    {loading ? <button type="button" class="btn btn-danger close" data-dismiss={PurchaseOrderModal} onClick={() => setPurchaseOrderModal(false)}>Close</button> : <Spin size="large" />}
+                </div>
+            </Modal>
+
+            <Modal show={MurabahaModal} onHide={() => setMurabahaModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>PurchaseOrder Detail</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div class="modal-body">
+                        <table id="customers">
+
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>{MurabahaData.agreementDate}</td>
+                            </tr>
+                            <tr>
+                                <td>Refrence No.</td>
+                                <td>{MurabahaData.internalReference}</td>
+                            </tr>
+                            <tr>
+                                <td>Bank</td>
+                                <td>{MurabahaData.bankAccountInfo.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Applicant</td>
+                                <td>{MurabahaData.borrowerAccountInfo.name}</td>
+                            </tr>
+                            <tr>
+                                <td>Cost Price</td>
+                                <td>{MurabahaData.costPrice}</td>
+                            </tr>
+                            <tr>
+                                <td>Tenor</td>
+                                <td>{MurabahaData.term}</td>
+                            </tr>
+                            <tr>
+                                <td>Selling Price</td>
+                                <td>{MurabahaData.sellingprice}</td>
+                            </tr>
+                            <tr>
+                                <td>Profile Rate</td>
+                                <td>{MurabahaData.profitrate}</td>
+                            </tr>
+                            <tr>
+                                <td>Item</td>
+                                <td>Medicines</td>
+                            </tr>
+                            <tr>
+                                <td>Bank Signature</td>
+                                <td>Signed</td>
+                            </tr>
+                            <tr>
+                                <td>Brorower Signature</td>
+                                <td>Signed</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </Modal.Body>
+                <div class="modal-footer">
+                    {loading ? <button type="button" class="btn btn-danger close" data-dismiss={MurabahaModal} onClick={() => setMurabahaModal(false)}>Close</button> : <Spin size="large" />}
+                </div>
+            </Modal>
+
+
         </div>
     );
 }
