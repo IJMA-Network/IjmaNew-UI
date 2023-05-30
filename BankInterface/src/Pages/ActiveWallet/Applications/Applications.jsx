@@ -7,7 +7,7 @@ import JsonData from './Application.json';
 import Modal from 'react-bootstrap/Modal';
 import Filter from '../../filter/filter';
 import './Applications.css'
-//BankInterface\src\ContextApi.js
+
 
 export default function Applications() {
     const contextData = useContext(StoreContext);
@@ -28,7 +28,7 @@ export default function Applications() {
         setBank(contextData.SignInData);
         console.log("User in Application", contextData.SignInData);
         let payload = {
-            account: bank.accountName,
+            account: bank.UserAccountNo,
             consumable: ""
         }
 

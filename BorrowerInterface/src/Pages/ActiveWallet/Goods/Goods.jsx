@@ -21,7 +21,7 @@ export default function Goods() {
 
   console.log(contextData.SignInData, "Good Context Data");
 
-  const notify = () => toast.success('🦄 Successfully!', {
+  const notify = () => toast.success('🦄 Successfullycomplete transaction', {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -45,9 +45,15 @@ export default function Goods() {
     console.log("goods in seller",goods);
 }, [user])
 
-  const Redeem = () => {
+  const Redeem = async() => {
     setloading(false)
-
+    let api = "goods/redeem";
+    let payload = {
+        stateId: item.processId,
+        account: user.UserAccountNo
+    }
+    console.log("I goods redeem", payload);
+    const resp = await postData(api, payload);
     setTimeout(() => {
       setloading(true) // 1
       handleClose() // 2
