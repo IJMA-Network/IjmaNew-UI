@@ -1,6 +1,6 @@
 [
     {
-        "date": "MM-DD-YY",
+        "date": "2023-05-28",
         "vendor": "GfHq2tTVk9z4eXgyKH785DxwxxhRgH4udPo4fFmnDHZ2ZVyh4brUmvBMYDKi",
         "bank": "GfHq2tTVk9z4eXgyVMxpenkMuUqA94YroNcCwBCki3TZezMDLht8N3D7Fd3z",
         "bankAccountInfo": {
@@ -61,7 +61,7 @@
         "insuranceTerms": false
     },
     {
-        "date": "MM-DD-YY",
+        "date": "2023-05-25",
         "vendor": "GfHq2tTVk9z4eXgyKH785DxwxxhRgH4udPo4fFmnDHZ2ZVyh4brUmvBMYDKi",
         "bank": "GfHq2tTVk9z4eXgyVMxpenkMuUqA94YroNcCwBCki3TZezMDLht8N3D7Fd3z",
         "bankAccountInfo": {
@@ -94,7 +94,7 @@
                     "id": "a86142f1-776e-4e32-8eb3-b1a0c40613e3"
                 }
             },
-            "date": "2021-01-04",
+            "date": "2023-01-25",
             "proformaId": "PR-1",
             "description": "Egyptian Cotton of Superior Quality",
             "goods": {

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import { getData,postData } from '../../../Api/Api'
+import { getData, postData } from '../../../Api/Api'
 import { Spin } from "antd";
-import Filter from "../../filter/filter";
+import Filter from "./filter";
 import axios from "axios";
 import './Promissory.css';
-import PromissoryNote from './PromissoryNote.json'
+import JsonData from './PromissoryNote.json'
 import StoreContext from "../../../ContextApi";
 import Modal from 'react-bootstrap/Modal';
 
@@ -13,29 +13,29 @@ import Modal from 'react-bootstrap/Modal';
 
 export default function Promissory() {
   const [user, setUser] = useState({ accountName: "seller1" });
- 
-  const [promissoryData, setpromissoryData] = useState(PromissoryNote)
+
+  // const [promissoryData, setpromissoryData] = useState(filterItem)
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [item, setItem] = useState(null);
   const contextData = useContext(StoreContext);
-  
-  PromissoryNote.map((v, i) => { console.log(v, "PromissoryNote") })
-  console.log(contextData.SignInData, "Prom PromissoryNote Data");
 
+  // filterItem.map((v, i) => { console.log(v, "PromissoryNote") })
+  // console.log(contextData.SignInData, "Prom PromissoryNote Data");
 
+  const [filterItem, setfilterItem] = useState(JsonData);
 
   useEffect(() => {
     setUser(contextData.SignInData);
     let payload = {
-        account: user.UserAccountNo,
-        consumable: ""
+      account: user.UserAccountNo,
+      consumable: ""
     }
-    getData("received-PNs", payload, setpromissoryData);
-    console.log("goods in seller",promissoryData);
-}, [user])
+    getData("received-PNs", payload, setfilterItem);
+    // console.log("goods in seller",promissoryData);
+  }, [user])
 
   const notify = () => toast.success('🦄 Successfully!', {
     position: "top-right",
@@ -48,24 +48,24 @@ export default function Promissory() {
     theme: "light",
   });
 
-  const Encash =async () => {
+  const Encash = async () => {
 
     setloading(false)
     setTimeout(() => {
-        setloading(true)//1
-        handleClose() // 2
-        notify() // 3
+      setloading(true)//1
+      handleClose() // 2
+      notify() // 3
     }, 2000);
 
 
     let api = "pNote/encash";
     let payload = {
-        stateId: item.processId,
-        account: user.UserAccountNo
+      stateId: item.processId,
+      account: user.UserAccountNo
     }
     console.log("InPNote Encash", payload);
     const resp = await postData(api, payload);
-}
+  }
 
   //   var data = {
   //     "account": "Seller1",
@@ -83,12 +83,12 @@ export default function Promissory() {
   // },[])
 
 
-  console.log(promissoryData, "res");
+  // console.log(filterItem, "res");
 
 
   return (
     <div class="card card-cascade narrower">
-      <Filter />
+      <Filter data={{ JsonData, setfilterItem }} />
       <ToastContainer />
       <div
         class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
@@ -109,7 +109,7 @@ export default function Promissory() {
             </tr>
           </thead>
           {
-            promissoryData.map((v, i) => {
+            filterItem.map((v, i) => {
               return (
 
                 <tbody>
@@ -143,47 +143,47 @@ export default function Promissory() {
           {/* <!-- Modal body --> */}
           {(item != null) ?
             // return 
-            
-              <div class="modal-body">
-                <table id="customers">
 
-                  <tr>
-                    <th>Company</th>
-                    <th>Contact</th>
-                  </tr>
-                  <tr>
-                    <td>Issue Date.</td>
-                    <td>{item.issueDate}</td>
-                  </tr>
-                  <tr>
-                    <td>Refrence No.</td>
-                    <td>{item.id}</td>
-                  </tr>
-                  <tr>
-                    <td>Issuer</td>
-                    <td>{item.issuerAccount.name}</td>
-                  </tr>
-                  <tr>
-                    <td>Payee</td>
-                    <td>{item.payeeAccount.name}</td>
-                  </tr>
-                  <tr>
-                    <td>Amount</td>
-                    <td>{item.value}</td>
-                  </tr>
-                  <tr>
-                    <td>Redeemed</td>
-                    <td>No.</td>
-                  </tr>
-                  <tr>
-                    <td>Due Date</td>
-                    <td>{item.maturity}</td>
-                  </tr>
+            <div class="modal-body">
+              <table id="customers">
 
-                </table>
+                <tr>
+                  <th>Company</th>
+                  <th>Contact</th>
+                </tr>
+                <tr>
+                  <td>Issue Date.</td>
+                  <td>{item.issueDate}</td>
+                </tr>
+                <tr>
+                  <td>Refrence No.</td>
+                  <td>{item.id}</td>
+                </tr>
+                <tr>
+                  <td>Issuer</td>
+                  <td>{item.issuerAccount.name}</td>
+                </tr>
+                <tr>
+                  <td>Payee</td>
+                  <td>{item.payeeAccount.name}</td>
+                </tr>
+                <tr>
+                  <td>Amount</td>
+                  <td>{item.value}</td>
+                </tr>
+                <tr>
+                  <td>Redeemed</td>
+                  <td>No.</td>
+                </tr>
+                <tr>
+                  <td>Due Date</td>
+                  <td>{item.maturity}</td>
+                </tr>
 
-              </div>
-            :<></>
+              </table>
+
+            </div>
+            : <></>
           }
 
 

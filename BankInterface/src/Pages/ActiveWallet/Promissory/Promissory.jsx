@@ -1,18 +1,18 @@
 import { React, useState, useEffect } from 'react'
 import './Promissory.css';
-import PromissoryNote from './PromissoryNote.json';
+import JsonData from './PromissoryNote.json';
 import { getData, postData } from '../../../Api/api';
 import Modal from 'react-bootstrap/Modal';
-import Filter from '../../filter/filter';
+import Filter from './filter';
 import { ToastContainer, toast } from 'react-toastify';
 import { Spin } from 'antd';
 
 export default function Promissory() {
   const [bank, setBank] = useState({ accountName: "Bank1" });
-  const [pNotes, setPNotes] = useState(PromissoryNote);
+  // const [pNotes, setPNotes] = useState(JsonData);
   const [item, setItem] = useState(null);
 
-
+  const [filterItem, setfilterItem] = useState(JsonData);
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Promissory() {
       consumable: ""
     }
 
-    getData("issued-PNs", payload, setPNotes);
+    getData("issued-PNs", payload, setfilterItem);
   }, [])
 
 
@@ -62,7 +62,7 @@ export default function Promissory() {
   return (
     <div class="card card-cascade narrower">
       <ToastContainer />
-      <Filter />
+      <Filter data={{ JsonData, setfilterItem }} />
       <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
         style={{ marginTop: "-5%" }}
       >
@@ -87,7 +87,7 @@ export default function Promissory() {
             </tr>
           </thead>
           {
-            pNotes.map((v, i) => {
+            filterItem.map((v, i) => {
               return (
 
                 <tbody>

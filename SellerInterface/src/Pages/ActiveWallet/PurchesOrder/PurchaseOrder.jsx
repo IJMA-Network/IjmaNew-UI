@@ -3,9 +3,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { getData, postData } from '../../../Api/Api';
 import { Spin } from 'antd';
 import './PurchaesOrder.css';
-import PurchesOrder from './PurchaesOrderState.json';
+import JsonData from './PurchaesOrderState.json';
 import StoreContext from '../../../ContextApi';
-import Filter from '../../filter/filter';
+import Filter from "./filter";
 import Modal from 'react-bootstrap/Modal';
 
 
@@ -13,13 +13,14 @@ import Modal from 'react-bootstrap/Modal';
 export default function PurchaesOrder() {
 
     const [user, setUser] = useState({ accountName: "seller1" });
-    const [pOrders, setpOrders] = useState(PurchesOrder);
+    // const [pOrders, setpOrders] = useState(PurchesOrder);
     const [item, setItem] = useState(null);
     const [loading, setloading] = useState(true);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [filterItem, setfilterItem] = useState(JsonData);
 
     const contextData = useContext(StoreContext);
     console.log(contextData.SignInData, "PurchaesOrder Context Data");
@@ -43,8 +44,8 @@ export default function PurchaesOrder() {
             account: user.UserAccountNo,
             consumable: ""
         }
-        getData("received-POs", payload, setpOrders);
-        console.log("POs in seller PO",pOrders);
+        getData("received-POs", payload, setfilterItem);
+        // console.log("POs in seller PO",pOrders);
     }, [user])
 
 
@@ -70,7 +71,7 @@ export default function PurchaesOrder() {
 
     return (
         <div class="card card-cascade narrower">
-            <Filter />
+            <Filter data={{ JsonData, setfilterItem }} />
             <ToastContainer />
             <div
                 class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
@@ -92,7 +93,7 @@ export default function PurchaesOrder() {
                             <th></th>
                         </tr>
                     </thead>
-                    {pOrders.map((v, i) => {
+                    {filterItem.map((v, i) => {
                         return (
 
 
