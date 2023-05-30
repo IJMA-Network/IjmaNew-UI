@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import flowData from './Processflow.json';
 
 
-export default function Processflow() {
+export default function ProcessflowPage() {
 
 
     const contextData = useContext(StoreContext);

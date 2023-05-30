@@ -2,11 +2,11 @@ import { React, useState, useEffect, useContext } from 'react';
 import './Proformas.css'
 import { Spin } from 'antd';
 import { getData, postData } from '../../../Api'
-import ProformaState from './ProformaState.json'
-import Filter from '../../filter/filter';
+import Filter from './filter';
 import StoreContext from '../../../ContextApi';
 import Modal from 'react-bootstrap/Modal';
 import { ToastContainer, toast } from 'react-toastify';
+import JsonData from './ProformaState.json'
 
 
 export default function Proformas() {
@@ -16,8 +16,10 @@ export default function Proformas() {
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
     const [loading, setloading] = useState(true);
-    const [proformas, setProformas] = useState(ProformaState);
     const [show, setShow] = useState(false);
+    // const [proformas, setProformas] = useState(JsonData);
+
+    const [filterItem, setfilterItem] = useState(JsonData);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -43,7 +45,7 @@ export default function Proformas() {
             account: contextData.SignInData.UserAccountNo,
             consumable: true
         }
-        getData("received-Proformas", payload, setProformas);
+        getData("received-Proformas", payload, setfilterItem);
     }, [contextData.SignInData])
 
     const handleRequestMurabaha = async () => {
@@ -71,7 +73,7 @@ export default function Proformas() {
 
     return (
         <div class="card card-cascade narrower">
-            <Filter />
+        <Filter data={{ JsonData, setfilterItem }} />
             <ToastContainer />
             <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-4%" }}
@@ -93,7 +95,7 @@ export default function Proformas() {
                         </tr>
                     </thead>
 
-                    {proformas.map((v, i) => {
+                    {filterItem.map((v, i) => {
                         return (
                             <tbody>
                                 <tr>

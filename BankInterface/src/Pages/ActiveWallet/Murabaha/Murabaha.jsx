@@ -5,8 +5,8 @@ import { getData, postData } from '../../../Api/api'
 import Modal from 'react-bootstrap/Modal';
 import { Spin } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
-import Filter from '../../filter/filter';
 import StoreContext from '.././../../ContextApi';
+import Filter from './filter';
 
 
 export default function Murabaha() {
@@ -77,22 +77,22 @@ export default function Murabaha() {
             </div>
             <div class="container mt-3">
                 <h2 className='text-center'>Murabaha Contact</h2>
-                    <table class="table table-hover">
-                            <thead class="bg-light">
-                                <tr>
-                                    <th >Date</th>
-                                    <th>Refrence No</th>
-                                    <th>Bank</th>
-                                    <th>Borrower</th>
-                                    <th>Term</th>
-                                    <th>Cost Price</th>
-                                    <th>Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                {filterItem.map((v, i) => {
+                <table class="table table-hover">
+                    <thead class="bg-light">
+                        <tr>
+                            <th >Date</th>
+                            <th>Refrence No</th>
+                            <th>Bank</th>
+                            <th>Borrower</th>
+                            <th>Term</th>
+                            <th>Cost Price</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    {filterItem.map((v, i) => {
 
-                            return (
+                        return (
                             <tbody>
                                 <tr>
                                     <td>{v.agreementDate}</td>
@@ -116,9 +116,9 @@ export default function Murabaha() {
 
                                 </tr>
                             </tbody>
-)
-})}
-                        </table>
+                        )
+                    })}
+                </table>
             </div>
 
             <Modal show={show} onHide={handleClose}>

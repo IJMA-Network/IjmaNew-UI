@@ -1,8 +1,8 @@
 import { React, useState, useEffect, useContext } from 'react';
 import './TermSheetData.css';
 import { getData, postData } from '../../../Api';
-import TermSheetState from './TermSheetState.json';
-import Filter from '../../filter/filter';
+import JsonData from './TermSheetState.json';
+import Filter from './filter';
 import StoreContext from '../../../ContextApi';
 import { Spin } from 'antd';
 import Modal from 'react-bootstrap/Modal';
@@ -12,14 +12,14 @@ import Modal from 'react-bootstrap/Modal';
 
 export default function TermSheetData() {
   const [user, setUser] = useState({ accountName: "buyer1" });
-  const [termsheets, setTermSheets] = useState(TermSheetState);
+  // const [termsheets, setTermSheets] = useState(JsonData);
   const [item, setItem] = useState(null);
   const contextData = useContext(StoreContext);
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [filterItem, setfilterItem] = useState(JsonData);
 
   console.log(contextData.SignInData, "Term Sheet Context Data");
 
@@ -29,7 +29,7 @@ export default function TermSheetData() {
       account: contextData.SignInData.UserAccountNo,
       consumable: ""
     }
-    getData("received-TermSheets", payload, setTermSheets);
+    getData("received-TermSheets", payload, setfilterItem);
   }, [contextData.SignInData])
   const handleReaccept = async () => {
     let api = "termsheet/accept";
@@ -53,7 +53,7 @@ export default function TermSheetData() {
   return (
     <div>
       <div class="card card-cascade narrower">
-        <Filter />
+      <Filter data={{ JsonData, setfilterItem }} />
         <div
           class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
           style={{ marginTop: "-4%" }}
@@ -98,7 +98,7 @@ export default function TermSheetData() {
                 <th></th>
               </tr>
             </thead>
-            {termsheets.map((v, i) => {
+            {filterItem.map((v, i) => {
               return (
                 <tbody>
                   <tr>
