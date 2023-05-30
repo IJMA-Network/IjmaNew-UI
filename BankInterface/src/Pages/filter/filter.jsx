@@ -1,11 +1,42 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 import './filter.css'
 import { Input } from 'antd';
 import { Form } from 'react-bootstrap';
 
-export default function Filter() {
+export default function Filter({ data }) {
+
+    let issueDate = useRef();
+    let endDate = useRef();
+    let refData = useRef();
+    let issuerData = useRef();
+
+    let datafilter = data.JsonData
 
 
+    function handler() {
+        let filterissueDate = issueDate.current.value
+        let filterendDate = endDate.current.value
+        let filterendref = refData.current.input.value
+        let filterendissuer = issuerData.current.input.value
+
+        console.log(filterendref, filterendissuer);
+        let filter = datafilter.filter((value) => {
+            if (value.date >= filterissueDate && value.date <= filterendDate || value.referenceId == filterendref) {
+                return (
+                    value
+                )
+            } else if (value.referenceId == filterendref) {
+                return (
+                    value
+                )
+            } else if (value.applicantAccount.name == filterendissuer) {
+                return (
+                    value
+                )
+            } 
+        })
+        data.setfilterItem(filter)
+    }
 
     return (
         <div>
@@ -42,6 +73,7 @@ export default function Filter() {
                                         type="date"
                                         name="dob"
                                         placeholder="Date of Birth"
+                                        ref={issueDate}
                                     />
                                 </p>
                             </div>
@@ -57,7 +89,8 @@ export default function Filter() {
                                     <Form.Control
                                         type="date"
                                         name="dob"
-                                        placeholder="Date of Birth"
+                                        placeholder="End of Data"
+                                        ref={endDate}
                                     />
                                 </p>
                             </div>
@@ -69,7 +102,7 @@ export default function Filter() {
                                     <label class="form-label text-white">
                                         Refrence Number<span class="text-danger"> *</span>
                                     </label>
-                                    <Input placeholder="Basic usage" /></p>
+                                    <Input placeholder=" Refrence Number" ref={refData} /></p>
                             </div>
                         </div>
 
@@ -77,18 +110,19 @@ export default function Filter() {
                             <div class="col-example z-depth-5  flex-center">
                                 <p class="white-text">
                                     <label class="form-label text-white">
-                                        Issuer Number<span class="text-danger"> *</span>
+                                        Applicant<span class="text-danger"> *</span>
                                     </label>
-                                    <Input placeholder="Basic usage" /></p>
+                                    <Input placeholder=" Issuer Number" ref={issuerData} /></p>
                             </div>
                         </div>
                         <div class="d-flex">
                             <div class="p-2 w-100"></div>
                             <div class="col-md-2">
                                 <div class="  flex-center">
-                                    <p class="white-text">  <button id="search-button" type="button" class="btn btn-secondary">
-                                        <i class="fas fa-search"></i> Search
-                                    </button></p>
+                                    <p class="white-text">
+                                        <button id="search-button" type="button" onClick={handler} class="btn btn-secondary">
+                                            <i class="fas fa-search"></i> Search
+                                        </button></p>
                                 </div>
                             </div>
                         </div>

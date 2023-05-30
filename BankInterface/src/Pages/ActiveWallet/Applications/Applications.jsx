@@ -1,9 +1,9 @@
-import { React, useState, useEffect,useContext } from 'react';
+import { React, useState, useEffect, useContext } from 'react';
 import { getData, postData } from '../../../Api/api';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button, message, Space, Spin } from 'antd';
 import StoreContext from "../../../ContextApi";
-import ApplictionState from './Application.json';
+import JsonData from './Application.json';
 import Modal from 'react-bootstrap/Modal';
 import Filter from '../../filter/filter';
 import './Applications.css'
@@ -12,8 +12,10 @@ import './Applications.css'
 export default function Applications() {
     const contextData = useContext(StoreContext);
     const [bank, setBank] = useState({ accountName: "bank1" });
-    const [applications, setApplications] = useState(ApplictionState);
     const [item, setItem] = useState(null);
+
+    // const [applications, setApplications] = useState(JsonData);
+    const [filterItem, setfilterItem] = useState(JsonData);
 
     const [loading, setloading] = useState(true);
     const [show, setShow] = useState(false);
@@ -24,13 +26,13 @@ export default function Applications() {
 
     useEffect(() => {
         setBank(contextData.SignInData);
-        console.log("User in Application",contextData.SignInData);
+        console.log("User in Application", contextData.SignInData);
         let payload = {
             account: bank.accountName,
             consumable: ""
         }
 
-        getData("received-applications", payload, setApplications);
+        getData("received-applications", payload, setfilterItem);
     }, [bank])
 
     const notify = () => toast.success('🦄 Successfully!', {
@@ -63,11 +65,19 @@ export default function Applications() {
         console.log("In request Murabaha", payload);
         const resp = await postData(api, payload);
     }
+
+
+    console.log(filterItem, "setfilterItemsetfilterItem");
     return (
         // <div>
         <div class="card card-cascade narrower">
             <ToastContainer />
-            <Filter />
+
+            <Filter data={{ JsonData, setfilterItem }} />
+
+
+
+
             <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-5%" }}
             >
@@ -88,28 +98,31 @@ export default function Applications() {
                             <th>View</th>
                         </tr>
                     </thead>
-                    {applications.map((v, i) => {
-                        return (
+                
+                        {
+                        filterItem.map((v, i) => {
+                            return (
 
-                            <tbody>
-                                <tr>
-                                    <td>{v.date}</td>
-                                    <td>{v.referenceId}</td>
-                                    <td>{v.applicantAccount.name}</td>
-                                    <td>{v.amount}</td>
-                                    <td>{v.description}</td>
-                                    <td>{v.tenor}</td>
+                                <tbody>
+                                    <tr>
+                                        <td>{v.date}</td>
+                                        <td>{v.referenceId}</td>
+                                        <td>{v.applicantAccount.name}</td>
+                                        <td>{v.amount}</td>
+                                        <td>{v.description}</td>
+                                        <td>{v.tenor}</td>
 
-                                    <td>
-                                        <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
-                                            onClick={() => handleShow(setItem(v))}
-                                        >View</span>
-                                    </td>
+                                        <td>
+                                            <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
+                                                onClick={() => handleShow(setItem(v))}
+                                            >View</span>
+                                        </td>
 
-                                </tr>
-                            </tbody>
-                        )
-                    })}
+                                    </tr>
+                                </tbody>
+                            )
+                        })
+                    }
 
                 </table>
             </div>
@@ -164,7 +177,7 @@ export default function Applications() {
                                 </tr>
                                 <tr>
                                     <td>Quantity</td>
-                                    <td>{item.proforma.goods.quantity.value+" "+item.proforma.goods.quantity.unit}</td>
+                                    <td>{item.proforma.goods.quantity.value + " " + item.proforma.goods.quantity.unit}</td>
                                 </tr>
 
 

@@ -1,6 +1,6 @@
-import { React, useState, useEffect,useContext } from 'react'
+import { React, useState, useEffect, useContext } from 'react'
 import './Murabaha.css'
-import MurbanState from './MurbahaState.json'
+import JsonData from './MurbahaState.json'
 import { getData, postData } from '../../../Api/api'
 import Modal from 'react-bootstrap/Modal';
 import { Spin } from 'antd';
@@ -11,8 +11,8 @@ import StoreContext from '.././../../ContextApi';
 
 export default function Murabaha() {
     const contextData = useContext(StoreContext);
-    const [user, setUser] = useState({ accountName: "",UserAccountNo:"" });
-    const [murabahas, setMurabahas] = useState(MurbanState);
+    const [user, setUser] = useState({ accountName: "", UserAccountNo: "" });
+    const [filterItem, setfilterItem] = useState(JsonData);
     const [item, setItem] = useState(null);
 
     const [loading, setloading] = useState(true);
@@ -22,12 +22,12 @@ export default function Murabaha() {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
-        setUser( contextData.SignInData)
+        setUser(contextData.SignInData)
         let payload = {
             account: user.UserAccountNo,
             consumable: ""
         }
-        getData("issued-murabaha", payload, setMurabahas);
+        getData("issued-murabaha", payload, setfilterItem);
     }, [user])
 
     const notify = () => toast.success('🦄 Successfully completed Transaction', {
@@ -67,7 +67,8 @@ export default function Murabaha() {
     return (
         <div class="card card-cascade narrower">
             <ToastContainer />
-            <Filter />
+
+            <Filter data={{ JsonData, setfilterItem }} />
             <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-5%" }}
             >
@@ -76,7 +77,7 @@ export default function Murabaha() {
             </div>
             <div class="container mt-3">
                 <h2 className='text-center'>Murabaha Contact</h2>
-                {murabahas.map((v, i) => {
+                {filterItem.map((v, i) => {
                     return (
 
 
