@@ -77,11 +77,7 @@ export default function Murabaha() {
             </div>
             <div class="container mt-3">
                 <h2 className='text-center'>Murabaha Contact</h2>
-                {filterItem.map((v, i) => {
-                    return (
-
-
-                        <table class="table table-hover">
+                    <table class="table table-hover">
                             <thead class="bg-light">
                                 <tr>
                                     <th >Date</th>
@@ -90,11 +86,13 @@ export default function Murabaha() {
                                     <th>Borrower</th>
                                     <th>Term</th>
                                     <th>Cost Price</th>
-
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
+                {filterItem.map((v, i) => {
+
+                            return (
                             <tbody>
                                 <tr>
                                     <td>{v.agreementDate}</td>
@@ -118,10 +116,9 @@ export default function Murabaha() {
 
                                 </tr>
                             </tbody>
-
+)
+})}
                         </table>
-                    )
-                })}
             </div>
 
             <Modal show={show} onHide={handleClose}>

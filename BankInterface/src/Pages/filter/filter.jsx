@@ -33,7 +33,7 @@ export default function Filter({ data }) {
                 return (
                     value
                 )
-            } 
+            }
         })
         data.setfilterItem(filter)
     }
