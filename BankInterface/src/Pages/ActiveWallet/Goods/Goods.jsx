@@ -19,7 +19,7 @@ export default function Goods() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log(contextData.SignInData, "Good Context Data");
+  // console.log(contextData.SignInData, "Good Context Data");
 
   const notify = () => toast.success('🦄 Successfully!', {
     position: "top-right",
@@ -32,7 +32,7 @@ export default function Goods() {
     theme: "light",
   });
 
-  goods.map((v, i) => { console.log(v, "GoodState") })
+  // goods.map((v, i) => { console.log(v, "GoodState") })
 
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function Goods() {
         consumable: ""
     }
     getData("owned-goods", payload, setGoods);
-    console.log("goods in seller",goods);
+    // console.log("goods in seller",goods);
 }, [user])
 
   const Redeem = () => {
@@ -68,7 +68,7 @@ export default function Goods() {
   return (
     <div>
       <div class="card card-cascade narrower">
-        <Filter />
+        <Filter data={{ GoodState, setGoods }}/>
         <div
           class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
           style={{ marginTop: "-4%" }}

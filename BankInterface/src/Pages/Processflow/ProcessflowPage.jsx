@@ -27,6 +27,7 @@ export default function ProcessflowPage() {
   const [PurchaseOrderData, setPurchaseOrderData] = useState(null);
   const [indexThreeShow, setindexThreeShow] = useState(false);
   const [MurabahaData, setMurabahaData] = useState(null);
+
   const [indexfourShow, setindexfourShow] = useState(false);
   const [PromissoryData, setPromissoryData] = useState(null);
 
@@ -126,7 +127,7 @@ export default function ProcessflowPage() {
     <div class="container-fluid px-1 py-5 mx-auto">
       <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 ">
-          <h3 className="text-center">Issue Term Sheet</h3>
+          <h3 className="text-center">Transaction Flow </h3>
           <div class="card ">
             <input type="serch" name="" id="" />
           </div>
@@ -152,13 +153,13 @@ export default function ProcessflowPage() {
                       <td>Proforma</td>
                     </tr>
                     <tr>
-                      <td>{ProformaData.id}</td>
+                      <td>{ProformaData.proformaId}</td>
                     </tr>
                     <tr>
                       <td>Date</td>
                     </tr>
                     <tr>
-                      <td>{ProformaData.issueDate}</td>
+                      <td>{ProformaData.date}</td>
                     </tr>
                   </table>
                 </div>

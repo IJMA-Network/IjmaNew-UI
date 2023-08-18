@@ -45,7 +45,7 @@ export default function TermSheetData() {
     <div>
       <div class="card card-cascade narrower">
         <ToastContainer />
-        <Filter />
+        {/* <Filter data={{ TermSheetState, setGoods }}/> */}
         <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
           style={{ marginTop: "-5%" }}
         >
