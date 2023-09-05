@@ -5,16 +5,17 @@ import axios from "axios";
 import { createTerm } from "../../Api/api";
 import StoreContext from "../../ContextApi";
 
-
-
+import { EditorState, convertToRaw, ContentState,convertFromRaw  } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // Import the CSS
 
 export default function TermSheet() {
   const contextData = useContext(StoreContext);
   const [bank, setBank] = useState({ accountName: "Bank1" });
   //   const [NodeName, setNodeName] = useState("ABC Bank");
   //   const [users, setUsers] = useState([]);
-
-
 
   const Client = useRef();
   const Expire = useRef();
@@ -26,13 +27,11 @@ export default function TermSheet() {
   const Spread = useRef();
   // const bank = useRef();
 
-  console.log(contextData, "SignInData");
+  // console.log(contextData, "SignInData");
 
   useEffect(() => {
     setBank(contextData.SignInData);
-  
-  }, [contextData.SignInData])
-
+  }, [contextData.SignInData]);
 
   const FormSubmit = () => {
     var profitRate = {
@@ -56,13 +55,88 @@ export default function TermSheet() {
     createTerm(data);
   };
 
+  const content = {
+    entityMap: {},
+    blocks: [
+      {
+        key: '637gr',
+        text: 'Initialized from content state.',
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+    ],
+  };
+
+ 
+  
+  // const initialHtml = "";
+  const initialHtml = "<p>Hey this <strong>editor</strong> rocks 😀</p>";
+  const [editorState, setEditorState] = useState(() => {
+    const contentBlock = htmlToDraft(initialHtml);
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(
+        contentBlock.contentBlocks
+      );
+      return EditorState.createWithContent(contentState);
+    }
+    return EditorState.createEmpty();
+  });
+
+  let getlocalStorage = JSON.parse(localStorage.getItem("items"))
+  console.log(getlocalStorage);
+  
+  const onEditorStateChange = (newEditorState) => {
+    setEditorState(newEditorState);
+  };
+
+  useEffect(() => {
+    if (editorState) {
+      const htmlContent = draftToHtml(
+        convertToRaw(editorState.getCurrentContent())
+      );
+      // console.log(htmlContent); // Log the converted HTML content
+    }
+  }, [editorState]);
+
+  const handlerDomiText = () => {
+    // console.log();
+    // console.log(editorState);
+    localStorage.setItem("items", JSON.stringify(editorState));
+    // Log the converted HTML content
+  };
   return (
     <div class="container-fluid px-1 py-5 mx-auto">
       <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 ">
-          {/* <h3>Issue Term Sheet</h3>
-                        <p class="blue-text">Just a few Ijma Sheet<br /> so that we can personalize the right experience for you.</p> */}
           <h3 className="text-center">Issue Term Sheet</h3>
+          <div>
+            <form>
+              <div style={{ background: "yellow" }}>
+                <Editor
+                  editorState={editorState}
+                  onEditorStateChange={onEditorStateChange}
+                  wrapperClassName="demo-wrapper"
+                  editorClassName="demo-editor"
+                />
+              </div>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlerDomiText();
+                }}
+              >
+                Submit
+              </button>
+            </form>
+            {/* {console.log(editorState._immutable,"============>")} */}
+            {/* <textarea
+              disabled
+              value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+            /> */}
+          </div>
           <div class="card ">
             {/* <p class="blue-text text-center">Just a few Ijma Sheet<br /> so that we can personalize the right experience for you.</p> */}
             <form

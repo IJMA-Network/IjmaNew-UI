@@ -62,7 +62,8 @@ export default function Murabaha() {
                                     <td>{v.agreementDate}</td>
                                     <td>{v.internalReference}</td>
                                     <td>{v.bankAccountInfo.name}</td>
-                                    <td>Buyer 1</td>
+                                    <td>{v.bankAccountInfo.name}</td>
+                                    {/* <td>Buyer 1</td> */}
                                     <td>{v.term}</td>
                                     <td>{v.costPrice}</td>
                                     {/* <td>{v.borrowerAccountInfo.name}</td>

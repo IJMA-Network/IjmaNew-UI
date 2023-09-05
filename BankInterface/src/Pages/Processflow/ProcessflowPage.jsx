@@ -593,7 +593,7 @@ export default function ProcessflowPage() {
                 </tr>
                 <tr>
                   <td>Client</td>
-                  <td>Buyer 1</td>
+                  <td>{PurchaseOrderData.bankAccountInfo.name}</td>
                 </tr>
                 <tr>
                   <td>Proforma Id</td>

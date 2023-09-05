@@ -151,7 +151,8 @@ export default function PurchaesOrder() {
                                 </tr>
                                 <tr>
                                     <td>Client</td>
-                                    <td>Buyer 1</td>
+                                    <td>{item.bankAccountInfo.name}</td>
+                                    {/* <td>Buyer 1</td> */}
                                 </tr>
                                 <tr>
                                     <td>Proforma Id</td>
