@@ -53,8 +53,8 @@ export default function Murabaha() {
     // let api = "murabaha/offer";
     let api = "murabaha/manual-offer";
     let payload = {
-      "stateId": "PO-MAPP-PR-1",
-      "account": "Bank1"
+      "stateId": item.processId,
+      "account": user.UserAccountNo
     };
     // console.log("In murabaha/manual-offer", payload);
     // console.log("In murabaha/offer", payload);

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 
-//const baseApi = "http://192.168.100.211:10051/api/murabaha/";
-const baseApi = "http://localhost:10050/api/murabaha/";
+const baseApi = "http://192.168.100.8:10050/api/murabaha/";
+//const baseApi = "http://localhost:10050/api/murabaha/";
 
 export const createPorforma = async (payload) => {
   console.log(payload, "payload in createProforma");

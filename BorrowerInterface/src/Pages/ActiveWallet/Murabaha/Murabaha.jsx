@@ -35,7 +35,7 @@ export default function Murabaha() {
   useEffect(() => {
     console.log("Sign in in Murabaha", contextData.SignInData);
     let payload = {
-      account: contextData.SignInData.UserName,
+      account: contextData.SignInData.UserAccountNo,
       consumable: "",
     };
     getData("received-murabaha", payload, setMurabahas);
@@ -50,8 +50,8 @@ export default function Murabaha() {
       notify(); // 3
     }, 2000);
 
-    // let api = "murabaha/offer";
-    let api = "accept";
+    
+    let api = "murabaha/accept";
     let payload = {
       stateId: item.internalReference,
       account: contextData.SignInData.UserAccountNo,
