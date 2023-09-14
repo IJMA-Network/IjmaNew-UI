@@ -113,12 +113,7 @@ export default function Murabaha() {
                   {/* <td>Buyer 1</td>  */}
                   <td>{v.term}</td>
                   <td>{v.costPrice}</td>
-                  {/* <td>{v.borrowerAccountInfo.name}</td>
-                                    <td>{v.sellingprice}</td>
-                                    <td>{v.profitrate}</td>
-                                    <td>Medicines</td>
-                                    <td>Signed</td>
-                                    <td>Signed</td> */}
+                 
                   <td>
                     <span
                       type="button"
@@ -193,7 +188,7 @@ export default function Murabaha() {
                   </tr>
                   <tr>
                     <td>Item</td>
-                    <td>Medicines</td>
+                    <td>{item.goods.asset}</td>
                   </tr>
                   <tr>
                     <td>Bank Signature</td>

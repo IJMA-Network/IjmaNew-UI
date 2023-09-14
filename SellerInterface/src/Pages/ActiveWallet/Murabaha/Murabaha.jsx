@@ -66,12 +66,7 @@ export default function Murabaha() {
                                     {/* <td>Buyer 1</td> */}
                                     <td>{v.term}</td>
                                     <td>{v.costPrice}</td>
-                                    {/* <td>{v.borrowerAccountInfo.name}</td>
-                                    <td>{v.sellingprice}</td>
-                                    <td>{v.profitrate}</td>
-                                    <td>Medicines</td>
-                                    <td>Signed</td>
-                                    <td>Signed</td> */}
+                                  
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                         //  onClick={() => setClinetID(v._id)}
@@ -140,7 +135,7 @@ export default function Murabaha() {
                                         </tr>
                                         <tr>
                                             <td>Item</td>
-                                            <td>Medicines</td>
+                                            <td>to change</td>
                                         </tr>
                                         <tr>
                                             <td>Bank Signature</td>

@@ -97,11 +97,13 @@ export default function Murabaha() {
                   <td>{v.term}</td>
                   <td>{v.costPrice}</td>
 
-                  {/* <td>{v.borrowerAccountInfo.name}</td>
-                                    <td>{v.sellingprice}</td>
-                                    <td>{v.profitrate}</td>
-                                    <td>Medicines</td> */}
-                  <td>unSigned</td>
+                
+
+{v.borrowerSignature ? (
+                    <td>Signed</td>
+                  ) : (
+                    <td>Un Signed</td>
+                  )}
 
                   <td>
                     <span

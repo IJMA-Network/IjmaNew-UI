@@ -69,12 +69,7 @@ export default function VaultMurabaha() {
                                     <td>{v.bankAccountInfo.name}</td>
                                     <td>{v.term}</td>
                                     <td>{v.costPrice}</td>
-                                    {/* <td>{v.borrowerAccountInfo.name}</td>
-                                    <td>{v.sellingprice}</td>
-                                    <td>{v.profitrate}</td>
-                                    <td>Medicines</td>
-                                    <td>Signed</td>
-                                    <td>Signed</td> */}
+                                  
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                         //  onClick={() => setClinetID(v._id)}
@@ -143,7 +138,7 @@ export default function VaultMurabaha() {
                                         </tr>
                                         <tr>
                                             <td>Item</td>
-                                            <td>Medicines</td>
+                                            <td>Medicin</td>
                                         </tr>
                                         <tr>
                                             <td>Bank Signature</td>

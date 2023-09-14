@@ -36,7 +36,7 @@
                 "unit": "voils"
             },
             "internalReference": "CN-1-1",
-            "asset": "Medicines",
+            "asset": "Medication",
             "description": "Covid vaccines",
             "isRedeemable": true,
             "takaful": false,
@@ -93,7 +93,7 @@
                 "unit": "voils"
             },
             "internalReference": "CN-1-1",
-            "asset": "Medicines",
+            "asset": "Medicstions",
             "description": "Covid vaccines",
             "isRedeemable": true,
             "takaful": false,
