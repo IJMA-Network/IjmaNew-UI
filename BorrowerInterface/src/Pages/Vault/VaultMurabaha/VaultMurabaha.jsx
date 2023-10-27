@@ -28,10 +28,10 @@ export default function VaultMurabaha() {
 
 
     return (
-        <div class="card card-cascade narrower">
+        <div className="card card-cascade narrower">
             <Filter />
             <div
-                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
+                className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-4%" }}
             >
 
@@ -59,14 +59,14 @@ export default function VaultMurabaha() {
                 </div> */}
 
             </div>
-            <div class="container mt-3">
+            <div className="container mt-3">
                 <h2 className='text-center'>Murabaha Contracts</h2>
                 {displayedData?.map((v, i) => {
                     return (
 
 
-                        <table class="table table-hover">
-                            <thead class="bg-light">
+                        <table className="table table-hover">
+                            <thead className="bg-light">
                                 <tr>
                                     <th >Date</th>
                                     <th>Refrence No</th>
@@ -102,20 +102,20 @@ export default function VaultMurabaha() {
                 </div>
             </div>
 
-            <div class="modal" id="myModal">
-                <div class="modal-dialog modal-dialog-scrollable-sm">
-                    <div class="modal-content" style={{ width: "115%" }}>
+            <div className="modal" id="myModal">
+                <div className="modal-dialog modal-dialog-scrollable-sm">
+                    <div className="modal-content" style={{ width: "115%" }}>
 
                         {/* <!-- Modal Header --> */}
-                        <div class="modal-header">
-                            <h3 class="modal-title">Murabaha Agreement Details</h3>
-                            <button type="button" class="btn btn-danger close" data-dismiss="modal">X</button>
+                        <div className="modal-header">
+                            <h3 className="modal-title">Murabaha Agreement Details</h3>
+                            <button type="button" className="btn btn-danger close" data-dismiss="modal">X</button>
                         </div>
 
                         {/* <!-- Modal body --> */}
                         {MurbanState.map((v, i) => {
                             return (
-                                <div class="modal-body">
+                                <div className="modal-body">
                                     <table id="customers">
 
                                         <tr>
@@ -124,35 +124,35 @@ export default function VaultMurabaha() {
                                         </tr>
                                         <tr>
                                             <td>Date</td>
-                                            <td>{v.agreementDate}</td>
+                                            <td>{v?.agreementDate}</td>
                                         </tr>
                                         <tr>
                                             <td>Refrence No.</td>
-                                            <td>{v.internalReference}</td>
+                                            <td>{v?.internalReference}</td>
                                         </tr>
                                         <tr>
                                             <td>Bank</td>
-                                            <td>{v.bankAccountInfo.name}</td>
+                                            <td>{v?.bankAccountInfo?.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Applicant</td>
-                                            <td>{v.borrowerAccountInfo.name}</td>
+                                            <td>{v?.borrowerAccountInfo?.name}</td>
                                         </tr>
                                         <tr>
                                             <td>Cost Price</td>
-                                            <td>{v.costPrice}</td>
+                                            <td>{v?.costPrice}</td>
                                         </tr>
                                         <tr>
                                             <td>Tenor</td>
-                                            <td>{v.term}</td>
+                                            <td>{v?.term}</td>
                                         </tr>
                                         <tr>
                                             <td>Selling Price</td>
-                                            <td>{v.sellingprice}</td>
+                                            <td>{v?.sellingprice}</td>
                                         </tr>
                                         <tr>
                                             <td>Profile Rate</td>
-                                            <td>{v.profitrate}</td>
+                                            <td>{v?.profitrate}</td>
                                         </tr>
                                         <tr>
                                             <td>Item</td>
@@ -176,8 +176,8 @@ export default function VaultMurabaha() {
 
 
                         {/* <!-- Modal footer --> */}
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
 
                     </div>
