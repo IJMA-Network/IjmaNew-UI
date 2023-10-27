@@ -7,8 +7,11 @@ import JsonData from './PurchaesOrderState.json';
 import StoreContext from '../../../ContextApi';
 import Filter from "./filter";
 import Modal from 'react-bootstrap/Modal';
+// pagination import here
+import PurchasePagination from "../../Pagination";
 
 
+let itemsPerPage = 1;
 
 export default function PurchaesOrder() {
 
@@ -22,6 +25,11 @@ export default function PurchaesOrder() {
 
     const [filterItem, setfilterItem] = useState(JsonData);
 
+
+     //    new state pagination here
+     const [page, setPage] = useState(1);
+     const totalPages = Math.ceil(filterItem?.length / itemsPerPage);
+ 
     const contextData = useContext(StoreContext);
     console.log(contextData.SignInData, "PurchaesOrder Context Data");
 
@@ -69,6 +77,16 @@ export default function PurchaesOrder() {
         const resp = await postData(api, payload);
     }
 
+    // pagination function here
+    const handlePageChange = (event, value) => {
+        setPage(value);
+      };
+    
+      const displayedData = filterItem.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+      );
+
     return (
         <div class="card card-cascade narrower">
             <Filter data={{ JsonData, setfilterItem }} />
@@ -93,31 +111,30 @@ export default function PurchaesOrder() {
                             <th></th>
                         </tr>
                     </thead>
-                    {filterItem.map((v, i) => {
+                    {displayedData?.map((v, i) => {
                         return (
-
-
                             <tbody>
                                 <tr>
-                                    <td>{v.date}</td>
-                                    <td>{v.referenceId}</td>
-                                    <td>{v.bankAccountInfo.name}</td>
-                                    <td>{v.proforma.buyerAccountInfo.name}</td>
-                                    <td>{v.applicationId}</td>
-                                    <td>{v.proforma.goods.asset}</td>
-                                    <td>{v.amount}</td>
+                                    <td>{v?.date}</td>
+                                    <td>{v?.referenceId}</td>
+                                    <td>{v?.bankAccountInfo.name}</td>
+                                    <td>{v?.proforma.buyerAccountInfo.name}</td>
+                                    <td>{v?.applicationId}</td>
+                                    <td>{v?.proforma.goods.asset}</td>
+                                    <td>{v?.amount}</td>
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                             onClick={() => handleShow(setItem(v))}
                                         >View</span>
                                     </td>
-
                                 </tr>
                             </tbody>
-
                         )
                     })}
                 </table>
+                <div style={{display:'flex',justifyContent:"center",alignItems:'center'}}>
+                    <PurchasePagination count={totalPages} page={page} onChange={handlePageChange} data={filterItem}/>
+                </div>
             </div>
 
 

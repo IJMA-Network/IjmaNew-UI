@@ -2,6 +2,11 @@ import React from 'react'
 import './VaultPromissory.css'
 import PromissoryNote from './VaultPromissoryState.json'
 
+// pagination import here
+
+
+
+
 export default function VaultPromissory() {
 
   PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
