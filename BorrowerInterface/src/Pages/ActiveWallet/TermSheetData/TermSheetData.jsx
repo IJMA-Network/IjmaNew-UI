@@ -6,6 +6,9 @@ import Filter from "./filter";
 import StoreContext from "../../../ContextApi";
 import { Spin } from "antd";
 import Modal from "react-bootstrap/Modal";
+// Pagination Component here
+import PaginationComponent from "../../Pagination";
+
 
 export default function TermSheetData() {
   const [user, setUser] = useState({ accountName: "buyer1" });
@@ -129,6 +132,8 @@ export default function TermSheetData() {
               );
             })}
           </table>
+          <PaginationComponent/>
+          <h1>Some Pagination testing here</h1>
         </div>
       </div>
 
@@ -182,6 +187,8 @@ export default function TermSheetData() {
                   )}
                 </tr>
               </table>
+
+            
             </div>
           ) : (
             <></>
