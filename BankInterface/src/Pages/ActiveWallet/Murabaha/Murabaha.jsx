@@ -89,13 +89,13 @@ export default function Murabaha() {
 
       <Filter data={{ JsonData, setfilterItem }} />
       <div
-        class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+        className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
         style={{ marginTop: "-5%" }}
       ></div>
-      <div class="container mt-3">
+      <div className="container mt-3">
         <h2 className="text-center">Murabaha Contact</h2>
-        <table class="table table-hover">
-          <thead class="bg-light">
+        <table className="table table-hover">
+          <thead className="bg-light">
             <tr>
               <th>Date</th>
               <th>Refrence No</th>
@@ -129,7 +129,7 @@ export default function Murabaha() {
                   <td>
                     <span
                       type="button"
-                      class="btn btn-warning btn-rounded"
+                      className="btn btn-warning btn-rounded"
                       data-toggle="modal"
                       data-target="#myModal"
                       onClick={() => handleShow(setItem(v))}
@@ -220,7 +220,7 @@ export default function Murabaha() {
           {loading ? (
             <button
               type="button"
-              class="btn btn-success close"
+              className="btn btn-success close"
               data-dismiss={show}
               onClick={handleMurabahaOffer}
             >
