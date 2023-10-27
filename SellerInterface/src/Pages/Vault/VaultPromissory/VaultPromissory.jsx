@@ -1,15 +1,57 @@
-import React from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import './VaultPromissory.css'
 import PromissoryNote from './VaultPromissoryState.json'
-
+import { getData } from '../../../Api/Api';
+import StoreContext from '../../../ContextApi';
 // pagination import here
+import VaultPromissoryPagination from "../../Pagination";
 
 
-
+let itemsPerPage = 1;
 
 export default function VaultPromissory() {
+  const [user, setUser] = useState({ accountName: "seller1" });
+  const [filterItem, setfilterItem] = useState(PromissoryNote);
+
+
+  const contextData = useContext(StoreContext);
+  console.log(contextData.SignInData, "Promissory Notes  Context Data");
+
+
+  useEffect(() => {
+    setUser(contextData.SignInData);
+    let payload = {
+        account: user.UserAccountNo,
+        consumable: ""
+    }
+    getData("received-POs", payload, setfilterItem);
+    // console.log("POs in seller PO",pOrders);
+}, [user])
+
+
+   console.log(filterItem)
+   
+
+
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(filterItem?.length / itemsPerPage);
+
 
   PromissoryNote.map((v, i) => { console.log(v, "xzxzx") })
+
+
+  //pagination function here
+  // pagination function here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = filterItem.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+  console.log("displayedData==>",displayedData)
 
 
   return (
@@ -57,17 +99,16 @@ export default function VaultPromissory() {
             </tr>
           </thead>
           {
-            PromissoryNote.map((v, i) => {
+            displayedData?.map((v, i) => {
               return (
-
                 <tbody>
                   <tr>
-                    <td>{v.issueDate}</td>
-                    <td>{v.id}</td>
-                    <td>{v.issuerAccount.name}</td>
-                    <td>{v.payeeAccount.name}</td>
-                    <td>{v.value}</td>
-                    <td>{v.maturity}</td>
+                    <td>{v?.issueDate}</td>
+                    <td>{v?.id}</td>
+                    <td>{v?.issuerAccount?.name}</td>
+                    <td>{v?.payeeAccount?.name}</td>
+                    <td>{v?.value}</td>
+                    <td>{v?.maturity}</td>
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                       //  onClick={() => setClinetID(v._id)}

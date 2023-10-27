@@ -8,8 +8,10 @@ import './Promissory.css';
 import JsonData from './PromissoryNote.json'
 import StoreContext from "../../../ContextApi";
 import Modal from 'react-bootstrap/Modal';
+// pagination import here
+import PromissoryPagination from "../../Pagination";
 
-
+let itemsPerPage = 1;  //pagination page
 
 export default function Promissory() {
   const [user, setUser] = useState({ accountName: "seller1" });
@@ -26,6 +28,12 @@ export default function Promissory() {
   // console.log(contextData.SignInData, "Prom PromissoryNote Data");
 
   const [filterItem, setfilterItem] = useState(JsonData);
+
+  // new pagination state here
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(filterItem?.length / itemsPerPage);
+
+
 
   useEffect(() => {
     setUser(contextData.SignInData);
@@ -85,6 +93,17 @@ export default function Promissory() {
 
   // console.log(filterItem, "res");
 
+  // pagination function here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = filterItem.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+
 
   return (
     <div class="card card-cascade narrower">
@@ -109,17 +128,17 @@ export default function Promissory() {
             </tr>
           </thead>
           {
-            filterItem.map((v, i) => {
+            displayedData?.map((v, i) => {
               return (
 
                 <tbody>
                   <tr>
-                    <td>{v.id}</td>
-                    <td>{v.issueDate}</td>
-                    <td>{v.maturity}</td>
-                    <td>{v.issuerAccount.name}</td>
-                    <td>{v.payeeAccount.name}</td>
-                    <td>{v.value}</td>
+                    <td>{v?.id}</td>
+                    <td>{v?.issueDate}</td>
+                    <td>{v?.maturity}</td>
+                    <td>{v?.issuerAccount?.name}</td>
+                    <td>{v?.payeeAccount?.name}</td>
+                    <td>{v?.value}</td>
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                         //  onClick={() => setClinetID(v._id)}
@@ -130,8 +149,11 @@ export default function Promissory() {
                 </tbody>
               )
             })}
-
         </table>
+        {/* pagination add here */}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <PromissoryPagination count={totalPages} page={page} onChange={handlePageChange} data={filterItem}/>
+        </div>
       </div>
 
       <Modal show={show} onHide={handleClose}>

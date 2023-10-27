@@ -33,7 +33,7 @@
         "value": 600000,
         "issuerParty": "GfHq2tTVk9z4eXgyFXBCbnk6CVv4FuJ4ChWYr9vwQnoMtczJGDVy8wJ6yowa",
         "issuerAccount": {
-            "name": "Bank1",
+            "name": "Bank2",
             "host": "OU=RG-530-568-ND-515-826-523, O=RG-530-568, L=Singapore, ST=Singapore, C=SG",
             "identifier": {
                 "externalId": null,
