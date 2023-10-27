@@ -91,20 +91,18 @@ export default function Goods() {
 
   return (
     <div>
-      <div class="card card-cascade narrower">
+      <div className="card card-cascade narrower">
         <Filter />
         <div
-          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
+          className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
           style={{ marginTop: "-4%" }}
         >
-
-
         </div>
-        <div class="container mt-3">
+        <div className="container mt-3">
           <h2 className='text-center'>Goods</h2>
 
-          <table class="table table-hover">
-            <thead class="bg-light">
+          <table className="table table-hover">
+            <thead className="bg-light">
               <tr>
                 <th>Consignmento.</th>
                 <th>Asset</th>
@@ -150,7 +148,7 @@ export default function Goods() {
           {(item != null) ?
             // return 
             (
-              <div class="modal-body">
+              <div className="modal-body">
                 <table id="customers">
 
                   <tr>
@@ -159,15 +157,15 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Vendor</td>
-                    <td>{item.vendor.name}</td>
+                    <td>{item?.vendor?.name}</td>
                   </tr>
                   <tr>
                     <td>Asset</td>
-                    <td>{item.description}</td>
+                    <td>{item?.description}</td>
                   </tr>
                   <tr>
                     <td>Quantity</td>
-                    <td>{item.quantity.value}</td>
+                    <td>{item?.quantity?.value}</td>
                   </tr>
                   <tr>
                     <td>Reedemable</td>
@@ -177,17 +175,14 @@ export default function Goods() {
                     <td>Insured</td>
                     <td>Yes</td>
                   </tr>
-
-
                 </table>
-
               </div>
             ) : <></>
           }
 
         </Modal.Body>
-        <div class="modal-footer d-flex justify-content-evenly">
-          {loading ? <button type="button" class="btn btn-success" data-dismiss={show} onClick={Redeem} >Redeem</button> : <Spin size="large" />}
+        <div className="modal-footer d-flex justify-content-evenly">
+          {loading ? <button type="button" className="btn btn-success" data-dismiss={show} onClick={Redeem} >Redeem</button> : <Spin size="large" />}
         </div>
       </Modal>
 
