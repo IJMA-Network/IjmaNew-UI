@@ -78,7 +78,7 @@ export default function TermSheetData() {
     page * itemsPerPage
   );
 
-  // console.log("ali Data==>",JsonData)
+  console.log("ali Data==>",filterItem)
   return (
     <div>
       <div className="card card-cascade narrower">

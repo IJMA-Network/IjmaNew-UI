@@ -6,7 +6,11 @@ import Filter from './filter';
 import StoreContext from '../../../ContextApi';
 import Modal from 'react-bootstrap/Modal';
 import { ToastContainer, toast } from 'react-toastify';
-import JsonData from './ProformaState.json'
+import JsonData from './ProformaState.json';
+// Pagination import here
+import PaginationProformas from "../../Pagination";
+
+let itemsPerPage = 1;
 
 
 export default function Proformas() {
@@ -18,8 +22,11 @@ export default function Proformas() {
     const [loading, setloading] = useState(true);
     const [show, setShow] = useState(false);
     // const [proformas, setProformas] = useState(JsonData);
-
     const [filterItem, setfilterItem] = useState(JsonData);
+
+    // new State pagination here
+    const [page, setPage] = useState(1);
+    const totalPages = Math.ceil(filterItem.length / itemsPerPage);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -68,12 +75,23 @@ export default function Proformas() {
         }
         console.log("In request Murabaha", payload);
         const resp = await postData(api, payload);
-
     }
+
+    // pagination function here
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
+    const displayedData = filterItem.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+    );
+
+    console.log("alidata", displayedData);
 
     return (
         <div class="card card-cascade narrower">
-        <Filter data={{ JsonData, setfilterItem }} />
+            <Filter data={{ JsonData, setfilterItem }} />
             <ToastContainer />
             <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-4%" }}
@@ -95,15 +113,15 @@ export default function Proformas() {
                         </tr>
                     </thead>
 
-                    {filterItem.map((v, i) => {
+                    {displayedData?.map((v, i) => {
                         return (
                             <tbody>
                                 <tr>
-                                    <td>{v.date}</td>
-                                    <td>{v.proformaId}</td>
-                                    <td>{v.sellerAccountInfo.name}</td>
-                                    <td>{v.goods.asset}</td>
-                                    <td>{v.goods.quantity.value + " " + v.goods.quantity.unit}</td>
+                                    <td>{v?.date}</td>
+                                    <td>{v?.proformaId}</td>
+                                    <td>{v?.sellerAccountInfo?.name}</td>
+                                    <td>{v?.goods?.asset}</td>
+                                    <td>{v?.goods?.quantity?.value + " " + v?.goods?.quantity?.unit}</td>
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
 
@@ -117,6 +135,10 @@ export default function Proformas() {
                     })}
 
                 </table>
+                {/* pagination testing here */}
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "20px 0px" }}>
+                    <PaginationProformas count={totalPages} page={page} onChange={handlePageChange} data={JsonData} />
+                </div>
             </div>
 
 

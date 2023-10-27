@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Pagination } from "@mui/material";
 
 // const itemsPerPage = 1;
 
 
 const PaginationComponent = ({ count, data, page, onChange }) => {
-    console.log("props===>", data)
+    // console.log("props===>", data)
    
 
     return (
