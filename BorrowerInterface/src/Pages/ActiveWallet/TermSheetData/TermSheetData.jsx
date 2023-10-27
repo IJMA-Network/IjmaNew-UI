@@ -7,7 +7,7 @@ import StoreContext from "../../../ContextApi";
 import { Spin } from "antd";
 import Modal from "react-bootstrap/Modal";
 // Pagination Component here
-import PaginationComponent from "../../Pagination";
+import TermSheetPagination from "../../Pagination";
 // import { Pagination } from "@mui/material";
 
 let itemsPerPage = 1;
@@ -81,10 +81,10 @@ export default function TermSheetData() {
   // console.log("ali Data==>",JsonData)
   return (
     <div>
-      <div class="card card-cascade narrower">
+      <div className="card card-cascade narrower">
         <Filter data={{ JsonData, setfilterItem }} />
         <div
-          class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
+          className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
           style={{ marginTop: "-4%" }}
         >
           {/* <div>
@@ -110,11 +110,11 @@ export default function TermSheetData() {
             </button>
           </div> */}
         </div>
-        <div class="container mt-3">
+        <div className="container mt-3">
           <h2 className="text-center">Term Sheet Details</h2>
 
-          <table class="table table-hover">
-            <thead class="bg-light">
+          <table className="table table-hover">
+            <thead className="bg-light">
               <tr>
                 <th>Bank</th>
                 <th>Term Sheet Ref</th>
@@ -139,7 +139,7 @@ export default function TermSheetData() {
                     <td>
                       <span
                         type="button"
-                        class="btn btn-warning btn-rounded"
+                        className="btn btn-warning btn-rounded"
                         data-toggle="modal"
                         data-target="#myModal"
                         onClick={() => handleShow(setItem(v))}
@@ -152,7 +152,7 @@ export default function TermSheetData() {
               );
             })}
           </table>
-          <PaginationComponent count={totalPages} page={page} onChange={handlePageChange} data={JsonData} />
+          <TermSheetPagination count={totalPages} page={page} onChange={handlePageChange} data={JsonData} />
           {/* <h1>Some Pagination testing here</h1> */}
         </div>
       </div>
@@ -164,7 +164,7 @@ export default function TermSheetData() {
         <Modal.Body>
           {/* <!-- Modal body --> */}
           {item != null ? (
-            <div class="modal-body">
+            <div className="modal-body">
               <table id="customers">
                 <tr>
                   <td>Bank</td>
@@ -216,11 +216,11 @@ export default function TermSheetData() {
 
           {/* <!-- Modal footer --> */}
         </Modal.Body>
-        <div class="modal-footer d-flex justify-content-evenly">
+        <div className="modal-footer d-flex justify-content-evenly">
           {loading ? (
             <button
               type="button"
-              class="btn btn-success"
+              className="btn btn-success"
               onClick={handleReaccept}
             >
               Accept Term Sheet
@@ -228,12 +228,12 @@ export default function TermSheetData() {
           ) : (
             <Spin size="large" />
           )}
-          <div class="custom-control custom-checkbox">
+          <div className="custom-control custom-checkbox">
             <input
               type="checkbox"
               onChange={(e) => setCheck(e.target.checked)}
             />
-            <label class="custom-control-label" for="customControlInline">
+            <label className="custom-control-label" for="customControlInline">
               Terms & Condition
             </label>
           </div>
@@ -900,10 +900,10 @@ export default function TermSheetData() {
             Business Day as
           </p>{" "}
         </Modal.Body>
-        <div class="modal-footer d-flex justify-content-evenly">
+        <div className="modal-footer d-flex justify-content-evenly">
           <button
             type="button"
-            class="btn btn-warning"
+            className="btn btn-warning"
             onClick={PrivacyShowClose}
           >
             Close
