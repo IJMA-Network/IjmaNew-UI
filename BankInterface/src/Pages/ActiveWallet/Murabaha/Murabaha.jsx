@@ -7,12 +7,22 @@ import { Spin } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import StoreContext from ".././../../ContextApi";
 import Filter from "./filter";
+// pagination import here
+import MurabahaPagination from "../../Pagination";
+
+
+let itemsPerPage = 1;
 
 export default function Murabaha() {
   const contextData = useContext(StoreContext);
   const [user, setUser] = useState({ accountName: "", UserAccountNo: "" });
   const [filterItem, setfilterItem] = useState(JsonData);
   const [item, setItem] = useState(null);
+
+
+  // new state pagination here
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(filterItem?.length / itemsPerPage)
 
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
@@ -59,8 +69,19 @@ export default function Murabaha() {
     // console.log("In murabaha/manual-offer", payload);
     // console.log("In murabaha/offer", payload);
     const resp = await postData(api, payload);
-    console.log(resp,'resp');
+    console.log(resp, 'resp');
   };
+
+  // pagination function here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = filterItem.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
 
   return (
     <div class="card card-cascade narrower">
@@ -86,20 +107,20 @@ export default function Murabaha() {
               <th></th>
             </tr>
           </thead>
-          {filterItem.map((v, i) => {
+          {displayedData.map((v, i) => {
             return (
               <tbody>
                 <tr>
-                  <td>{v.agreementDate}</td>
-                  <td>{v.internalReference}</td>
-                  <td>{v.bankAccountInfo.name}</td>
-                  <td>{v.borrowerAccountInfo.name}</td>
-                  <td>{v.term}</td>
-                  <td>{v.costPrice}</td>
+                  <td>{v?.agreementDate}</td>
+                  <td>{v?.internalReference}</td>
+                  <td>{v?.bankAccountInfo.name}</td>
+                  <td>{v?.borrowerAccountInfo.name}</td>
+                  <td>{v?.term}</td>
+                  <td>{v?.costPrice}</td>
 
-                
 
-{v.borrowerSignature ? (
+
+                  {v.borrowerSignature ? (
                     <td>Signed</td>
                   ) : (
                     <td>Un Signed</td>
@@ -121,6 +142,9 @@ export default function Murabaha() {
             );
           })}
         </table>
+        <div style={{display:'flex',justifyContent:"center",alignItems:'center'}}>
+         <MurabahaPagination count={totalPages} page={page} onChange={handlePageChange} data={filterItem}/>
+        </div>
       </div>
 
       <Modal show={show} onHide={handleClose}>

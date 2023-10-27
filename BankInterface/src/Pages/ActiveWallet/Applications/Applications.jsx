@@ -6,7 +6,11 @@ import StoreContext from "../../../ContextApi";
 import JsonData from './Application.json';
 import Modal from 'react-bootstrap/Modal';
 import Filter from '../../filter/filter';
-import './Applications.css'
+import './Applications.css';
+// pagination import here
+import ApplicationsPagination from "../../Pagination";
+
+let itemsPerPage = 1;
 
 
 export default function Applications() {
@@ -19,6 +23,10 @@ export default function Applications() {
 
     const [loading, setloading] = useState(true);
     const [show, setShow] = useState(false);
+
+    // new state pagination here
+    const [page, setPage] = useState(1);
+    const totalPages = Math.ceil(filterItem?.length / itemsPerPage)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -66,6 +74,16 @@ export default function Applications() {
         const resp = await postData(api, payload);
     }
 
+    // pagination function here
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
+    const displayedData = filterItem.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+    );
+
 
     console.log(filterItem, "setfilterItemsetfilterItem");
     return (
@@ -98,19 +116,19 @@ export default function Applications() {
                             <th>View</th>
                         </tr>
                     </thead>
-                
-                        {
-                        filterItem.map((v, i) => {
+
+                    {
+                        displayedData?.map((v, i) => {
                             return (
 
                                 <tbody>
                                     <tr>
-                                        <td>{v.date}</td>
-                                        <td>{v.referenceId}</td>
-                                        <td>{v.applicantAccount.name}</td>
-                                        <td>{v.amount}</td>
-                                        <td>{v.description}</td>
-                                        <td>{v.tenor}</td>
+                                        <td>{v?.date}</td>
+                                        <td>{v?.referenceId}</td>
+                                        <td>{v?.applicantAccount.name}</td>
+                                        <td>{v?.amount}</td>
+                                        <td>{v?.description}</td>
+                                        <td>{v?.tenor}</td>
 
                                         <td>
                                             <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -125,6 +143,10 @@ export default function Applications() {
                     }
 
                 </table>
+                {/* pagination use here */}
+                <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center' }}>
+                    <ApplicationsPagination count={totalPages} page={page} onChange={handlePageChange} data={filterItem} />
+                </div>
             </div>
 
             <Modal show={show} onHide={handleClose}>
