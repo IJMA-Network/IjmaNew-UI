@@ -6,6 +6,11 @@ import Modal from 'react-bootstrap/Modal';
 import Filter from './filter';
 import { ToastContainer, toast } from 'react-toastify';
 import { Spin } from 'antd';
+// pagination import here
+import PromissoryPagination from "../../Pagination";
+
+
+let itemsPerPage = 1;
 
 export default function Promissory() {
   const [bank, setBank] = useState({ accountName: "Bank1" });
@@ -15,6 +20,10 @@ export default function Promissory() {
   const [filterItem, setfilterItem] = useState(JsonData);
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
+
+  // new stae pagination here
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(filterItem?.length / itemsPerPage)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -38,7 +47,7 @@ export default function Promissory() {
     draggable: true,
     progress: undefined,
     theme: "light",
-});
+  });
 
   const handleRedeeem = async () => {
     console.log("Item in  Redeem PNote", item);
@@ -59,6 +68,19 @@ export default function Promissory() {
     const resp = await postData(api, payload);
   }
 
+
+  // pagination function here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = filterItem.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+
+
   return (
     <div class="card card-cascade narrower">
       <ToastContainer />
@@ -66,9 +88,6 @@ export default function Promissory() {
       <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
         style={{ marginTop: "-5%" }}
       >
-
-
-
 
       </div>
       <div class="container mt-3">
@@ -87,17 +106,17 @@ export default function Promissory() {
             </tr>
           </thead>
           {
-            filterItem.map((v, i) => {
+            displayedData?.map((v, i) => {
               return (
 
                 <tbody>
                   <tr>
-                    <td>{v.issueDate}</td>
-                    <td>{v.id}</td>
-                    <td>{v.issuerAccount.name}</td>
-                    <td>{v.payeeAccount.name}</td>
-                    <td>{v.value}</td>
-                    <td>{v.maturity}</td>
+                    <td>{v?.issueDate}</td>
+                    <td>{v?.id}</td>
+                    <td>{v?.issuerAccount?.name}</td>
+                    <td>{v?.payeeAccount?.name}</td>
+                    <td>{v?.value}</td>
+                    <td>{v?.maturity}</td>
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                         onClick={() => handleShow(setItem(v))}
@@ -107,8 +126,10 @@ export default function Promissory() {
                 </tbody>
               )
             })}
-
         </table>
+        <div style={{display:'flex',justifyContent:"center",alignItems:'center'}}>
+          <PromissoryPagination count={totalPages} page={page} onChange={handlePageChange} data={filterItem}/>
+        </div>
       </div>
 
       <Modal show={show} onHide={handleClose}>
