@@ -90,15 +90,15 @@ export default function Proformas() {
     console.log("alidata", displayedData);
 
     return (
-        <div class="card card-cascade narrower">
+        <div className="card card-cascade narrower">
             <Filter data={{ JsonData, setfilterItem }} />
             <ToastContainer />
-            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+            <div className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-4%" }}
             >
             </div>
 
-            <div class="container mt-3">
+            <div className="container mt-3">
                 <h2 className='text-center'>Proformas</h2>
 
                 <table className="table table-hover">
@@ -193,10 +193,10 @@ export default function Proformas() {
                         : <></>
                     }
                 </Modal.Body>
-                <div class="modal-footer d-flex justify-content-evenly">
+                <div className="modal-footer d-flex justify-content-evenly">
                     <input type="number" placeholder="Tenor" onChange={(e) => setValue(e.target.value)} />
                     <input type="text" placeholder="Bank" onChange={(e) => setBank(e.target.value)} />
-                    {loading ? <button type="button" class="btn btn-success close" data-dismiss={show} onClick={handleRequestMurabaha} >Request Murabaha</button> : <Spin size="large" />}
+                    {loading ? <button type="button" className="btn btn-success close" data-dismiss={show} onClick={handleRequestMurabaha} >Request Murabaha</button> : <Spin size="large" />}
 
                 </div>
             </Modal>
