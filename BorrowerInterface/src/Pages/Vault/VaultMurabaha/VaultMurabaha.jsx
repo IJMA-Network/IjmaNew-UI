@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './VaultMurabaha.css'
-import MurbanState from './VaultMurabaha..json'
-import Filter from '../../filter/filter'
+import MurbanState from './VaultMurabaha..json';
+import Filter from '../../filter/filter';
+import VaultMurabahaPagination from "../../Pagination";
+
+
+let itemsPerPage = 1; //pagination per page here
 
 export default function VaultMurabaha() {
-
-
     MurbanState.map((v, i) => { console.log(v, "MurbanState") })
+
+    // new state pagination here
+    const [page, setPage] = useState(1);
+    const totalPages = Math.ceil(MurbanState?.length / itemsPerPage);
+
+
+    // paginatio function here
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
+    const displayedData = MurbanState.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+    );
 
 
 
@@ -44,7 +61,7 @@ export default function VaultMurabaha() {
             </div>
             <div class="container mt-3">
                 <h2 className='text-center'>Murabaha Contracts</h2>
-                {MurbanState.map((v, i) => {
+                {displayedData?.map((v, i) => {
                     return (
 
 
@@ -62,26 +79,27 @@ export default function VaultMurabaha() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{v.agreementDate}</td>
-                                    <td>{v.internalReference}</td>
-                                    <td>{v.bankAccountInfo.name}</td>
+                                    <td>{v?.agreementDate}</td>
+                                    <td>{v?.internalReference}</td>
+                                    <td>{v?.bankAccountInfo?.name}</td>
                                     {/* <td>Buyer 1</td> */}
-                                    <td>{v.bankAccountInfo.name}</td>
-                                    <td>{v.term}</td>
-                                    <td>{v.costPrice}</td>
-                                  
+                                    <td>{v?.bankAccountInfo?.name}</td>
+                                    <td>{v?.term}</td>
+                                    <td>{v?.costPrice}</td>
+
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                         //  onClick={() => setClinetID(v._id)}
                                         >View</span>
                                     </td>
-
                                 </tr>
                             </tbody>
-
                         </table>
                     )
                 })}
+                <div style={{ display: "flex", justifyContent: 'center', alignItems: "center" }}>
+                    <VaultMurabahaPagination count={totalPages} page={page} onChange={handlePageChange} data={MurbanState} />
+                </div>
             </div>
 
             <div class="modal" id="myModal">
