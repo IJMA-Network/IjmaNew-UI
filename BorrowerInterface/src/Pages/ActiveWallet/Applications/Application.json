@@ -116,7 +116,7 @@
         "advisingBank": "O=SellerBank, L=Lahore, C=PK",
         "description": "Samsung Television 34 inches",
         "consumable": true,
-        "tenor": 25,
+        "tenor": 26,
         "amount": 300000,
         "proforma": {
             "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",

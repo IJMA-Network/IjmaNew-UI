@@ -4,13 +4,17 @@ import ApplictionState from './Application.json';
 import { getData, postData } from '../../../Api';
 import Filter from '../../filter/filter';
 import StoreContext from '../../../ContextApi';
-import { Button, message, Space, Spin } from 'antd';
-import Modal from 'react-bootstrap/Modal';
+// import pagination here
+import ApplicationsPagination from "../../Pagination";
 
+
+// import { Button, message, Space, Spin } from 'antd';
+// import Modal from 'react-bootstrap/Modal';
+
+
+let itemsPerPage = 1;
 
 export default function Applications() {
-
-
     const [applications, setApplications] = useState(ApplictionState);
     const contextData = useContext(StoreContext);
     console.log(contextData.SignInData, "Application Context Data");
@@ -18,6 +22,11 @@ export default function Applications() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    //   new state pagination here
+    const [page, setPage] = useState(1);
+    const totalPages = Math.ceil(applications?.length / itemsPerPage);
+  
+
 
     // const Redeem = () => {
     //     setloading(false)
@@ -26,7 +35,18 @@ export default function Applications() {
     //     }, 2000);
     //   }
 
-    applications.map((v, i) => { console.log(v, "ApplictionState") })
+    // pagination function here
+    const handlePageChange = (event, value) => {
+        setPage(value);
+      };
+    
+      const displayedData = applications.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+      );
+    
+
+      displayedData?.map((v, i) => { console.log(v, "ApplictionState") })
 
     return (
         // <div>
@@ -53,30 +73,31 @@ export default function Applications() {
                             <th>View</th>
                         </tr>
                     </thead>
-                    {ApplictionState.map((v, i) => {
+                    {displayedData.map((v, i) => {
                         return (
 
                             <tbody>
                                 <tr>
-                                    <td>{v.date}</td>
-                                    <td>{v.referenceId}</td>
-                                    <td>{v.BankAccount.name}</td>
-                                    <td>{v.amount}</td>
-                                    <td>{v.description}</td>
-                                    <td>{v.tenor}</td>
+                                    <td>{v?.date}</td>
+                                    <td>{v?.referenceId}</td>
+                                    <td>{v?.BankAccount?.name}</td>
+                                    <td>{v?.amount}</td>
+                                    <td>{v?.description}</td>
+                                    <td>{v?.tenor}</td>
 
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                         //  onClick={() => setClinetID(v._id)}
                                         >View</span>
                                     </td>
-
                                 </tr>
                             </tbody>
                         )
                     })}
-
                 </table>
+                <div style={{display:"flex",justifyContent:"center",alignItems:'center'}}>
+                    <ApplicationsPagination count={totalPages} page={page} onChange={handlePageChange} data={ApplictionState}/>
+                </div>
             </div>
 
             <div class="modal" id="myModal">
