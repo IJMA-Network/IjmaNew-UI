@@ -106,17 +106,17 @@ export default function Promissory() {
 
 
   return (
-    <div class="card card-cascade narrower">
+    <div className="card card-cascade narrower">
       <Filter data={{ JsonData, setfilterItem }} />
       <ToastContainer />
       <div
-        class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+        className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
       </div>
-      <div class="container mt-3">
+      <div className="container mt-3">
         <h2 className='text-center'>Promissory Notes</h2>
 
-        <table class="table table-hover">
-          <thead class="bg-light">
+        <table className="table table-hover">
+          <thead className="bg-light">
             <tr>
               <th>Id</th>
               <th>Issue Date</th>
@@ -214,8 +214,8 @@ export default function Promissory() {
 
 
         </Modal.Body>
-        <div class="modal-footer">
-          {loading ? <button type="button" class="btn btn-success" data-dismiss={show} onClick={Encash}>Encash</button> : <Spin size="large" />}
+        <div className="modal-footer">
+          {loading ? <button type="button" className="btn btn-success" data-dismiss={show} onClick={Encash}>Encash</button> : <Spin size="large" />}
         </div>
       </Modal>
     </div>
