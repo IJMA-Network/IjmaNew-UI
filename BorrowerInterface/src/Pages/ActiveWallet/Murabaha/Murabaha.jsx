@@ -85,10 +85,10 @@ export default function Murabaha() {
   console.log("Ali====>dat", murabahas)
 
   return (
-    <div class="card card-cascade narrower">
+    <div className="card card-cascade narrower">
       <Filter />
       <div
-        class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+        className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
         style={{ marginTop: "-4%" }}
       >
         {/* <div>
@@ -111,10 +111,10 @@ export default function Murabaha() {
                     </button>
                 </div> */}
       </div>
-      <div class="container mt-3">
+      <div className="container mt-3">
         <h2 className="text-center">Murabaha Contact</h2>
-        <table class="table table-hover">
-          <thead class="bg-light">
+        <table className="table table-hover">
+          <thead className="bg-light">
             <tr>
               <th>Date</th>
               <th>Refrence No</th>
@@ -140,7 +140,7 @@ export default function Murabaha() {
                   <td>
                     <span
                       type="button"
-                      class="btn btn-warning btn-rounded"
+                      className="btn btn-warning btn-rounded"
                       data-toggle="modal"
                       data-target="#myModal"
                       onClick={() => setItem(v)}
@@ -158,15 +158,15 @@ export default function Murabaha() {
         </div>
       </div>
 
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable-sm">
-          <div class="modal-content" style={{ width: "115%" }}>
+      <div className="modal" id="myModal">
+        <div className="modal-dialog modal-dialog-scrollable-sm">
+          <div className="modal-content" style={{ width: "115%" }}>
             {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h3 class="modal-title">Murabaha Agreement Details</h3>
+            <div className="modal-header">
+              <h3 className="modal-title">Murabaha Agreement Details</h3>
               <button
                 type="button"
-                class="btn btn-danger close"
+                className="btn btn-danger close"
                 data-dismiss="modal"
               >
                 X
@@ -174,7 +174,7 @@ export default function Murabaha() {
             </div>
 
             {item != null ? (
-              <div class="modal-body">
+              <div className="modal-body">
                 <table id="customers">
                   <tr>
                     <th>Company</th>
@@ -234,11 +234,11 @@ export default function Murabaha() {
               <></>
             )}
             {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
+            <div className="modal-footer">
               {loading ? (
                 <button
                   type="button"
-                  class="btn btn-success close"
+                  className="btn btn-success close"
                   data-dismiss={show}
                   onClick={handleMurabahaOffer}
                 >
