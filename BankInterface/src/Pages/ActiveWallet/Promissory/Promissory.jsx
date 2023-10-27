@@ -82,19 +82,19 @@ export default function Promissory() {
 
 
   return (
-    <div class="card card-cascade narrower">
+    <div className="card card-cascade narrower">
       <ToastContainer />
       <Filter data={{ JsonData, setfilterItem }} />
-      <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+      <div className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
         style={{ marginTop: "-5%" }}
       >
 
       </div>
-      <div class="container mt-3">
+      <div className="container mt-3">
         <h2 className='text-center'>Promissory Notes</h2>
 
-        <table class="table table-hover">
-          <thead class="bg-light">
+        <table className="table table-hover">
+          <thead className="bg-light">
             <tr>
               <th>Issue Date</th>
               <th>Freference No..</th>
@@ -141,7 +141,7 @@ export default function Promissory() {
           {/* <!-- Modal body --> */}
 
           {(item != null) ?
-            <div class="modal-body">
+            <div className="modal-body">
               <table id="customers">
 
                 <tr>
@@ -150,23 +150,23 @@ export default function Promissory() {
                 </tr>
                 <tr>
                   <td>Issue Date.</td>
-                  <td>{item.issueDate}</td>
+                  <td>{item?.issueDate}</td>
                 </tr>
                 <tr>
                   <td>Refrence No.</td>
-                  <td>{item.id}</td>
+                  <td>{item?.id}</td>
                 </tr>
                 <tr>
                   <td>Issuer</td>
-                  <td>{item.issuerAccount.name}</td>
+                  <td>{item?.issuerAccount.name}</td>
                 </tr>
                 <tr>
                   <td>Payee</td>
-                  <td>{item.payeeAccount.name}</td>
+                  <td>{item?.payeeAccount.name}</td>
                 </tr>
                 <tr>
                   <td>Amount</td>
-                  <td>{item.value}</td>
+                  <td>{item?.value}</td>
                 </tr>
                 <tr>
                   <td>Redeemad</td>
@@ -174,7 +174,7 @@ export default function Promissory() {
                 </tr>
                 <tr>
                   <td>Expiry</td>
-                  <td>{item.maturity}</td>
+                  <td>{item?.maturity}</td>
                 </tr>
 
               </table>
@@ -186,8 +186,8 @@ export default function Promissory() {
           {/* <!-- Modal footer --> */}
         </Modal.Body>
         {/* <div class="modal-footer d-flex justify-content-evenly"> */}
-        <div class="modal-footer">
-          {loading ? <button type="button" class="btn btn-success close" data-dismiss={show} onClick={handleRedeeem} >Redeeem</button> : <Spin size="large" />}
+        <div className="modal-footer">
+          {loading ? <button type="button" className="btn btn-success close" data-dismiss={show} onClick={handleRedeeem} >Redeeem</button> : <Spin size="large" />}
         </div>
       </Modal>
     </div>
