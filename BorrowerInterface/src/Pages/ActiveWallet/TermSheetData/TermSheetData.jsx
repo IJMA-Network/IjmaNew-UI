@@ -8,7 +8,9 @@ import { Spin } from "antd";
 import Modal from "react-bootstrap/Modal";
 // Pagination Component here
 import PaginationComponent from "../../Pagination";
+// import { Pagination } from "@mui/material";
 
+let itemsPerPage = 1;
 
 export default function TermSheetData() {
   const [user, setUser] = useState({ accountName: "buyer1" });
@@ -22,6 +24,10 @@ export default function TermSheetData() {
   const handleShow = () => setShow(true);
   const [filterItem, setfilterItem] = useState(JsonData);
   const [Check, setCheck] = useState(false);
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(filterItem.length / itemsPerPage);
+
+
 
   console.log(contextData.SignInData, "Term Sheet Context Data");
 
@@ -42,6 +48,7 @@ export default function TermSheetData() {
       handleClose(); // 2
     }, 2000);
 
+
     let payload = {
       stateId: item.termSheetReference,
       account: user.UserAccountNo,
@@ -59,6 +66,19 @@ export default function TermSheetData() {
       PrivacyShowOpen();
     }
   }, [Check]);
+
+
+  // paginatio function here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = filterItem.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+  // console.log("ali Data==>",JsonData)
   return (
     <div>
       <div class="card card-cascade narrower">
@@ -105,16 +125,16 @@ export default function TermSheetData() {
                 <th></th>
               </tr>
             </thead>
-            {filterItem.map((v, i) => {
+            {displayedData?.map((v, i) => {
               return (
                 <tbody>
                   <tr>
-                    <td>{v.bankAccountInfo.name}</td>
-                    <td>{v.termSheetReference}</td>
-                    <td>{v.limit}</td>
-                    <td>{v.tenor}</td>
-                    <td>{v.referenceRate}</td>
-                    <td>{v.expiryDate}</td>
+                    <td>{v?.bankAccountInfo.name}</td>
+                    <td>{v?.termSheetReference}</td>
+                    <td>{v?.limit}</td>
+                    <td>{v?.tenor}</td>
+                    <td>{v?.referenceRate}</td>
+                    <td>{v?.expiryDate}</td>
 
                     <td>
                       <span
@@ -132,8 +152,8 @@ export default function TermSheetData() {
               );
             })}
           </table>
-          <PaginationComponent/>
-          <h1>Some Pagination testing here</h1>
+          <PaginationComponent count={totalPages} page={page} onChange={handlePageChange} data={JsonData} />
+          {/* <h1>Some Pagination testing here</h1> */}
         </div>
       </div>
 
@@ -188,7 +208,7 @@ export default function TermSheetData() {
                 </tr>
               </table>
 
-            
+
             </div>
           ) : (
             <></>
@@ -214,7 +234,7 @@ export default function TermSheetData() {
               onChange={(e) => setCheck(e.target.checked)}
             />
             <label class="custom-control-label" for="customControlInline">
-              Terms & Condition 
+              Terms & Condition
             </label>
           </div>
         </div>

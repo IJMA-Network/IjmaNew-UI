@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { Pagination } from "@mui/material";
 
-const Pagination = () => {
-    const [data, setData] = useState([])
+const itemsPerPage = 1;
 
 
-    useEffect(() => {
-        fetch("/TermSheetState.json").then((res) => {
-            console.log("ali response====>",res?.json())
-        }).catch((err) => {
-            console.log("Some Error here...", err)
-        })
-    }, [])
+const PaginationComponent = ({ count, data, page, onChange }) => {
+    console.log("props===>", data)
+   
+
     return (
-        <div>
-            <h1>Pagination here</h1>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "30px 0px" }}>
+            <Pagination count={count} page={page} onChange={onChange} color="primary" />
         </div>
     )
 }
 
-export default Pagination
+export default PaginationComponent
