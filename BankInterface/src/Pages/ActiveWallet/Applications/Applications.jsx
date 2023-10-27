@@ -88,7 +88,7 @@ export default function Applications() {
     console.log(filterItem, "setfilterItemsetfilterItem");
     return (
         // <div>
-        <div class="card card-cascade narrower">
+        <div className="card card-cascade narrower">
             <ToastContainer />
 
             <Filter data={{ JsonData, setfilterItem }} />
@@ -96,16 +96,16 @@ export default function Applications() {
 
 
 
-            <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+            <div className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-5%" }}
             >
 
             </div>
-            <div class="container mt-3">
+            <div className="container mt-3">
                 <h2 className='text-center'>Applications</h2>
 
-                <table class="table table-hover">
-                    <thead class="bg-light">
+                <table className="table table-hover">
+                    <thead className="bg-light">
                         <tr>
                             <th>Date</th>
                             <th>Application No</th>
@@ -158,7 +158,7 @@ export default function Applications() {
                     {/* <!-- Modal body --> */}
                     {(item != null) ?
 
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <table id="customers">
 
                                 <tr>
@@ -217,8 +217,8 @@ export default function Applications() {
 
                 </Modal.Body>
                 {/* <div class="modal-footer d-flex justify-content-evenly"> */}
-                <div class="modal-footer">
-                    {loading ? <button type="button" class="btn btn-success close" data-dismiss={show} onClick={handleIssuePurchaseOrder} >Issue Purchase Order</button> : <Spin size="large" />}
+                <div className="modal-footer">
+                    {loading ? <button type="button" className="btn btn-success close" data-dismiss={show} onClick={handleIssuePurchaseOrder} >Issue Purchase Order</button> : <Spin size="large" />}
                 </div>
             </Modal>
 
