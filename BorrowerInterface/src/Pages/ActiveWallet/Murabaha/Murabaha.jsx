@@ -7,12 +7,22 @@ import Filter from "../../filter/filter";
 import Item from "antd/lib/list/Item";
 import { Spin } from "antd";
 import "./Murabaha.css";
+import MurabahaPagination from "../../Pagination";
+
+let itemsPerPage = 1;  //pagination per page here
+
 
 export default function Murabaha() {
   const [murabahas, setMurabahas] = useState(MurbaState);
   const contextData = useContext(StoreContext);
   const [item, setItem] = useState(null);
   console.log(contextData.SignInData, "murabaha Context Data");
+
+  //  pagination new state here
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(murabahas?.length / itemsPerPage);
+
+
 
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
@@ -50,7 +60,7 @@ export default function Murabaha() {
       notify(); // 3
     }, 2000);
 
-    
+
     let api = "murabaha/accept";
     let payload = {
       stateId: item.internalReference,
@@ -60,6 +70,19 @@ export default function Murabaha() {
     const resp = await postData(api, payload);
     console.log(resp, "resp");
   };
+
+
+  // paginatio function here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = murabahas.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+  console.log("Ali====>dat", murabahas)
 
   return (
     <div class="card card-cascade narrower">
@@ -102,18 +125,18 @@ export default function Murabaha() {
               <th></th>
             </tr>
           </thead>
-          {murabahas.map((v, i) => {
+          {displayedData?.map((v, i) => {
             return (
               <tbody>
                 <tr>
-                  <td>{v.agreementDate}</td>
-                  <td>{v.internalReference}</td>
-                  <td>{v.bankAccountInfo.name}</td>
-                  <td>{v.bankAccountInfo.name}</td>
+                  <td>{v?.agreementDate}</td>
+                  <td>{v?.internalReference}</td>
+                  <td>{v?.bankAccountInfo?.name}</td>
+                  <td>{v?.bankAccountInfo?.name}</td>
                   {/* <td>Buyer 1</td>  */}
-                  <td>{v.term}</td>
-                  <td>{v.costPrice}</td>
-                 
+                  <td>{v?.term}</td>
+                  <td>{v?.costPrice}</td>
+
                   <td>
                     <span
                       type="button"
@@ -130,6 +153,9 @@ export default function Murabaha() {
             );
           })}
         </table>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <MurabahaPagination count={totalPages} page={page} onChange={handlePageChange} data={MurbaState}/>
+        </div>
       </div>
 
       <div class="modal" id="myModal">
