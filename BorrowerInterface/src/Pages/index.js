@@ -13,5 +13,6 @@ export { default as PurchesOrder } from "./Vault/PurchesOrder/PurchaseOrder";
 export { default as  Proformas} from "./ActiveWallet/Proformas/Proformas";
 export { default as  SignIn} from "./SignIn/SignIn";
 export { default as  Filter} from "./filter/filter";
+export { default as  Offer} from "./ActiveWallet/Offer/Offer";
 // export { default as  } from ""
 // export { default as  } from ""

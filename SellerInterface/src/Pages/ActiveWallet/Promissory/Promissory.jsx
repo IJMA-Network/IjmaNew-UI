@@ -11,7 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 // pagination import here
 import PromissoryPagination from "../../Pagination";
 
-let itemsPerPage = 1;  //pagination page
+let itemsPerPage = 5;  //pagination page
 
 export default function Promissory() {
   const [user, setUser] = useState({ accountName: "seller1" });
@@ -57,7 +57,6 @@ export default function Promissory() {
   });
 
   const Encash = async () => {
-
     setloading(false)
     setTimeout(() => {
       setloading(true)//1
@@ -75,24 +74,6 @@ export default function Promissory() {
     const resp = await postData(api, payload);
   }
 
-  //   var data = {
-  //     "account": "Seller1",
-  //  "consumable": ""
-  //   };
-
-  //   var apiURLData = "received-PNs";
-
-  // useEffect(()=>{
-
-  //   getData(apiURLData, data).then((res) => {  
-  //     setpromissoryData(res.data)
-  //   });
-
-  // },[])
-
-
-  // console.log(filterItem, "res");
-
   // pagination function here
   const handlePageChange = (event, value) => {
     setPage(value);
@@ -102,8 +83,6 @@ export default function Promissory() {
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
-
-
 
   return (
     <div className="card card-cascade narrower">
@@ -207,11 +186,6 @@ export default function Promissory() {
             </div>
             : <></>
           }
-
-
-
-
-
 
         </Modal.Body>
         <div className="modal-footer">

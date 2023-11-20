@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 // pagination import here
 import GoodsPagination from "../../Pagination";
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function Goods() {
   const [user, setUser] = useState({ accountName: "seller1" });
@@ -67,16 +67,6 @@ export default function Goods() {
       notify() // 3
     }, 2000);
   }
-  // const notify = () => toast.success('🦄 Wow so easy!', {
-  //   position: "top-right",
-  //   autoClose: 5000,
-  //   hideProgressBar: false,
-  //   closeOnClick: true,
-  //   pauseOnHover: true,
-  //   draggable: true,
-  //   progress: undefined,
-  //   theme: "light",
-  // })
 
   //  pagination function here
   const handlePageChange = (event, value) => {
@@ -185,8 +175,6 @@ export default function Goods() {
           {loading ? <button type="button" className="btn btn-success" data-dismiss={show} onClick={Redeem} >Redeem</button> : <Spin size="large" />}
         </div>
       </Modal>
-
-
     </div>
   )
 }

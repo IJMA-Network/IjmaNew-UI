@@ -4,7 +4,7 @@ import { Pagination } from "@mui/material";
 // const itemsPerPage = 1;
 
 
-const PaginationComponent = ({ count, data, page, onChange }) => {
+const PaginationComponent = ({ count, page, onChange }) => {
     // console.log("props===>", data)
 
 

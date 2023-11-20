@@ -12,7 +12,7 @@ import ApplicationsPagination from "../../Pagination";
 // import Modal from 'react-bootstrap/Modal';
 
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function Applications() {
     const [applications, setApplications] = useState(ApplictionState);

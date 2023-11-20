@@ -10,7 +10,7 @@ import { Spin } from 'antd';
 import PromissoryPagination from "../../Pagination";
 
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function Promissory() {
   const [bank, setBank] = useState({ accountName: "Bank1" });

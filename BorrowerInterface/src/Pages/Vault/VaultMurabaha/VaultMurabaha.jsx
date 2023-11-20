@@ -5,7 +5,7 @@ import Filter from '../../filter/filter';
 import VaultMurabahaPagination from "../../Pagination";
 
 
-let itemsPerPage = 1; //pagination per page here
+let itemsPerPage = 5; //pagination per page here
 
 export default function VaultMurabaha() {
     MurbanState.map((v, i) => { console.log(v, "MurbanState") })

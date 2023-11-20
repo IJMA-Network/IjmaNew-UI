@@ -13,10 +13,13 @@ import {
   WalletDashboard, Applications, TermSheetData,
   Goods, Murabaha, Promissory, TermSheet,
   VaultMurabaha, VaultPromissory, PurchesOrder,
-  Proformas
+  Proformas,
+  Offer
 } from '../Pages/index';
 import { useNavigate } from "react-router-dom";
 import StoreContext from '../ContextApi';
+import { BiSolidOffer } from "react-icons/bi";
+
 
 
 
@@ -59,7 +62,6 @@ export default function Dashboard() {
 
 
     getItem('Active Wallet', 'sub2', <TeamOutlined />, [
-
       {
         key: '6b',
         icon: <UserOutlined onClick={() => setTrigger('6b')} />,
@@ -75,15 +77,15 @@ export default function Dashboard() {
         icon: <UserAddOutlined onClick={() => setTrigger('4b')} />,
         label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Goods' : ''}</span></div>,
       },
-      // {
-      //   key: '3b',
-      //   icon: <SnippetsOutlined onClick={() => setTrigger('3b')} />,
-      //   label: <div onClick={() => setTrigger('3b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory Notes' : ''}</span></div>,
-      // },
       {
         key: '2b',
         icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
         label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+      },
+      {
+        key: '7b',
+        icon: <BiSolidOffer onClick={() => setTrigger('7b')} />,
+        label: <div onClick={() => setTrigger('7b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Offer' : ''}</span></div>,
       },
 
       // {
@@ -177,10 +179,7 @@ export default function Dashboard() {
           }}
 
         >
-
           {
-
-
             trigger === 1 ? (
               <>
                 <TermSheet />
@@ -191,7 +190,6 @@ export default function Dashboard() {
                   <WalletDashboard />
                 </>
               )
-
                 : trigger === '2a' ? (
                   <>
                     <VaultMurabaha />
@@ -235,8 +233,14 @@ export default function Dashboard() {
                         <>
                           <TermSheetData />
                         </>
-                      ) :
-                        <></>
+                      )
+                        : trigger === '7b' ? (
+                          <>
+                            <Offer />
+                          </>
+                        )
+                          :
+                          <></>
 
           }
         </Content>

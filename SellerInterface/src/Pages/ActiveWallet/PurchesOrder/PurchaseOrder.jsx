@@ -11,7 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 import PurchasePagination from "../../Pagination";
 
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function PurchaesOrder() {
 
@@ -94,7 +94,6 @@ export default function PurchaesOrder() {
             <div
                 class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
             >
-
             </div>
             <h2 className='text-center'>Purchase Orders Detail</h2>
             <div class="container mt-3">
@@ -136,7 +135,6 @@ export default function PurchaesOrder() {
                     <PurchasePagination count={totalPages} page={page} onChange={handlePageChange} data={filterItem}/>
                 </div>
             </div>
-
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -197,9 +195,6 @@ export default function PurchaesOrder() {
                         </div>
                         : <></>
                     }
-
-
-
                 </Modal.Body>
                 <div class="modal-footer">
                     {loading ? <button type="button" class="btn btn-success close" data-dismiss={show} onClick={handleDeliver} >Deliver</button> : <Spin size="large" />}

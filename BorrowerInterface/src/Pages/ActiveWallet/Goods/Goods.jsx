@@ -13,7 +13,7 @@ import GoodsPagination from "../../Pagination";
 
 
 // pagination per page
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function Goods() {
   const [user, setUser] = useState({ accountName: "seller1" });

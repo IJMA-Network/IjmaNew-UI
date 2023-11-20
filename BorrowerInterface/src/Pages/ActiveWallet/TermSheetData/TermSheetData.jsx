@@ -10,7 +10,7 @@ import Modal from "react-bootstrap/Modal";
 import TermSheetPagination from "../../Pagination";
 // import { Pagination } from "@mui/material";
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function TermSheetData() {
   const [user, setUser] = useState({ accountName: "buyer1" });

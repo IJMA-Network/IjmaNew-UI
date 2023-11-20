@@ -11,7 +11,7 @@ import Filter from "./filter";
 import MurabahaPagination from "../../Pagination";
 
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function Murabaha() {
   const contextData = useContext(StoreContext);

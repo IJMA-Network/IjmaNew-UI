@@ -12,7 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import GoodsPagination from "../../Pagination";
 
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 export default function Goods() {
   const [user, setUser] = useState({ accountName: "seller1" });
@@ -26,7 +26,7 @@ export default function Goods() {
 
   //  new state pagination here
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(goods?.length / itemsPerPage)
+  const totalPages = Math.ceil(goods?.length / itemsPerPage);
 
   // console.log(contextData.SignInData, "Good Context Data");
 
@@ -51,7 +51,6 @@ export default function Goods() {
       consumable: ""
     }
     getData("owned-goods", payload, setGoods);
-    // console.log("goods in seller",goods);
   }, [user])
 
   const Redeem = () => {
@@ -63,16 +62,6 @@ export default function Goods() {
       notify() // 3
     }, 2000);
   }
-  // const notify = () => toast.success('🦄 Wow so easy!', {
-  //   position: "top-right",
-  //   autoClose: 5000,
-  //   hideProgressBar: false,
-  //   closeOnClick: true,
-  //   pauseOnHover: true,
-  //   draggable: true,
-  //   progress: undefined,
-  //   theme: "light",
-  // })
 
   // pagination function here
   const handlePageChange = (event, value) => {
@@ -93,8 +82,6 @@ export default function Goods() {
           className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 d-flex justify-content-between align-items-center"
           style={{ marginTop: "-4%" }}
         >
-
-
         </div>
         <div className="container mt-3">
           <h2 className='text-center'>Goods</h2>
@@ -184,8 +171,6 @@ export default function Goods() {
           {loading ? <button type="button" className="btn btn-success" data-dismiss={show} onClick={Redeem} >Redeem</button> : <Spin size="large" />}
         </div>
       </Modal>
-
-
     </div>
   )
 }

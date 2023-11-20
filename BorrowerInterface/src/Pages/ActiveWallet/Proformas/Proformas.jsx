@@ -10,7 +10,7 @@ import JsonData from './ProformaState.json';
 // Pagination import here
 import PaginationProformas from "../../Pagination";
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 
 export default function Proformas() {

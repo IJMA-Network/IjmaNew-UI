@@ -10,7 +10,7 @@ import './Applications.css';
 // pagination import here
 import ApplicationsPagination from "../../Pagination";
 
-let itemsPerPage = 1;
+let itemsPerPage = 5;
 
 
 export default function Applications() {
@@ -92,9 +92,6 @@ export default function Applications() {
             <ToastContainer />
 
             <Filter data={{ JsonData, setfilterItem }} />
-
-
-
 
             <div className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-5%" }}
