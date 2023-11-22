@@ -12,7 +12,7 @@ import ijma from '../Images/Ijma.png'
 import {
   WalletDashboard, Applications, TermSheetData,
   Goods, Murabaha, Promissory, TermSheet,Processflow,
-  VaultMurabaha, VaultPromissory, PurchesOrder, UserForm,OfferComponent
+  VaultMurabaha, VaultPromissory, PurchesOrder, UserForm,OfferComponent,ContractSheet
 } from '../Pages/index'
 import { useNavigate } from "react-router-dom";
 
@@ -51,7 +51,7 @@ export default function Dashboard() {
     {
       key: '1a',
       icon: <PieChartOutlined onClick={() => setTrigger('1a')} />,
-      label: <div onClick={() => setTrigger('1a')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Contract' : ''}</span></div>,
+      label: <div onClick={() => setTrigger('1a')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Contract TermSheet' : ''}</span></div>,
     },
     {
       key: '2',
@@ -190,7 +190,7 @@ export default function Dashboard() {
               )
                 : trigger === '1a' ? (
                   <>
-                    <TermSheetData />
+                    <ContractSheet />
                   </>
                 )
                   : trigger === '2a' ? (

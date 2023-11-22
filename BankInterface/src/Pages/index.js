@@ -14,3 +14,4 @@ export { default as OfferComponent } from "./ActiveWallet/Offer/OfferComponent";
 export { default as UserForm } from "./UserForm/UserForm";
 export { default as Filter } from "./filter/filter";
 export { default as  Processflow} from "./Processflow/ProcessflowPage";
+export { default as  ContractSheet} from "./ContractSheet/ContractSheet";
