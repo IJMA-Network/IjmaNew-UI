@@ -14,7 +14,7 @@ import {
   Goods, Murabaha, Promissory, TermSheet,
   VaultMurabaha, VaultPromissory, PurchesOrder,
   Proformas,
-  Offer
+  OfferComponent
 } from '../Pages/index';
 import { useNavigate } from "react-router-dom";
 import StoreContext from '../ContextApi';
@@ -23,8 +23,7 @@ import { BiSolidOffer } from "react-icons/bi";
 
 
 
-export default function Dashboard() {
-
+const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const { Header, Content, Footer, Sider } = Layout;
   const [trigger, setTrigger] = useState(0);
@@ -32,6 +31,9 @@ export default function Dashboard() {
 
   const navigate = useNavigate();
 
+   const setTriggerValue = (value) => {
+    setTrigger(value);
+  };
 
 
   function getItem(label, key, icon, children) {
@@ -46,91 +48,54 @@ export default function Dashboard() {
   const logout = () => { navigate('/') }
 
   const items = [
-
-
-    // {
-    //   key: '1',
-    //   icon: <TeamOutlined onClick={() => setTrigger(1)} />,
-    //   label: <div onClick={() => setTrigger(1)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
-    // },
-    // {
-    //   key: '2',
-    //   icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
-    //   label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Dashboard' : ''}</span></div>,
-    // },
-
-
-
     getItem('Active Wallet', 'sub2', <TeamOutlined />, [
       {
         key: '6b',
-        icon: <UserOutlined onClick={() => setTrigger('6b')} />,
-        label: <div onClick={() => setTrigger('6b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Term Sheet' : ''}</span></div>,
+        icon: <UserOutlined onClick={() => setTriggerValue('6b')} />,
+        label: <div onClick={() => setTriggerValue('6b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Term Sheet' : ''}</span></div>,
       },
       {
         key: '5b',
-        icon: <UserAddOutlined onClick={() => setTrigger('5b')} />,
-        label: <div onClick={() => setTrigger('5b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
+        icon: <UserAddOutlined onClick={() => setTriggerValue('5b')} />,
+        label: <div onClick={() => setTriggerValue('5b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proforma' : ''}</span></div>,
       },
       {
         key: '4b',
-        icon: <UserAddOutlined onClick={() => setTrigger('4b')} />,
-        label: <div onClick={() => setTrigger('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Goods' : ''}</span></div>,
+        icon: <UserAddOutlined onClick={() => setTriggerValue('4b')} />,
+        label: <div onClick={() => setTriggerValue('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Goods' : ''}</span></div>,
       },
       {
         key: '2b',
-        icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
-        label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+        icon: <DingtalkOutlined onClick={() => setTriggerValue('2b')} />,
+        label: <div onClick={() => setTriggerValue('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
       },
       {
         key: '7b',
-        icon: <BiSolidOffer onClick={() => setTrigger('7b')} />,
-        label: <div onClick={() => setTrigger('7b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Offer' : ''}</span></div>,
+        icon: <BiSolidOffer onClick={() => setTriggerValue('7b')} />,
+        label: <div onClick={() => setTriggerValue('7b')}>
+          <span style={{ marginLeft: '5%' }}>{!collapsed ? 'Offer' : ''}</span>
+        </div>,
       },
-
-      // {
-      //   key: '1b',
-      //   icon: <AndroidOutlined onClick={() => setTrigger('1b')} />,
-      //   label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
-      // },
-
-
-
-
     ]),
 
     getItem('Vault', 'sub3', <TeamOutlined />, [
 
       {
         key: '5a',
-        icon: <UserAddOutlined onClick={() => setTrigger('5a')} />,
-        label: <div onClick={() => setTrigger('5a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proformas' : ''}</span></div>,
+        icon: <UserAddOutlined onClick={() => setTriggerValue('5a')} />,
+        label: <div onClick={() => setTriggerValue('5a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Proformas' : ''}</span></div>,
       },
       {
         key: '1b',
-        icon: <AndroidOutlined onClick={() => setTrigger('1b')} />,
-        label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
+        icon: <AndroidOutlined onClick={() => setTriggerValue('1b')} />,
+        label: <div onClick={() => setTriggerValue('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
       },
 
       {
         key: '2a',
-        icon: <LoginOutlined onClick={() => setTrigger('2a')} />,
-        label: <div onClick={() => setTrigger('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+        icon: <LoginOutlined onClick={() => setTriggerValue('2a')} />,
+        label: <div onClick={() => setTriggerValue('2a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
       },
-      // {
-      //   key: '3a',
-      //   icon: <FileOutlined onClick={() => setTrigger('3a')} />,
-      //   label: <div onClick={() => setTrigger('3a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory' : ''}</span></div>,
-      // },
-
-
-
-      // {
-      //   key: '4a',
-      //   icon: <HomeOutlined onClick={() => setTrigger('4a')} />,
-      //   label: <div onClick={() => setTrigger('4a')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Purchase Order' : ''}</span></div>,
-      // },
-
     ]),
     {
 
@@ -140,6 +105,39 @@ export default function Dashboard() {
     },
   ];
 
+
+  const renderContent = () => {
+    switch (trigger) {
+      case 1:
+        return <TermSheet />;
+      case 2:
+        return <WalletDashboard />;
+      case '2a':
+        return <VaultMurabaha />;
+      case '3a':
+        return <VaultPromissory />;
+      case '4a':
+        return <PurchesOrder />;
+      case '5a':
+        return <Proformas />;
+      case '1b':
+        return <Applications />;
+      case '2b':
+        return <Murabaha />;
+      case '3b':
+        return <Promissory />;
+      case '4b':
+        return <Goods />;
+      case '5b':
+        return <Proformas />;
+      case '6b':
+        return <TermSheetData />;
+        case '7b':
+        return <OfferComponent />;
+      default:
+        return <>Page Not Found</>;
+    }
+  };
 
 
   return (
@@ -179,70 +177,8 @@ export default function Dashboard() {
           }}
 
         >
-          {
-            trigger === 1 ? (
-              <>
-                <TermSheet />
-              </>
-            ) :
-              trigger === 2 ? (
-                <>
-                  <WalletDashboard />
-                </>
-              )
-                : trigger === '2a' ? (
-                  <>
-                    <VaultMurabaha />
-                  </>
-                )
-                  : trigger === '3a' ? (
-                    <>
-                      <VaultPromissory />
-                    </>
-                  )
-                    : trigger === '4a' ? (
-                      <>
-                        <PurchesOrder />
-                      </>
-                    ) : trigger === '5a' ? (
-                      <>
-                        <Proformas />
-                      </>
-                    )
-                      : trigger === '1b' ? (
-                        <>
-                          <Applications />
-                        </>
-                      ) : trigger === '2b' ? (
-                        <>
-                          <Murabaha />
-                        </>
-                      ) : trigger === '3b' ? (
-                        <>
-                          <Promissory />
-                        </>
-                      ) : trigger === '4b' ? (
-                        <>
-                          <Goods />
-                        </>
-                      ) : trigger === '5b' ? (
-                        <>
-                          <Proformas />
-                        </>
-                      ) : trigger === '6b' ? (
-                        <>
-                          <TermSheetData />
-                        </>
-                      )
-                        : trigger === '7b' ? (
-                          <>
-                            <Offer />
-                          </>
-                        )
-                          :
-                          <></>
+          {renderContent()}
 
-          }
         </Content>
       </Layout>
 
@@ -250,3 +186,6 @@ export default function Dashboard() {
 
   )
 }
+
+
+export default Dashboard
