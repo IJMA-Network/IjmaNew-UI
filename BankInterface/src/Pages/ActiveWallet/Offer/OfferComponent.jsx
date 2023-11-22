@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { getData, postData } from "../../../Api/api";
 import StoreContext from "../../../ContextApi";
 import OfferState from "./Offer.json";
-import Filter from "../../filter/filter";
+// import Filter from "../../filter/filter";
 import Item from "antd/lib/list/Item";
 import { Spin } from "antd";
 import "./offer.css";
@@ -88,7 +88,7 @@ export default function OfferComponent() {
 
     return (
         <div className="card card-cascade narrower">
-            <Filter />
+            {/* <Filter /> */}
             <div
                 className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
                 style={{ marginTop: "-4%" }}

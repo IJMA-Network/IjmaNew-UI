@@ -218,7 +218,7 @@ export default function Dashboard() {
                           </>
                           ): trigger === '2c' ? (
                             <>
-                             <Murabaha />
+                             <OfferComponent/>
                             </>
                         ) : trigger === '3b' ? (
                           <>
