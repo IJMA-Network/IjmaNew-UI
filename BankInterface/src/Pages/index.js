@@ -9,6 +9,8 @@ export { default as VaultMurabaha } from "./Vault/VaultMurabaha/VaultMurabaha";
 export { default as VaultPromissory } from "./Vault/VaultPromissory/VaultPromissory";
 export { default as PurchesOrder } from "./Vault/PurchesOrder/PurchaseOrder";
 export { default as SignIn } from "./SignIn/SignIn";
+export { default as OfferComponent } from "./ActiveWallet/Offer/OfferComponent";
+
 export { default as UserForm } from "./UserForm/UserForm";
 export { default as Filter } from "./filter/filter";
 export { default as  Processflow} from "./Processflow/ProcessflowPage";

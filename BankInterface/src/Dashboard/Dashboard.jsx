@@ -12,7 +12,7 @@ import ijma from '../Images/Ijma.png'
 import {
   WalletDashboard, Applications, TermSheetData,
   Goods, Murabaha, Promissory, TermSheet,Processflow,
-  VaultMurabaha, VaultPromissory, PurchesOrder, UserForm
+  VaultMurabaha, VaultPromissory, PurchesOrder, UserForm,OfferComponent
 } from '../Pages/index'
 import { useNavigate } from "react-router-dom";
 
@@ -49,6 +49,11 @@ export default function Dashboard() {
       label: <div onClick={() => setTrigger(1)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Issue TermSheet' : ''}</span></div>,
     },
     {
+      key: '1a',
+      icon: <PieChartOutlined onClick={() => setTrigger('1a')} />,
+      label: <div onClick={() => setTrigger('1a')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Contract' : ''}</span></div>,
+    },
+    {
       key: '2',
       icon: <PieChartOutlined onClick={() => setTrigger(2)} />,
       label: <div onClick={() => setTrigger(2)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'UserForm' : ''}</span></div>,
@@ -74,6 +79,12 @@ export default function Dashboard() {
         label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
       },
       {
+        key: '2c',
+        icon: <DingtalkOutlined onClick={() => setTrigger('2c')} />,
+        label: <div onClick={() => setTrigger('2c')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Offers' : ''}</span></div>,
+      },
+      {
+        
         key: '3b',
         icon: <SnippetsOutlined onClick={() => setTrigger('3b')} />,
         label: <div onClick={() => setTrigger('3b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Promissory Notes' : ''}</span></div>,
@@ -205,6 +216,10 @@ export default function Dashboard() {
                           <>
                             <Murabaha />
                           </>
+                          ): trigger === '2c' ? (
+                            <>
+                             <Murabaha />
+                            </>
                         ) : trigger === '3b' ? (
                           <>
                             <Promissory />
