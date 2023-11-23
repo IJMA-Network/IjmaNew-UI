@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { EditorState, convertToRaw, ContentState, convertFromRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import StoreContext from "../../ContextApi";
 
 const ContractSheet = () => {
+  const userContext = useContext(StoreContext);
+
+  //  console.log(userContext)
+
+
   const [editorState, setEditorState] = useState(() => {
     const savedContent = localStorage.getItem("editorContent");
     if (savedContent) {
@@ -29,9 +35,21 @@ const ContractSheet = () => {
     localStorage.setItem("editorContent", content);
   }, [editorState]);
 
+  function extractTextFromHTML(htmlString) {
+    var doc = new DOMParser().parseFromString(htmlString, 'text/html');
+    return doc.body.textContent || "";
+  }
+
   const handleSave = () => {
     console.log("Saving content:", draftToHtml(convertToRaw(editorState.getCurrentContent())));
-  };
+
+    var htmlString = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
+    var textContent = extractTextFromHTML(htmlString);
+
+    console.log(textContent)
+
+   };
 
   const toolbarOptions = {
     options: ["fontSize", "inline", "list", "textAlign", "colorPicker", "link", "embedded"],

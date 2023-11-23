@@ -8,6 +8,9 @@ import { useState } from "react";
 
 function App() {
   const [SignInData, setSignInData] = useState([]);
+  
+   
+  console.log(SignInData)
 
   return (
     <div>
