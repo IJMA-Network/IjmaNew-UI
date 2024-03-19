@@ -113,24 +113,7 @@ export default function TermSheet() {
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 ">
           <h3 className="text-center">Issue Term Sheet</h3>
           <div>
-            <form>
-              <div style={{ background: "yellow" }}>
-                <Editor
-                  editorState={editorState}
-                  onEditorStateChange={onEditorStateChange}
-                  wrapperClassName="demo-wrapper"
-                  editorClassName="demo-editor"
-                />
-              </div>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlerDomiText();
-                }}
-              >
-                Submit
-              </button>
-            </form>
+         
             {/* {console.log(editorState._immutable,"============>")} */}
             {/* <textarea
               disabled
