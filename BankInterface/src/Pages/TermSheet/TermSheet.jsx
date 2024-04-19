@@ -5,17 +5,23 @@ import axios from "axios";
 import { createTerm } from "../../Api/api";
 import StoreContext from "../../ContextApi";
 
-import { EditorState, convertToRaw, ContentState,convertFromRaw  } from "draft-js";
+import {
+  EditorState,
+  convertToRaw,
+  ContentState,
+  convertFromRaw,
+} from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; // Import the CSS
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 export default function TermSheet() {
   const contextData = useContext(StoreContext);
   const [bank, setBank] = useState({ accountName: "Bank1" });
-  //   const [NodeName, setNodeName] = useState("ABC Bank");
-  //   const [users, setUsers] = useState([]);
+  const [modalShow, setModalShow] = useState(false); // Initialize modal state
 
   const Client = useRef();
   const Expire = useRef();
@@ -25,9 +31,6 @@ export default function TermSheet() {
   const Tenor = useRef();
   const Rate = useRef();
   const Spread = useRef();
-  // const bank = useRef();
-
-  // console.log(contextData, "SignInData");
 
   useEffect(() => {
     setBank(contextData.SignInData);
@@ -49,79 +52,74 @@ export default function TermSheet() {
       profitRate: profitRate,
       expiry: Expire.current.value,
     };
-    // const myJSON = JSON.stringify(data);
 
-    // console.log(data, "dataaa");
     createTerm(data);
   };
 
-  const content = {
-    entityMap: {},
-    blocks: [
-      {
-        key: '637gr',
-        text: 'Initialized from content state.',
-        type: 'unstyled',
-        depth: 0,
-        inlineStyleRanges: [],
-        entityRanges: [],
-        data: {},
-      },
-    ],
-  };
-
- 
-  
-  // const initialHtml = "";
-  const initialHtml = "<p>Hey this <strong>editor</strong> rocks 😀</p>";
   const [editorState, setEditorState] = useState(() => {
-    const contentBlock = htmlToDraft(initialHtml);
-    if (contentBlock) {
-      const contentState = ContentState.createFromBlockArray(
-        contentBlock.contentBlocks
-      );
-      return EditorState.createWithContent(contentState);
+    const savedContent = localStorage.getItem("termeditorContent");
+    if (savedContent) {
+      const contentBlock = htmlToDraft(savedContent);
+      if (contentBlock) {
+        const contentState = ContentState.createFromBlockArray(
+          contentBlock.contentBlocks
+        );
+        return EditorState.createWithContent(contentState);
+      }
     }
     return EditorState.createEmpty();
   });
 
-  let getlocalStorage = JSON.parse(localStorage.getItem("items"))
-  console.log(getlocalStorage);
-  
   const onEditorStateChange = (newEditorState) => {
     setEditorState(newEditorState);
   };
 
   useEffect(() => {
-    if (editorState) {
-      const htmlContent = draftToHtml(
-        convertToRaw(editorState.getCurrentContent())
-      );
-      // console.log(htmlContent); // Log the converted HTML content
-    }
+    const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    localStorage.setItem("termeditorContent", content);
   }, [editorState]);
 
-  const handlerDomiText = () => {
-    // console.log();
-    // console.log(editorState);
-    localStorage.setItem("items", JSON.stringify(editorState));
-    // Log the converted HTML content
+  function extractTextFromHTML(htmlString) {
+    var doc = new DOMParser().parseFromString(htmlString, "text/html");
+    return doc.body.textContent || "";
+  }
+
+  const handleSave = () => {
+    console.log(
+      "Saving content:",
+      draftToHtml(convertToRaw(editorState.getCurrentContent()))
+    );
+
+    var htmlString = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
+    var textContent = extractTextFromHTML(htmlString);
+
+    console.log(textContent);
   };
+
+  const toolbarOptions = {
+    options: [
+      "fontSize",
+      "inline",
+      "list",
+      "textAlign",
+      "colorPicker",
+      "link",
+      "embedded",
+    ],
+    inline: { options: ["bold", "italic", "underline", "strikethrough"] },
+    list: { options: ["unordered", "ordered"] },
+    textAlign: { options: ["left", "center", "right"] },
+    fontSize: { options: [8, 12, 16, 24] },
+  };
+
   return (
     <div class="container-fluid px-1 py-5 mx-auto">
       <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 ">
           <h3 className="text-center">Issue Term Sheet</h3>
-          <div>
-         
-            {/* {console.log(editorState._immutable,"============>")} */}
-            {/* <textarea
-              disabled
-              value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-            /> */}
-          </div>
           <div class="card ">
-            {/* <p class="blue-text text-center">Just a few Ijma Sheet<br /> so that we can personalize the right experience for you.</p> */}
+            {/* form fields */}
             <form
               class="form-card"
               onSubmit={(e) => {
@@ -284,16 +282,76 @@ export default function TermSheet() {
 
               <br />
 
+              <Button
+                variant="primary"
+                onClick={() => setModalShow(true)}
+                style={{ width: "100%", marginBottom: "10px" }}
+              >
+                Add Terms
+              </Button>
+
+              <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                editorState={editorState}
+                onEditorStateChange={onEditorStateChange}
+                handleSave={handleSave}
+                toolbarOptions={toolbarOptions}
+              />
               <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" class="btn-block btn-primary">
                   ISSUE
                 </button>{" "}
               </div>
-              {/* <button class="btn btn-primary" type="button">Button</button> */}
             </form>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function MyVerticallyCenteredModal({
+  show,
+  onHide,
+  editorState,
+  onEditorStateChange,
+  handleSave,
+  toolbarOptions,
+}) {
+  return (
+    <Modal
+      show={show}
+      onHide={onHide}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton></Modal.Header>
+      <Modal.Body>
+        <div className="container-fluid px-1 py-5 mx-auto">
+          <div className="row d-flex justify-content-center">
+            <div className="col-xl-9 col-lg-9 col-md-10 col-11">
+              <h3 className="text-center">Text Editor</h3>
+              <div>
+                <Editor
+                  editorState={editorState}
+                  onEditorStateChange={onEditorStateChange}
+                  wrapperClassName="demo-wrapper"
+                  editorClassName="demo-editor"
+                  toolbarClassName="toolbar-class"
+                  toolbar={toolbarOptions}
+                />
+              </div>
+              <button onClick={handleSave}>Save</button>
+              <button style={{ margin: "0px 5px" }}>Attach</button>
+            </div>
+          </div>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
