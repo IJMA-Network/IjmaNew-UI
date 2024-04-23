@@ -65,7 +65,7 @@ app.get("/allnames", (req, res, next) => {
       next(error); // Pass error to error handler middleware
     });
 });
-//
+//API to filter withlimited projections
 app.post("/getfiltereddocuments", (req, res, next) => {
   if (!req.body.filter) {
     res.status(409).send(`
