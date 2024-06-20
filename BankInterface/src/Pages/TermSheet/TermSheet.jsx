@@ -5,6 +5,8 @@ import axios from "axios";
 import { createTerm } from "../../Api/api";
 import StoreContext from "../../ContextApi";
 
+import Select from 'react-select';
+
 import {
   EditorState,
   convertToRaw,
@@ -319,6 +321,31 @@ function MyVerticallyCenteredModal({
   handleSave,
   toolbarOptions,
 }) {
+
+
+  
+
+  //dummy values for react item picker
+  const items = [
+    { value: 1, label: 'Option 1' },
+    { value: 2, label: 'Option 2', data: { someKey: 'someValue' } },
+    { value: 3, label: 'Option 3' },
+  ];
+  //dummy values for react item picker
+
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  // const handleChange = (selectedOption) => {
+  //   setSelectedValue(selectedOption);
+  //   // console.log('Selected object:', selectedOption); // Logs the entire object
+  // };
+
+  const handleLoad =()=>{
+    console.log(selectedValue)
+  }
+
+
+
   return (
     <Modal
       show={show}
@@ -330,6 +357,16 @@ function MyVerticallyCenteredModal({
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
         <div className="container-fluid px-1 py-5 mx-auto">
+          <div style={{ display:'flex', flexDirection:'row-reverse', gap: '10px',}}>
+              <Button onClick={handleLoad}>Load</Button>
+            <div style={{width:'30%', alignContent: 'center'}}>
+          <Select
+             value={selectedValue}
+             onChange={setSelectedValue}
+             options={items}
+          />
+          </div>
+          </div>
           <div className="row d-flex justify-content-center">
             <div className="col-xl-9 col-lg-9 col-md-10 col-11">
               <h3 className="text-center">Text Editor</h3>
