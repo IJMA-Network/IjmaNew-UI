@@ -343,13 +343,13 @@ function MyVerticallyCenteredModal({
                   toolbar={toolbarOptions}
                 />
               </div>
-              <button onClick={handleSave}>Save</button>
-              <button style={{ margin: "0px 5px" }}>Attach</button>
             </div>
           </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
+              <button onClick={handleSave}>Save</button>
+              <button style={{ margin: "0px 5px" }}>Attach</button>
         <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
