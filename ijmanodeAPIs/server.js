@@ -21,12 +21,12 @@ app.use(express.json());
 app.use(morgan("short"));
 
 app.post("/addTerms", (req, res, next) => {
-  if (!req.body.title||!req.body.hash||!req.body.content) {
+  if (!req.body.label||!req.body.hash||!req.body.content) {
     res.status(409).send(`
     Please send proper body
     e.g:
     {
-      "title":"file1",
+      "label":"file1",
       "hash":"hash1",
       "content":"content1"
     }
@@ -35,7 +35,7 @@ app.post("/addTerms", (req, res, next) => {
     return;
   } else {
     const newTerms = new Terms({
-      title: req.body.title,
+      label: req.body.label,
       hash: req.body.hash,
       content: req.body.content,
     });
@@ -56,7 +56,7 @@ app.post("/addTerms", (req, res, next) => {
 
 // get names ofall files
 app.get("/allnames", (req, res, next) => {
-  Terms.find({}, { title: 1 }) // Include only the title field
+  Terms.find({}, { label: 1 }) // Include only the title field
     .then((data) => {
       res.send(data);
     })

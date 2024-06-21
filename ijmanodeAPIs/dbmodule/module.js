@@ -35,7 +35,7 @@ process.on('SIGINT', function () {/////this function will run jst before app is 
 
 const TermsSchema = new mongoose.Schema({
 
-    title: {
+    label: {
       type: String,
       required: true
     },
