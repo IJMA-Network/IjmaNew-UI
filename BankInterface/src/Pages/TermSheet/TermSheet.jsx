@@ -97,6 +97,13 @@ export default function TermSheet() {
     var textContent = extractTextFromHTML(htmlString);
 
     console.log(textContent);
+    let fileObj={
+      label:"Filename",
+      hash:"",
+      content:textContent
+    }
+    console.log("File Object",fileObj);
+
   };
 
   const toolbarOptions = {
