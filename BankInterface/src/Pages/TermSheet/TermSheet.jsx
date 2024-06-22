@@ -55,6 +55,20 @@ export default function TermSheet() {
     };
     fetchData();
     }, []);
+
+    // const tryCatch = async()=>{
+    //   try{
+    //     const response = await axios.post('http://localhost:5000/addTerms');
+    //     // console.log({fileObj})
+    //     // console.log('api response',response.data);
+    //     // setFileList(response.data);
+
+    //   } 
+    //   catch(error){
+    //     console.error('Error fetching data: ', error);
+    //   }
+      // tryCatch();
+    // };
   
 
   const FormSubmit = () => {
@@ -118,8 +132,9 @@ export default function TermSheet() {
     var textContent = extractTextFromHTML(htmlString);
 
     console.log(textContent);
+    let fileName = prompt('enter the name of the file')
     let fileObj={
-      label:"Filename",
+      label: {fileName},
       hash:"",
       content:textContent
     }
@@ -321,6 +336,7 @@ export default function TermSheet() {
               </Button>
 
               <MyVerticallyCenteredModal
+              // tryCatch={tryCatch}
                 show={modalShow}
                 fileList={fileList}
                 onHide={() => setModalShow(false)}
@@ -349,7 +365,9 @@ function MyVerticallyCenteredModal({
   onEditorStateChange,
   handleSave,
   toolbarOptions,
-  fileList
+  fileList,
+  // tryCatch
+
 }) {
 
 
