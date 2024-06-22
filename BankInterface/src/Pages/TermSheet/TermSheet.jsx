@@ -34,9 +34,28 @@ export default function TermSheet() {
   const Rate = useRef();
   const Spread = useRef();
 
+  const [fileList, setFileList] = useState([])
+
+
   useEffect(() => {
     setBank(contextData.SignInData);
   }, [contextData.SignInData]);
+
+  //useEffect for API
+  useEffect(() => {
+    const fetchData = async()=>{
+      try{
+        const response = await axios.get('http://localhost:5000/allnames');
+        console.log('api response',response.data);
+        setFileList(response.data);
+
+      } catch(error){
+        console.error('Error fetching data: ', error);
+      }
+    };
+    fetchData();
+    }, []);
+  
 
   const FormSubmit = () => {
     var profitRate = {
@@ -54,6 +73,8 @@ export default function TermSheet() {
       profitRate: profitRate,
       expiry: Expire.current.value,
     };
+
+    
 
     createTerm(data);
   };
@@ -301,6 +322,7 @@ export default function TermSheet() {
 
               <MyVerticallyCenteredModal
                 show={modalShow}
+                fileList={fileList}
                 onHide={() => setModalShow(false)}
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
@@ -327,6 +349,7 @@ function MyVerticallyCenteredModal({
   onEditorStateChange,
   handleSave,
   toolbarOptions,
+  fileList
 }) {
 
 
@@ -348,7 +371,7 @@ function MyVerticallyCenteredModal({
   // };
 
   const handleLoad =()=>{
-    console.log(selectedValue)
+    console.log(selectedValue,fileList)
   }
 
 
@@ -370,7 +393,7 @@ function MyVerticallyCenteredModal({
           <Select
              value={selectedValue}
              onChange={setSelectedValue}
-             options={items}
+             options={fileList}
           />
           </div>
           </div>
