@@ -134,14 +134,36 @@ export default function TermSheet() {
     console.log(textContent);
     let fileName = prompt('enter the name of the file')
     let fileObj={
-      label: {fileName},
-      hash:"",
+      label: fileName,
+      hash:"NA",
       content:textContent
     }
     console.log("File Object",fileObj);
+    saveData(fileObj);
 
   };
+ const saveData = async(fileObj)=>{
+      try{
+        const response = await axios.post('http://localhost:5000/addTerms',fileObj);
+        const status= response.status;
+        console.log('api responsefrom Save Data',status);
+        switch (status){
+          case 200:
+            alert (" Terms Saved Successfully");
+            break;
+          case 201:
+            // code to execute if expression === 201
+           case 202:
+          // code to execute if expression === 202
+          default:
+            // code to execute if no case matches
+        }
 
+
+      } catch(error){
+        console.error('Error saving data: ', error);
+      }
+    };
   const toolbarOptions = {
     options: [
       "fontSize",
