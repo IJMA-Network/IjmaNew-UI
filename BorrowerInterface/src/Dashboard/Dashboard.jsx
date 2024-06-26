@@ -73,7 +73,7 @@ const Dashboard = () => {
         key: '7b',
         icon: <BiSolidOffer onClick={() => setTriggerValue('7b')} />,
         label: <div onClick={() => setTriggerValue('7b')}>
-          <span style={{ marginLeft: '5%' }}>{!collapsed ? 'Offer' : ''}</span>
+          <span style={{ marginLeft: '5%' }}>{!collapsed ? 'Offers' : ''}</span>
         </div>,
       },
     ]),
