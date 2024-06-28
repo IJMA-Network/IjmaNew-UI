@@ -45,12 +45,12 @@ export default function OfferComponent() {
         });
 
     useEffect(() => {
-        console.log("Sign in in Murabaha", contextData.SignInData);
+        console.log("Sign in in Offer", contextData.SignInData);
         let payload = {
             account: contextData.SignInData.UserAccountNo,
             consumable: "",
         };
-        getData("received-murabaha", payload, setOffer);
+        getData("issued-offers", payload, setOffer);
     }, []);
 
     const handleMurabahaOffer = async () => {
@@ -63,7 +63,7 @@ export default function OfferComponent() {
         }, 2000);
 
 
-        let api = "murabaha/accept";
+        let api = "agent/offer";
         let payload = {
             stateId: item.internalReference,
             account: contextData.SignInData.UserAccountNo,

@@ -8,9 +8,10 @@ import 'antd/dist/antd.css';
 
 function App() {
   const [SignInData, setSignInData] = useState([]);
+  const[mode,setMode]=useState("");
 
   return (
-    <StoreProvider value={{ SignInData, setSignInData }}>
+    <StoreProvider value={{ SignInData, setSignInData,mode,setMode }}>
       <BrowserRouter>
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
