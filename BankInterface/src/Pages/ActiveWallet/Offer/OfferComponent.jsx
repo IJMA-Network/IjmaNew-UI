@@ -68,7 +68,7 @@ export default function OfferComponent() {
             stateId: item.ProcessId,
             account: contextData.SignInData.UserAccountNo,
         };
-        console.log("In  murabaha/accept", payload);
+        console.log("In  offer /accept", payload);
         const resp = await postData(api, payload);
         console.log(resp, "resp");
     };
