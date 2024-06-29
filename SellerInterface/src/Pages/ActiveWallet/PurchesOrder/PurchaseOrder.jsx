@@ -68,7 +68,7 @@ export default function PurchaesOrder() {
         }, 2000);
 
 
-        let api = "purchaseOrder/deliver";
+        let api ="purchaseOrder/deliverToAgent"; //"purchaseOrder/deliver";
         let payload = {
             stateId: item.processId,
             account: user.UserAccountNo

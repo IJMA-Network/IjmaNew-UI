@@ -65,7 +65,7 @@ export default function OfferComponent() {
 
         let api = "agent/offer";
         let payload = {
-            stateId: item.internalReference,
+            stateId: item.processId,
             account: contextData.SignInData.UserAccountNo,
         };
         console.log("In  murabaha/accept", payload);
