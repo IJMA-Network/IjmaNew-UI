@@ -34,7 +34,8 @@ export default function TermSheet() {
   const Rate = useRef();
   const Spread = useRef();
 
-  const [fileList, setFileList] = useState([])
+  const [fileList, setFileList] = useState([]);
+  const [content, setContent] = useState("");
 
 
   useEffect(() => {
@@ -56,21 +57,30 @@ export default function TermSheet() {
     fetchData();
     }, []);
 
-    // const tryCatch = async()=>{
-    //   try{
-    //     const response = await axios.post('http://localhost:5000/addTerms');
-    //     // console.log({fileObj})
-    //     // console.log('api response',response.data);
-    //     // setFileList(response.data);
+    //---- for loading content in editor
 
-    //   } 
-    //   catch(error){
-    //     console.error('Error fetching data: ', error);
-    //   }
-      // tryCatch();
-    // };
+
+    async function fetchRawStringData() {
+      const response = await fetch('your-api-endpoint');
+      const rawStringData = await response.text();
+      return rawStringData; // This should be the raw JSON string content
+    }
+    
+    function parseRawStringData(rawStringData) {
+      return JSON.parse(rawStringData);
+    }
   
 
+function convertParsedDataToContentState(parsedData) {
+  return convertFromRaw(parsedData);
+}
+const getDataAndUpdateState = async () => {
+  const rawStringData = await fetchRawStringData();
+  const parsedData = parseRawStringData(rawStringData);
+  const contentState = convertFromRaw(parsedData);
+  setEditorState(EditorState.createWithContent(contentState));
+};
+//--
   const FormSubmit = () => {
     var profitRate = {
       referenceRate: Rate.current.value,
@@ -363,6 +373,7 @@ export default function TermSheet() {
                 fileList={fileList}
                 onHide={() => setModalShow(false)}
                 editorState={editorState}
+                setEditorState={setEditorState}
                 onEditorStateChange={onEditorStateChange}
                 handleSave={handleSave}
                 toolbarOptions={toolbarOptions}
@@ -384,6 +395,7 @@ function MyVerticallyCenteredModal({
   show,
   onHide,
   editorState,
+  setEditorState,
   onEditorStateChange,
   handleSave,
   toolbarOptions,
@@ -411,9 +423,34 @@ function MyVerticallyCenteredModal({
   // };
 
   const handleLoad =()=>{
-    console.log(selectedValue,fileList)
-  }
+    console.log(selectedValue,fileList);
+   // fetchDocument(selectedValue.label);
+    const content =ContentState.createFromText("Mytext");
+    setEditorState(EditorState.createWithContent(content));
 
+  }
+async function  fetchDocument(fName){
+  let payload={
+    
+      filter:{
+        label:"file2"},
+      projections:{
+        content:1,
+        label:1}
+    }
+  
+      try{
+        const response = await axios.post('http://localhost:5000/getfiltereddocuments',payload);
+        console.log('document response',response.data[0].content);
+       // setContent(response.data[0].content);
+      
+
+
+      } catch(error){
+        console.error('Error fetching data: ', error);
+      }
+    };
+    
 
 
   return (
