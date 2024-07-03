@@ -22,7 +22,8 @@ import Modal from "react-bootstrap/Modal";
 
 export default function TermSheet() {
   const contextData = useContext(StoreContext);
-  const [bank, setBank] = useState({ accountName: "Bank1" });
+  const [bank, setBank] = useState({ accountName: "Bank1" });//Todo change it
+  const [terms, setTerms] = useState(null);
   const [modalShow, setModalShow] = useState(false); // Initialize modal state
 
   const Client = useRef();
@@ -34,7 +35,8 @@ export default function TermSheet() {
   const Rate = useRef();
   const Spread = useRef();
 
-  const [fileList, setFileList] = useState([])
+  const [fileList, setFileList] = useState([]);
+  const [content, setContent] = useState("");
 
 
   useEffect(() => {
@@ -56,21 +58,30 @@ export default function TermSheet() {
     fetchData();
     }, []);
 
-    // const tryCatch = async()=>{
-    //   try{
-    //     const response = await axios.post('http://localhost:5000/addTerms');
-    //     // console.log({fileObj})
-    //     // console.log('api response',response.data);
-    //     // setFileList(response.data);
+    //---- for loading content in editor
 
-    //   } 
-    //   catch(error){
-    //     console.error('Error fetching data: ', error);
-    //   }
-      // tryCatch();
-    // };
+
+    async function fetchRawStringData() {
+      const response = await fetch('your-api-endpoint');
+      const rawStringData = await response.text();
+      return rawStringData; // This should be the raw JSON string content
+    }
+    
+    function parseRawStringData(rawStringData) {
+      return JSON.parse(rawStringData);
+    }
   
 
+function convertParsedDataToContentState(parsedData) {
+  return convertFromRaw(parsedData);
+}
+const getDataAndUpdateState = async () => {
+  const rawStringData = await fetchRawStringData();
+  const parsedData = parseRawStringData(rawStringData);
+  const contentState = convertFromRaw(parsedData);
+  setEditorState(EditorState.createWithContent(contentState));
+};
+//--
   const FormSubmit = () => {
     var profitRate = {
       referenceRate: Rate.current.value,
@@ -119,6 +130,9 @@ export default function TermSheet() {
   function extractTextFromHTML(htmlString) {
     var doc = new DOMParser().parseFromString(htmlString, "text/html");
     return doc.body.textContent || "";
+  }
+  const handleAttach = () => {
+    console.log("In attach",terms);
   }
 
   const handleSave = () => {
@@ -357,12 +371,14 @@ export default function TermSheet() {
                 Add Terms
               </Button>
 
-              <MyVerticallyCenteredModal
-              // tryCatch={tryCatch}
+              <TermsEditor
+               handleAttach={handleAttach}
                 show={modalShow}
                 fileList={fileList}
+                setTerms={setTerms}
                 onHide={() => setModalShow(false)}
                 editorState={editorState}
+                setEditorState={setEditorState}
                 onEditorStateChange={onEditorStateChange}
                 handleSave={handleSave}
                 toolbarOptions={toolbarOptions}
@@ -380,10 +396,13 @@ export default function TermSheet() {
   );
 }
 
-function MyVerticallyCenteredModal({
+function TermsEditor({
   show,
   onHide,
+  handleAttach,
+  setTerms,
   editorState,
+  setEditorState,
   onEditorStateChange,
   handleSave,
   toolbarOptions,
@@ -404,16 +423,45 @@ function MyVerticallyCenteredModal({
   //dummy values for react item picker
 
   const [selectedValue, setSelectedValue] = useState(null);
-
+  const [content, setContent] = useState(null);
   // const handleChange = (selectedOption) => {
   //   setSelectedValue(selectedOption);
   //   // console.log('Selected object:', selectedOption); // Logs the entire object
   // };
 
-  const handleLoad =()=>{
-    console.log(selectedValue,fileList)
-  }
+  const handleLoad =async()=>{
+    console.log(selectedValue,fileList);
+    setTerms(selectedValue);
+   const resp=await fetchDocument(selectedValue.label);
+   console.log('content response',selectedValue,resp);
+   const value=resp;
+    const document =ContentState.createFromText(value);
+    setEditorState(EditorState.createWithContent(document));
 
+  }
+async function  fetchDocument(fName){
+  let payload={
+    
+      filter:{
+        label:fName},
+      projections:{
+        content:1,
+        label:1,
+      _id:1}
+    }
+  
+      try{
+        const response = await axios.post('http://localhost:5000/getfiltereddocuments',payload);
+        console.log('document response',response.data[0].content);
+        setContent(response.data[0].content);
+      return response.data[0].content;
+
+
+      } catch(error){
+        console.error('Error fetching data: ', error);
+      }
+    };
+    
 
 
   return (
@@ -456,7 +504,7 @@ function MyVerticallyCenteredModal({
       </Modal.Body>
       <Modal.Footer>
               <button onClick={handleSave}>Save</button>
-              <button style={{ margin: "0px 5px" }}>Attach</button>
+              <button onClick={handleAttach} style={{ margin: "0px 5px" }}>Attach</button>
         <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

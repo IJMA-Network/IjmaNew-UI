@@ -45,12 +45,12 @@ export default function OfferComponent() {
         });
 
     useEffect(() => {
-        console.log("Sign in in Murabaha", contextData.SignInData);
+        console.log("Sign in in Offer", contextData.SignInData);
         let payload = {
             account: contextData.SignInData.UserAccountNo,
             consumable: "",
         };
-        getData("received-murabaha", payload, setOffer);
+        getData("issued-offers", payload, setOffer);
     }, []);
 
     const handleMurabahaOffer = async () => {
@@ -63,9 +63,9 @@ export default function OfferComponent() {
         }, 2000);
 
 
-        let api = "murabaha/accept";
+        let api = "agent/offer";
         let payload = {
-            stateId: item.internalReference,
+            stateId: item.processId,
             account: contextData.SignInData.UserAccountNo,
         };
         console.log("In  murabaha/accept", payload);
@@ -132,7 +132,7 @@ export default function OfferComponent() {
                         return (
                             <tbody>
                                 <tr>
-                                    <td>{v?.acceptanceDate ? v?.acceptanceDate : "Undated" }</td>
+                                    <td>{v?.offerDate ? v?.offerDate : "Undated" }</td>
                                     <td>{v?.internalReference}</td>
                                     <td>{v?.bankAccountInfo?.name}</td>
                                     <td>{v?.borrowerAccountInfo?.name}</td>
@@ -166,7 +166,7 @@ export default function OfferComponent() {
                     <div className="modal-content" style={{ width: "115%" }}>
                         {/* <!-- Modal Header --> */}
                         <div className="modal-header">
-                            <h3 className="modal-title">Murabaha Agreement Details</h3>
+                            <h3 className="modal-title">Offer Details</h3>
                             <button
                                 type="button"
                                 className="btn btn-danger close"
@@ -185,7 +185,8 @@ export default function OfferComponent() {
                                     </tr>
                                     <tr>
                                         <td>Date</td>
-                                        <td>{item.agreementDate}</td>
+                                      
+                                        <td>{item?.offerDate ? item?.offerDate : "Undated" }</td>
                                     </tr>
                                     <tr>
                                         <td>Refrence No.</td>
@@ -209,11 +210,11 @@ export default function OfferComponent() {
                                     </tr>
                                     <tr>
                                         <td>Selling Price</td>
-                                        <td>{item.sellingprice}</td>
+                                        <td>{item.offerprice}</td>
                                     </tr>
                                     <tr>
                                         <td>Profile Rate</td>
-                                        <td>{item.profitrate}</td>
+                                        <td>{item.profit}</td>
                                     </tr>
                                     <tr>
                                         <td>Item</td>

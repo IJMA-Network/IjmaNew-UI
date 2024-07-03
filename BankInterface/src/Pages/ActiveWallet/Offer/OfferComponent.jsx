@@ -50,7 +50,7 @@ export default function OfferComponent() {
             account: contextData.SignInData.UserAccountNo,
             consumable: "",
         };
-        getData("received-murabaha", payload, setOffer);
+        getData("received-offers", payload, setOffer);
     }, []);
 
     const handleMurabahaOffer = async () => {
@@ -63,12 +63,12 @@ export default function OfferComponent() {
         }, 2000);
 
 
-        let api = "murabaha/accept";
+        let api = "offer-accept";//"murabaha/accept";
         let payload = {
-            stateId: item.internalReference,
+            stateId: item.ProcessId,
             account: contextData.SignInData.UserAccountNo,
         };
-        console.log("In  murabaha/accept", payload);
+        console.log("In  offer /accept", payload);
         const resp = await postData(api, payload);
         console.log(resp, "resp");
     };
