@@ -6,7 +6,27 @@ import "./Proforma.css";
 import { Form } from "react-bootstrap";
 import { createPorforma } from "../../Api/Api";
 
+import Select from 'react-select';
+import PickerValues from './peers.json';
+
+
 export default function Proforma() {
+
+  const [pickerValue, setPickerValue] = useState(PickerValues);
+  console.log(pickerValue);
+
+  // const [options, setOptions] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  const handleChange = (value) => {
+    setSelectedValue(value);
+  };
+
+  
+
+
+
+
   const contextData = useContext(StoreContext);
 
   const[user,setUser]=useState({accountName:"SellerNo. 1",UserAccountNo:"Seller1"});
@@ -81,6 +101,8 @@ export default function Proforma() {
               </div> */}
               {/* <br /> */}
 
+
+
               <div class="row justify-content-between text-left">
                 <div class="form-group col-12 flex-column d-flex">
                   <label class="form-label">
@@ -95,6 +117,8 @@ export default function Proforma() {
                     onblur="validate(6)"
                   />
                 </div>
+
+              <Select options={pickerValue} value={selectedValue} onChange={handleChange} />
                 {/* <div class="form-group col-sm-12 flex-column d-flex">
                                     <label class="form-label">Node Name <span class="text-danger"> *</span></label>
                                     <select name="" id="" class="form-select">
