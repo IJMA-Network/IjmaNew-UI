@@ -117,8 +117,9 @@ export default function Proforma() {
                     onblur="validate(6)"
                   />
                 </div>
-
+              <div className="ItemPicker">
               <Select options={pickerValue} value={selectedValue} onChange={handleChange} />
+              </div>
                 {/* <div class="form-group col-sm-12 flex-column d-flex">
                                     <label class="form-label">Node Name <span class="text-danger"> *</span></label>
                                     <select name="" id="" class="form-select">
