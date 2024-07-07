@@ -57,5 +57,17 @@ button:focus {
 }
 
 .ItemPicker{
-    padding: 8px 15px;
+    padding: 10px 15px;
+
+}
+
+.valueInput{
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+
+}
+
+.itemPicker{
+    
 }

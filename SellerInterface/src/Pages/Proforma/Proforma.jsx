@@ -15,6 +15,7 @@ export default function Proforma() {
   const [pickerValue, setPickerValue] = useState(PickerValues);
   console.log("Picker Values",pickerValue);
 
+
   // const [options, setOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null);
 
@@ -22,7 +23,11 @@ export default function Proforma() {
     setSelectedValue(value);
   };
 
-  
+
+ const itemPickerUnits = [
+  {value: 'meters', label: 'Meters'},
+  {}
+ ]
 
 
 
@@ -208,7 +213,7 @@ export default function Proforma() {
               </div>
               {/* <br /> */}
 
-              <div class="row justify-content-between text-left">
+              <div class="row justify-content-between text-left valueInput">
                 <div class=" form-group col-sm-5 flex-column d-flex form-label">
                   <label class="form-label">
                     Value<span class="text-danger"> *</span>
@@ -223,17 +228,18 @@ export default function Proforma() {
                   />
                 </div>
 
-                <div class="form-group col-sm-5 flex-column d-flex">
+                <div class="form-group col-sm-5 flex-column d-flex itemPicker">
                   <label class="form-label">
                     unit<span class="text-danger"> *</span>
                   </label>
-                  <input
-                    type="text"
-                    id="ans"
-                    name="ans"
+                  <Select 
+                    // type="text"
+                    // id="ans"
+                    // name="ans"
                     placeholder="Meters"
-                    onblur="validate(1)"
-                    ref={unit}
+                    options={itemPickerUnits}
+                    // onblur="validate(1)"
+                    // ref={unit}
                   />
                 </div>
 
