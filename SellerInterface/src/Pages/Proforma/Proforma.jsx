@@ -13,7 +13,7 @@ import PickerValues from './peers.json';
 export default function Proforma() {
 
   const [pickerValue, setPickerValue] = useState(PickerValues);
-  console.log(pickerValue);
+  console.log("Picker Values",pickerValue);
 
   // const [options, setOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null);
@@ -119,6 +119,7 @@ export default function Proforma() {
                 </div>
               <div className="ItemPicker">
               <Select options={pickerValue} value={selectedValue} onChange={handleChange} />
+              
               </div>
                 {/* <div class="form-group col-sm-12 flex-column d-flex">
                                     <label class="form-label">Node Name <span class="text-danger"> *</span></label>
