@@ -18,6 +18,8 @@ export default function Proforma() {
 
   // const [options, setOptions] = useState([]);
   const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValueUnit, setSelectedValueUnit] = useState(null);
+
 
   const handleChange = (value) => {
     setSelectedValue(value);
@@ -26,8 +28,14 @@ export default function Proforma() {
 
  const itemPickerUnits = [
   {value: 'meters', label: 'Meters'},
-  {}
+  {value: 'kgs', label: 'Kgs'},
+  {value: 'litres', label: 'Litres'},
+  
  ]
+ const handleChangeUnit = (value) => {
+  setSelectedValueUnit(value);
+  console.log(selectedValue);
+};
 
 
 
@@ -236,12 +244,60 @@ export default function Proforma() {
                     // type="text"
                     // id="ans"
                     // name="ans"
-                    placeholder="Meters"
+                    placeholder="Unit"
                     options={itemPickerUnits}
+
+                    onChange={handleChangeUnit}
+
+                    value={selectedValueUnit}
+
                     // onblur="validate(1)"
                     // ref={unit}
                   />
                 </div>
+
+
+
+
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0px 15px',}}>
+                <div class="">
+                  <label style={{}} class="form-label">
+                    Value<span class="text-danger"> *</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="ans"
+                    name="ans"
+                    placeholder="1000.0"
+                    onblur="validate(1)"
+                    ref={PorValue}
+                  />
+                </div>
+
+                <div >
+                  {/* <label class="form-label">
+                    unit<span class="text-danger"> *</span>
+                  </label> */}
+                  <Select  style={{}}
+                    // type="text"
+                    // id="ans"
+                    // name="ans"
+                    placeholder="Unit"
+                    options={itemPickerUnits}
+
+                    // onChange={handleChangeUnit}
+
+                    // value={selectedValueUnit}
+
+                    // onblur="validate(1)"
+                    // ref={unit}
+                  />
+                </div>
+                </div>
+
+
+
+
 
                 <div class=" form-group col-sm-2 flex-column d-flex form-label">
                   <label class="form-label mt-4">
