@@ -10,16 +10,16 @@ const baseproject=  "com.finomics.ijma.murabahacordap.workflows.FilteredPNotes";
 
 
 // Authorization credentials
-const authID = "admin";
-const authPassword = "admin";
+const USERNAME = "admin";
+const PASSWORD = "admin";
 
 // Encode the authorization credentials
-const encodedAuth = Buffer.from(`${authID}:${authPassword}`).toString('base64');
+const token = btoa(`${USERNAME}:${PASSWORD}`);
 
 // Authorization header
-const headers = {
-    "Authorization": `Basic ${encodedAuth}`, // Basic Auth with Base64 encoding
-    "Content-Type": "application/json",     // Optional: Set content type if sending JSON
+const header = {
+    "Authorization": `Basic ${token}`, // Basic Auth with Base64 encoding
+    "Content-Type": "application/json"     // Optional: Set content type if sending JSON
 }
 export const executeflow = async (flowname,requestBody, holdingId) => {
   const flowClassName= baseproject+flowname;
@@ -37,7 +37,7 @@ export const executeflow = async (flowname,requestBody, holdingId) => {
   
   try {
 
-    var response = await axios.post(completeapi,payload,{ headers });
+    var response = await axios.post(completeapi,payload,{ headers:header });
     console.log("API Response", response);
     toast.success("Successfully Submitted flow");
     return response;
@@ -54,7 +54,7 @@ export const checkflowresponse = async (holdingId,clientId,dispatch) => {
   console.log("before calling API", apiUrl);
   try {
 
-    var response = await axios.get(apiUrl,{ headers });
+    var response = await axios.get(apiUrl,{ headers:header });
     
      console.log("API Response", response);
 dispatch(response.data);

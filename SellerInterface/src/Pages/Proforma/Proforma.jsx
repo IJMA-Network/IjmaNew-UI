@@ -4,7 +4,7 @@ import StoreContext from "../../ContextApi";
 import axios from "axios";
 import "./Proforma.css";
 import { Form } from "react-bootstrap";
-//import { executeflow,checkflowresponse } from "../../Api/cordarestapi";
+import { executeflow,checkflowresponse } from "../../Api/cordarestapi";
 
 export default function Proforma() {
   const contextData = useContext(StoreContext);
@@ -58,10 +58,10 @@ const stdata={
       amount: Amount.current.value,
     };
 
-  //  const resp= await executeflow("IssueProformaFlow",stdata,holdingId);
-  //  console.log("response in issue Proforma", resp);
-  //  const reqId=reportError.clientRequestId;
-  // setTimeout(checkflowresponse(holdingId,reqId),5000 );
+   const resp= await executeflow("IssueProformaFlow",stdata,holdingId);
+   console.log("response in issue Proforma", resp);
+   const reqId=reportError.clientRequestId;
+  setTimeout(checkflowresponse(holdingId,reqId),5000 );
   };
 
   return (
