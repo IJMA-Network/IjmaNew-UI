@@ -4,7 +4,7 @@ import StoreContext from "../../ContextApi";
 import axios from "axios";
 import "./Proforma.css";
 import { Form } from "react-bootstrap";
-import { createPorforma } from "../../Api/Api";
+//import { executeflow,checkflowresponse } from "../../Api/cordarestapi";
 
 export default function Proforma() {
   const contextData = useContext(StoreContext);
@@ -30,12 +30,23 @@ export default function Proforma() {
   const Seller = useRef();
   const Item = useRef();
 //
-  const FormSubmit = () => {
+  const FormSubmit =async() => {
+    console.log("in submit proforma");
     var quantity = {
         value: PorValue.current.value,
         unit: unit.current.value,
     };
-
+const holdingId="92488399E250";
+const stdata={
+    seller:"Seller1",
+    client:"Buyer1",
+    item:"cotton",
+    description:"American Cotton",
+    proformaId:"PR-1",
+    consignNo:"CN-1",
+    quantity:{value:100,unit:"meters"},
+  "amount":2500
+  }
     var data = {
       seller: user.UserAccountNo,
       client: Client.current.value,
@@ -46,8 +57,11 @@ export default function Proforma() {
       quantity: quantity,
       amount: Amount.current.value,
     };
-    const myJSON = JSON.stringify(data);
-    createPorforma(data);
+
+  //  const resp= await executeflow("IssueProformaFlow",stdata,holdingId);
+  //  console.log("response in issue Proforma", resp);
+  //  const reqId=reportError.clientRequestId;
+  // setTimeout(checkflowresponse(holdingId,reqId),5000 );
   };
 
   return (
