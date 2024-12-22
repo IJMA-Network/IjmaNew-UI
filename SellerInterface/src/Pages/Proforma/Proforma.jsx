@@ -36,7 +36,7 @@ export default function Proforma() {
         value: PorValue.current.value,
         unit: unit.current.value,
     };
-const holdingId="92488399E250";
+const holdingId="C7B69F30BF48";
 const stdata={
     seller:"Seller1",
     client:"Buyer1",
@@ -60,7 +60,7 @@ const stdata={
 
    const resp= await executeflow("IssueProformaFlow",stdata,holdingId);
    console.log("response in issue Proforma", resp);
-   const reqId=reportError.clientRequestId;
+   const reqId=resp.data.clientRequestId;
   setTimeout(checkflowresponse(holdingId,reqId),5000 );
   };
 
