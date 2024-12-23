@@ -23,7 +23,7 @@ const header = {
 }
 export const executeflow = async (flowname,requestBody, holdingId) => {
   const flowClassName= baseproject+flowname;
-  const clientRequestId=holdingId+"-"+flowname+"_"+((Date.Now).toISOString);
+  const clientRequestId=holdingId+"-"+flowname+"_"+((Date.Now()).toString());
 
   const payload={
 
