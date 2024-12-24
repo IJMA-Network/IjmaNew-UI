@@ -36,9 +36,9 @@ export default function Proforma() {
         value: PorValue.current.value,
         unit: unit.current.value,
     };
-const holdingId="8826A32DAB97";
+const holdingId="ACCFEE492831";
 const stdata={
-    seller:"Seller1",
+    seller:"Seller2",
     client:"Buyer1",
     item:"cotton",
     description:"American Cotton",
@@ -63,7 +63,7 @@ const stdata={
     
    const reqId=resp.data.clientRequestId;
    //await checkflowresponse(holdingId,reqId);
-   setTimeout(() => checkflowresponse(holdingId, reqId), 5000);
+   //setTimeout(() => checkflowresponse(holdingId, reqId), 5000);
   };
 
   return (

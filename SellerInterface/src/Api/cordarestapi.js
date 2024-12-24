@@ -39,6 +39,8 @@ export const executeflow = async (flowname,requestBody, holdingId) => {
 
     var response = await axios.post(completeapi,payload,{ headers:header });
     console.log("API Response", response);
+       setTimeout(() => checkflowresponse(holdingId, clientRequestId), 5000);
+    
     toast.success("Successfully Submitted flow");
 
     //checkflowresponse(holdingId,clientRequestId);
@@ -59,6 +61,8 @@ export const checkflowresponse = async (holdingId,clientId) => {
     var response = await axios.get(apiUrl,{ headers:header });
     alert("in check response");
      console.log("Check API Response", response);
+     const status= response.data.flowStatus;
+     toast.info("The Submitted Flow is "+status);
 //dispatch(response.data);
 return response;
 
