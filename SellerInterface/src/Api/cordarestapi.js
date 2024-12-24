@@ -23,7 +23,7 @@ const header = {
 }
 export const executeflow = async (flowname,requestBody, holdingId) => {
   const flowClassName= baseproject+flowname;
-  const clientRequestId=holdingId+"-"+flowname+"_"+((Date.Now()).toString());
+  const clientRequestId=holdingId+"-"+flowname+"_"+((Date.now()).toString());
 
   const payload={
 
@@ -40,6 +40,8 @@ export const executeflow = async (flowname,requestBody, holdingId) => {
     var response = await axios.post(completeapi,payload,{ headers:header });
     console.log("API Response", response);
     toast.success("Successfully Submitted flow");
+
+    //checkflowresponse(holdingId,clientRequestId);
     return response;
   } catch (error) {
     console.log("Error in Flow Sumission", error);
@@ -48,20 +50,20 @@ notify("Error in Proforma");
   }
 };
 
-export const checkflowresponse = async (holdingId,clientId,dispatch) => {
-//https://localhost:8888/api/v5_2/flow/F12BA7BCF8BB/FilteredNotes1.0/result
-  const apiUrl = baseApi + holdingId+"/"+clientId+"/result";
-  console.log("before calling API", apiUrl);
+export const checkflowresponse = async (holdingId,clientId) => {
+ // const apiUrl='https://localhost:8888/api/v5_2/flow/EE05C2099ED2/EE05C2099ED2-IssueProformaFlow_1735019287225/result';
+  const apiUrl =baseApi + holdingId+"/"+clientId+"/result";
+  console.log("before calling check responseAPI",apiUrl);
   try {
 
     var response = await axios.get(apiUrl,{ headers:header });
-    
-     console.log("API Response", response);
-dispatch(response.data);
+    alert("in check response");
+     console.log("Check API Response", response);
+//dispatch(response.data);
 return response;
 
   } catch (error) {
-    console.log("Error in  get Data",apiUrl, error);
+    console.log("Error in  check flow ", error);
 
     return error;
   }
