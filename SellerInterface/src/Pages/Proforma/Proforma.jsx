@@ -4,21 +4,34 @@ import StoreContext from "../../ContextApi";
 import axios from "axios";
 import "./Proforma.css";
 import { Form } from "react-bootstrap";
-import { executeflow,checkflowresponse } from "../../Api/cordarestapi";
+import { executeflow,checkflowresponse,fetchDataflow } from "../../Api/cordarestapi";
 
 export default function Proforma() {
   const contextData = useContext(StoreContext);
 
-  const[user,setUser]=useState({accountName:"SellerNo. 1",UserAccountNo:"Seller1"});
+  const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"1CD1B1A241DA"});
 
   useEffect(()=>{
-    setUser(contextData.SignInData)
+  //  setUser(contextData.SignInData)
 
- console.log("User in Proforma",contextData.SignInData);
- setUser(contextData.SignInData);
+if(user){
+  const holdingId=user.holdingId;
+  getProforma();
+  console.log("User in Proforma",user);
+}
+ //setUser(contextData.SignInData);
 
   
-},[contextData.SignInData])
+},[])
+async function getProforma(){
+  const endpoint="GetProformas"
+const reqbody={
+
+  account:user.UserAccountNo,
+  type:"all"
+}
+const resp= await fetchDataflow(endpoint,reqbody,user.holdingId);
+}
 
   const Description = useRef();
   const PorValue = useRef();
@@ -36,9 +49,9 @@ export default function Proforma() {
         value: PorValue.current.value,
         unit: unit.current.value,
     };
-const holdingId="ACCFEE492831";
+const holdingId=user.holdingId;
 const stdata={
-    seller:"Seller2",
+    seller:"Seller1",
     client:"Buyer1",
     item:"cotton",
     description:"American Cotton",
@@ -61,7 +74,7 @@ const stdata={
     const resp= await executeflow("IssueProformaFlow",stdata,holdingId);
     console.log("response in issue Proforma", resp);
     
-   const reqId=resp.data.clientRequestId;
+   //const reqId=resp.data.clientRequestId;
    //await checkflowresponse(holdingId,reqId);
    //setTimeout(() => checkflowresponse(holdingId, reqId), 5000);
   };

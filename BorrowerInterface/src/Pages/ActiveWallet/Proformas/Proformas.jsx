@@ -2,6 +2,8 @@ import { React, useState, useEffect, useContext } from 'react';
 import './Proformas.css'
 import { Spin } from 'antd';
 import { getData, postData } from '../../../Api'
+import { executeflow,checkflowresponse,fetchDataflow,formatDate } from "../../../APIs/cordarestapi";
+
 import Filter from './filter';
 import StoreContext from '../../../ContextApi';
 import Modal from 'react-bootstrap/Modal';
@@ -10,7 +12,7 @@ import JsonData from './ProformaState.json';
 // Pagination import here
 import PaginationProformas from "../../Pagination";
 
-let itemsPerPage = 5;
+let itemsPerPage = 2;
 
 
 export default function Proformas() {
@@ -26,7 +28,7 @@ export default function Proformas() {
 
     // new State pagination here
     const [page, setPage] = useState(1);
-    const totalPages = Math.ceil(filterItem.length / itemsPerPage);
+    const totalPages=Math.ceil(filterItem.length / itemsPerPage);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -52,7 +54,7 @@ export default function Proformas() {
             account: contextData.SignInData.UserAccountNo,
             consumable: true
         }
-        getData("received-Proformas", payload, setfilterItem);
+        //getData("received-Proformas", payload, setfilterItem);
     }, [contextData.SignInData])
 
     const handleRequestMurabaha = async () => {
@@ -87,7 +89,7 @@ export default function Proformas() {
         page * itemsPerPage
     );
 
-    console.log("alidata", displayedData);
+    console.log("alldata", displayedData);
 
     return (
         <div className="card card-cascade narrower">
@@ -117,9 +119,12 @@ export default function Proformas() {
                         return (
                             <tbody>
                                 <tr>
-                                    <td>{v?.date}</td>
+                                    {v?
+                                    <td>{formatDate(v.date)}</td>
+                                    :<td></td>
+                                     }
                                     <td>{v?.proformaId}</td>
-                                    <td>{v?.sellerAccountInfo?.name}</td>
+                                    <td>{v?.sellerAccountInfo?.accountName}</td>
                                     <td>{v?.goods?.asset}</td>
                                     <td>{v?.goods?.quantity?.value + " " + v?.goods?.quantity?.unit}</td>
                                     <td>
@@ -153,11 +158,11 @@ export default function Proformas() {
 
                             <tr>
                                 <td>Vendor</td>
-                                <td>{item.sellerAccountInfo.name}</td>
+                                <td>{item.sellerAccountInfo.accountName}</td>
                             </tr>
                             <tr>
                                 <td>Client</td>
-                                <td>{item.buyerAccountInfo.name}</td>
+                                <td>{item.buyerAccountInfo.accountName}</td>
                             </tr>
                             <tr>
                                 <td>Refrence No.</td>
@@ -165,7 +170,10 @@ export default function Proformas() {
                             </tr>
                             <tr>
                                 <td>Date</td>
-                                <td>{item.date}</td>
+                                {item.date?
+                                    <td>{formatDate(item.date)}</td>
+                                    :<td></td>
+                                }
                             </tr>
                             <tr>
                                 <td>Consignment No.</td>

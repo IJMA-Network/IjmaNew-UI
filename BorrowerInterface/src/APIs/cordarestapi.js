@@ -125,11 +125,7 @@ export const fetchresponse = async (holdingId,clientId) => {
    }
  }
 
-
-
-
-
-export const formatDate=(dateArray)=> {
+ export const formatDate=(dateArray)=> {
   // Map month numbers to their corresponding short names
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   
@@ -140,13 +136,14 @@ export const formatDate=(dateArray)=> {
   const formattedDay = String(day).padStart(2, "0");
   const formattedMonth = months[month - 1]; // Month is 1-based in the array
   
-  // Combine to create the desired format
+const finaldate=`${formattedDay}-${formattedMonth}-${year}`;
+console.log("Final date",finaldate);
   return `${formattedDay}-${formattedMonth}-${year}`;
 }
 
-// Example usage
-// const dateArray = [2024, 12, 20];
-// console.log(formatDate(dateArray)); // Outputs: "20-Dec-2024"
+
+
+
 
   
   const notify = (msg) => toast.error(msg, {
