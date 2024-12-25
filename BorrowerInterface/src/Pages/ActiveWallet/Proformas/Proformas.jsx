@@ -17,7 +17,7 @@ let itemsPerPage = 2;
 
 export default function Proformas() {
     const contextData = useContext(StoreContext);
-    const [user, setUser] = useState({ accountName: "Buyer1" });
+  const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Buyer1",holdingId:"EAB8505CF0A4"});
     const [bank, setBank] = useState('');
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
@@ -48,15 +48,24 @@ export default function Proformas() {
 
 
     useEffect(() => {
-        setUser(contextData.SignInData);
+      //  setUser(contextData.SignInData);
         console.log("user in proformas", user);
         let payload = {
             account: contextData.SignInData.UserAccountNo,
             consumable: true
         }
+        getProforma();
         //getData("received-Proformas", payload, setfilterItem);
     }, [contextData.SignInData])
+async function getProforma(){
+  const endpoint="GetProformas"
+const reqbody={
 
+  account:user.UserAccountNo,
+  type:"all"
+}
+const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
+}
     const handleRequestMurabaha = async () => {
         let api = "apply/murabaha";
         setloading(false);

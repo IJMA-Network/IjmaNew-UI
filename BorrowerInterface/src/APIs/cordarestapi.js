@@ -73,7 +73,7 @@ return response;
   }
 }
 
-export const fetchDataflow = async (flowname,requestBody, holdingId) => {
+export const fetchDataflow = async (flowname,requestBody, holdingId,dispatch) => {
   const flowClassName= baseproject+flowname;
   const clientRequestId=holdingId+"-"+flowname+"_"+((Date.now()).toString());
 
@@ -91,7 +91,7 @@ export const fetchDataflow = async (flowname,requestBody, holdingId) => {
 
     var response = await axios.post(completeapi,payload,{ headers:header });
     console.log("After fetch data API", response);
-       setTimeout(() => fetchresponse(holdingId, clientRequestId), 500);
+       setTimeout(() => fetchresponse(holdingId, clientRequestId,dispatch), 500);
     
   //  toast.success("Successfully Submitted flow");
 
@@ -104,7 +104,7 @@ export const fetchDataflow = async (flowname,requestBody, holdingId) => {
   }
 };
 
-export const fetchresponse = async (holdingId,clientId) => {
+export const fetchresponse = async (holdingId,clientId,dispatch) => {
   // const apiUrl='https://localhost:8888/api/v5_2/flow/EE05C2099ED2/EE05C2099ED2-IssueProformaFlow_1735019287225/result';
    const apiUrl =baseApi + holdingId+"/"+clientId+"/result";
    console.log("before calling check responseAPI",apiUrl);
@@ -115,7 +115,7 @@ export const fetchresponse = async (holdingId,clientId) => {
       console.log("After Check Fetch Response", response.data.json);
   //    const status= response.data.flowStatus;
    //   toast.info("The Submitted Flow is "+status);
- //dispatch(response.data);
+ dispatch(response.data.json);
  return response;
  
    } catch (error) {
