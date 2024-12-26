@@ -9,7 +9,7 @@ import { executeflow,checkflowresponse,fetchDataflow } from "../../Api/cordarest
 export default function Proforma() {
   const contextData = useContext(StoreContext);
 
-  const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"1CD1B1A241DA"});
+  const[user,setUser]=useState({accountName:"BuyerNo.1",UserAccountNo:"Buyer1",holdingId:"1CD1B1A241DA"});
 
   useEffect(()=>{
   //  setUser(contextData.SignInData)

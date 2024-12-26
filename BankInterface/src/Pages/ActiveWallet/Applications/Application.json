@@ -1,257 +1,150 @@
 [
     {
-        "date": "2023-05-29",
-        "applicant": "GfHq2tTVk9z4eXgyGKhM7hNkKDTK1kwZGAU25HX9PNEyG8zjXiSt5GRvhLSE",
-        "issuingBank": "GfHq2tTVk9z4eXgyJ5HTFwrdpq4JE8PDJVHMcjUhU7AQPPDTFRZFYiszswip",
-        "applicantAccount": {
-            "name": "IBANPKKA0000BUYER1",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "515a59d3-ab8d-487f-9ae2-1b2cc133afea"
-            }
+        "date": [
+            2024,
+            12,
+            20
+        ],
+        "applicant": {
+            "accountName": "Buyer1",
+            "accountNumber": "Buyer1",
+            "accountId": "6eda891c-8320-4d97-b937-38454dec6f25",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "BankAccount": {
-            "name": "IBANPKKA0000BANK2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "f944c60d-ee54-4237-933d-98425efb5c14"
-            }
+        "issuingBank": {
+            "accountName": "Bank1",
+            "accountNumber": "Bank1",
+            "accountId": "31c1d85a-89bb-49fd-91f0-1afa497bde92",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "referenceId": "MAPP-PR-HMD-01",
-        "beneficiary": {
-            "name": "IBANPKKA0000SELLER2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-            }
-        },
-        "advisingBank": "O=SellerBank, L=Lahore, C=PK",
-        "description": "Egyptian Cotton",
+        "processId": "PR-2",
         "consumable": true,
-        "tenor": "180 days",
-        "amount": 300000,
+        "tenor": 30,
+        "amount": 2500.0,
         "proforma": {
-            "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-            "buyer": "GfHq2tTVk9z4eXgyQsATUmfR911zutY9zugB74JTdjvFKUG3U7y96CepTAWH",
             "sellerAccountInfo": {
-                "name": "IBANPKKA0000SELLER2",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-                }
+                "accountName": "Seller1",
+                "accountNumber": "Seller1",
+                "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
             },
             "buyerAccountInfo": {
-                "name": "IBANPKKA0000BUYER1",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "515a59d3-ab8d-487f-9ae2-1b2cc133afea"
-                }
+                "accountName": "Buyer1",
+                "accountNumber": "Buyer1",
+                "accountId": "6eda891c-8320-4d97-b937-38454dec6f25",
+                "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
             },
-            "date": "2021-01-31",
-            "proformaId": "PR-HMD-01",
-            "description": "Samsung Television 34 inches",
+            "date": [
+                2024,
+                12,
+                20
+            ],
+            "proformaId": "PR-2",
+            "processId": "PR-2",
+            "description": "American Cotton",
             "goods": {
-                "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "vendor": {
-                    "name": "IBANPKKA0000SELLER2",
-                    "host": "O=SellerBank, L=Lahore, C=PK",
-                    "identifier": {
-                        "externalId": null,
-                        "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-                    }
+                "vendorAccountInfo": {
+                    "accountName": "Seller1",
+                    "accountNumber": "Seller1",
+                    "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                    "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
                 },
-                "assetOwner": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "quantity": "10 pcs",
-                "internalReference": "CN-#-01",
-                "asset": "Samsung Television 34 inches",
-                "isRedeemable": true,
-                "takaful": false,
-                "owner": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "participants": [
-                    "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB"
-                ]
-            },
-            "amount": 300000,
-            "consumable": true,
-            "participants": [
-                "GfHq2tTVk9z4eXgyQsATUmfR911zutY9zugB74JTdjvFKUG3U7y96CepTAWH",
-                "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB"
-            ]
-        }
-    }, 
-       {
-        "date": "2023-05-28",
-        "applicant": "GfHq2tTVk9z4eXgyGKhM7hNkKDTK1kwZGAU25HX9PNEyG8zjXiSt5GRvhLSE",
-        "issuingBank": "GfHq2tTVk9z4eXgyJ5HTFwrdpq4JE8PDJVHMcjUhU7AQPPDTFRZFYiszswip",
-        "applicantAccount": {
-            "name": "IBANPKKA0000BUYER1",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "515a59d3-ab8d-487f-9ae2-1b2cc133afea"
-            }
-        },
-        "BankAccount": {
-            "name": "IBANPKKA0000BANK2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "f944c60d-ee54-4237-933d-98425efb5c14"
-            }
-        },
-        "referenceId": "MAPP-PR-HMD-01",
-        "beneficiary": {
-            "name": "IBANPKKA0000SELLER2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-            }
-        },
-        "advisingBank": "O=SellerBank, L=Lahore, C=PK",
-        "description": "Egyptian Cotton",
-        "consumable": true,
-        "tenor": "180 days",
-        "amount": 300000,
-        "proforma": {
-            "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-            "buyer": "GfHq2tTVk9z4eXgyQsATUmfR911zutY9zugB74JTdjvFKUG3U7y96CepTAWH",
-            "sellerAccountInfo": {
-                "name": "IBANPKKA0000SELLER2",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-                }
-            },
-            "buyerAccountInfo": {
-                "name": "IBANPKKA0000BUYER1",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "515a59d3-ab8d-487f-9ae2-1b2cc133afea"
-                }
-            },
-            "date": "2022-02-01",
-            "proformaId": "PR-HMD-01",
-            "description": "Samsung Television 34 inches",
-            "goods": {
-                "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "vendor": {
-                    "name": "IBANPKKA0000SELLER2",
-                    "host": "O=SellerBank, L=Lahore, C=PK",
-                    "identifier": {
-                        "externalId": null,
-                        "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-                    }
+                "ownerAccountInfo": {
+                    "accountName": "Seller1",
+                    "accountNumber": "Seller1",
+                    "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                    "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
                 },
-                "assetOwner": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "quantity": "10 pcs",
-                "internalReference": "CN-#-01",
-                "asset": "Samsung Television 34 inches",
-                "isRedeemable": true,
-                "takaful": false,
-                "owner": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "participants": [
-                    "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB"
-                ]
+                "quantity": {
+                    "value": 100.0,
+                    "unit": "meters"
+                },
+                "processId": "PR-2",
+                "goodsStateId": "6b1a45ba-b79b-419d-9eca-19c6073e281a",
+                "consignmentNumber": "CN-1",
+                "asset": "cotton",
+                "description": "American Cotton",
+                "redeemable": true,
+                "takaful": false
             },
-            "amount": 300000,
-            "consumable": true,
-            "participants": [
-                "GfHq2tTVk9z4eXgyQsATUmfR911zutY9zugB74JTdjvFKUG3U7y96CepTAWH",
-                "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB"
-            ]
-        }
+            "proformaStateId": "3c46be1a-1296-4633-8b49-b775a4c5b416",
+            "amount": 2500.0,
+            "consumable": false
+        },
+        "proformaStateId": "3c46be1a-1296-4633-8b49-b775a4c5b416"
     },
     {
-        "date": "2022-02-01",
-        "applicant": "GfHq2tTVk9z4eXgyGKhM7hNkKDTK1kwZGAU25HX9PNEyG8zjXiSt5GRvhLSE",
-        "issuingBank": "GfHq2tTVk9z4eXgyJ5HTFwrdpq4JE8PDJVHMcjUhU7AQPPDTFRZFYiszswip",
-        "applicantAccount": {
-            "name": "",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "515a59d3-ab8d-487f-9ae2-1b2cc133afea"
-            }
+        "date": [
+            2024,
+            12,
+            20
+        ],
+        "applicant": {
+            "accountName": "Buyer1",
+            "accountNumber": "Buyer1",
+            "accountId": "6eda891c-8320-4d97-b937-38454dec6f25",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "BankAccount": {
-            "name": "IBANPKKA0000BANK2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "f944c60d-ee54-4237-933d-98425efb5c14"
-            }
+        "issuingBank": {
+            "accountName": "Bank1",
+            "accountNumber": "Bank1",
+            "accountId": "31c1d85a-89bb-49fd-91f0-1afa497bde92",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "referenceId": "MAPP-PR-HMD-01",
-        "beneficiary": {
-            "name": "IBANPKKA0000SELLER2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-            }
-        },
-        "advisingBank": "O=SellerBank, L=Lahore, C=PK",
-        "description": "Egyptian Cotton",
+        "processId": "PR-1",
         "consumable": true,
-        "tenor": "180 days",
-        "amount": 300000,
+        "tenor": 30,
+        "amount": 2500.0,
         "proforma": {
-            "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-            "buyer": "GfHq2tTVk9z4eXgyQsATUmfR911zutY9zugB74JTdjvFKUG3U7y96CepTAWH",
             "sellerAccountInfo": {
-                "name": "IBANPKKA0000SELLER2",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-                }
+                "accountName": "Seller1",
+                "accountNumber": "Seller1",
+                "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
             },
             "buyerAccountInfo": {
-                "name": "IBANPKKA0000BUYER1",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "515a59d3-ab8d-487f-9ae2-1b2cc133afea"
-                }
+                "accountName": "Buyer1",
+                "accountNumber": "Buyer1",
+                "accountId": "6eda891c-8320-4d97-b937-38454dec6f25",
+                "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
             },
-            "date": "2022-02-01",
-            "proformaId": "PR-HMD-01",
-            "description": "Samsung Television 34 inches",
+            "date": [
+                2024,
+                12,
+                20
+            ],
+            "proformaId": "PR-1",
+            "processId": "PR-1",
+            "description": "American Cotton",
             "goods": {
-                "seller": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "vendor": {
-                    "name": "IBANPKKA0000SELLER2",
-                    "host": "O=SellerBank, L=Lahore, C=PK",
-                    "identifier": {
-                        "externalId": null,
-                        "id": "98f401e4-a2d9-43b3-bc71-c88c9996a65e"
-                    }
+                "vendorAccountInfo": {
+                    "accountName": "Seller1",
+                    "accountNumber": "Seller1",
+                    "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                    "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
                 },
-                "assetOwner": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "quantity": "10 pcs",
-                "internalReference": "CN-#-01",
-                "asset": "Samsung Television 34 inches",
-                "isRedeemable": true,
-                "takaful": false,
-                "owner": "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB",
-                "participants": [
-                    "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB"
-                ]
+                "ownerAccountInfo": {
+                    "accountName": "Seller1",
+                    "accountNumber": "Seller1",
+                    "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                    "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
+                },
+                "quantity": {
+                    "value": 100.0,
+                    "unit": "meters"
+                },
+                "processId": "PR-1",
+                "goodsStateId": "f48d73d1-67a0-42a8-a30b-87b854c5059e",
+                "consignmentNumber": "CN-1",
+                "asset": "cotton",
+                "description": "American Cotton",
+                "redeemable": true,
+                "takaful": false
             },
-            "amount": 300000,
-            "consumable": true,
-            "participants": [
-                "GfHq2tTVk9z4eXgyQsATUmfR911zutY9zugB74JTdjvFKUG3U7y96CepTAWH",
-                "GfHq2tTVk9z4eXgyTNUzk4NrUv8nKY895ujcS23H5bQ9nXPdfFFaorcANfCB"
-            ]
-        }
+            "proformaStateId": "16724e2c-101a-448e-85c3-49d94749b927",
+            "amount": 2500.0,
+            "consumable": false
+        },
+        "proformaStateId": "16724e2c-101a-448e-85c3-49d94749b927"
     }
 ]

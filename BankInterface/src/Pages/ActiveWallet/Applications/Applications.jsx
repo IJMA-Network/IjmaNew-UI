@@ -9,12 +9,16 @@ import Filter from '../../filter/filter';
 import './Applications.css';
 // pagination import here
 import ApplicationsPagination from "../../Pagination";
+//
+import { executeflow,checkflowresponse,fetchDataflow,formatDate } from "../../../APIs/cordarestapi";
 
 let itemsPerPage = 5;
 
 
 export default function Applications() {
     const contextData = useContext(StoreContext);
+      const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"1CD1B1A241DA"});
+    
     const [bank, setBank] = useState({ accountName: "bank1" });
     const [item, setItem] = useState(null);
 
@@ -33,15 +37,24 @@ export default function Applications() {
 
 
     useEffect(() => {
-        setBank(contextData.SignInData);
+       // setUser(contextData.SignInData);
         console.log("User in Application", contextData.SignInData);
         let payload = {
-            account: bank.UserAccountNo,
+            account: user.UserAccountNo,
             consumable: ""
         }
 
-        getData("received-applications", payload, setfilterItem);
+      //  getData("FilteredApplications", payload, setfilterItem);
     }, [bank])
+    async function getApplications(){
+      const endpoint="FilteredApplications"
+    const reqbody={
+    
+      account:user.UserAccountNo,
+      type:"all"
+    }
+    const resp= await fetchDataflow(endpoint,reqbody,user.holdingId);
+    }
 
     const notify = () => toast.success('🦄 Successfully!', {
         position: "top-right",
@@ -120,11 +133,14 @@ export default function Applications() {
 
                                 <tbody>
                                     <tr>
-                                        <td>{v?.date}</td>
-                                        <td>{v?.referenceId}</td>
-                                        <td>{v?.applicantAccount.name}</td>
+                                       {v.date?
+                                 <td>{formatDate(v.date)}</td>
+                            :<td>Undated</td>
+                                      }
+                                        <td>{v?.processId}</td>
+                                        <td>{v?.applicant.accountName}</td>
                                         <td>{v?.amount}</td>
-                                        <td>{v?.description}</td>
+                                        <td>{v?.proforma.goods.asset}</td>
                                         <td>{v?.tenor}</td>
 
                                         <td>
@@ -164,19 +180,23 @@ export default function Applications() {
                                 </tr>
                                 <tr>
                                     <td>Date.</td>
-                                    <td>{item.date}</td>
+                               
+                                    {item.date?
+                                 <td>{formatDate(item.date)}</td>
+                            :<td>Undated</td>
+                                      }
                                 </tr>
                                 <tr>
                                     <td>Refrence No.</td>
-                                    <td>{item.referenceId}</td>
+                                    <td>{item.processId}</td>
                                 </tr>
                                 <tr>
                                     <td>Bank</td>
-                                    <td>{item.BankAccount.name}</td>
+                                    <td>{item.issuingBank.accountName}</td>
                                 </tr>
                                 <tr>
-                                    <td>Applicate</td>
-                                    <td>{item.applicantAccount.name}</td>
+                                    <td>Applicant</td>
+                                    <td>{item.applicant.accountName}</td>
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
@@ -188,11 +208,11 @@ export default function Applications() {
                                 </tr>
                                 <tr>
                                     <td>Item</td>
-                                    <td>{item.description}</td>
+                                    <td>{item.proforma.goods.asset}</td>
                                 </tr>
                                 <tr>
                                     <td>Description</td>
-                                    <td>{item.description}</td>
+                                    <td>{item.proforma.goods.description}</td>
                                 </tr>
                                 <tr>
                                     <td>Quantity</td>
