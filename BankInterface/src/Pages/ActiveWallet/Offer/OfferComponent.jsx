@@ -8,6 +8,8 @@ import Item from "antd/lib/list/Item";
 import { Spin } from "antd";
 import "./offer.css";
 import OfferPagination from "../../Pagination";
+import { executeflow,checkflowresponse,fetchDataflow,formatDate } from "../../../APIs/cordarestapi";
+
 
 let itemsPerPage = 5;  //pagination per page here
 
@@ -15,6 +17,8 @@ let itemsPerPage = 5;  //pagination per page here
 console.log("Offer Json Data here ===>",OfferState)
 
 export default function OfferComponent() {
+ const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"1CD1B1A241DA"});
+    
     const [offer, setOffer] = useState(OfferState);
     const contextData = useContext(StoreContext);
     const [item, setItem] = useState(null);
@@ -50,9 +54,16 @@ export default function OfferComponent() {
             account: contextData.SignInData.UserAccountNo,
             consumable: "",
         };
-        getData("received-offers", payload, setOffer);
+       // getData("received-offers", payload, setOffer);
     }, []);
-
+    async function getOffers(){
+        const endpoint="FilteredApplications"
+      const reqbody={
+      
+        account:user.UserAccountNo,
+        type:"all"
+      }
+      }
     const handleMurabahaOffer = async () => {
         setloading(false);
 
@@ -132,10 +143,13 @@ export default function OfferComponent() {
                         return (
                             <tbody>
                                 <tr>
-                                    <td>{v?.acceptanceDate ? v?.acceptanceDate : "Undated" }</td>
-                                    <td>{v?.internalReference}</td>
-                                    <td>{v?.bankAccountInfo?.name}</td>
-                                    <td>{v?.borrowerAccountInfo?.name}</td>
+                                 {v.date?
+                                                                 <td>{formatDate(v.date)}</td>
+                                                            :<td>Undated</td>
+                                                                      }
+                                    <td>{v?.offerId}</td>
+                                    <td>{v?.bank?.accountName}</td>
+                                    <td>{v?.borrower?.accountName}</td>
                                     <td>{v?.goods.asset}</td>
                                     <td>{v?.costPrice}</td>
                                     <td>{v?.offerprice}</td>
@@ -185,31 +199,38 @@ export default function OfferComponent() {
                                     </tr>
                                     <tr>
                                         <td>Date</td>
-                                        <td>{item.agreementDate}</td>
+                                       {item.date?
+                                                                       <td>{formatDate(item.date)}</td>
+                                                                  :<td>Undated</td>
+                                                                            }
                                     </tr>
                                     <tr>
                                         <td>Refrence No.</td>
-                                        <td>{item.internalReference}</td>
+                                        <td>{item.offerId}</td>
                                     </tr>
                                     <tr>
                                         <td>Bank</td>
-                                        <td>{item.bankAccountInfo.name}</td>
+                                        <td>{item.bank.accountName}</td>
                                     </tr>
                                     <tr>
                                         <td>Applicant</td>
-                                        <td>{item.borrowerAccountInfo.name}</td>
+                                        <td>{item.borrower.accountName}</td>
                                     </tr>
                                     <tr>
                                         <td>Cost Price</td>
                                         <td>{item.costPrice}</td>
                                     </tr>
                                     <tr>
-                                        <td>Tenor</td>
-                                        <td>{item.term}</td>
+                                        <td>Maturity</td>
+                                        {item.maturity?
+                                         <td>{formatDate(item.maturity)}</td>
+                                         :<td>Undated</td>
+                                                                            }
+
                                     </tr>
                                     <tr>
-                                        <td>Selling Price</td>
-                                        <td>{item.sellingprice}</td>
+                                        <td>Offered  Price</td>
+                                        <td>{item.offerprice}</td>
                                     </tr>
                                     <tr>
                                         <td>Profile Rate</td>

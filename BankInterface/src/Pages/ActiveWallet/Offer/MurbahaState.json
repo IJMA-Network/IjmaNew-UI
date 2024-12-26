@@ -1,173 +1,64 @@
 [
     {
-        "bank": "GfHq2tTVk9z4eXgyMrX22p5smhrxc2N6u9oNwxKczdFdoVchab4tp1Bftt1r",
-        "bankAccountInfo": {
-            "name": "IBANPKKA0000BANK2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "7e6bd7b9-2dc7-4c22-8bdb-158fab92c848"
-            }
+        "bank": {
+            "accountName": "Bank1",
+            "accountNumber": "Bank1",
+            "accountId": "31c1d85a-89bb-49fd-91f0-1afa497bde92",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "borrower": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-        "borrowerAccountInfo": {
-            "name": "IBANPKKA0000BUYER1",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "055364bb-a1f5-4146-a6a0-4f4fe5535ae2"
-            }
+        "borrower": {
+            "accountName": "Buyer1",
+            "accountNumber": "Buyer1",
+            "accountId": "6eda891c-8320-4d97-b937-38454dec6f25",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "internalReference": "MUR-MAPP-PR1-2",
-        "agreementDate": "MM-DD-YY",
+        "date": [
+            2024,
+            12,
+            20
+        ],
+        "offerId": "O-FFPOPR-2",
+        "processId": "PR-2",
         "goods": {
-            "seller": "GfHq2tTVk9z4eXgyNEJBAJwfNPuo8WWtPXwRs5RLZiFLftLAizZYab5iumKb",
-            "vendor": {
-                "name": "IBANPKKA0000SELLER2",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "5de0a9ed-a9b1-4fc3-b5c3-34e811d29782"
-                }
+            "vendorAccountInfo": {
+                "accountName": "Seller1",
+                "accountNumber": "Seller1",
+                "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
             },
-            "assetOwner": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
+            "ownerAccountInfo": {
+                "accountName": "Seller1",
+                "accountNumber": "Seller1",
+                "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
+            },
             "quantity": {
-                "value": 600.0,
-                "unit": "voils"
+                "value": 100.0,
+                "unit": "meters"
             },
-            "internalReference": "CN-1-1",
-            "asset": "Medicin",
-            "description": "Covid vaccines",
-            "isRedeemable": true,
-            "takaful": false,
-            "owner": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-            "participants": [
-                "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
-            ]
+            "processId": "PR-2",
+            "goodsStateId": "6b1a45ba-b79b-419d-9eca-19c6073e281a",
+            "consignmentNumber": "CN-1",
+            "asset": "cotton",
+            "description": "American Cotton",
+            "redeemable": true,
+            "takaful": false
         },
-        "costPrice": 600000,
-        "sellingprice": 600000.0111111111,
-        "profitrate": 0.16,
-        "term": 25,
-        "bankSignature": true,
-        "borrowerSignature": true,
-        "participants": [
-            "GfHq2tTVk9z4eXgyMrX22p5smhrxc2N6u9oNwxKczdFdoVchab4tp1Bftt1r",
-            "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
-        ]
-    },
-    {
-        "bank": "GfHq2tTVk9z4eXgyMrX22p5smhrxc2N6u9oNwxKczdFdoVchab4tp1Bftt1r",
-        "bankAccountInfo": {
-            "name": "IBANPKKA0000BANK2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "7e6bd7b9-2dc7-4c22-8bdb-158fab92c848"
-            }
-        },
-        "borrower": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-        "borrowerAccountInfo": {
-            "name": "IBANPKKA0000BUYER1",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "055364bb-a1f5-4146-a6a0-4f4fe5535ae2"
-            }
-        },
-        "internalReference": "MUR-MAPP-PR1-2",
-        "agreementDate": "MM-DD-YY",
-        "goods": {
-            "seller": "GfHq2tTVk9z4eXgyNEJBAJwfNPuo8WWtPXwRs5RLZiFLftLAizZYab5iumKb",
-            "vendor": {
-                "name": "IBANPKKA0000SELLER2",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "5de0a9ed-a9b1-4fc3-b5c3-34e811d29782"
-                }
-            },
-            "assetOwner": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-            "quantity": {
-                "value": 600.0,
-                "unit": "voils"
-            },
-            "internalReference": "CN-1-1",
-            "asset": "Medic",
-            "description": "Covid vaccines",
-            "isRedeemable": true,
-            "takaful": false,
-            "owner": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-            "participants": [
-                "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
-            ]
-        },
-        "costPrice": 600000,
-        "sellingprice": 600000.0111111111,
-        "profitrate": 0.16,
-        "term": 26,
-        "bankSignature": true,
-        "borrowerSignature": true,
-        "participants": [
-            "GfHq2tTVk9z4eXgyMrX22p5smhrxc2N6u9oNwxKczdFdoVchab4tp1Bftt1r",
-            "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
-        ]
-    },
-    {
-        "bank": "GfHq2tTVk9z4eXgyMrX22p5smhrxc2N6u9oNwxKczdFdoVchab4tp1Bftt1r",
-        "bankAccountInfo": {
-            "name": "IBANPKKA0000BANK2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "7e6bd7b9-2dc7-4c22-8bdb-158fab92c848"
-            }
-        },
-        "borrower": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-        "borrowerAccountInfo": {
-            "name": "IBANPKKA0000BUYER1",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "055364bb-a1f5-4146-a6a0-4f4fe5535ae2"
-            }
-        },
-        "internalReference": "MUR-MAPP-PR1-2",
-        "agreementDate": "MM-DD-YY",
-        "goods": {
-            "seller": "GfHq2tTVk9z4eXgyNEJBAJwfNPuo8WWtPXwRs5RLZiFLftLAizZYab5iumKb",
-            "vendor": {
-                "name": "IBANPKKA0000SELLER2",
-                "host": "O=SellerBank, L=Lahore, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "5de0a9ed-a9b1-4fc3-b5c3-34e811d29782"
-                }
-            },
-            "assetOwner": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-            "quantity": {
-                "value": 600.0,
-                "unit": "voils"
-            },
-            "internalReference": "CN-1-1",
-            "asset": "Medic",
-            "description": "Covid vaccines",
-            "isRedeemable": true,
-            "takaful": false,
-            "owner": "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv",
-            "participants": [
-                "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
-            ]
-        },
-        "costPrice": 600000,
-        "sellingprice": 600000.0111111111,
-        "profitrate": 0.16,
-        "term": 27,
-        "bankSignature": true,
-        "borrowerSignature": true,
-        "participants": [
-            "GfHq2tTVk9z4eXgyMrX22p5smhrxc2N6u9oNwxKczdFdoVchab4tp1Bftt1r",
-            "GfHq2tTVk9z4eXgyFvgFQ8FVHQQhDxc9Xz4QKYVSTiW8kkzJ7BMWPVDTgzBv"
-        ]
+        "costPrice": 2500.0,
+        "offerprice": 0.0,
+        "profit": 0.0,
+        "schedule": "",
+        "maturiy": [
+            2024,
+            12,
+            20
+        ],
+        "acceptanceDate": [
+            2024,
+            12,
+            20
+        ],
+        "borrowerSignature": false,
+        "bankSignature": false
     }
 ]

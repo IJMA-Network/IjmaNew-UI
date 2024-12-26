@@ -1,63 +1,64 @@
 [
     {
-        "bank": "GfHq2tTVk9z4eXgyHHET1jrTwG6FjaHAfWY3HivRYGMsd4y4N9kaayGyTPTD",
-        "bankAccountInfo": {
-            "name": "Bank1",
-            "host": "O=BorrowerBank, L=Karachi, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "3f3089cd-200e-4cb1-b021-5b215a23d03f"
-            }
+        "bank": {
+            "accountName": "Bank1",
+            "accountNumber": "Bank1",
+            "accountId": "31c1d85a-89bb-49fd-91f0-1afa497bde92",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "borrower": "GfHq2tTVk9z4eXgyHHET1jrTwG6FjaHAfWY3HivRYGMsd4y4N9kaayGyTPTD",
-        "borrowerAccountInfo": {
-            "name": "Buyer1",
-            "host": "O=BorrowerBank, L=Karachi, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "133624d4-e28d-43f2-a917-5cfa4c5f25fa"
-            }
+        "borrower": {
+            "accountName": "Buyer1",
+            "accountNumber": "Buyer1",
+            "accountId": "6eda891c-8320-4d97-b937-38454dec6f25",
+            "owner": "CN=BorrowerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "processId": "PR-1",
-        "internalReference": "PO-MAPP-PR-1",
-        "offerDate": "",
+        "date": [
+            2024,
+            12,
+            20
+        ],
+        "offerId": "OFFPOPR-2",
+        "processId": "PR-2",
         "goods": {
-            "seller": "GfHq2tTVk9z4eXgyR8Ptbk4qaWznqCj6yMkAXoDiNJ9wXzZNf56crXwGniWU",
-            "vendor": {
-                "name": "Bank1",
-                "host": "O=BorrowerBank, L=Karachi, C=PK",
-                "identifier": {
-                    "externalId": null,
-                    "id": "3f3089cd-200e-4cb1-b021-5b215a23d03f"
-                }
+            "vendorAccountInfo": {
+                "accountName": "Seller1",
+                "accountNumber": "Seller1",
+                "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
             },
-            "assetOwner": "GfHq2tTVk9z4eXgyHHET1jrTwG6FjaHAfWY3HivRYGMsd4y4N9kaayGyTPTD",
+            "ownerAccountInfo": {
+                "accountName": "Seller1",
+                "accountNumber": "Seller1",
+                "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+                "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
+            },
             "quantity": {
-                "value": 1000.0,
-                "unit": "Meter"
+                "value": 100.0,
+                "unit": "meters"
             },
-            "processId": "PR-1",
-            "consignmentNumber": "PR-1",
-            "asset": "Cotton",
+            "processId": "PR-2",
+            "goodsStateId": "6b1a45ba-b79b-419d-9eca-19c6073e281a",
+            "consignmentNumber": "CN-1",
+            "asset": "cotton",
             "description": "American Cotton",
-            "isRedeemable": true,
-            "takaful": false,
-            "owner": "GfHq2tTVk9z4eXgyHHET1jrTwG6FjaHAfWY3HivRYGMsd4y4N9kaayGyTPTD",
-            "participants": [
-                "GfHq2tTVk9z4eXgyHHET1jrTwG6FjaHAfWY3HivRYGMsd4y4N9kaayGyTPTD"
-            ]
+            "redeemable": true,
+            "takaful": false
         },
-        "costPrice": 786.0,
-        "offerprice": 0.0,
-        "profit": 0.0,
+        "costPrice": 2500.0,
+        "offerprice": 10000.0,
+        "profit": 100.0,
         "schedule": "",
-        "Maturiy": "",
-        "acceptanceDate": "",
+        "maturiy": [
+            2024,
+            12,
+            20
+        ],
+        "acceptanceDate": [
+            2024,
+            12,
+            20
+        ],
         "borrowerSignature": false,
-        "bankSignature": false,
-        "participants": [
-            "GfHq2tTVk9z4eXgyHHET1jrTwG6FjaHAfWY3HivRYGMsd4y4N9kaayGyTPTD",
-            "GfHq2tTVk9z4eXgyHHET1jrTwG6FjaHAfWY3HivRYGMsd4y4N9kaayGyTPTD"
-        ]
+        "bankSignature": false
     }
 ]

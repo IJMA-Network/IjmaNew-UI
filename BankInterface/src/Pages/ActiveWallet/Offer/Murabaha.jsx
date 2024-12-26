@@ -13,14 +13,16 @@ let itemsPerPage = 5;  //pagination per page here
 
 
 export default function Murabaha() {
-  const [murabahas, setMurabahas] = useState(MurbaState);
+        const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"1CD1B1A241DA"});
+  
+  const [offers, setoffers] = useState(MurbaState);
   const contextData = useContext(StoreContext);
   const [item, setItem] = useState(null);
   console.log(contextData.SignInData, "murabaha Context Data");
 
   //  pagination new state here
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(murabahas?.length / itemsPerPage);
+  const totalPages = Math.ceil(offers?.length / itemsPerPage);
 
 
 
@@ -48,9 +50,16 @@ export default function Murabaha() {
       account: contextData.SignInData.UserAccountNo,
       consumable: "",
     };
-    getData("received-murabaha", payload, setMurabahas);
+   // getData("received-murabaha", payload, setoffers);
   }, []);
-
+  async function getOffers(){
+    const endpoint="FilteredApplications"
+  const reqbody={
+  
+    account:user.UserAccountNo,
+    type:"all"
+  }
+  }
   const handleMurabahaOffer = async () => {
     setloading(false);
 
@@ -77,12 +86,12 @@ export default function Murabaha() {
     setPage(value);
   };
 
-  const displayedData = murabahas.slice(
+  const displayedData = offers.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
 
-  console.log("Ali====>dat", murabahas)
+  console.log("Ali====>dat", offers)
 
   return (
     <div className="card card-cascade narrower">
