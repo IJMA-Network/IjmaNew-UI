@@ -64,11 +64,11 @@ const Dashboard = () => {
         icon: <UserAddOutlined onClick={() => setTriggerValue('4b')} />,
         label: <div onClick={() => setTriggerValue('4b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Goods' : ''}</span></div>,
       },
-      {
-        key: '2b',
-        icon: <DingtalkOutlined onClick={() => setTriggerValue('2b')} />,
-        label: <div onClick={() => setTriggerValue('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
-      },
+      // {
+      //   key: '2b',
+      //   icon: <DingtalkOutlined onClick={() => setTriggerValue('2b')} />,
+      //   label: <div onClick={() => setTriggerValue('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+      // },
       {
         key: '7b',
         icon: <BiSolidOffer onClick={() => setTriggerValue('7b')} />,

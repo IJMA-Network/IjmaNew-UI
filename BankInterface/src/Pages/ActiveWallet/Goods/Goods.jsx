@@ -50,7 +50,7 @@ export default function Goods() {
       account: user.UserAccountNo,
       consumable: ""
     }
-    getData("owned-goods", payload, setGoods);
+   // getData("owned-goods", payload, setGoods);
   }, [user])
 
   const Redeem = () => {
@@ -62,7 +62,15 @@ export default function Goods() {
       notify() // 3
     }, 2000);
   }
-
+ async function getGoods(){
+      const endpoint="FilteredGoods"
+    const reqbody={
+    
+      account:user.UserAccountNo,
+      type:"all"
+    }
+    const resp= await fetchDataflow(endpoint,reqbody,user.holdingId);
+    }
   // pagination function here
   const handlePageChange = (event, value) => {
     setPage(value);

@@ -50,10 +50,18 @@ export default function Goods() {
       account: user.UserAccountNo,
       consumable: ""
     }
-    getData("owned-goods", payload, setGoods);
+    //getData("owned-goods", payload, setGoods);
     // console.log("goods in seller", goods);
   }, [user])
 
+  async function getGoods(){
+    const endpoint="FilteredGoods"
+  const reqbody={
+  
+    account:user.UserAccountNo,
+    type:"all"
+  }
+  }
   const Redeem = async () => {
     setloading(false)
     let api = "goods/redeem";
@@ -121,7 +129,7 @@ export default function Goods() {
               return (
                 <tbody>
                   <tr>
-                    <td>{v?.internalReference}</td>
+                    <td>{v?.consignmentNumber}</td>
                     <td>{v?.asset}</td>
                     <td>{v?.quantity?.value}</td>
                     <td>Yes</td>

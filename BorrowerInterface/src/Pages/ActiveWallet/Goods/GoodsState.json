@@ -1,77 +1,52 @@
 [
     {
-        "seller": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
-        "vendor": {
-            "name": "IBANPKKA0000SELLER2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "f089695d-ce0c-4f16-8245-04657cb845e3"
-            }
+        "vendorAccountInfo": {
+            "accountName": "Seller1",
+            "accountNumber": "Seller1",
+            "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+            "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "assetOwner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "ownerAccountInfo": {
+            "accountName": "Seller1",
+            "accountNumber": "Seller1",
+            "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+            "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
+        },
         "quantity": {
-            "value": "12 million bales",
-            "unit": "pcs"
+            "value": 100.0,
+            "unit": "meters"
         },
-        "internalReference": "CN-2.1",
-        "asset": "Cotton",
-        "description": "Egyptian Cotton of Superior Quality",
-        "isRedeemable": true,
-        "takaful": false,
-        "owner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
-        "participants": [
-            "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh"
-        ]
+        "processId": "PR-2",
+        "goodsStateId": "6b1a45ba-b79b-419d-9eca-19c6073e281a",
+        "consignmentNumber": "CN-1",
+        "asset": "cotton",
+        "description": "American Cotton",
+        "redeemable": true,
+        "takaful": false
     },
     {
-        "seller": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
-        "vendor": {
-            "name": "IBANPKKA0000SELLER2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "f089695d-ce0c-4f16-8245-04657cb845e3"
-            }
+        "vendorAccountInfo": {
+            "accountName": "Seller1",
+            "accountNumber": "Seller1",
+            "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+            "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
         },
-        "assetOwner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
+        "ownerAccountInfo": {
+            "accountName": "Seller1",
+            "accountNumber": "Seller1",
+            "accountId": "4f1a2fdb-0e4f-4bfa-9811-21a9fc292803",
+            "owner": "CN=SellerBank, OU=Test Dept, O=R3, L=London, C=GB"
+        },
         "quantity": {
-            "value": "12 million bales",
-            "unit": "pcs"
+            "value": 100.0,
+            "unit": "meters"
         },
-        "internalReference": "CN-2.2",
-        "asset": "Cotton",
-        "description": "Egyptian Cotton of Superior Quality",
-        "isRedeemable": true,
-        "takaful": false,
-        "owner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
-        "participants": [
-            "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh"
-        ]
-    },
-    {
-        "seller": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
-        "vendor": {
-            "name": "IBANPKKA0000SELLER2",
-            "host": "O=SellerBank, L=Lahore, C=PK",
-            "identifier": {
-                "externalId": null,
-                "id": "f089695d-ce0c-4f16-8245-04657cb845e3"
-            }
-        },
-        "assetOwner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
-        "quantity": {
-            "value": "12 million bales",
-            "unit": "pcs"
-        },
-        "internalReference": "CN-2.3",
-        "asset": "Cotton",
-        "description": "Egyptian Cotton of Superior Quality",
-        "isRedeemable": true,
-        "takaful": false,
-        "owner": "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh",
-        "participants": [
-            "GfHq2tTVk9z4eXgyKRVD72eqXCTyxTGgFr4VgsUrYnzRs7QA6NMjgBRjamKh"
-        ]
+        "processId": "PR-1",
+        "goodsStateId": "f48d73d1-67a0-42a8-a30b-87b854c5059e",
+        "consignmentNumber": "CN-1",
+        "asset": "cotton",
+        "description": "American Cotton",
+        "redeemable": true,
+        "takaful": false
     }
 ]
