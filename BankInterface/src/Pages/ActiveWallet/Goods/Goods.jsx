@@ -15,7 +15,7 @@ import GoodsPagination from "../../Pagination";
 let itemsPerPage = 5;
 
 export default function Goods() {
-  const [user, setUser] = useState({ accountName: "seller1" });
+      const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"1CD1B1A241DA"});
   const [goods, setGoods] = useState(GoodState);
   const [loading, setloading] = useState(true);
   const contextData = useContext(StoreContext);
@@ -100,10 +100,13 @@ export default function Goods() {
               return (
                 <tbody>
                   <tr>
-                    <td>{v?.internalReference}</td>
+                    <td>{v?.consignmentNumber}</td>
                     <td>{v?.asset}</td>
                     <td>{v?.quantity?.value}</td>
-                    <td>Yes</td>
+                     {v.takaful?
+                                                    <td>Yes</td>
+                                               :<td>No.</td>
+                                                         }
 
                     <td>
                       <span type="button" className="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -140,7 +143,7 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Vendor</td>
-                    <td>{item?.vendor?.name}</td>
+                    <td>{item?.vendorAccountInfo?.accountName}</td>
                   </tr>
                   <tr>
                     <td>Asset</td>
@@ -156,7 +159,10 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Insured</td>
-                    <td>Yes</td>
+                    {item.takaful?
+                                                    <td>Yes</td>
+                                               :<td>No.</td>
+                                                         }
                   </tr>
 
 

@@ -8,12 +8,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Spin } from 'antd';
 // pagination import here
 import PromissoryPagination from "../../Pagination";
+import { executeflow,checkflowresponse,fetchDataflow,formatDate } from "../../../APIs/cordarestapi";
 
 
 let itemsPerPage = 5;
 
 export default function Promissory() {
-  const [bank, setBank] = useState({ accountName: "Bank1" });
+ const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"1CD1B1A241DA"});
   // const [pNotes, setPNotes] = useState(JsonData);
   const [item, setItem] = useState(null);
 
@@ -30,13 +31,23 @@ export default function Promissory() {
 
   useEffect(() => {
     let payload = {
-      account: bank.accountName,
+      account: user.accountName,
       consumable: ""
     }
 
-    getData("issued-PNs", payload, setfilterItem);
+    
   }, [])
 
+    async function getPnotes(){
+        const endpoint="FilteredPNotes"
+      const reqbody={
+      
+        account:user.UserAccountNo,
+        type:"all"
+      }
+      const resp= await fetchDataflow(endpoint,reqbody,user.holdingId);
+      }
+  
 
   const notify = () => toast.success('🦄 Successfully!', {
     position: "top-right",
@@ -62,7 +73,7 @@ export default function Promissory() {
     let api = "pNote/burn";
     let payload = {
       stateId: item.processId,
-      account: bank.accountName
+      account: user.accountName
     }
     console.log("In Redeem PNote", payload);
     const resp = await postData(api, payload);
@@ -111,12 +122,19 @@ export default function Promissory() {
 
                 <tbody>
                   <tr>
-                    <td>{v?.issueDate}</td>
-                    <td>{v?.id}</td>
-                    <td>{v?.issuerAccount?.name}</td>
-                    <td>{v?.payeeAccount?.name}</td>
+                   {v.issueDate?
+                    <td>{formatDate(v.issueDate)}</td>
+                    :<td>Undated</td>
+                    }
+                    <td>{v?.pnoteId}</td>
+                    <td>{v?.issuerAccount?.accountName}</td>
+                    <td>{v?.payeeAccount?.accountName}</td>
                     <td>{v?.value}</td>
-                    <td>{v?.maturity}</td>
+             
+                    {v.maturity?
+                    <td>{formatDate(v.maturity)}</td>
+                    :<td>Undated</td>
+                    }
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                         onClick={() => handleShow(setItem(v))}
@@ -150,31 +168,38 @@ export default function Promissory() {
                 </tr>
                 <tr>
                   <td>Issue Date.</td>
-                  <td>{item?.issueDate}</td>
+                  {item.issueDate?
+                    <td>{formatDate(item.issueDate)}</td>
+                    :<td>Undated</td>
+                    }
+
                 </tr>
                 <tr>
                   <td>Refrence No.</td>
-                  <td>{item?.id}</td>
+                  <td>{item?.pnoteId}</td>
                 </tr>
                 <tr>
                   <td>Issuer</td>
-                  <td>{item?.issuerAccount.name}</td>
+                  <td>{item?.issuerAccount.accountName}</td>
                 </tr>
                 <tr>
                   <td>Payee</td>
-                  <td>{item?.payeeAccount.name}</td>
+                  <td>{item?.payeeAccount.accountName}</td>
                 </tr>
                 <tr>
                   <td>Amount</td>
                   <td>{item?.value}</td>
                 </tr>
                 <tr>
-                  <td>Redeemad</td>
+                  <td>Redeemable</td>
                   <td>Yes</td>
                 </tr>
                 <tr>
                   <td>Expiry</td>
-                  <td>{item?.maturity}</td>
+                  {item.maturity?
+                    <td>{formatDate(item.maturity)}</td>
+                    :<td>Undated</td>
+                    }
                 </tr>
 
               </table>

@@ -73,11 +73,11 @@ export default function Dashboard() {
         label: <div onClick={() => setTrigger('1b')}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Applications' : ''}</span></div>,
       },
 
-      {
-        key: '2b',
-        icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
-        label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
-      },
+      // {
+      //   key: '2b',
+      //   icon: <DingtalkOutlined onClick={() => setTrigger('2b')} />,
+      //   label: <div onClick={() => setTrigger('2b')}> <span style={{ marginLeft: '5%' }}> {!collapsed ? 'Murabaha' : ''}</span></div>,
+      // },
       {
         key: '2c',
         icon: <DingtalkOutlined onClick={() => setTrigger('2c')} />,

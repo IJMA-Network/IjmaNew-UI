@@ -54,16 +54,20 @@ export default function OfferComponent() {
             account: contextData.SignInData.UserAccountNo,
             consumable: "",
         };
-       // getData("received-offers", payload, setOffer);
+       // getOffers();
     }, []);
-    async function getOffers(){
-        const endpoint="FilteredApplications"
-      const reqbody={
-      
-        account:user.UserAccountNo,
-        type:"all"
-      }
-      }
+    
+   async function getOffers(){
+      const endpoint="FilteredOffers"
+    const reqbody={
+    
+      account:user.UserAccountNo,
+      type:"all"
+    }
+    const resp= await fetchDataflow(endpoint,reqbody,user.holdingId);
+    }
+
+
     const handleMurabahaOffer = async () => {
         setloading(false);
 
