@@ -132,7 +132,10 @@ export default function Goods() {
                     <td>{v?.consignmentNumber}</td>
                     <td>{v?.asset}</td>
                     <td>{v?.quantity?.value}</td>
-                    <td>Yes</td>
+                    {v.takaful?
+                                                    <td>Yes</td>
+                                               :<td>No.</td>
+                                                         }
 
                     <td>
                       <span type="button" className="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -171,7 +174,7 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Vendor</td>
-                    <td>{item?.vendor?.name}</td>
+                    <td>{item?.vendorAccountInfo?.accountName}</td>
                   </tr>
                   <tr>
                     <td>Asset</td>
@@ -183,11 +186,17 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Reedemable</td>
-                    <td>Yes</td>
+                    {item.Redeemable?
+                                                    <td>Yes</td>
+                                               :<td>No.</td>
+                                                         }
                   </tr>
                   <tr>
                     <td>Insured</td>
-                    <td>Yes</td>
+                    {item.takaful?
+                                                    <td>Yes</td>
+                                               :<td>No.</td>
+                                                         }
                   </tr>
 
 

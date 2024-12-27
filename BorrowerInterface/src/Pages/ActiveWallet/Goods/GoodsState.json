@@ -47,6 +47,6 @@
         "asset": "cotton",
         "description": "American Cotton",
         "redeemable": true,
-        "takaful": false
+        "takaful": true
     }
 ]

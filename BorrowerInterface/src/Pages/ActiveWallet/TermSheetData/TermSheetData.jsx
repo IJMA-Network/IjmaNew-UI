@@ -1,6 +1,8 @@
 import { React, useState, useEffect, useContext } from "react";
 import "./TermSheetData.css";
 import { getData, postData } from "../../../Api";
+import { executeflow,checkflowresponse,fetchDataflow,formatDate } from "../../../APIs/cordarestapi";
+
 import JsonData from "./TermSheetState.json";
 import Filter from "./filter";
 import StoreContext from "../../../ContextApi";
@@ -129,12 +131,15 @@ export default function TermSheetData() {
               return (
                 <tbody>
                   <tr>
-                    <td>{v?.bankAccountInfo.name}</td>
-                    <td>{v?.termSheetReference}</td>
+                    <td>{v?.issuingBank?.accountName}</td>
+                    <td>{v?.termsheetId}</td>
                     <td>{v?.limit}</td>
-                    <td>{v?.tenor}</td>
+                    <td>{v?.term}</td>
                     <td>{v?.referenceRate}</td>
-                    <td>{v?.expiryDate}</td>
+                    {v.expiry?
+                        <td>{formatDate(v.expiry)}</td>
+                        :<td></td>
+                   }
 
                     <td>
                       <span
@@ -168,11 +173,11 @@ export default function TermSheetData() {
               <table id="customers">
                 <tr>
                   <td>Bank</td>
-                  <td>{item.bankAccountInfo.name}</td>
+                  <td>{item.issuingBank.accountName}</td>
                 </tr>
                 <tr>
                   <td>Refernce No</td>
-                  <td>{item.termSheetReference}</td>
+                  <td>{item.termsheetId}</td>
                 </tr>
                 <tr>
                   <td>Limit</td>
@@ -192,11 +197,17 @@ export default function TermSheetData() {
                 </tr>
                 <tr>
                   <td>Issue Date</td>
-                  <td>{item.issueDate}</td>
+                  {item.issueDate?
+                        <td>{formatDate(item.issueDate)}</td>
+                        :<td></td>
+                   }
                 </tr>
                 <tr>
                   <td>Expiry Date</td>
-                  <td>{item.expiryDate}</td>
+                  {item.expiry?
+                        <td>{formatDate(item.expiry)}</td>
+                        :<td></td>
+                   }
                 </tr>
                 <tr>
                   <td>Acceptance</td>
