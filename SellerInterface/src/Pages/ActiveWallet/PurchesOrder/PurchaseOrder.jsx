@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useContext } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import { getData, postData } from '../../../Api/Api';
+import { fetchDataflow,executeflow,formatDate} from '../../../Api/cordarestapi'
 import { Spin } from 'antd';
 import './PurchaesOrder.css';
 import JsonData from './PurchaesOrderState.json';
@@ -15,7 +15,7 @@ let itemsPerPage = 5;
 
 export default function PurchaesOrder() {
 
-    const [user, setUser] = useState({ accountName: "seller1" });
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"1DB323C08EDD"});
     // const [pOrders, setpOrders] = useState(PurchesOrder);
     const [item, setItem] = useState(null);
     const [loading, setloading] = useState(true);
@@ -52,11 +52,20 @@ export default function PurchaesOrder() {
             account: user.UserAccountNo,
             consumable: ""
         }
-        getData("received-POs", payload, setfilterItem);
+   getPurchaseOrders();
         // console.log("POs in seller PO",pOrders);
     }, [user])
 
-
+    async function getPurchaseOrders(){
+        const endpoint="FilteredPOrders"
+        const holdingId=user.holdingId;
+      const reqbody={
+      
+        account:user.UserAccountNo,
+        type:"all"
+      }
+      const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
+      }
 
     const handleDeliver = async () => {
 
@@ -74,7 +83,7 @@ export default function PurchaesOrder() {
             account: user.UserAccountNo
         }
         console.log("In PO deliver", payload);
-        const resp = await postData(api, payload);
+      //  const resp = await postData(api, payload);
     }
 
     // pagination function here
@@ -114,13 +123,16 @@ export default function PurchaesOrder() {
                         return (
                             <tbody>
                                 <tr>
-                                    <td>{v?.date}</td>
-                                    <td>{v?.referenceId}</td>
-                                    <td>{v?.bankAccountInfo.name}</td>
-                                    <td>{v?.proforma.buyerAccountInfo.name}</td>
+                                {v.date?
+                                    <td>{formatDate(v.date)}</td>
+                                    :<td>Undated</td>
+                                     }
+                                    <td>{v?.purchaseOrderId}</td>
+                                    <td>{v?.issuingBank?.accountName}</td>
+                                    <td>{v?.proforma?.buyerAccountInfo?.accountName}</td>
                                     <td>{v?.applicationId}</td>
                                     <td>{v?.proforma.goods.asset}</td>
-                                    <td>{v?.amount}</td>
+                                    <td>{v?.proforma.amount}</td>
                                     <td>
                                         <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
                                             onClick={() => handleShow(setItem(v))}
@@ -154,19 +166,22 @@ export default function PurchaesOrder() {
                                 </tr>
                                 <tr>
                                     <td>Date</td>
-                                    <td>{item.date}</td>
+                                    {item.date?
+                                    <td>{formatDate(item.date)}</td>
+                                    :<td></td>
+                                }
                                 </tr>
                                 <tr>
                                     <td>Refrence No.</td>
-                                    <td>{item.referenceId}</td>
+                                    <td>{item.purchaseOrderId}</td>
                                 </tr>
                                 <tr>
                                     <td>Bank</td>
-                                    <td>{item.bankAccountInfo.name}</td>
+                                    <td>{item?.issuingBank?.accountName}</td>
                                 </tr>
                                 <tr>
                                     <td>Client</td>
-                                    <td>{item.bankAccountInfo.name}</td>
+                                    <td>{item.proforma?.buyerAccountInfo?.accountName}</td>
                                     {/* <td>Buyer 1</td> */}
                                 </tr>
                                 <tr>
@@ -179,7 +194,7 @@ export default function PurchaesOrder() {
                                 </tr>
                                 <tr>
                                     <td>Description</td>
-                                    <td>{item.description}</td>
+                                    <td>{item.proforma.description}</td>
                                 </tr>
                                 <tr>
                                     <td>Quantity</td>
@@ -187,7 +202,7 @@ export default function PurchaesOrder() {
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
-                                    <td>{item.amount}</td>
+                                    <td>{item.proforma.amount}</td>
                                 </tr>
 
                             </table>

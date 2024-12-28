@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import { getData, postData } from '../../../Api/Api'
+import { fetchDataflow,executeflow,formatDate} from '../../../Api/cordarestapi'
 import { Spin } from "antd";
 import Filter from "./filter";
 import axios from "axios";
@@ -41,7 +41,7 @@ export default function Promissory() {
       account: user.UserAccountNo,
       consumable: ""
     }
-    getData("received-PNs", payload, setfilterItem);
+    //getData("received-PNs", payload, setfilterItem);
     // console.log("goods in seller",promissoryData);
   }, [user])
 
@@ -71,7 +71,7 @@ export default function Promissory() {
       account: user.UserAccountNo
     }
     console.log("InPNote Encash", payload);
-    const resp = await postData(api, payload);
+   // const resp = await postData(api, payload);
   }
 
   // pagination function here
