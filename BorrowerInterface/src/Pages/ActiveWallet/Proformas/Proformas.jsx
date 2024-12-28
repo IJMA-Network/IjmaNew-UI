@@ -17,7 +17,7 @@ let itemsPerPage = 2;
 
 export default function Proformas() {
     const contextData = useContext(StoreContext);
-  const[user,setUser]=useState({accountName:"BuyerNo.1",UserAccountNo:"Buyer1",holdingId:"EAB8505CF0A4"});
+  const[user,setUser]=useState({accountName:"BuyerNo.1",UserAccountNo:"Buyer1",holdingId:"3E9B18E34F8B"});
     const [bank, setBank] = useState('');
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
@@ -25,17 +25,17 @@ export default function Proformas() {
     const [show, setShow] = useState(false);
     // const [proformas, setProformas] = useState(JsonData);
     const [filterItem, setfilterItem] = useState(JsonData);
-
+    const [totalPages, setTotalPages] = useState(1);
     // new State pagination here
     const [page, setPage] = useState(1);
-    const totalPages=Math.ceil(filterItem.length / itemsPerPage);
+    //const totalPages=Math.ceil(filterItem.length / itemsPerPage);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     console.log(contextData.SignInData, "Proformas Context Data");
 
-    const notify = () => toast.success('🦄 Successfully!', {
+    const notify = () => toast.success(' Successfully!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -48,6 +48,8 @@ export default function Proformas() {
 
 
     useEffect(() => {
+setTotalPages()
+
       //  setUser(contextData.SignInData);
         console.log("user in proformas", user);
         let payload = {
@@ -67,7 +69,10 @@ const reqbody={
 const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
 }
     const handleRequestMurabaha = async () => {
-        let api = "apply/murabaha";
+        console.log("payload values",bank,value)
+
+        let endpoint = "MurabahaApplicationFlow";
+        const holdingId=user.holdingId;
         setloading(false);
 
 
@@ -77,15 +82,20 @@ const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
             notify() // 3
         }, 2000);
 
+        let requestbody={
+            applicant:user.UserAccountNo,
+            bank:bank,
+            processId:item.processId,
+            "term":value
+          
+            
+          }
 
-        let payload = {
-            bank: bank,
-            proformaId: item.processId,
-            "term": value,
-            borrower: contextData.SignInData.UserAccountNo,
-        }
-        console.log("In request Murabaha", payload);
-        const resp = await postData(api, payload);
+       
+        console.log("In request Murabaha", requestbody);
+        const resp = await executeflow(endpoint,requestbody,holdingId);
+        console.log("after application", resp);
+       // await postData(api, payload);
     }
 
     // pagination function here

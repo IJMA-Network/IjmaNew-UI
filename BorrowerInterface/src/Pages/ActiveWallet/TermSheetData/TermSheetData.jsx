@@ -39,8 +39,17 @@ export default function TermSheetData() {
       account: contextData.SignInData.UserAccountNo,
       consumable: "",
     };
-    getData("received-TermSheets", payload, setfilterItem);
+   // getData("received-TermSheets", payload, setfilterItem);
   }, [contextData.SignInData]);
+  async function getTermSheets(){
+    const endpoint="GetTermSheet"
+  const reqbody={
+  
+    account:user.UserAccountNo,
+    type:"all"
+  }
+  const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
+  }
   const handleReaccept = async () => {
     let api = "termsheet/accept";
 

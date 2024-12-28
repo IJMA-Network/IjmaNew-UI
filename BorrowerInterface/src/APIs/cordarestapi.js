@@ -112,9 +112,10 @@ export const fetchresponse = async (holdingId,clientId,dispatch) => {
  
      var response = await axios.get(apiUrl,{ headers:header });
     // alert("in fetch response");
-      console.log("After Check Fetch Response", response.data.json);
+      console.log("After Check Fetch Response", response.data);
   //    const status= response.data.flowStatus;
    //   toast.info("The Submitted Flow is "+status);
+   const returnvalue=(response.data.json)?response.data.json:[];
  dispatch(response.data.json);
  return response;
  
