@@ -14,7 +14,7 @@ import PromissoryPagination from "../../Pagination";
 let itemsPerPage = 5;  //pagination page
 
 export default function Promissory() {
-  const [user, setUser] = useState({ accountName: "seller1" });
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"67D1120B34DE"});
 
   // const [promissoryData, setpromissoryData] = useState(filterItem)
   const [loading, setloading] = useState(true);
@@ -36,14 +36,24 @@ export default function Promissory() {
 
 
   useEffect(() => {
-    setUser(contextData.SignInData);
+   // setUser(contextData.SignInData);
     let payload = {
       account: user.UserAccountNo,
       consumable: ""
     }
-    //getData("received-PNs", payload, setfilterItem);
-    // console.log("goods in seller",promissoryData);
+    getPnotes();
+   
   }, [user])
+   async function getPnotes(){
+          const endpoint="FilteredPNotes"
+          const holdingId=user.holdingId;
+        const reqbody={
+        
+          account:user.UserAccountNo,
+          type:"all"
+        }
+        const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
+        }
 
   const notify = () => toast.success('🦄 Successfully!', {
     position: "top-right",

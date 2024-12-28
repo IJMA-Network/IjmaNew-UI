@@ -15,7 +15,7 @@ let itemsPerPage = 5;
 
 export default function PurchaesOrder() {
 
-    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"1DB323C08EDD"});
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"67D1120B34DE"});
     // const [pOrders, setpOrders] = useState(PurchesOrder);
     const [item, setItem] = useState(null);
     const [loading, setloading] = useState(true);
@@ -47,7 +47,7 @@ export default function PurchaesOrder() {
 
 
     useEffect(() => {
-        setUser(contextData.SignInData);
+       // setUser(contextData.SignInData);
         let payload = {
             account: user.UserAccountNo,
             consumable: ""
@@ -69,21 +69,27 @@ export default function PurchaesOrder() {
 
     const handleDeliver = async () => {
 
+        let endpoint = "DeliverPurchaseOrder";
+        const holdingId=user.holdingId;
         setloading(false)
+
         setTimeout(() => {
-            setloading(true)//1
+            setloading(true) // 1
             handleClose() // 2
-            notify() // 3
+           // notify() // 3
         }, 2000);
 
+        let requestbody={
 
-        let api ="purchaseOrder/deliverToAgent"; //"purchaseOrder/deliver";
-        let payload = {
-            stateId: item.processId,
-            account: user.UserAccountNo
-        }
-        console.log("In PO deliver", payload);
-      //  const resp = await postData(api, payload);
+            vendor:user.UserAccountNo,
+            processId:item.processId,
+          
+            
+          }
+   
+      
+        console.log("In deliver Purchase Order", requestbody,);
+        const resp = await executeflow(endpoint,requestbody,holdingId)
     }
 
     // pagination function here

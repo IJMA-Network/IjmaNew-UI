@@ -33,7 +33,7 @@ export const executeflow = async (flowname,requestBody, holdingId) => {
   }
 
   const completeapi=baseApi+holdingId;
-  console.log(payload, "payload in executeFlow");
+  console.log(payload, "payload in executeFlow",holdingId);
   
   try {
 
@@ -47,7 +47,7 @@ export const executeflow = async (flowname,requestBody, holdingId) => {
     return response;
   } catch (error) {
     console.log("Error in Flow Sumission", error);
-notify("Error in Proforma");
+notify("Error in Flow Submission");
     return error;
   }
 };
