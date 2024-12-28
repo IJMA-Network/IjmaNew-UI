@@ -67,21 +67,28 @@ export default function Promissory() {
   });
 
   const Encash = async () => {
+   
+    let endpoint = "EncashPrNote";
+    const holdingId=user.holdingId;
     setloading(false)
+
     setTimeout(() => {
-      setloading(true)//1
-      handleClose() // 2
-      notify() // 3
+        setloading(true) // 1
+        handleClose() // 2
+   
     }, 2000);
 
+    let requestbody={
 
-    let api = "pNote/encash";
-    let payload = {
-      stateId: item.processId,
-      account: user.UserAccountNo
-    }
-    console.log("InPNote Encash", payload);
-   // const resp = await postData(api, payload);
+        account:user.UserAccountNo,
+        processId:item.processId
+      
+        
+      }
+
+  
+    console.log("In handle Purchase Order", requestbody);
+    const resp = await executeflow(endpoint,requestbody,holdingId)
   }
 
   // pagination function here
