@@ -129,11 +129,17 @@ export default function Promissory() {
 
                 <tbody>
                   <tr>
-                    <td>{v?.id}</td>
-                    <td>{v?.issueDate}</td>
-                    <td>{v?.maturity}</td>
-                    <td>{v?.issuerAccount?.name}</td>
-                    <td>{v?.payeeAccount?.name}</td>
+                    <td>{v?.pnoteId}</td>
+                    {v.issueDate?
+                                 <td>{formatDate(v.issueDate)}</td>
+                            :<td>Undated</td>
+                                      }
+                      {v.maturity?
+                                 <td>{formatDate(v.maturity)}</td>
+                            :<td>Undated</td>
+                                      }
+                    <td>{v?.issuerAccount?.accountName}</td>
+                    <td>{v?.payeeAccount?.accountName}</td>
                     <td>{v?.value}</td>
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -171,19 +177,22 @@ export default function Promissory() {
                 </tr>
                 <tr>
                   <td>Issue Date.</td>
-                  <td>{item.issueDate}</td>
+                  {item.issueDate?
+                                 <td>{formatDate(item.issueDate)}</td>
+                            :<td>Undated</td>
+                                      }
                 </tr>
                 <tr>
                   <td>Refrence No.</td>
-                  <td>{item.id}</td>
+                  <td>{item.pnoteId}</td>
                 </tr>
                 <tr>
                   <td>Issuer</td>
-                  <td>{item.issuerAccount.name}</td>
+                  <td>{item.issuerAccount.accountName}</td>
                 </tr>
                 <tr>
                   <td>Payee</td>
-                  <td>{item.payeeAccount.name}</td>
+                  <td>{item.payeeAccount.accountName}</td>
                 </tr>
                 <tr>
                   <td>Amount</td>
@@ -195,7 +204,10 @@ export default function Promissory() {
                 </tr>
                 <tr>
                   <td>Due Date</td>
-                  <td>{item.maturity}</td>
+                  {item.maturity?
+                                 <td>{formatDate(item.maturity)}</td>
+                            :<td>Undated</td>
+                                      }
                 </tr>
 
               </table>
