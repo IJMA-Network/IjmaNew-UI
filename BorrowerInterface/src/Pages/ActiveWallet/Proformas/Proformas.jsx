@@ -17,7 +17,7 @@ let itemsPerPage = 2;
 
 export default function Proformas() {
     const contextData = useContext(StoreContext);
-  const[user,setUser]=useState({accountName:"BuyerNo.1",UserAccountNo:"Buyer1",holdingId:"3E9B18E34F8B"});
+  const[user,setUser]=useState({accountName:"BuyerNo.1",UserAccountNo:"Buyer1",holdingId:"700EDE631614"});
     const [bank, setBank] = useState('');
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);

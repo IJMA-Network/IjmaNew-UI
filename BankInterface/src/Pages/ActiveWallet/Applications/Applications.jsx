@@ -17,7 +17,7 @@ let itemsPerPage = 5;
 
 export default function Applications() {
     const contextData = useContext(StoreContext);
-      const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"1CD1B1A241DA"});
+      const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"700EDE631614"});
     
     const [bank, setBank] = useState({ accountName: "bank1" });
     const [item, setItem] = useState(null);
@@ -39,10 +39,7 @@ export default function Applications() {
     useEffect(() => {
        // setUser(contextData.SignInData);
         console.log("User in Application", contextData.SignInData);
-        let payload = {
-            account: user.UserAccountNo,
-            consumable: ""
-        }
+        getApplications();
 
       //  getData("FilteredApplications", payload, setfilterItem);
     }, [bank])
@@ -53,7 +50,7 @@ export default function Applications() {
       account:user.UserAccountNo,
       type:"all"
     }
-    const resp= await fetchDataflow(endpoint,reqbody,user.holdingId);
+    const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
     }
 
     const notify = () => toast.success('🦄 Successfully!', {
@@ -67,6 +64,9 @@ export default function Applications() {
         theme: "light",
     });
     const handleIssuePurchaseOrder = async () => {
+
+        let endpoint = "IssuePurchaseOrder";
+        const holdingId=user.holdingId;
         setloading(false)
 
         setTimeout(() => {
@@ -75,16 +75,18 @@ export default function Applications() {
             notify() // 3
         }, 2000);
 
+        let requestbody={
 
-        let api = "purchaseOrder/issue";
-        let payload = {
-            applicationId: item.processId,
-            term: "2",
-            insuranceRequired: true,
-            account: ""
-        }
-        console.log("In request Murabaha", payload);
-        const resp = await postData(api, payload);
+            bank:"Bank1",
+            processId:item.processId,
+            term:2
+          
+            
+          }
+   
+      
+        console.log("In handle Purchase Order", requestbody);
+        const resp = await executeflow(endpoint,requestbody,holdingId)
     }
 
     // pagination function here
