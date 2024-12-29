@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import Filter from '../../filter/filter';
 import './Goods.css';
 import GoodState from './GoodsState.json';
-import { getData, postData } from '../../../Api/Api';
+import { fetchDataflow,executeflow,formatDate} from '../../../Api/cordarestapi'
 import { ToastContainer, toast } from 'react-toastify';
 import StoreContext from '../../../ContextApi';
 import { Button, message, Space, Spin } from 'antd';
@@ -13,8 +13,10 @@ import GoodsPagination from "../../Pagination";
 let itemsPerPage = 5;
 
 export default function Goods() {
-  const [user, setUser] = useState({ accountName: "seller1" });
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"3339EE17C857"});
   const [goods, setGoods] = useState(GoodState);
+  const [filterItem, setfilterItem] = useState(GoodState);
+
   const [loading, setloading] = useState(true);
   const contextData = useContext(StoreContext);
   const [item, setItem] = useState(null);
@@ -23,7 +25,7 @@ export default function Goods() {
   const handleShow = () => setShow(true);
   //   new state pagination here
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(goods?.length / itemsPerPage);
+  const totalPages = Math.ceil(filterItem?.length / itemsPerPage);
 
 
   console.log(contextData.SignInData, "Good Context Data");
@@ -39,7 +41,7 @@ export default function Goods() {
     theme: "light",
   });
 
-  goods.map((v, i) => { console.log(v, "GoodState") })
+  filterItem?.map((v, i) => { console.log(v, "GoodState") })
 
 
   useEffect(() => {
@@ -48,10 +50,22 @@ export default function Goods() {
       account: user.UserAccountNo,
       consumable: ""
     }
-    getData("owned-goods", payload, setGoods);
-    console.log("goods in seller", goods);
+    getGoods();
+    // getData("owned-goods", payload, setGoods);
+    // console.log("goods in seller", goods);
   }, [user])
 
+  async function getGoods(){
+    const endpoint="FilteredGoods"
+    const holdingId=user.holdingId;
+  const reqbody={
+  
+    account:user.UserAccountNo,
+    type:"all"
+  }
+        const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
+  
+  }
   const Redeem = async () => {
     setloading(false)
     let api = "goods/burn";
@@ -60,7 +74,7 @@ export default function Goods() {
       account: user.UserAccountNo
     }
     console.log("I goods Burn", payload);
-    const resp = await postData(api, payload);
+  //  const resp = await postData(api, payload);
     setTimeout(() => {
       setloading(true) // 1
       handleClose() // 2
@@ -73,7 +87,7 @@ export default function Goods() {
     setPage(value);
   };
 
-  const displayedData = goods.slice(
+  const displayedData = filterItem.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
@@ -105,10 +119,12 @@ export default function Goods() {
               return (
                 <tbody>
                   <tr>
-                    <td>{v?.internalReference}</td>
+                    <td>{v?.consignmentNumber}</td>
                     <td>{v?.asset}</td>
                     <td>{v?.quantity?.value}</td>
-                    <td>Yes</td>
+                    {v.takaful?<td>Yes</td>
+                    :<td>No.</td>
+            }
 
                     <td>
                       <span type="button" class="btn btn-warning btn-rounded" data-toggle="modal" data-target="#myModal"
@@ -151,6 +167,10 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Asset</td>
+                    <td>{item?.asset}</td>
+                  </tr>
+                  <tr>
+                    <td>Description</td>
                     <td>{item?.description}</td>
                   </tr>
                   <tr>
@@ -159,11 +179,15 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Reedemable</td>
-                    <td>Yes</td>
+                    {item.redeemable?<td>Yes</td>
+                    :<td>No.</td>
+}
                   </tr>
                   <tr>
                     <td>Insured</td>
-                    <td>Yes</td>
+                    {item.takaful?<td>Yes</td>
+                    :<td>No.</td>
+            }
                   </tr>
                 </table>
               </div>
