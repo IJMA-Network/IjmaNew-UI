@@ -13,7 +13,7 @@ import GoodsPagination from "../../Pagination";
 let itemsPerPage = 5;
 
 export default function Goods() {
-    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"3339EE17C857"});
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"94E2D73693CB"});
   const [goods, setGoods] = useState(GoodState);
   const [filterItem, setfilterItem] = useState(GoodState);
 
@@ -45,7 +45,7 @@ export default function Goods() {
 
 
   useEffect(() => {
-    setUser(contextData.SignInData);
+  //  setUser(contextData.SignInData);
     let payload = {
       account: user.UserAccountNo,
       consumable: ""
@@ -67,19 +67,27 @@ export default function Goods() {
   
   }
   const Redeem = async () => {
-    setloading(false)
-    let api = "goods/burn";
-    let payload = {
-      stateId: item.processId,
-      account: user.UserAccountNo
-    }
-    console.log("I goods Burn", payload);
-  //  const resp = await postData(api, payload);
-    setTimeout(() => {
-      setloading(true) // 1
-      handleClose() // 2
-      notify() // 3
-    }, 2000);
+    let endpoint = "BurnGoods";
+          const holdingId=user.holdingId;
+           setloading(false)
+   
+           setTimeout(() => {
+               setloading(true) // 1
+               handleClose() // 2
+              // notify() // 3
+           }, 2000);
+   
+           let requestbody={
+   
+               account:user.UserAccountNo,
+               processId:item.processId,
+             
+               
+             }
+      
+         
+           console.log("In in urn goodsh", requestbody,holdingId);
+           const resp = await executeflow(endpoint,requestbody,holdingId)
   }
 
   //  pagination function here
@@ -163,7 +171,7 @@ export default function Goods() {
                   </tr>
                   <tr>
                     <td>Vendor</td>
-                    <td>{item?.vendor?.name}</td>
+                    <td>{item?.vendorAccountInfo?.accountName}</td>
                   </tr>
                   <tr>
                     <td>Asset</td>
