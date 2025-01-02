@@ -13,7 +13,7 @@ import GoodsPagination from "../../Pagination";
 let itemsPerPage = 5;
 
 export default function Goods() {
-    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"D98380F8EC2F"});
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"B39889E62BAB"});
   const [goods, setGoods] = useState(GoodState);
   const [filterItem, setfilterItem] = useState(GoodState);
 

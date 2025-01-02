@@ -14,7 +14,7 @@ import PromissoryPagination from "../../Pagination";
 let itemsPerPage = 5;  //pagination page
 
 export default function Promissory() {
-    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"D98380F8EC2F"});
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"B39889E62BAB"});
 
   // const [promissoryData, setpromissoryData] = useState(filterItem)
   const [loading, setloading] = useState(true);
@@ -200,7 +200,10 @@ export default function Promissory() {
                 </tr>
                 <tr>
                   <td>Redeemed</td>
-                  <td>No.</td>
+                  {item.redeemable?
+                                 <td>No.</td>
+                            :<td>Yes.</td>
+                                      }
                 </tr>
                 <tr>
                   <td>Due Date</td>
