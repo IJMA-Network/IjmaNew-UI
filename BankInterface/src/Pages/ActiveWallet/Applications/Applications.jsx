@@ -17,7 +17,7 @@ let itemsPerPage = 5;
 
 export default function Applications() {
     const contextData = useContext(StoreContext);
-      const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"700EDE631614"});
+      const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"3C6C69360D52"});
     
     const [bank, setBank] = useState({ accountName: "bank1" });
     const [item, setItem] = useState(null);
@@ -53,7 +53,7 @@ export default function Applications() {
     const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
     }
 
-    const notify = () => toast.success('🦄 Successfully!', {
+    const notify = () => toast.success(' Successfully!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -67,17 +67,18 @@ export default function Applications() {
 
         let endpoint = "IssuePurchaseOrder";
         const holdingId=user.holdingId;
+        const bank=user.UserAccountNo;
         setloading(false)
 
         setTimeout(() => {
             setloading(true) // 1
             handleClose() // 2
-            notify() // 3
+           // notify() // 3
         }, 2000);
 
         let requestbody={
 
-            bank:"Bank1",
+            bank:bank,
             processId:item.processId,
             term:2
           

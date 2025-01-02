@@ -15,7 +15,7 @@ let itemsPerPage = 5;
 
 export default function PurchaesOrder() {
 
-    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"67D1120B34DE"});
+    const[user,setUser]=useState({accountName:"SellerNo.1",UserAccountNo:"Seller1",holdingId:"D98380F8EC2F"});
     // const [pOrders, setpOrders] = useState(PurchesOrder);
     const [item, setItem] = useState(null);
     const [loading, setloading] = useState(true);
