@@ -116,7 +116,7 @@ export default function Promissory() {
                       <td>{v.value}</td>
                     </tr>
                     <tr>
-                      <td>Redeemad</td>
+                      <td>Redeemed</td>
                       <td>Yes</td>
                     </tr>
                     <tr>

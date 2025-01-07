@@ -14,7 +14,7 @@ import { executeflow,checkflowresponse,fetchDataflow,formatDate } from "../../..
 let itemsPerPage = 5;
 
 export default function Promissory() {
- const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"1CD1B1A241DA"});
+ const[user,setUser]=useState({accountName:"BankNo.1",UserAccountNo:"Bank1",holdingId:"3435C84D97DE"});
   // const [pNotes, setPNotes] = useState(JsonData);
   const [item, setItem] = useState(null);
 
@@ -45,7 +45,7 @@ export default function Promissory() {
         account:user.UserAccountNo,
         type:"all"
       }
-      const resp= await fetchDataflow(endpoint,reqbody,user.holdingId);
+      const resp= await fetchDataflow(endpoint,reqbody,user.holdingId,setfilterItem);
       }
   
 
@@ -191,8 +191,11 @@ export default function Promissory() {
                   <td>{item?.value}</td>
                 </tr>
                 <tr>
-                  <td>Redeemable</td>
-                  <td>Yes</td>
+                  <td>Redeemed</td>
+                  {item.redeemable?
+                                 <td>No.</td>
+                            :<td>Yes</td>
+                                      }
                 </tr>
                 <tr>
                   <td>Expiry</td>
