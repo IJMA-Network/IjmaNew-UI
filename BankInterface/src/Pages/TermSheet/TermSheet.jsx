@@ -121,12 +121,18 @@ export default function TermSheet() {
     return doc.body.textContent || "";
   }
 
+  const handleAttach = () => {
+    console.log(
+      "Attaching content:",
+      draftToHtml(convertToRaw(editorState.getCurrentContent()))
+    );
+  }
   const handleSave = () => {
     console.log(
       "Saving content:",
       draftToHtml(convertToRaw(editorState.getCurrentContent()))
     );
-
+   
     var htmlString = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
     var textContent = extractTextFromHTML(htmlString);
@@ -365,6 +371,7 @@ export default function TermSheet() {
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
                 handleSave={handleSave}
+                handleAttach={handleAttach}
                 toolbarOptions={toolbarOptions}
               />
               <div class="d-grid gap-2 col-6 mx-auto">
@@ -386,6 +393,7 @@ function MyVerticallyCenteredModal({
   editorState,
   onEditorStateChange,
   handleSave,
+  handleAttach,
   toolbarOptions,
   fileList,
   // tryCatch
@@ -456,7 +464,7 @@ function MyVerticallyCenteredModal({
       </Modal.Body>
       <Modal.Footer>
               <button onClick={handleSave}>Save</button>
-              <button style={{ margin: "0px 5px" }}>Attach</button>
+              <button onClick={handleAttach} style={{ margin: "0px 5px" }}>Attach</button>
         <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
