@@ -22,7 +22,8 @@ import Modal from "react-bootstrap/Modal";
 
 export default function TermSheet() {
   const contextData = useContext(StoreContext);
-  const [bank, setBank] = useState({ accountName: "Bank1" });
+  const [bank, setBank] = useState({ accountName: "Bank1",accountNo:"Bank1" });
+  const [tems, setTerms] = useState("");
   const [modalShow, setModalShow] = useState(false); // Initialize modal state
 
   const Client = useRef();
@@ -78,19 +79,18 @@ export default function TermSheet() {
     };
 
     var data = {
-      bank: bank.UserAccountNo,
+      bank: bank.accountNo,
       client: Client.current.value,
       termsheetReference: Refrense.current.value,
       facilityType: FacilityType.current.value,
+      terms:tems.toString(),
       limit: Limit.current.value,
       tenor: Tenor.current.value,
       profitRate: profitRate,
       expiry: Expire.current.value,
     };
 
-    
-
-    createTerm(data);
+        createTerm(data);
   };
 
   const [editorState, setEditorState] = useState(() => {
@@ -112,8 +112,8 @@ export default function TermSheet() {
   };
 
   useEffect(() => {
-    const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    localStorage.setItem("termeditorContent", content);
+    // const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    // localStorage.setItem("termeditorContent", content);
   }, [editorState]);
 
   function extractTextFromHTML(htmlString) {
@@ -122,10 +122,11 @@ export default function TermSheet() {
   }
 
   const handleAttach = () => {
-    console.log(
-      "Attaching content:",
-      draftToHtml(convertToRaw(editorState.getCurrentContent()))
-    );
+    const content = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    setTerms(content);
+    localStorage.setItem("termeditorContent", content);
+    console.log(      "Attaching content:",typeof(content));
+   
   }
   const handleSave = () => {
     console.log(

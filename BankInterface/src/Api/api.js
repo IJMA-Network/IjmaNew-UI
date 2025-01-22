@@ -1,8 +1,8 @@
 import axios from "axios";
-const baseApi = "http://192.168.100.8:10050/api/murabaha/"
-// const baseApi = "http://localhost:10050/api/murabaha/";
+//const baseApi = "http://192.168.100.8:10050/api/murabaha/"
+const baseApi = "http://localhost:10050/api/murabaha/";
 export const createTerm = async (payload) => {
-  console.log(payload, "payload", payload);
+  console.log("payloadin createTerm", payload);
 
   const apiURL = baseApi + "termSheet/issue";
   try {

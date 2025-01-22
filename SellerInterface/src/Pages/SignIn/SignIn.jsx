@@ -54,18 +54,19 @@ export default function SignIn() {
     setloading(false)
     axios({
       method: "post",
-      url: "https://sign-api-boiler-plate.vercel.app/UserSignIn",
+      url: "https://api.finomics.com.pk/api/auth/login",
       data: {
-        UserId: UserId.current.value,
-        UserPassword: UserPassword.current.value
+        user_name: UserId.current.value,
+        password: UserPassword.current.value
       }
     }).then((res) => {
-      console.log(res);
-      // localStorage.setItem("SiginData", JSON.stringify(res))
-      // alert("Login Successfully!")
+      console.log("SignIn Response",res.data);
+      if (res.data.loginStatus=="Success"){
+       localStorage.setItem("SiginData", JSON.stringify(res.data.user))
+       alert("Login Successfully!")
+       contextData.setSignInData(res.user);
       openMessage()
-      contextData.setSignInData(res.data);
-
+      }
 
     }).catch((err) => {
 

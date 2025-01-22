@@ -7,7 +7,7 @@ import { useState } from "react";
 
 
 function App() {
-  const [SignInData, setSignInData] = useState([]);
+  const [SignInData, setSignInData] = useState({ accountName: "Bank1",accountNo:"Bank1" });
   
    
   console.log(SignInData)
