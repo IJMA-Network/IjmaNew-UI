@@ -15,7 +15,7 @@ let itemsPerPage = 5;
 
 export default function Proformas() {
     const contextData = useContext(StoreContext);
-    const [user, setUser] = useState({ accountName: "Buyer1" });
+    const [user, setUser] = useState('');
     const [bank, setBank] = useState('');
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);
@@ -24,6 +24,13 @@ export default function Proformas() {
     // const [proformas, setProformas] = useState(JsonData);
     const [filterItem, setfilterItem] = useState(JsonData);
 
+
+// first useeffect
+    useEffect(() => {
+        setUser(contextData.SignInData);// not working
+        console.log("user in proformas first use effect",contextData.SignInData, user);
+        
+    }, [])
     // new State pagination here
     const [page, setPage] = useState(1);
     const totalPages = Math.ceil(filterItem.length / itemsPerPage);
@@ -46,10 +53,10 @@ export default function Proformas() {
 
 
     useEffect(() => {
-        setUser(contextData.SignInData);
-        console.log("user in proformas", user);
+      //  setUser(contextData.SignInData);
+        console.log("user in proformas-second", user);
         let payload = {
-            account: contextData.SignInData.UserAccountNo,
+            account: contextData.SignInData.account_no,
             consumable: true
         }
         getData("received-Proformas", payload, setfilterItem);
@@ -71,7 +78,7 @@ export default function Proformas() {
             bank: bank,
             proformaId: item.processId,
             "term": value,
-            borrower: contextData.SignInData.UserAccountNo,
+            borrower: contextData.SignInData.account_no,
         }
         console.log("In request Murabaha", payload);
         const resp = await postData(api, payload);
