@@ -39,23 +39,24 @@ export default function TermSheet() {
 
 
   useEffect(() => {
+    console.log("User in TermSheet",contextData.SignInData);
     setBank(contextData.SignInData);
   }, [contextData.SignInData]);
 
   //useEffect for API
-  useEffect(() => {
-    const fetchData = async()=>{
-      try{
-        const response = await axios.get('http://localhost:5000/allnames');
-        console.log('api response',response.data);
-        setFileList(response.data);
+  // useEffect(() => {
+  //   const fetchData = async()=>{
+  //     try{
+  //       const response = await axios.get('http://localhost:5000/allnames');
+  //       console.log('api response',response.data);
+  //       setFileList(response.data);
 
-      } catch(error){
-        console.error('Error fetching data: ', error);
-      }
-    };
-    fetchData();
-    }, []);
+  //     } catch(error){
+  //       console.error('Error fetching data: ', error);
+  //     }
+  //   };
+  //   fetchData();
+  //   }, []);
 
     // const tryCatch = async()=>{
     //   try{
@@ -79,7 +80,7 @@ export default function TermSheet() {
     };
 
     var data = {
-      bank: bank.accountNo,
+      bank: bank.account_no,
       client: Client.current.value,
       termsheetReference: Refrense.current.value,
       facilityType: FacilityType.current.value,

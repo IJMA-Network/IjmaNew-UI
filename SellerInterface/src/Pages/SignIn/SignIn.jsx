@@ -60,11 +60,11 @@ export default function SignIn() {
         password: UserPassword.current.value
       }
     }).then((res) => {
-      console.log("SignIn Response",res.data);
+      console.log("SignIn Response",res?.data.user);
       if (res.data.loginStatus=="Success"){
-       localStorage.setItem("SiginData", JSON.stringify(res.data.user))
+       localStorage.setItem("SiginData", JSON.stringify(res?.data.user))
        alert("Login Successfully!")
-       contextData.setSignInData(res.user);
+       contextData.setSignInData(res?.data.user);
       openMessage()
       }
 
