@@ -15,7 +15,7 @@ let itemsPerPage = 5;
 
 export default function Proformas() {
     const contextData = useContext(StoreContext);
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState(contextData.SignInData);
     const [bank, setBank] = useState('');
     const [value, setValue] = useState('');
     const [item, setItem] = useState(null);

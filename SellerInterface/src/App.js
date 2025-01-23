@@ -7,7 +7,7 @@ import { useState } from "react";
 import 'antd/dist/antd.min.css';
 
 function App() {
-  const [SignInData, setSignInData] = useState({ accountName: "Seller1",accountNo:"Seller1" });
+  const [SignInData, setSignInData] = useState({ account_name: "Seller1",account_no:"Seller1" });
 
   return (
     <StoreProvider value={{ SignInData, setSignInData }}>
